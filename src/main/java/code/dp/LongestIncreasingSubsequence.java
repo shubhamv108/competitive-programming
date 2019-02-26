@@ -4,47 +4,33 @@ import java.util.Arrays;
 
 public class LongestIncreasingSubsequence {
 
-    int[] a;
-    int[][] dp;
-    int n;
+    private static int[] a;
+    private static int n;
+    private static int x[];
 
-    int longestLISLengthHelper(int l, int r) {
-        if(l >= n || r >= n) return 0;
 
-//        if(a[r] > a[l]) return 1 + longestLISLengthHelper(l+1, r+1)
-//        else return 1 + longestLISLengthHelper()
-//
-//        if(dp[l][h] != -1) return dp[l][h];
-//        else {
-//            if()
-        return 0;
+    private static int longestLISLength() {
+        for (int i = 1; i < n; i++)
+            for (int j = 0; j < i; j++)
+                if (a[i] > a[j] && x[i] < x[j] + 1)
+                    x[i] = x[j] + 1;
+        return Arrays.stream(x).max().getAsInt();
     }
 
-    int longestLISLengthHelper(int idx) {
-//        if(idx >= n) return 0;
-//
-//
-//        for(int i=idx+1;i<n;i++) {
-//            if(a[idx] > a[i]) {
-//
-//            }
-//        }
-//
-//
-//        if(dp[l][h] != -1) return dp[l][h];
-//        else {
-//            if()
-//        }
-        return 0;
-    }
 
-    int longestLISLength(int arr[]) {
+
+    public static int longestLISLength(int arr[]) {
         if(arr.length == 0) return 0;
-        this.a = arr;
-        this.n = a.length;
-        dp = new int[arr.length + 1][arr.length + 1];
-        Arrays.fill(dp, -1);
-        return longestLISLengthHelper(0, 1);
+        a = arr;
+        n = a.length;
+        x = new int[a.length];
+        Arrays.fill(x, 1);
+        return longestLISLength();
+    }
+
+    public static void main(String[] args) {
+        int[] a = {10, 22, 9, 33, 21, 50, 41, 60};
+        System.out.println(longestLISLength(a));
     }
 
 }
