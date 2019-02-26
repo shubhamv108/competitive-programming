@@ -1,0 +1,19 @@
+package code.collections;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class UnboundedBlockingQueue<T> {
+
+    public Queue<T> queue = new LinkedList<>();
+
+    public synchronized void enqueue (Object e) {
+
+    }
+
+    public synchronized Object dequeue () {
+        return null;
+}
+
+}
