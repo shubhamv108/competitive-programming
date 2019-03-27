@@ -6,6 +6,7 @@ class Node {
     Node() {}
     Node(int data) {
         this.data = data;
+        this. n = null;
     }
 }
 public class InsertinBeginning {

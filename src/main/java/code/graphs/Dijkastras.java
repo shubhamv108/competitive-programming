@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class  Dijkastras {
+public class Dijkastras {
 
     private Map<Integer, List<Edge>> graph;
 
@@ -16,8 +16,8 @@ public class  Dijkastras {
         this.graph = graph;
     }
 
-    // Optimal way to find SHORTEST Distance froma vertex to all
-    public Map<Integer, Integer> Dijkastras(int s) {
+    // Optimal way to find SHORTEST Distance from a vertex to all
+    public Map<Integer, Integer> Dijkastras (int s) {
         PriorityQueue<Edge> pq = new PriorityQueue<>();
         Map<Integer, Integer> set  = new HashMap<>();
         pq.offer(new Edge(s, 0));
@@ -26,8 +26,8 @@ public class  Dijkastras {
             if(!set.containsKey(e.v)) {
                 set.put(e.v, e.cost);
                 graph.get(e.v).forEach(edge -> {
-                    if (!set.containsKey(edge.v)) {
-                        pq.offer(new Edge(edge.v, e.cost + edge.cost)); }
+                    if (!set.containsKey(edge.v))
+                        pq.offer(new Edge(edge.v, e.cost + edge.cost));
                 });
             }
         }

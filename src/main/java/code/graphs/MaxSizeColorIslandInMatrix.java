@@ -1,4 +1,4 @@
-package code.arrays;
+package code.graphs;
 
 import java.util.ArrayList;
 import java.util.List;

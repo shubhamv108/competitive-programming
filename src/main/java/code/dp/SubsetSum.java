@@ -54,8 +54,9 @@ public class SubsetSum {
                 cache[i][j] = cache[i][j-1];
                 timeComplexityCounter++;
                 if (i >= arr[j-1])
-                    cache[i][j] = cache[i][j] ||
-                                    cache[i - arr[j-1]][j-1];
+                    cache[i][j] =
+                            cache[i][j] ||
+                            cache[i - arr[j-1]][j-1];
             }
         }
         return cache[sum][n];

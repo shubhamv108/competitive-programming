@@ -9,8 +9,8 @@ public class Array {
 
     Array(int n) { this.a = new Object[n]; this.n = n; }
 
-    public void set (int idx, Object value) { a[idx] = value; }
-    public Object get (int idx)             { return a[idx]; }
+    public void   set (int idx, Object value) { a[idx] = value; }
+    public Object get (int idx)               { return a[idx]; }
 
     void rightRotate() {
         Object temp;

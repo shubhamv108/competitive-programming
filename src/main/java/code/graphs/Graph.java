@@ -29,6 +29,7 @@ public class Graph {
             graph.put(v, l);
         }
         if(doReverseMapping) insert(e.v, new Edge(v, e.cost), !doReverseMapping);
+//        else if (!graph.containsKey(e.v)) graph.put(e.v, null);
     }
 
     public void print() {

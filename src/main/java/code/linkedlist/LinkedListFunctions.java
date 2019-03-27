@@ -1,15 +1,15 @@
 package code.linkedlist;
 
 import java.util.*;
+import java.util.function.Function;
 
-class LinkedListFunctions
+class   LinkedListFunctions
 {
     LLNode last = null;
     void printList(LLNode head)
     {
         LLNode temp = head;
-        while (temp != null)
-        {
+        while (temp != null) {
             System.out.print(temp.data+" ");
             temp = temp.next;
         }
@@ -111,6 +111,7 @@ class LinkedListFunctions
             fast = fast.next.next;
             if(slow == fast) break;
         }
+        if (fast == null || fast.next == null) return null;
         return fast;
     }
 
@@ -371,8 +372,30 @@ class LinkedListFunctions
         if (n.length == 0) return null;
         LLNode h = new LLNode(n[0]);
         LLNode l = h;
-        for (int i = 0; i < n.length; i++) {
+        for (int i = 1; i < n.length; i++) {
             l.next = new LLNode(n[i]);
+            l = l.next;
+        }
+        return h;
+    }
+
+    public static Node createAndGetNewLL (int... n) {
+        if (n.length == 0) return null;
+        Node h = new Node(n[0]);
+        Node l = h;
+        for (int i = 1; i < n.length; i++) {
+            l.n = new Node(n[i]);
+            l = l.n;
+        }
+        return h;
+    }
+
+    public static ListNode createAndGetNewLN (int... n) {
+        if (n.length == 0) return null;
+        ListNode h = new ListNode(n[0]);
+        ListNode l = h;
+        for (int i = 1; i < n.length; i++) {
+            l.next = new ListNode(n[i]);
             l = l.next;
         }
         return h;
@@ -382,10 +405,18 @@ class LinkedListFunctions
         while (null != h) { System.out.print(h.data + " | "); h = h.next; }
     }
 
-    public static void main (String[] args) {
-        LLNode l = createAndGetNew(15, 10, 5, 2, 3);
-        print(mergeSort(l));
+    public static void print (ListNode h) {
+        while (null != h) { System.out.print(h.val + " "); h = h.next; }
     }
+
+    public static void print (Node h) {
+        while (null != h) { System.out.print(h.data + " | "); h = h.n; }
+    }
+
+//    public static void main (String[] args) {
+//        LLNode l = createAndGetNew(15, 10, 5, 2, 3);
+//        print(mergeSort(l));
+//    }
 
     /**
      * A = 4
@@ -435,6 +466,315 @@ class LinkedListFunctions
             k--;
         }
         return a;
+    }
+
+    private static Node l = null;
+    private static boolean a = false;
+    public static Node subtract (Node A) {
+        if (A == null || A.n == null) return A;
+        if (A.n.n == null) {
+            A.data = A.n.data - A.data;
+            return A;
+        }
+        l = A;
+        Node mid = mid (l);
+        // recurse(mid);
+        Stack<Node> s = new Stack<>();
+        while(mid != null) {
+            s.push(mid);
+            mid=mid.n;
+        }
+        while (!s.isEmpty()) { l.data = s.pop().data - l.data; l = l.n; }
+        return A;
+    }
+
+    private static void recurse (Node r) {
+        if (r == null) return;
+        recurse (r.n);
+        if (l == r || a)  {  a = true; return; }
+        if (r == l.n) {
+            l.data = r.data - l.data;
+            return;
+        }
+        l.data = r.data - l.data;
+        l = l.n;
+    }
+
+    private static Node mid (Node n) {
+        int count = 0;
+        Node mid = n;
+        while (n != null) {
+            if (count != 0 && (count & 1) == 0) mid = mid.n;
+            count++;
+            n = n.n;
+
+        }
+        return mid.n;
+    }
+
+//    public static void main(String[] args) {
+//        Node l = createAndGetNewLL(95 , 59 , 26 , 16 , 31 , 39 , 29 , 8 , 74 , 14 , 41 , 41 , 64 , 88 , 34 , 21 , 67 , 23 , 17 , 41 , 3 , 38 , 4 , 45 , 93 , 92 , 99 , 24);
+//        print(subtract(l));
+//    }
+
+    private static Node left;
+
+    public static boolean isPalindrome (Node node) {
+        if (node == null)           return true;
+        if (!isPalindrome(node.n))  return false;
+        if (node == left)           return true;
+        if (node.data != left.data) return false;
+        left = left.n;
+        return true;
+    }
+
+//    public static void main(String[] args) {
+//        Node head     = new Node(1);
+//        head.n        = new Node(2);
+//        head.n.n      = new Node(3);
+//        head.n.n.n    = new Node(2);
+//        head.n.n.n.n  = new Node(1);
+//        left = head;
+//        System.out.println(isPalindrome(mid(head)));
+//    }
+
+    public static ListNode reverseBetween (ListNode A, int B, int C) {
+        ListNode temp = null;
+        ListNode r = null;
+        ListNode p = null;
+        ListNode head = A;
+        ListNode rstart = null;
+        int c = 0;
+        while (A != null) {
+            c++;
+            if (c == B-1) {
+                p = A;
+            }
+            if (c >= B && c <= C) {
+                temp = A.next;
+                A.next = r;
+                r = A;
+                if (r.next == null) {
+                    rstart = r;
+                }
+                A = temp;
+                if (c == C) {
+                    rstart.next = A;
+                    break;
+                }
+            } else {
+                A = A.next;
+            }
+        }
+        if (p == null) return r;
+        else { p.next = r; return head; }
+    }
+
+//    public static void main(String[] args) {
+//        ListNode l = createAndGetNewLN(1, 2, 3,4, 3);
+//        l = reverseBetween(l, 2, 3);
+//        print(l);
+//
+//    }
+
+    public static ListNode reverseList (ListNode A, int B) {
+        ListNode temp;
+        ListNode r = null;
+        ListNode prev = null;
+        ListNode rStart = A;
+        ListNode head = null;
+        if (B <= 1) return A;
+        int k = B;
+        while (A != null) {
+            k--;
+            temp = A.next;
+            A.next = r;
+            r = A;
+            A = temp;
+            if (A == null || k == 0) {
+                if (head == null) head = r;
+                rStart.next = A;
+                k = B;
+                if (prev != null) {
+                    prev.next = r;
+                }
+                prev = rStart;
+                if (A == null) break;
+                rStart = A;
+            }
+
+        }
+        return head;
+
+    }
+
+//    public static void main(String[] args) {
+//        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8);
+//        l = reverseList(l, 3);
+//        print(l);
+//    }
+
+    public static ListNode swapPairs (ListNode A) {
+        ListNode prev = null;
+        ListNode head = null;
+        ListNode temp = null;
+        while (A != null && A.next != null) {
+            temp = A.next;
+            A.next = A.next.next;
+            temp.next = A;
+            if (prev != null) {
+                prev.next = temp;
+            }
+            if (head == null) {
+                head = temp;
+            }
+            prev = A;
+            A = A.next;
+        }
+        if (head == null && A != null) return A;
+        return head;
+    }
+
+//    public static void main(String[] args) {
+//        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8);
+//        l = swapPairs(l);
+//        print(l);
+//    }
+
+    public static ListNode removeNthFromEnd (ListNode A, int B) {
+        if (B <= 0) return A;
+        ListNode head = A;
+        ListNode prev = A;
+        ListNode cur  = A;
+        while (B-- > 0) {
+            if (cur == null) return head.next;
+            cur = cur.next;
+        }
+        if (cur == null) return head.next;
+        while (cur.next != null) {
+            prev = prev.next;
+            cur  = cur.next;
+        }
+        prev.next = prev.next.next;
+        return head;
+    }
+
+//    public static void main(String[] args) {
+//        ListNode l = createAndGetNewLN(1, 2, 3, 4, 5);
+//        l = removeNthFromEnd(l, 6);
+//        print(l);
+//    }
+
+    public static  ListNode detectCycle (ListNode a) {
+        ListNode b = cycleNode(a);
+        if (b == null) return null;
+        while (b != a) {
+            b = b.next;
+            a = a.next;
+        }
+        return a;
+    }
+
+    public static ListNode cycleNode(ListNode a) {
+        ListNode slow = a;
+        ListNode fast = a;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) break;
+        }
+        if (fast == null || fast.next == null) return null;
+        return fast;
+    }
+
+//    public static void main(String[] args) {
+//        ListNode l = createAndGetNewLN(1, 2, 3, 4, 3);
+//        l = detectCycle(l);
+//        print(l);
+//    }
+
+    public static ListNode rotateRight(ListNode A, int B) {
+        if (A == null || A.next == null) return A;
+        ListNode head = A;
+        ListNode AA   = A;
+        while (B-- > 0) {
+            AA = AA.next;
+            if (AA == null) AA = A;
+        }
+        if (head == AA) return head;
+        while (AA.next != null) {
+            A  = A.next;
+            AA = AA.next;
+        }
+        ListNode temp = A.next;
+        A.next = null;
+        AA.next = head;
+        return temp;
+    }
+
+//    public static void main(String[] args) {
+//        ListNode l = LinkedListFunctions.createAndGetNewLN(68, 86, 13, 16, 5, 75);
+//        LinkedListFunctions.print(rotateRight(l, 90));
+//    }
+
+    public static ListNode deleteDuplicates (ListNode A) {
+        ListNode head = new ListNode(0);
+        head.next = A;
+        ListNode prev = head;
+        while (A != null) {
+            while (A.next != null && A.next.val == prev.next.val) A = A.next;
+            if (prev.next == A) prev = prev = prev.next;
+            else prev.next = A.next;
+            A = A.next;
+        }
+        return head.next;
+    }
+
+//    public static void main(String[] args) {
+//        ListNode l = LinkedListFunctions.createAndGetNewLN(1, 1, 2, 2, 3, 3);
+//        print(deleteDuplicates(l));
+//    }
+
+    private static ListNode reverseBetweenListAlternate (ListNode A, int k) {
+        ListNode head = A;
+        ListNode r = null;
+        ListNode prev = null;
+        ListNode rEnd = null;
+        ListNode t;
+        int i = k;
+        int j = 0;
+        while (A != null) {
+            if (j == 0) {
+                i--;
+                if (i == 0) {
+                    prev = A;
+                    j = k;
+                }
+                A = A.next;
+            } else if (i == 0) {
+                j--;
+                if (rEnd == null) rEnd = A;
+                t = A.next;
+                A.next = r;
+                r = A;
+                A = t;
+                if (j == 0) {
+                    prev.next = r;
+                    rEnd.next = A;
+                    rEnd = null;
+                    i = k;
+                    j = 0;
+                }
+            }
+
+        }
+        return head;
+    }
+
+    public static void main(String[] args) {
+        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8, 4, 3, 7);
+        l = reverseBetweenListAlternate(l, 2);
+        print(l);
     }
 
 }

@@ -2,9 +2,8 @@ package code.utils;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static org.apache.commons.lang3.ArrayUtils.swap;
 
 class Array {
 
@@ -58,12 +57,12 @@ class Array2D {
 
 public class ArrayUtils {
 
-    public static Object[] set (Object[] a, int idx, Object value) { a[idx] = value; return a; }
-    public static Object get (Object[] a, int idx) { return a[idx]; }
+    public static Object[]   set (Object[] a, int idx, Object value)        { a[idx] = value; return a; }
+    public static Object     get (Object[] a, int idx)                      { return a[idx]; }
     public static Object[][] set (Object[][] a, int i, int j, Object value) { a[i][j] = value; return a; }
-    public static Object get (Object[][] a, int i, int j) { return a[i][j]; }
-    public static Object[][] set (Object[][] a, int i, Object[] value) { a[i] = value; return a; }
-    public static Object[] get (Object[][] a, int i) { return a[i]; }
+    public static Object     get (Object[][] a, int i, int j)               { return a[i][j]; }
+    public static Object[][] set (Object[][] a, int i, Object[] value)      { a[i] = value; return a; }
+    public static Object[]   get (Object[][] a, int i)                      { return a[i]; }
 
     public static int rows (Object[][] a) {
         return a.length;
@@ -564,9 +563,148 @@ public class ArrayUtils {
         }
     }
 
+    public static int numRange (ArrayList<Integer> A, int B, int C) {
+        int i = 0;
+        int j = 0;
+        int sum = 0;
+        int count = 0;
+
+        while(i < A.size()) {
+            sum = sum + A.get(j);
+            if((sum >= B) && (sum <= C)) {
+                count++;
+                j++;
+            }
+            else if(sum < B) { j++; }
+            else if(sum > C) {
+                i++;
+                j = i;
+                sum = 0;
+            }
+            if(j == A.size()) {
+                sum = 0;
+                i++;
+                j = i;
+            }
+        }
+
+        return count;
+    }
+
+//    public static void main(String[] args) {
+//        ArrayList<Integer> l = new ArrayList<>(Arrays.asList(10, 5, 1, 0, 2));
+//        System.out.println(numRange(l, 6, 8));
+//    }
+
+    public static ArrayList<ArrayList<Integer>> getArrayListFrom2D(int[][] a) {
+        ArrayList<ArrayList<Integer>> A = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) {
+            ArrayList<Integer> B = new ArrayList<>();
+            for (int j = 0; j< a[i].length; j++) B.add(a[i][j]);
+            A.add(B);
+        }
+        return A;
+    }
+
+    public ArrayList<Integer> nextGreater(ArrayList<Integer> A) {
+        Stack<Integer> s = new Stack<>();
+        for (int i = 0; i < A.size(); i++) {
+            while (!s.isEmpty() && A.get(s.peek()) < A.get(i)) A.set(s.pop(), A.get(i));
+            s.push(i);
+        }
+        while (!s.isEmpty()) A.set(s.pop(), -1);
+        return A;
+    }
+
+    private static ArrayList<ArrayList<Integer>> AA;
+    public static ArrayList<ArrayList<Integer>> permute (ArrayList<Integer> A) {
+        AA = new ArrayList<>();
+        permute(A, 0);
+        return AA;
+    }
+
+    private static void permute (ArrayList<Integer> A, int idx) {
+        if (idx == A.size() - 1) AA.add(deepCopy(A));
+        for (int i = idx; i < A.size(); i++) {
+            if (shouldSwap(A, i, idx)) {
+                swap(A, i, idx);
+                permute(A, idx + 1);
+                swap(A, i, idx);
+            }
+        }
+    }
+
+    private static boolean shouldSwap (ArrayList<Integer> A, int idx, int c) {
+        for (int i = idx + 1; i < A.size(); i++) if (A.get(i) == A.get(c)) return false;
+        return true;
+
+    }
+
+    private static void swap (ArrayList<Integer> A, int i, int j) {
+        int temp = A.get(i);
+        A.set(i, A.get(j));
+        A.set(j, temp);
+    }
+
+    private static ArrayList<Integer> deepCopy (ArrayList<Integer> a) {
+       return a.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println(permute(getNewArrayList(1, 2, 3)));
+//    }
+
+    private static ArrayList<Integer> getNewArrayList (int... n) {
+        return Arrays.stream(n).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+    }
+
+    public static int longestConsecutive(final List<Integer> A) {
+        Map<Integer, Integer> m =
+                A.stream().collect(Collectors.toMap(e->e, e->-1, (u,v)->u));
+        int count;
+        int largestCount = 0;
+        for (int i = 0 ; i < A.size(); i++) {
+            count = getCount(m, A.get(i));
+            if (count > largestCount) largestCount = count;
+        }
+        return largestCount;
+    }
+
+    private static int getCount (Map<Integer, Integer> m, int a) {
+        if (!m.containsKey(a)) return 0;
+        if (m.get(a) != -1) return m.get(a);
+        m.put(a, 1 + getCount(m, a+1));
+        return m.get(a);
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println(longestConsecutive(getNewArrayList(100, 4, 200, 1, 3, 2)));
+//    }
+
+    public static int[] mergeSortedArray (int[] A, int[] B) {
+        int n = A.length;
+        int m = B.length - n;
+        int k = B.length - 1;
+        while (n > 0 && m > 0) {
+            if (A[n-1] > B[m-1]) {
+                B[k--] = A[n-1];
+                n--;
+            } else {
+                B[k--] = B[m-1];
+                m--;
+            }
+        }
+        while (n > 0) {
+            B[k--] = A[n-1];
+            n--;
+        }
+        return B;
+    }
+
     public static void main(String[] args) {
-        List<Integer> l = new ArrayList<>(Arrays.asList(101, 103, 106, 109, 158, 164, 182, 187, 202, 205, 2, 3, 32, 57, 69, 74, 81, 99, 100));
-        System.out.println(search (l, 202));
+        int[] A = {1, 2, 3, 6, 7};
+        int[] B = {1, 2, 2, 4, 5, 8, -1, -1, -1, -1, -1};
+        Arrays.stream(mergeSortedArray(A, B)).forEach(System.out::println);
     }
 
 }

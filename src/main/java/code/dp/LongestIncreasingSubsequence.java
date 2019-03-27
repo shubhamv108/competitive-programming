@@ -6,18 +6,20 @@ public class LongestIncreasingSubsequence {
 
     private static int[] a;
     private static int n;
-    private static int x[];
+
+;    private static int x[];
 
 
     private static int longestLISLength() {
+        int largestCount = 1;
         for (int i = 1; i < n; i++)
             for (int j = 0; j < i; j++)
-                if (a[i] > a[j] && x[i] < x[j] + 1)
+                if (a[i] > a[j] && x[i] < x[j] + 1) {
                     x[i] = x[j] + 1;
-        return Arrays.stream(x).max().getAsInt();
+                    largestCount = Math.max(largestCount, x[i]);
+                }
+        return largestCount;
     }
-
-
 
     public static int longestLISLength(int arr[]) {
         if(arr.length == 0) return 0;

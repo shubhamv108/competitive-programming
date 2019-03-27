@@ -1,5 +1,6 @@
 package code.backtracking.booleananswer;
 
+
 class MatrixHasWord {
 
     static boolean hasWordHelper(char[][] grid, int R, int C, int r, int c, char[] word, int wi, int n) {
@@ -23,12 +24,13 @@ class MatrixHasWord {
 public class GivenMatrixHasKISSES {
 
     public static void main(String[] args) {
+
         char[][] grid = {
-                            {'A', 'S', 'H', 'D', 'E'},
-                            {'J', 'S', 'U', 'T', 'F'},
-                            {'M', 'H', 'B', 'H', 'A'},
-                            {'O', 'U', 'B', 'H', 'K'},
-                            {'T', 'H', 'U', 'A', 'M'}
+                {'A', 'S', 'H', 'D', 'E'},
+                {'J', 'S', 'U', 'T', 'F'},
+                {'M', 'H', 'B', 'H', 'A'},
+                {'O', 'U', 'B', 'H', 'K'},
+                {'T', 'H', 'U', 'A', 'M'}
         };
         System.out.println(new Solver().solve(grid, "SHUBHAM".toCharArray()));
     }
