@@ -4,8 +4,6 @@ import code.tree.BSTNode;
 import code.tree.BTNode;
 import code.tree.Node;
 import code.tree.TreeNode;
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -585,7 +583,7 @@ public class BTree {
         if (A == null) return 0;
         if (A.val == B && A.left == null && A.right == null) return 1;
         return Math.max (hasPathSum(A.left, B - A.val),
-                         hasPathSum(A.right, B - A.val));
+                         hasPathSum(A.right,B - A.val));
     }
 
 //    public static void main(String[] args) {
