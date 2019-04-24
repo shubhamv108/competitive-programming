@@ -3,11 +3,9 @@ package code.linkedlist;
 import java.util.*;
 import java.util.function.Function;
 
-class   LinkedListFunctions
-{
+class   LinkedListFunctions {
     LLNode last = null;
-    void printList(LLNode head)
-    {
+    void printList(LLNode head) {
         LLNode temp = head;
         while (temp != null) {
             System.out.print(temp.data+" ");
@@ -16,8 +14,7 @@ class   LinkedListFunctions
         System.out.println();
     }
 
-    void printListWithoutSpace(LLNode head)
-    {
+    void printListWithoutSpace(LLNode head) {
         LLNode temp = head;
         while (temp != null)
         {
@@ -28,8 +25,7 @@ class   LinkedListFunctions
     }
 
 
-    LLNode InsertAtEnd(LLNode head, int data)
-    {
+    LLNode InsertAtEnd(LLNode head, int data) {
         if(head == null) return new LLNode(data);
         LLNode curNode = head;
         while(curNode.next != null) curNode = curNode.next;
@@ -37,8 +33,7 @@ class   LinkedListFunctions
         return head;
     }
 
-    LLNode deleteNode(LLNode h, int data)
-    {
+    LLNode deleteNode(LLNode h, int data) {
         LLNode head = h;
         if(head.data == data) return null;
         while(head.next != null) {
@@ -54,8 +49,7 @@ class   LinkedListFunctions
         return h;
     }
 
-    void deleteNodeWithoutHead(LLNode nodeToDelete)
-    {
+    void deleteNodeWithoutHead(LLNode nodeToDelete) {
         nodeToDelete.data = nodeToDelete.next.data;
         LLNode tempNode = nodeToDelete.next;
         nodeToDelete.next = nodeToDelete.next.next;
