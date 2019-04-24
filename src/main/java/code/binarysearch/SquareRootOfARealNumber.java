@@ -13,25 +13,17 @@ public class SquareRootOfARealNumber {
         return mid;
     }
 
-    public int sqrtOfIntegerFloor(int x) {
-        if (x == 0 || x == 1) {
-            return x;
-        }
+    public int sqrtOfIntegerFloor (int x) {
+        if (x == 0 || x == 1) return x;
         int l = 1, r = x, ans = 0;
-        while (l <= r)
-        {
+        while (l <= r) {
             int m = (l + r) / 2;
             int m2 = m * m;
-            if (m2 == x) {
-                return m;
-            }
+            if (m2 == x) return m;
             if (m2 < x) {
                 l = m + 1;
                 ans = m;
-            }
-            else {
-                r = m - 1;
-            }
+            } else r = m - 1;
         }
         return ans;
     }

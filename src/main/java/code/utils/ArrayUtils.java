@@ -606,6 +606,16 @@ public class ArrayUtils {
         return A;
     }
 
+    public static int[] getIntArray (String[] line) {
+        int[] arr = new int[line.length];
+        IntStream.range(0, arr.length).forEach(i -> arr[i] = Integer.valueOf(line[i]));
+        return arr;
+    }
+
+    public static int[] getIntArray (String line) {
+        return getIntArray(line.split(" "));
+    }
+
     public ArrayList<Integer> nextGreater(ArrayList<Integer> A) {
         Stack<Integer> s = new Stack<>();
         for (int i = 0; i < A.size(); i++) {
@@ -705,6 +715,24 @@ public class ArrayUtils {
         int[] A = {1, 2, 3, 6, 7};
         int[] B = {1, 2, 2, 4, 5, 8, -1, -1, -1, -1, -1};
         Arrays.stream(mergeSortedArray(A, B)).forEach(System.out::println);
+    }
+
+    public static Map<Integer, List<Long>> getSubarraySums (int[] arr) {
+        Map<Integer, List<Long>> m = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            m.put(i, new ArrayList<>());
+            for (int j = i; j < arr.length; j++) {
+                if (i == j) m.get(i).add((long) arr[j]);
+                else m.get(i).add(m.get(i).get(j - i - 1) + arr[j]);
+            }
+        }
+        return m;
+    }
+
+    public int[] getIntegerArrayFrom (String[] line) {
+        int[] arr = new int[line.length];
+        for (int i = 0; i < line.length; i++) arr[i] = Integer.valueOf(line[i]);
+        return arr;
     }
 
 }

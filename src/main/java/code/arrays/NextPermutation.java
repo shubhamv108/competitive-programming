@@ -6,7 +6,7 @@ import java.util.Collections;
 public class NextPermutation {
 
     class Solution {
-        public void nextPermutation(ArrayList<Integer> A) {
+        public void nextPermutation (ArrayList<Integer> A) {
             int n = A.size();
             int k = -1;
             int l = 0;

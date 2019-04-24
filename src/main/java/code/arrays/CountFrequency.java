@@ -11,7 +11,7 @@ public class CountFrequency {
     }
 
     public static void main(String[] args) {
-        new CountFrequency().printfrequency(new int[]{2, 3, 3, 2, 5}, 5);
+        new CountFrequency().printfrequency(new int[] {2, 3, 3, 2, 5}, 5);
     }
 }
 

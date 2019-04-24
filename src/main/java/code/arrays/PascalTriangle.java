@@ -9,9 +9,9 @@ public class PascalTriangle {
             int c;
             for(int line = 1; line <= A; line++) {
                 c = 1;
-                a.add(new ArrayList<Integer>());
+                a.add(new ArrayList<>());
                 for(int i = 1; i <= line; i++) {
-                    a.get(i-1).add(c);
+                    a.get(i - 1).add(c);
                     c = c * ( line - i ) / i;
                 }
             }
@@ -20,6 +20,10 @@ public class PascalTriangle {
     }
 
     public static void main(String[] args) {
-        new PascalTriangle().new Solution().solve(5);
+        new PascalTriangle().
+            new Solution().
+            solve(5).
+            stream().
+            forEach(e -> System.out.println(e));
     }
 }

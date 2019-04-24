@@ -3,12 +3,13 @@ package code.dp.spoj;
 import input.Reader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 class Solver1 {
     int N;
     int[] a;
     int[] cache;
-
+    // ArrayList
     Solver1(int[] a, int n, int[] cache) {
         this.a = a;
         this.N = n;

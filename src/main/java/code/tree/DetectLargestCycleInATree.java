@@ -21,8 +21,7 @@ public class DetectLargestCycleInATree {
         return 1 + maxChildHeight;
     }
 
-    static int diameter()
-    {
+    static int diameter() {
         ans = -1;
         diameterHelper(root);
         return ans;

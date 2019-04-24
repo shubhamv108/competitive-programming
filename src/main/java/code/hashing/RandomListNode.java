@@ -1,4 +1,4 @@
-package hashing;
+package code.hashing;
 
 public class RandomListNode {
      public int label;

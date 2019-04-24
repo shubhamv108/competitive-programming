@@ -1,4 +1,4 @@
-package hashing;
+package code.hashing;
 
 import java.util.HashSet;
 import java.util.List;
@@ -6,6 +6,9 @@ import java.util.Set;
 
 public class ValidSudoku {
 
+    /**
+     * ToDo
+     */
     public class Solution {
         public int isValidSudoku (final List<String> A) {
             if (A == null ||
@@ -23,7 +26,7 @@ public class ValidSudoku {
                     s.add(c);
                 }
             }
-
+            return 0;
         }
     }
 
