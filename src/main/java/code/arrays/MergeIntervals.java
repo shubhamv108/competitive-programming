@@ -47,6 +47,7 @@ public class MergeIntervals {
         l.add(new Interval(4, 7));
         l.add(new Interval(5, 6));
         l.add(new Interval(6, 6));
+        l.add(new Interval(5, 19));
         new MergeIntervals().new Solution().merge(l).
                 forEach(e -> System.out.println(e.start + " " + e.end));
     }

@@ -8,8 +8,8 @@ public class EditDistance {
             if (A.charAt(n-1) == B.charAt(m-1))
                 return editDistance(A, B, n-1, m-1);
             return 1 + Math.min(editDistance(A, B, n, m-1),
-                    Math.min(editDistance(A, B, n-1, m),
-                            editDistance(A, B, n-1, m-1)));
+                                Math.min(editDistance(A, B, n-1, m),
+                                         editDistance(A, B, n-1, m-1)));
         }
 
         public int minDistance(String A, String B) {

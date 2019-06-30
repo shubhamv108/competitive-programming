@@ -31,7 +31,7 @@ public class MergeSortedArrays {
 
     public static void main(String[] args) {
         int[] a = new int[] {5, 18, 22, 100, 105, 1002, -1, -1, -1, -1, -1, -1};
-        new MergeSortedArrays().merge(a, new int[] {1, 16, 17, 19, 21, 1001});
+        new MergeSortedArrays().merge(a, new int[] { 1, 16, 17, 19, 21, 1001 });
         Arrays.stream(a).forEach(e -> System.out.println(e + " "));
     }
 

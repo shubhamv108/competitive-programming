@@ -13,7 +13,7 @@ public class SquareRootOfARealNumber {
         return mid;
     }
 
-    public int sqrtOfIntegerFloor (int x) {
+    public static int sqrtOfIntegerFloor (int x) {
         if (x == 0 || x == 1) return x;
         int l = 1, r = x, ans = 0;
         while (l <= r) {
@@ -90,6 +90,6 @@ public class SquareRootOfARealNumber {
     }
 
     public static void main(String[] args) {
-        System.out.printf("%.3f", squareRootOfFloat(3.6f));
+        System.out.print(sqrtOfIntegerFloor(4));
     }
 }

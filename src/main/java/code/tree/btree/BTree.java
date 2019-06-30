@@ -507,8 +507,8 @@ public class BTree {
         q.add(new Pair(0, A));
         while (!q.isEmpty()) {
             Pair p = q.poll();
-            l = p.hd < l ? p.hd : l;
-            h = p.hd > h ? p.hd : h;
+            l = Math.min(p.hd, l);
+            h = Math.max(p.hd, h);
             if (m.containsKey(p.hd)) {
                 m.get(p.hd).add(p.node.val);
             } else {
@@ -516,8 +516,8 @@ public class BTree {
                 aa.add(p.node.val);
                 m.put(p.hd, aa);
             }
-            if (p.node.left != null)  q.add(new Pair(p.hd -1, p.node.left ));
-            if (p.node.right != null) q.add(new Pair(p.hd +1, p.node.right));
+            if (p.node.left  != null) q.add(new Pair(p.hd - 1, p.node.left ));
+            if (p.node.right != null) q.add(new Pair(p.hd + 1, p.node.right));
         }
         for (int i = l; i <= h; i++) a.add(m.get(i));
         return a;
@@ -691,8 +691,9 @@ public class BTree {
     int min = Integer.MAX_VALUE;
     private void minDepth(TreeNode A, int h) {
         if (A == null) return;
-        if (A.left == null && A.right == null) { min = h < min ? h : min; };
-        minDepth(A.left, h+1); minDepth(A.right, h+1);
+        if (A.left == null && A.right == null) { min = Math.min(h, min); };
+        minDepth(A.left, h + 1);
+        minDepth(A.right,h + 1);
     }
 
     public int minDepth(TreeNode A) {
@@ -765,7 +766,7 @@ public class BTree {
             TreeNode node  = s.pop();
             if(node.right != null) s.push(node.right);
             if(node.left  != null) s.push(node.left);
-            node.left = null;
+            node.left  = null;
             node.right = s.isEmpty() ? null : s.peek();
         }
         return a;

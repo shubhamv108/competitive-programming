@@ -16,8 +16,7 @@ class   LinkedListFunctions {
 
     void printListWithoutSpace(LLNode head) {
         LLNode temp = head;
-        while (temp != null)
-        {
+        while (temp != null) {
             System.out.print(temp.data);
             temp = temp.next;
         }
@@ -61,9 +60,8 @@ class   LinkedListFunctions {
         LLNode slow = h, fast = h;
         while(fast != null && fast.next != null) {
             fast = fast.next.next;
-            if(fast == null) {
+            if(fast == null)
                 return slow;
-            }
             slow = slow.next;
         }
         return slow;

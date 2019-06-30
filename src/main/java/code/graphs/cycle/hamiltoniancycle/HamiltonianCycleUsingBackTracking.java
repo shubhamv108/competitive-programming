@@ -23,9 +23,8 @@ public class HamiltonianCycleUsingBackTracking {
         int[] path = new int[V];
         path[0] = startVertex;
         if (hamCycle(path, 1)) {
-            if (printCycle) {
+            if (printCycle)
                 Arrays.stream(path).forEach(e -> out.println(e + " "));
-            }
             return true;
         }
         return false;

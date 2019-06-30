@@ -4,9 +4,8 @@ public class IsPalindromic {
 
     private boolean equals(ListNode A, ListNode B) {
         while (B != null) {
-            if (A.val != B.val) {
+            if (A.val != B.val)
                 return false;
-            }
             B = B.next;
             A = A.next;
         }
@@ -22,7 +21,7 @@ public class IsPalindromic {
 
     private ListNode reverse (ListNode A) {
         ListNode r    = null;
-        ListNode temp = null;
+        ListNode temp;
         while (A != null) {
             temp = A.next;
             A.next = r;

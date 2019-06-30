@@ -8,9 +8,8 @@ public class InsertionsToMakeStringPalindrome {
         if(dp[l][h] != 0) return dp[l][h];
         else {
             if(s[l] == s[h])  return dp[l][h] = insertionsToMakePalindromeHelper(l+1, h-1);
-            else              return dp[l][h] = 1 + Math.min(
-                                                            insertionsToMakePalindromeHelper(l+1, h),
-                                                            insertionsToMakePalindromeHelper(l, h-1));
+            else              return dp[l][h] = 1 + Math.min(insertionsToMakePalindromeHelper(l+1, h),
+                                                             insertionsToMakePalindromeHelper(l, h-1));
         }
     }
 

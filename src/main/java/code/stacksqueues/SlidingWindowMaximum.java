@@ -1,6 +1,8 @@
 package code.stacksqueues;
 
 import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class SlidingWindowMaximum {
 
@@ -24,15 +26,111 @@ public class SlidingWindowMaximum {
         }
     }
 
+    class Pair {
+        int pos;
+        int val;
+        Pair(int pos, int val) {
+            this.pos = pos;
+            this.val = val;
+        }
+        Pair(int pos) {
+            this.pos = pos;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof Pair) {
+                return ((Pair) obj).pos == this.pos;
+            }
+            return false;
+        }
+    }
+
+    class Solution2 {
+
+        public ArrayList<Integer> slidingMaximum (final List<Integer> A, int B) {
+            ArrayList<Integer> result = new ArrayList<>();
+            Queue<Pair> maxHeap = new PriorityQueue<>((a, b) -> b.val - a.val);
+            IntStream.range(0, B).forEach(i -> maxHeap.offer(new Pair(i, A.get(i))));
+            IntStream.range(B, A.size()).forEach(i -> {
+                result.add(maxHeap.peek().val);
+//                maxHeap.remove(new Pair(i-B));
+                maxHeap.offer(new Pair(i, A.get(i)));
+                while (maxHeap.peek().pos <= i-B) {
+                    maxHeap.poll();
+                }
+            });
+            result.add(maxHeap.peek().val);
+            return result;
+        }
+
+    }
+
+    class Solution3 {
+        public int[] maxSlidingWindow(int[] nums, int k) {
+            if (nums.length == 0 || nums.length < k) return new int[0];
+            int[] result = new int[nums.length - k + 1];
+            Queue<Pair> maxHeap = new PriorityQueue<>((a, b) -> b.val - a.val);
+            IntStream.range(0, k).forEach(i -> maxHeap.offer(new Pair(i, nums[i])));
+            int i = k;
+            for(; i < nums.length; i++) {
+                result[i - k] = maxHeap.peek().val;
+                maxHeap.offer(new Pair(i, nums[i]));
+                while (maxHeap.peek().pos <= i - k)
+                    maxHeap.poll();
+            }
+            result[i - k] = maxHeap.peek().val;
+            return result;
+        }
+    }
+
+    class Solution4 {
+        public int[] maxSlidingWindow(int[] nums, int k) {
+            if(nums.length == 0 || k==0){
+                return new int[0];
+            }
+            int len = nums.length - k + 1;
+            int[] res = new int[len];
+            int index = 0;
+            int max = Integer.MIN_VALUE;
+            int maxIndex = -1;
+            while(index<len){
+                if(maxIndex<index){
+                    max = nums[index];
+                    for(int i=index+1;i<index+k;i++){
+                        if(max<nums[i]) {
+                            max = nums[i];
+                            maxIndex = i;
+                        }
+                    }
+                }
+                else{
+                    if(max<=nums[index+k-1]){
+                        max = nums[index+k-1];
+                        maxIndex = index+k-1;
+                    }
+                }
+                res[index++] = max;
+            }
+            return res;
+        }
+    }
+
+
     public static void main(String[] args) {
         int[] arr = {12, 1, 8, 90, 57, 89, 56};
+//        new SlidingWindowMaximum().
+//                new Solution2().
+//                slidingMaximum(Arrays.
+//                                stream(arr).
+//                                collect(ArrayList::new, ArrayList::add, ArrayList::addAll), 3).
+//                stream().
+//                forEach(e -> System.out.print(e + " "));
+        Arrays.stream(
         new SlidingWindowMaximum().
-                new Solution().
-                slidingMaximum(Arrays.
-                                stream(arr).
-                                collect(ArrayList::new, ArrayList::add, ArrayList::addAll), 3).
-                stream().
-                forEach(e -> System.out.print(e + " "));
+                new Solution4().
+                maxSlidingWindow(arr, 3)).
+                forEach(e -> System.out.print(e + "  "));
 
     }
 
