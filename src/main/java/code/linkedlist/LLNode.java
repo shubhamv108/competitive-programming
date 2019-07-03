@@ -4,5 +4,5 @@ public class LLNode
 {
     int data;
     public LLNode next;
-    public LLNode(int d) { data = d; next = null; }
+    public LLNode(final int d) { data = d; }
 }

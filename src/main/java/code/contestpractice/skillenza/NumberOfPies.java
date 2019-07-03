@@ -11,20 +11,17 @@ public class NumberOfPies {
         private String solve(Integer[] weights, int sum) {
             int m = weights.length;
             boolean[][] subSet = new boolean[2][sum + 1];
-            for (int i = 0; i <= m; i++) {
-                for (int j = 0; j <= sum; j++) {
-                    if (j == 0) {
+            for (int i = 0; i <= m; i++)
+                for (int j = 0; j <= sum; j++)
+                    if (j == 0)
                         subSet[i%2][j] = true;
-                    } else if (i == 0) {
+                    else if (i == 0)
                         subSet[i%2][j] = false;
-                    } else if (weights[i - 1] <= j) {
+                    else if (weights[i - 1] <= j)
                         subSet[i % 2][j] = subSet[(i + 1) % 2][j - weights[i - 1]]
                                             || subSet[(i + 1) % 2][j];
-                    } else {
+                    else
                         subSet[i % 2][j] = subSet[(i + 1) % 2][j];
-                    }
-                }
-            }
             return subSet[m % 2][sum] ? "YES" : "NO";
         }
     }

@@ -563,7 +563,7 @@ class   LinkedListFunctions {
     }
 
 //    public static void main(String[] args) {
-//        ListNode l = createAndGetNewLN(1, 2, 3,4, 3);
+//        ListNode l = createAndGetNewLN(1, 2, 3, 4, 3);
 //        l = reverseBetween(l, 2, 3);
 //        print(l);
 //
@@ -602,7 +602,7 @@ class   LinkedListFunctions {
 
 //    public static void main(String[] args) {
 //        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8);
-//        l = reverseList(l, 3);
+//        l = reverseList(l, 2);
 //        print(l);
 //    }
 
@@ -763,10 +763,59 @@ class   LinkedListFunctions {
         return head;
     }
 
-    public static void main(String[] args) {
-        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8, 4, 3, 7);
-        l = reverseBetweenListAlternate(l, 2);
-        print(l);
+//    public static void main(String[] args) {
+//        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8, 4, 3, 7);
+//        l = reverseBetweenListAlternate(l, 2);
+//        print(l);
+//    }
+
+    public static ListNode swapCombinationsOfSizeK (ListNode A, final int K) {
+        if (A == null || A.next == null) return A;
+        ListNode prevStart = A;
+        ListNode prevEnd = A;
+        ListNode curStart = null;
+        ListNode curEnd = null;
+        ListNode head = null;
+        ListNode headEnd = null;
+        int k = K - 1;
+        while (A != null && A.next != null) {
+            if (k > 0) {
+                A = A.next;
+               k--;
+               continue;
+            } else if (k == 0) {
+                prevEnd = A;
+                curStart = prevEnd.next;
+                k = K - 1;
+                curEnd = curStart;
+                while (k > 0 && curEnd.next != null) {
+                    curEnd = curEnd.next;
+                    k--;
+                }
+
+                A = curEnd.next;
+                curEnd.next = prevStart;
+                if (head == null)
+                    head = curStart;
+
+                if (headEnd == null) {
+                    headEnd = prevEnd;
+                } else {
+                    headEnd.next = curStart;
+                }
+                headEnd = prevEnd;
+                prevEnd.next = null;
+                k = K - 1;
+                prevStart = A;
+            }
+        }
+        if (A != null) headEnd.next = A;
+        return head;
     }
 
+    public static void main(String[] args) {
+        ListNode l = createAndGetNewLN(6, 10, 0);
+        l = swapCombinationsOfSizeK(l, 2);
+        print(l);
+    }
 }
