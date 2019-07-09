@@ -1,6 +1,6 @@
 package code.divideconquer;
 
-public class    MajorityElementinSortedArray {
+public class MajorityElementinSortedArray {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 3, 3, 7, 10};
         new Solver().solve(arr);
