@@ -2,28 +2,39 @@ package code.collections;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BoundedBlockingQueue {
-
 
     private Queue<Object> queue = new LinkedList<>();
     private int capacity = 10;
 
+    private ReentrantLock putLock = new ReentrantLock();
 
-    public BoundedBlockingQueue (int size) {
+    public BoundedBlockingQueue(int size) {
         this.capacity = size;
     }
 
-    private synchronized void enqueue (Object e) {
-        while (queue.size() == capacity) await();
-        if (queue.size() == 0) notifyAll();
-        this.queue.add(e);
+    private void enqueue(Object e) {
+        putLock.lock();
+        try {
+            while (queue.size() == capacity) await();
+            if (queue.size() == 0) notifyAll();
+            this.queue.add(e);
+        } finally {
+            putLock.unlock();
+        }
     }
 
-    private synchronized Object dequeue () {
-        while (queue.size() == 0) await();
-        if (queue.size() == capacity) notifyAll();
-        return this.queue.poll();
+    private Object dequeue()  {
+        putLock.lock();
+        try {
+            while (queue.size() == 0) await();
+            if (queue.size() == capacity) notifyAll();
+            return this.queue.poll();
+        } finally {
+            putLock.unlock();
+        }
     }
 
     private void await () {
@@ -31,7 +42,7 @@ public class BoundedBlockingQueue {
             wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
-            throw new RuntimeException("", e);
+            throw new RuntimeException("Thread Interrupted", e);
         }
     }
 

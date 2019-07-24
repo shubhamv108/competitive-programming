@@ -5,6 +5,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * ToDo
+ *
+ * @param <K> Key
+ * @param <V> Value
+ */
 public class HashMap<K, V> {
 
     public static final long serialversionUid = 123456789012345678L;

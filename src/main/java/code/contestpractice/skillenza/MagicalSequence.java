@@ -3,48 +3,51 @@ package code.contestpractice.skillenza;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 
-class BinaryMadness {
+/**
+ * ToDo
+ */
+public class MagicalSequence {
 
     private class Solution {
-        private String solve(final BigInteger n) {
-            long totalOddOneSubstrings = 0;
-            long totalOddZeroSubstrings = 0;
+        private String seq;
 
-            if (n.equals(BigInteger.ZERO)) return 1 + " " + totalOddOneSubstrings;
+        private Solution(String seq) {
+            this.seq = seq;
+        }
 
-            final String binary = n.toString(2);
-            int prevZeroCount, prevOneCount;
-
-
-            for (int i = 0; i < binary.length(); i++) {
-                prevOneCount = 0;
-                prevZeroCount = 0;
-                for (int j = i; j < binary.length(); j++) {
-                    if (binary.charAt(j) == '1')
-                        prevOneCount++;
-                    else
-                        prevZeroCount++;
-                    if ((prevOneCount & 1) == 1)
-                        totalOddOneSubstrings++;
-                    if ((prevZeroCount & 1) == 1)
-                        totalOddZeroSubstrings++;
-
+        private int solve() {
+            int result = 0;
+            int sum = 0;
+            int prev = (int) seq.charAt(0) - 48 - 1;
+            for (int i = 0; i < seq.length(); i++) {
+                int cur = Integer.valueOf(seq.charAt(i)) - 48;
+                sum = 0;
+                if ((i & 1) == 0) {
+                    int dob = cur * 2;
+                    if (dob > 10) {
+                        dob = (dob / 10) + (dob % 10);
+                    }
+                    sum += dob;
+                    if (sum > 10)
+                    prev = cur;
                 }
             }
-
-            return totalOddZeroSubstrings + " " + totalOddOneSubstrings;
+            if (sum % 10 == 0) result++;
+            return result;
         }
+
     }
 
     private static class InputUtils {
 
         private static BufferedReader BR;
+        private static InputStreamReader inputStreamReader;
 
         public static BufferedReader getBR() {
             if (null == BR) {
-                BR = new BufferedReader(new InputStreamReader(System.in));
+                inputStreamReader = new InputStreamReader(System.in);
+                BR = new BufferedReader(inputStreamReader);
             }
             return BR;
         }
@@ -89,15 +92,19 @@ class BinaryMadness {
             return toLong(nextLine());
         }
 
+
     }
 
     public static void main(String[] args) {
-        BinaryMadness binaryMadness = new BinaryMadness();
         int t = InputUtils.nextInt();
-        String line;
-        while(t-- > 0) {
-            line = InputUtils.nextLine();
-            System.out.println(binaryMadness.new Solution().solve(new BigInteger(line)));
+        String[] line = null;
+        int n;
+        while (t-- > 0) {
+            String seq = InputUtils.nextLine();
+            System.out.println(
+                new MagicalSequence().new Solution(seq).solve()
+            );
         }
     }
 }
+

@@ -9,7 +9,6 @@ public class MinimumSwaps {
         public void solve() {
             String[] line = InputUtils.splitNextLine();
 
-
             int m = Integer.valueOf(line[0]);
             int n = Integer.valueOf(line[1]);
 

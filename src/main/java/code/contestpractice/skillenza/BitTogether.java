@@ -3,40 +3,43 @@ package code.contestpractice.skillenza;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 
-class BinaryMadness {
+public class BitTogether {
 
     private class Solution {
-        private String solve(final BigInteger n) {
-            long totalOddOneSubstrings = 0;
-            long totalOddZeroSubstrings = 0;
 
-            if (n.equals(BigInteger.ZERO)) return 1 + " " + totalOddOneSubstrings;
-
-            final String binary = n.toString(2);
-            int prevZeroCount, prevOneCount;
-
-
-            for (int i = 0; i < binary.length(); i++) {
-                prevOneCount = 0;
-                prevZeroCount = 0;
-                for (int j = i; j < binary.length(); j++) {
-                    if (binary.charAt(j) == '1')
-                        prevOneCount++;
-                    else
-                        prevZeroCount++;
-                    if ((prevOneCount & 1) == 1)
-                        totalOddOneSubstrings++;
-                    if ((prevZeroCount & 1) == 1)
-                        totalOddZeroSubstrings++;
-
-                }
+        private int solve(final int l, final String s) {
+            if (l < 2) return 0;
+            char defaultChar = '1';
+            int defaultCharCount = 0;
+            int totalZeroes = 0;
+            for (int i = 0; i < l; i++) {
+                if (s.charAt(i) == '1')
+                    defaultCharCount++;
+                if (s.charAt(i) == '0')
+                    totalZeroes++;
             }
 
-            return totalOddZeroSubstrings + " " + totalOddOneSubstrings;
+            if (totalZeroes < defaultCharCount) {
+                defaultCharCount = totalZeroes;
+                defaultChar = '0';
+            }
+
+            int defaultCharStartingCount = 0;
+            for (int i = 0; i < defaultCharCount ; i++)
+                if (s.charAt(i) == defaultChar)
+                    defaultCharStartingCount++;
+
+            int defaultCharEndingCount = 0;
+            for (int i = l-1; i > l - defaultCharCount - 1 ; i--)
+                if (s.charAt(i) == defaultChar)
+                    defaultCharEndingCount++;
+
+            return defaultCharCount - Math.max(defaultCharStartingCount, defaultCharEndingCount);
+
         }
     }
+
 
     private static class InputUtils {
 
@@ -92,12 +95,15 @@ class BinaryMadness {
     }
 
     public static void main(String[] args) {
-        BinaryMadness binaryMadness = new BinaryMadness();
+        BitTogether bitTogether = new BitTogether();
         int t = InputUtils.nextInt();
+        int l;
         String line;
         while(t-- > 0) {
+            l = InputUtils.nextInt();
             line = InputUtils.nextLine();
-            System.out.println(binaryMadness.new Solution().solve(new BigInteger(line)));
+            System.out.println(bitTogether.new Solution().solve(l, line));
         }
     }
+
 }

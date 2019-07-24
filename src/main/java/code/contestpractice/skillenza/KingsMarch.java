@@ -25,9 +25,8 @@ public class KingsMarch {
         public Pair solve() {
             String[] line = null;
             int n = InputUtils.nextInt();
-            Pair[] pointsPaths = null;
+            Pair[] pointsPaths = new Pair[n];
             for (int i = 0; i < n; i++) {
-                pointsPaths = new Pair[n];
                 line = InputUtils.splitNextLine();
                 for (int j = 0; j < n; j++) {
                    assignPointsPathsPair(line[j], i, j, pointsPaths);
@@ -38,34 +37,27 @@ public class KingsMarch {
 
         private void assignPointsPathsPair(String s, int i, int j, Pair[] pointsPaths) {
             Pair result = null;
-            if (s.equals("x")) result = new Pair(-1, 0);
-            else if (s.equals("e")) result = new Pair(0, 0);
+            if (s.equals("x")) pointsPaths[j] = new Pair(-1, 0);
+            else if (s.equals("e")) pointsPaths[j] = new Pair(0, 1);
             else {
-                result = new Pair(Integer.MIN_VALUE, 0);
-                for (int ii = i - 1; ii <= i; ii++) {
-                    for (int jj = j - 1; jj <= j; jj++) {
-                        if (ii < 0 || jj < 0) continue;
-                        else if (ii == i && jj == j)
-                            if (!s.equals("s"))
-                                result.points += Integer.valueOf(s);
-                        else if (!s.equals("s") && pointsPaths[jj].points == -1)
-                            continue;
-                        else if (pointsPaths[jj].points == result.points)
-                            result.paths += pointsPaths[jj].paths;
-                        else if (pointsPaths[jj].points > result.points) {
-                            result.points = pointsPaths[jj].points;
-                            result.paths = pointsPaths[jj].paths;
-                            if (result.points == 0 && result.paths == 0)
-                                result.paths = 1;
-                            if (i == 0 || j == 0) result.paths = 1;
-                        }
-
+                result = new Pair(-1, 0);
+                if (pointsPaths[j] != null && pointsPaths[j].points != -1) {
+                    result.points = pointsPaths[j].points;
+                    result.paths = pointsPaths[j].paths;
+                }
+                if (j > 0 && pointsPaths[j-1].points != -1) {
+                    if (result.points == pointsPaths[j-1].points) {
+                        result.paths = result.paths + pointsPaths[j-1].paths;
+                    } else if (pointsPaths[j-1].points > result.points) {
+                        result.points = pointsPaths[j-1].points;
+                        result.paths = pointsPaths[j-1].paths;
                     }
                 }
+                pointsPaths[j] = result;
+                if(pointsPaths[j].points != -1 && !s.equals("s"))
+                    pointsPaths[j].points += Integer.valueOf(s);
             }
-            pointsPaths[j] = result;
         }
-
     }
 
     private static class InputUtils {

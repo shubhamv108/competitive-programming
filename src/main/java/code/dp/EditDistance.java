@@ -1,5 +1,7 @@
 package code.dp;
 
+import java.util.stream.IntStream;
+
 public class EditDistance {
     class Solution {
         private int editDistance (String A, String B, int n, int m) {
@@ -25,7 +27,19 @@ public class EditDistance {
                                 Math.min(dist[i-1][j], dist[i-1][j-1]));
                 }
             }
+
+            IntStream.range(0, dist.length).forEach(i -> {
+                IntStream.range(0, dist[0].length).forEach(j -> {
+                    System.out.print(dist[i][j] + " ");
+                });
+                System.out.println();
+            });
             return dist[A.length()][B.length()];
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(
+        new EditDistance().new Solution().minDistance("abbcus", "bbacus"));
     }
 }

@@ -1,4 +1,4 @@
-package code.maps;
+package code.heapsmaps;
 
 import java.io.BufferedReader;
 import java.io.IOException;

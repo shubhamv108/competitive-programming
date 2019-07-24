@@ -24,14 +24,12 @@ public class BTree {
         return 1 + Math.max(heightOfTree(root.left), heightOfTree(root.right));
     }
 
-    int sumOfAllNodes(BTNode root)
-    {
+    int sumOfAllNodes(BTNode root) {
         if(root == null) return 0;
         return root.data + sumOfAllNodes(root.left) + sumOfAllNodes(root.right);
     }
 
-    BTNode searchNode(BTNode root, int k)
-    {
+    BTNode searchNode(BTNode root, int k) {
         if(root == null) return null;
         if(root.data == k) return root;
         BTNode a = searchNode(root.left, k);
@@ -620,7 +618,7 @@ public class BTree {
         if (A == null || B == null) return 0;
         if (A.val != B.val) return 0;
         return Math.min(isSameTree(A.left,  B.left),
-                isSameTree(A.right, B.right));
+                        isSameTree(A.right, B.right));
     }
 
     public int isSymmetric (TreeNode A, TreeNode B) {

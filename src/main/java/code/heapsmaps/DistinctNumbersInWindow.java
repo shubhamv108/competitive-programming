@@ -1,4 +1,4 @@
-package code.maps;
+package code.heapsmaps;
 
 import java.util.ArrayList;
 import java.util.Arrays;

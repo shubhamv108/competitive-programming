@@ -4,6 +4,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * ToDo
+ *
+ * @param <T>
+ */
 public class UnboundedBlockingQueue<T> {
 
     public Queue<T> queue = new LinkedList<>();
