@@ -62,7 +62,7 @@ public class IslandsIn2DMatrixBFS {
         }
 
         public boolean isSafe(int i, int j) {
-            return i > -1 && i < arr.length && j > -1 && j < arr.length && !isVisted(i, j) && isValid(i, j);
+            return i > -1 && i < arr.length && j > -1 && j < arr[i].length && !isVisted(i, j) && isValid(i, j);
         }
 
         public boolean isVisted(int i, int j) {
@@ -80,7 +80,8 @@ public class IslandsIn2DMatrixBFS {
                         { 0, 1, 0, 0, 1 },
                         { 1, 0, 0, 1, 1 },
                         { 0, 0, 0, 0, 0 },
-                        { 1, 0, 1, 0, 1 } };
+                        { 1, 0, 1, 0, 1 }
+        };
         int validLand = 1;
         System.out.println(
                 new IslandsIn2DMatrixBFS().new Solution(arr, validLand).get()

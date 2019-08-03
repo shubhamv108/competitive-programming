@@ -397,7 +397,7 @@ public class BTree {
         BTNode xNode = new BTNode(pre[idx++]);
         if(left == right || idx >= pre.length) return xNode;
         int pos = postOrderMap.get(xNode.data);
-        xNode.left  = buildTreeWithPreAndPostOrder(pre, left, pos, postOrderMap);
+        xNode.left   = buildTreeWithPreAndPostOrder(pre, left, pos, postOrderMap);
         xNode.right  = buildTreeWithPreAndPostOrder(pre, pos+1, pos - 1, postOrderMap);
         return xNode;
     }

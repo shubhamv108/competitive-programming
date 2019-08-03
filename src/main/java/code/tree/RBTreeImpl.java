@@ -89,8 +89,8 @@ interface RBTree {
         a.color = b.color;
         b.color = temp;
     }
-    default boolean isLLCase (RBTNode node) {
-        return isParentLeftChild(node) && isLeftChild(node);
+    default boolean isLLCase(RBTNode node) {
+        return isParentLeftChild(node)  && isLeftChild(node);
     }
     default boolean isLRCase(RBTNode node) {
         return isParentLeftChild(node)  && isRightChild(node);
@@ -99,8 +99,9 @@ interface RBTree {
         return isParentRightChild(node) && isRightChild(node);
     }
     default boolean isRLCase(RBTNode node) {
-        return isParentRightChild(node)  && isLeftChild(node);
+        return isParentRightChild(node) && isLeftChild(node);
     }
+
     default void rightRotate (RBTNode node) {
         RBTNode left = node.left;
         left.parent = node.parent;

@@ -1,5 +1,9 @@
 package code.utils;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class BitwiseUtils {
 
     public static int NOT ( int n ) {
@@ -89,6 +93,9 @@ public class BitwiseUtils {
         N = N | ( N >> 2 );
         N = N | ( N >> 4 );
         N = N | ( N >> 8 );
+
+        boolean[] b = new boolean[11];
+        ArrayList<Integer> a = IntStream.range(0, 11).filter(i -> b[i] == true).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 
         return N;
     }

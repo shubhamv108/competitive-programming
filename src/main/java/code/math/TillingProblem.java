@@ -25,7 +25,6 @@ public class TillingProblem {
                     count[i] = 1;
                 }
             }
-
             return count[n];
         }
 

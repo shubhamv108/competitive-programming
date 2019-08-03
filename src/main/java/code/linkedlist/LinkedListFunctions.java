@@ -1,7 +1,6 @@
 package code.linkedlist;
 
 import java.util.*;
-import java.util.function.Function;
 
 class   LinkedListFunctions {
     LLNode last = null;
@@ -569,7 +568,25 @@ class   LinkedListFunctions {
 //
 //    }
 
-    public static ListNode reverseList (ListNode A, int B) {
+    public static ListNode reverseListInGroupOfSizeB2 (ListNode head, int B) {
+        if (head == null) return null;
+        ListNode current = head;
+        ListNode prev = null;
+        ListNode tmp = null;
+
+        int count = B;
+        while (count-- > 0 && current != null) {
+            tmp = current.next;
+            current.next = prev;
+            prev = current;
+            current = tmp;
+        }
+
+        head.next = reverseListInGroupOfSizeB2(current, B);
+
+        return prev;
+    }
+    public static ListNode reverseListInGroupOfSizeB (ListNode A, int B) {
         ListNode temp;
         ListNode r = null;
         ListNode prev = null;
@@ -583,13 +600,12 @@ class   LinkedListFunctions {
             A.next = r;
             r = A;
             A = temp;
-            if (A == null || k == 0) {
+            if (k == 0) {
                 if (head == null) head = r;
                 rStart.next = A;
                 k = B;
-                if (prev != null) {
+                if (prev != null)
                     prev.next = r;
-                }
                 prev = rStart;
                 if (A == null) break;
                 rStart = A;
@@ -600,11 +616,13 @@ class   LinkedListFunctions {
 
     }
 
-//    public static void main(String[] args) {
-//        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8);
-//        l = reverseList(l, 2);
-//        print(l);
-//    }
+
+
+    public static void main(String[] args) {
+        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8, 9, 8);
+        l = reverseListInGroupOfSizeB2(l, 3);
+        print(l);
+    }
 
     public static ListNode swapPairs (ListNode A) {
         ListNode prev = null;
@@ -813,9 +831,9 @@ class   LinkedListFunctions {
         return head;
     }
 
-    public static void main(String[] args) {
-        ListNode l = createAndGetNewLN(6, 10, 0);
-        l = swapCombinationsOfSizeK(l, 2);
-        print(l);
-    }
+//    public static void main(String[] args) {
+//        ListNode l = createAndGetNewLN(6, 10, 0);
+//        l = swapCombinationsOfSizeK(l, 2);
+//        print(l);
+//    }
 }
