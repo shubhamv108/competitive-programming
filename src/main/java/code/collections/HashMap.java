@@ -27,8 +27,9 @@ public class HashMap<K, V> {
     }
 
     void put(K k, V v) {
-        if (size >= 0.75 * bucketCount)
+        if (size >= 0.75 * bucketCount) {
             increaseBuckets();
+        }
         int hashCode = k.hashCode();
         int bucketNo = hashCode % bucketCount;
         NodeMap<K, V> bucketItem = arr[bucketNo];
@@ -63,10 +64,16 @@ public class HashMap<K, V> {
         }
     }
 
-    private void increaseBuckets() {
+    void increaseBucketsAndReIndex() {
         NodeMap[] arrCopy = new NodeMap[bucketCount * 2];
-        for (int i = 0; i < bucketCount; i++)
+    }
+
+    /** ToDo */
+    void increaseBuckets() {
+        NodeMap[] arrCopy = new NodeMap[bucketCount * 2];
+        for (int i = 0; i < bucketCount; i++) {
             arrCopy[i] = arr[i];
+        }
         arr = arrCopy;
         bucketCount *= 2;
     }
