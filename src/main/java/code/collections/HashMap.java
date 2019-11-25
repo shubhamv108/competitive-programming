@@ -105,6 +105,7 @@ public class HashMap<K, V> {
                                 arrCopy[currentBucketLocation] = currentBucketLocation__LocationBucketList__Head;
                             } else {
                                 currentBucketLocation__LocationBucketList__Tail.next = currentNode;
+                                currentBucketLocation__LocationBucketList__Tail      = currentBucketLocation__LocationBucketList__Tail.next;
                             }
                         } else {
                             if (currentBucketLocation__LocationBucketList__Head == null) {
@@ -112,6 +113,7 @@ public class HashMap<K, V> {
                                 arrCopy[currentBucketLocation + bucketCount] = currentBucketLocation_plus_CurrentBucketCount__LocationBucketList__Head;
                             } else {
                                 currentBucketLocation_plus_CurrentBucketCount__LocationBucketList__Tail.next = currentNode;
+                                currentBucketLocation_plus_CurrentBucketCount__LocationBucketList__Tail      = currentBucketLocation_plus_CurrentBucketCount__LocationBucketList__Tail.next;
                             }
                         }
                         currentNode = currentNode.next;
