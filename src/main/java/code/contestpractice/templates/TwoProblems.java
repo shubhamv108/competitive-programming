@@ -1,24 +1,5 @@
 package code.contestpractice.templates;
 
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.io.InputStreamReader;
-//
-//public class TwoProblems {
-//
-//    private static class One {
-//
-//        private class Solution {
-//
-//            private Solution() {
-//
-//            }
-//
-//            private void solve() {
-//
-//            }
-//
-//        }
 //
 //        private static class InputUtils {
 //
@@ -43,6 +24,25 @@ package code.contestpractice.templates;
 //
 //            public static String[] splitNextLine(BufferedReader br, String regex) {
 //                return nextLine().split(regex);
+//import java.io.BufferedReader;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
+//
+//public class TwoProblems {
+//
+//    private static class One {
+//
+//        private class Solution {
+//
+//            private Solution() {
+//
+//            }
+//
+//            private void solve() {
+//
+//            }
+//
+//        }
 //            }
 //
 //            public static String nextLine() {

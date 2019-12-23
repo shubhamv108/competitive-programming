@@ -1,13 +1,5 @@
 package code.tree;
 
-import sun.reflect.generics.tree.Tree;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 public class TreeUtils {
 
     public static TreeNode getTreeFromLevelOrder (int[] a) {

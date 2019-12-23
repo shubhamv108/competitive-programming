@@ -4,11 +4,17 @@ import java.util.*;
 
 public class BuildingsinCities {
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+    }
+
     static class TestClass {
         public static void main(String args[] ) throws Exception {
             Scanner sc = new Scanner(System.in);
             int N = sc.nextInt();
             long arr[] = new long[N];
+            new Thread();
             for(int i=0; i<N; i++)
                 arr[i] = sc.nextLong();
             long out = solve(arr, N);

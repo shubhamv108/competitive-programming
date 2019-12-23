@@ -85,6 +85,7 @@ public class HashMap<K, V> {
     void increaseBuckets() {
         Node[] arrCopy = new Node[bucketCount * 2];
         for (int currentBucketLocation = 0; currentBucketLocation < bucketCount; currentBucketLocation++) {
+            if (null == arr[currentBucketLocation]) return;
             Node<K, V> currentBucket = arr[currentBucketLocation];
             if (currentBucket instanceof RBTreeMap) {
                 /** ToDo */
@@ -108,7 +109,7 @@ public class HashMap<K, V> {
                                 currentBucketLocation__LocationBucketList__Tail      = currentBucketLocation__LocationBucketList__Tail.next;
                             }
                         } else {
-                            if (currentBucketLocation__LocationBucketList__Head == null) {
+                            if (currentBucketLocation_plus_CurrentBucketCount__LocationBucketList__Head == null) {
                                 currentBucketLocation_plus_CurrentBucketCount__LocationBucketList__Head = currentBucketLocation__LocationBucketList__Tail = currentNode;
                                 arrCopy[currentBucketLocation + bucketCount] = currentBucketLocation_plus_CurrentBucketCount__LocationBucketList__Head;
                             } else {

@@ -1,33 +1,29 @@
-package code.contestpractice.skillenza;
+package code.contestpractice.hackerearth;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
-public class DistributeTShirt {
+public class NextClosestTime {
 
     private class Solution {
 
-        private int[] ages;
+        String[] date;
 
-        private Solution(int[] ages) {
-            this.ages = ages;
+        private Solution(String l) throws ParseException {
+            java.util.Date d = new SimpleDateFormat("hh:mm:ss").parse(l);
+            date = l.split(":");
         }
 
-        private int[] solve() {
-            int[] tShirts = new int[ages.length];
-            tShirts[0] = 1;
-            IntStream.range(1, ages.length).forEach(i -> {
-                tShirts[i] = ages[i] > ages[i - 1] ? tShirts[i - 1] + 1 : 1;
-            });
+        private void solve() {
+            String ss = date[2];
+            String mm = date[1];
+            String hh = date[0];
 
-            IntStream.range(0, ages.length - 1).map(i -> (ages.length - 1) - i -1).forEach(i -> {
-                tShirts[i] = Math.max(tShirts[i], ages[i] > ages[i + 1] ? tShirts[i + 1] + 1 : tShirts[i]);
-            });
-            return tShirts;
+
         }
 
     }
@@ -90,17 +86,16 @@ public class DistributeTShirt {
 
     public static void main(String[] args) {
         int t = InputUtils.nextInt();
-        String[] line = null;
-        int n;
-        DistributeTShirt distributeTShirt = new DistributeTShirt();
+        String line;
+        NextClosestTime problemNameObject = new NextClosestTime();
         while (t-- > 0) {
-            n = InputUtils.nextInt();
-            line = InputUtils.splitNextLine();
-            Arrays.stream(distributeTShirt.new Solution(Arrays.stream(line).mapToInt(Integer::valueOf).toArray()).solve())
-                    .forEach(a -> System.out.print(a + " "));
-            System.out.println();
+            line = InputUtils.nextLine();
+            try {
+                problemNameObject.new Solution(line).solve();
+            } catch (ParseException pe) {
+                System.out.println("INVALID");
+            }
         }
     }
 }
-
 

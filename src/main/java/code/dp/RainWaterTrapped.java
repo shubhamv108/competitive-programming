@@ -1,4 +1,4 @@
-package code.stacksqueues;
+package code.dp;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +26,7 @@ public class RainWaterTrapped {
 
     public static void main(String[] args) {
         System.out.println(
-            new RainWaterTrapped().new Solution().trap(Arrays.asList(6, 0, 2, 0, 3, 0, 5))
+            new RainWaterTrapped().new Solution().trap(Arrays.asList(2, 0, 1, 0, 1, 0, 2, 3, 0, 1))
         );
     }
 

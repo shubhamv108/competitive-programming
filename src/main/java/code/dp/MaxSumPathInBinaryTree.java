@@ -1,9 +1,6 @@
 package code.dp;
 
 import code.tree.TreeNode;
-import code.tree.TreeUtils;
-import code.utils.ArrayUtils;
-import sun.reflect.generics.tree.Tree;
 
 public class MaxSumPathInBinaryTree {
     public class Solution {

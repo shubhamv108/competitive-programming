@@ -54,27 +54,48 @@ public class RotatedSortedArray {
 
         private int findPos() {
             if (A == null || A.length == 0) return -1;
-            return findPos(0, A.length - 1);
+            return fidPosIterative(0, A.length - 1);
         }
 
-        private int findPos(int l, int r) {
+        private int findPosRecurse(int l, int r) {
             if (l > r) return -1;
             int mid = (l+r)/2;
             if (A[mid] == k) return mid;
             if (A[l] <= A[mid]) {
                 if (k >= A[l] && k <= A[mid])
-                    return findPos(l, mid-1);
-                return findPos(mid+1, r);
+                    return findPosRecurse(l, mid-1);
+                return findPosRecurse(mid+1, r);
             }
             if (k >= A[mid] && k <= A[r])
-                return findPos(mid+1, r);
-            return findPos(l, mid-1);
+                return findPosRecurse(mid+1, r);
+            return findPosRecurse(l, mid-1);
+        }
+
+        private int fidPosIterative(int l, int r) {
+            int returnedPosition = -1;
+            while (l <= r) {
+                int mid = (l+r)/2;
+                if (A[mid] == k) returnedPosition = mid;
+                if (A[l] <= A[mid]) {
+                    if (k >= A[l] && k < A[mid]) {
+                        r =- 1;
+                    }
+                    l += 1;
+                } else {
+                    if (k > A[mid] && k <= A[r]) {
+                        l += 1;
+                    } else {
+                        r =- 1;
+                    }
+                }
+            }
+            return returnedPosition;
         }
 
     }
 
     public static void main(String[] args) {
-       int[] a = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+       int[] a = {5, 6, 7, 8, 9, 10, 1, 2, 3, 4};
        int k = 3;
        System.out.println(new RotatedSortedArray().new Solution(a, k).findPos() + 1);
     }

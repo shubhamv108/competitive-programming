@@ -1,5 +1,5 @@
-package code.contestpractice.templates;
-
+//package code.contestpractice.templates;
+//
 //import java.io.BufferedReader;
 //import java.io.IOException;
 //import java.io.InputStreamReader;
@@ -79,11 +79,13 @@ package code.contestpractice.templates;
 //        int t = InputUtils.nextInt();
 //        String[] line = null;
 //        int n;
+//        ProblemName problemNameObject = new ProblemName();
 //        while (t-- > 0) {
+//             line = InputUtils.splitNextLine();
 ////            System.out.println(
-//                new ProblemName().new Solution().solve();
+//                problemNameObject.new Solution().solve();
 ////            );
 //        }
 //    }
 //}
-
+//

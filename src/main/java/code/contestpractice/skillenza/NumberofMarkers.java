@@ -4,32 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.util.Comparator;
 
 
-public class DistributeTShirt {
+public class NumberofMarkers {
 
-    private class Solution {
-
-        private int[] ages;
-
-        private Solution(int[] ages) {
-            this.ages = ages;
+    private class Interval {
+        private int s;
+        private int e;
+        private Interval(int s, int e) {
+            this.s = s;
+            this.e = e;
         }
-
-        private int[] solve() {
-            int[] tShirts = new int[ages.length];
-            tShirts[0] = 1;
-            IntStream.range(1, ages.length).forEach(i -> {
-                tShirts[i] = ages[i] > ages[i - 1] ? tShirts[i - 1] + 1 : 1;
-            });
-
-            IntStream.range(0, ages.length - 1).map(i -> (ages.length - 1) - i -1).forEach(i -> {
-                tShirts[i] = Math.max(tShirts[i], ages[i] > ages[i + 1] ? tShirts[i + 1] + 1 : tShirts[i]);
-            });
-            return tShirts;
-        }
-
     }
 
     private static class InputUtils {
@@ -90,17 +76,35 @@ public class DistributeTShirt {
 
     public static void main(String[] args) {
         int t = InputUtils.nextInt();
-        String[] line = null;
+        String line[] = null;
         int n;
-        DistributeTShirt distributeTShirt = new DistributeTShirt();
+        NumberofMarkers problemNameObject = new NumberofMarkers();
         while (t-- > 0) {
             n = InputUtils.nextInt();
-            line = InputUtils.splitNextLine();
-            Arrays.stream(distributeTShirt.new Solution(Arrays.stream(line).mapToInt(Integer::valueOf).toArray()).solve())
-                    .forEach(a -> System.out.print(a + " "));
-            System.out.println();
+            Interval[] intervals = new Interval[n];
+            int i = 0;
+            int result = 0;
+            while (i < n) {
+                line = InputUtils.splitNextLine();
+                intervals[i] = problemNameObject.new Interval(Integer.valueOf(line[0]), Integer.valueOf(line[1]));
+                i++;
+            }
+            Arrays.sort(intervals, Comparator.comparingInt(a -> a.s));
+            int index = 0;
+            for (i = 1; i < n; i++) {
+                if (intervals[index].e >= intervals[i].s) {
+                    intervals[index].s = Math.min(intervals[index].s, intervals[i].s);
+                    intervals[index].e = Math.max(intervals[index].e, intervals[i].e);
+                } else {
+                    result += intervals[index].e - intervals[index].s + 1;
+                    index = i;
+                }
+            }
+            result += intervals[index].e - intervals[index].s + 1;
+            System.out.println(
+                result
+            );
         }
     }
 }
-
 

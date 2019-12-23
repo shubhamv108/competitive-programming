@@ -3,10 +3,10 @@ package code.utils;
 //import org.apache.commons.codec.digest.DigestUtils;
 //import org.apache.commons.lang3.SerializationUtils;
 
-import javax.xml.bind.DatatypeConverter;
-import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+//import javax.xml.bind.DatatypeConverter;
+//import java.io.Serializable;
+//import java.security.MessageDigest;
+//import java.security.NoSuchAlgorithmException;
 
 public class HashUtils {
 

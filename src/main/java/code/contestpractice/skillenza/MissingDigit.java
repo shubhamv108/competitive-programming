@@ -3,31 +3,26 @@ package code.contestpractice.skillenza;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.stream.IntStream;
 
-
-public class DistributeTShirt {
+public class MissingDigit {
 
     private class Solution {
-
-        private int[] ages;
-
-        private Solution(int[] ages) {
-            this.ages = ages;
+        private String n;
+        public Solution(String n) {
+            this.n = n;
         }
-
-        private int[] solve() {
-            int[] tShirts = new int[ages.length];
-            tShirts[0] = 1;
-            IntStream.range(1, ages.length).forEach(i -> {
-                tShirts[i] = ages[i] > ages[i - 1] ? tShirts[i - 1] + 1 : 1;
-            });
-
-            IntStream.range(0, ages.length - 1).map(i -> (ages.length - 1) - i -1).forEach(i -> {
-                tShirts[i] = Math.max(tShirts[i], ages[i] > ages[i + 1] ? tShirts[i + 1] + 1 : tShirts[i]);
-            });
-            return tShirts;
+        private int solve() {
+            int i = 0;
+            int sum = 0;
+            if ((n.length() & 1) == 0) { i = 1; }
+            for (;i < n.length(); i+=2) {
+                if ((i-1) > -1) sum+= Integer.valueOf(n.charAt(i-1) - '0');
+                int d = Integer.valueOf(n.charAt(i) - '0');
+                d*=2;
+                sum+=((d%10)+(d/10))%10;
+            }
+            sum%=10;
+            return 0 == sum ? 0 : 10 - sum;
         }
 
     }
@@ -35,12 +30,10 @@ public class DistributeTShirt {
     private static class InputUtils {
 
         private static BufferedReader BR;
-        private static InputStreamReader inputStreamReader;
 
         public static BufferedReader getBR() {
             if (null == BR) {
-                inputStreamReader = new InputStreamReader(System.in);
-                BR = new BufferedReader(inputStreamReader);
+                BR = new BufferedReader(new InputStreamReader(System.in));
             }
             return BR;
         }
@@ -85,22 +78,16 @@ public class DistributeTShirt {
             return toLong(nextLine());
         }
 
-
     }
 
     public static void main(String[] args) {
         int t = InputUtils.nextInt();
-        String[] line = null;
-        int n;
-        DistributeTShirt distributeTShirt = new DistributeTShirt();
-        while (t-- > 0) {
-            n = InputUtils.nextInt();
-            line = InputUtils.splitNextLine();
-            Arrays.stream(distributeTShirt.new Solution(Arrays.stream(line).mapToInt(Integer::valueOf).toArray()).solve())
-                    .forEach(a -> System.out.print(a + " "));
-            System.out.println();
+        MissingDigit missingDigit = new MissingDigit();
+        while(t-- > 0) {
+            String n = InputUtils.nextLine();
+            System.out.println(
+                    missingDigit.new Solution(n).solve()
+            );
         }
     }
 }
-
-

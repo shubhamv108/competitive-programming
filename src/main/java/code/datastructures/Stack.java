@@ -1,4 +1,4 @@
-package code.collections;
+package code.datastructures;
 
 class StackNode<T> {
     T t;
@@ -12,13 +12,13 @@ public class Stack<T> {
 
     StackNode<T> top;
 
-    void push(T t) {
+    public void push(T t) {
         StackNode<T> n = new StackNode<T>(t);
         n.prev = top;
         top = n;
     }
 
-    T pop() {
+    public T pop() {
         T t = top.t;
         top = top.prev;
         return t;

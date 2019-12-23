@@ -3,31 +3,44 @@ package code.contestpractice.skillenza;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.util.*;
 
 
-public class DistributeTShirt {
+public class DimmestStar {
 
+    private Map<Integer, Set<Integer>> edges;
     private class Solution {
 
-        private int[] ages;
-
-        private Solution(int[] ages) {
-            this.ages = ages;
+        private Solution() {
+            edges = new HashMap<>();
         }
 
-        private int[] solve() {
-            int[] tShirts = new int[ages.length];
-            tShirts[0] = 1;
-            IntStream.range(1, ages.length).forEach(i -> {
-                tShirts[i] = ages[i] > ages[i - 1] ? tShirts[i - 1] + 1 : 1;
-            });
+        private void addEdge(Integer u, Integer v) {
+            Set<Integer> l = edges.get(u);
+            if (null == l) {
+                l = new TreeSet<>((x, y) -> y - x);
+                edges.put(u, l);
+            }
+            l.add(v);
 
-            IntStream.range(0, ages.length - 1).map(i -> (ages.length - 1) - i -1).forEach(i -> {
-                tShirts[i] = Math.max(tShirts[i], ages[i] > ages[i + 1] ? tShirts[i + 1] + 1 : tShirts[i]);
-            });
-            return tShirts;
+        }
+        private Integer solve(Integer p) {
+            Set<Integer> v = new HashSet<>();
+            Queue<Integer> q = new LinkedList<>();
+            q.offer(p);
+            Integer c = null;
+            Set<Integer> s = null;
+            while (!q.isEmpty()) {
+                c = q.peek();
+                s = edges.get(c);
+                if (s != null) {
+                    s.stream().filter(e -> !v.contains(e)).forEach(q::offer);
+                }
+                if (q.size() == 1) return c;
+                q.poll();
+                v.add(c);
+            }
+            return p;
         }
 
     }
@@ -90,17 +103,21 @@ public class DistributeTShirt {
 
     public static void main(String[] args) {
         int t = InputUtils.nextInt();
-        String[] line = null;
+        String line[] = null;
         int n;
-        DistributeTShirt distributeTShirt = new DistributeTShirt();
+        DimmestStar dimmestStar = new DimmestStar();
         while (t-- > 0) {
             n = InputUtils.nextInt();
-            line = InputUtils.splitNextLine();
-            Arrays.stream(distributeTShirt.new Solution(Arrays.stream(line).mapToInt(Integer::valueOf).toArray()).solve())
-                    .forEach(a -> System.out.print(a + " "));
-            System.out.println();
+            Solution solution = dimmestStar.new Solution();
+            while (n-- > 0) {
+                line = InputUtils.splitNextLine();
+                solution.addEdge(Integer.valueOf(line[0]), Integer.valueOf(line[1]));
+            }
+            String p = InputUtils.nextLine();
+            System.out.println(
+                 solution.solve(Integer.valueOf(p))
+            );
         }
     }
 }
-
 

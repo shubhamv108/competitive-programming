@@ -1,15 +1,20 @@
 package code.stacksqueues;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class SlidingWindowMaximum {
 
     class Solution {
         public ArrayList<Integer> slidingMaximum (final List<Integer> A, int B) {
             ArrayList<Integer> result = new ArrayList<>();
-            Deque<Integer> q = new LinkedList<>();
+            java.util.Deque<Integer> q = new LinkedList<>();
             int i = 0;
             for (;i<B;i++) {
                 while (!q.isEmpty() && A.get(i) >= A.get(q.peekLast())) q.removeLast();
@@ -116,11 +121,33 @@ public class SlidingWindowMaximum {
         }
     }
 
+    class Solution6 {
+        int[] maxSlidingWindow(int[] A, int k) {
+            if (A.length == 0 || A.length < k) return new int[0];
+            int[] result = new int[A.length - k + 1];
+            code.datastructures.Deque<Integer> q = new code.datastructures.Deque<>();
+            int i = 0;
+            for (; i < k; i++) {
+                while (!q.isEmpty() && A[i] >= A[q.peekLast()]) q.removeLast();
+                q.addLast(i);
+            }
+            for (; i < A.length; i++) {
+                result[i-k] = A[q.peekFirst()];
+                while (!q.isEmpty() && q.peekFirst() <= i - k) q.removeFirst();
+                while (!q.isEmpty() && A[i] >= A[q.peekLast()]) q.removeLast();
+                q.addLast(i);
+            }
+            result[i - k] = A[q.peekFirst()];
+            return result;
+
+        }
+    }
+
 
     public static void main(String[] args) {
-        int[] arr = {12, 1, 8, 90, 57, 89, 56};
+        int[] arr = { 1, 2, 3, 20, 5, -6, 7, 8, 9, 0 };
 //        new SlidingWindowMaximum().
-//                new Solution2().
+//                new Solution().
 //                slidingMaximum(Arrays.
 //                                stream(arr).
 //                                collect(ArrayList::new, ArrayList::add, ArrayList::addAll), 3).
@@ -128,7 +155,7 @@ public class SlidingWindowMaximum {
 //                forEach(e -> System.out.print(e + " "));
         Arrays.stream(
         new SlidingWindowMaximum().
-                new Solution4().
+                new Solution6().
                 maxSlidingWindow(arr, 3)).
                 forEach(e -> System.out.print(e + "  "));
 
