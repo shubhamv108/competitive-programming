@@ -35,7 +35,7 @@ public class ReplaceSubStringBetweenSpecialChar {
                     else if (null != pattern) {
                         pattern.append(c);
                     }
-                    else if (patternType != null) {
+                    else if (null != patternType) {
                         patternType.append(c);
                     }
                     else specialString.append(c);

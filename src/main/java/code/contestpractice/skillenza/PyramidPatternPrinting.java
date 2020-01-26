@@ -3,7 +3,7 @@ package code.contestpractice.skillenza;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-class P {
+public class PyramidPatternPrinting {
 
    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

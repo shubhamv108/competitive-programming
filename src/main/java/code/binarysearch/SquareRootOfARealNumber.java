@@ -89,7 +89,21 @@ public class SquareRootOfARealNumber {
         return x;
     }
 
+    class NewtonRaphson {
+        private static final double EPSILON = 0.001;
+        double f(double x) { return x*x*x - x*x + 2; }
+        double df_dx(double x) { return 3*x*x - 2*x; }
+        double get(double x) {
+            double h = f(x)/df_dx(x);
+            while (Math.abs(h) >= EPSILON) {
+                h = f(x)/df_dx(x);
+                x -= h;
+            }
+            return Math.round(x * 100.0) / 100.0;
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.print(sqrtOfIntegerFloor(4));
+        System.out.print(new SquareRootOfARealNumber().new NewtonRaphson().get(2));
     }
 }
