@@ -1,9 +1,7 @@
 package code.tree;
 
-import scala.Int;
-
-import java.util.*;
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.Collection;
 
 public class FormTreeFromArray {
 

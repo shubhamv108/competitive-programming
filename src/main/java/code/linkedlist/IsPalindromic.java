@@ -20,7 +20,7 @@ public class IsPalindromic {
     }
 
     private ListNode reverse (ListNode A) {
-        ListNode r    = null;
+        ListNode r = null;
         ListNode temp;
         while (A != null) {
             temp = A.next;

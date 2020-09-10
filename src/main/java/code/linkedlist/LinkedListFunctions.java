@@ -409,56 +409,6 @@ class   LinkedListFunctions {
 //        print(mergeSort(l));
 //    }
 
-    /**
-     * A = 4
-     *
-     * Output:
-     * 4 4 4 4 4 4 4
-     * 4 3 3 3 3 3 4
-     * 4 3 2 2 2 3 4
-     * 4 3 2 1 2 3 4
-     * 4 3 2 2 2 3 4
-     * 4 3 3 3 3 3 4
-     * 4 4 4 4 4 4 4
-     *
-     *
-     * @param A
-     * @return
-     */
-    public static ArrayList<ArrayList<Integer>> prettyPrint(int A) {
-        ArrayList<ArrayList<Integer>> a = new ArrayList();
-        int k = A;
-        A = (2*A)-1;
-        for (int i=0;i<A;i++) {
-            ArrayList<Integer> aa = new ArrayList<>();
-            for (int j=0;j<A;j++) {
-                aa.add(0);
-            }
-            a.add(aa);
-        }
-        int R = A - 1;
-        int C = A - 1;
-        int r = 0;
-        int c = 0;
-
-        while (c <= C && r <= R) {
-            for (int i=c;i<=C;i++)     a.get(r).set(i, k);
-            r++;
-            for (int i=r;i<=R;i++)     a.get(i).set(C, k);
-            C--;
-            if (r<=R) {
-                for (int i=C;i>=c;i--) a.get(R).set(i, k);
-                R--;
-            }
-            if (c<=C) {
-                for (int i=R;i>=r;i--) a.get(i).set(c, k);
-                c++;
-            }
-            k--;
-        }
-        return a;
-    }
-
     private static Node l = null;
     private static boolean a = false;
     public static Node subtract (Node A) {
@@ -618,11 +568,11 @@ class   LinkedListFunctions {
 
 
 
-    public static void main(String[] args) {
-        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8, 9, 8);
-        l = reverseListInGroupOfSizeB2(l, 3);
-        print(l);
-    }
+//    public static void main(String[] args) {
+//        ListNode l = createAndGetNewLN(6, 10, 0, 3, 4, 8, 9, 8);
+//        l = reverseListInGroupOfSizeB2(l, 3);
+//        print(l);
+//    }
 
     public static ListNode swapPairs (ListNode A) {
         ListNode prev = null;
@@ -722,10 +672,10 @@ class   LinkedListFunctions {
         return temp;
     }
 
-//    public static void main(String[] args) {
-//        ListNode l = LinkedListFunctions.createAndGetNewLN(68, 86, 13, 16, 5, 75);
-//        LinkedListFunctions.print(rotateRight(l, 90));
-//    }
+    public static void main(String[] args) {
+        ListNode l = LinkedListFunctions.createAndGetNewLN(68, 86, 13, 16, 5, 75);
+        LinkedListFunctions.print(rotateRight(l, 5));
+    }
 
     public static ListNode deleteDuplicates (ListNode A) {
         ListNode head = new ListNode(0);

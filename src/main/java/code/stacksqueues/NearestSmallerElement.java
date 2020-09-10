@@ -22,6 +22,13 @@ public class NearestSmallerElement {
     }
 
     public static void main(String[] args) {
+        java.util.LinkedList l = new java.util.LinkedList();
+        l.add(2);
+        l.add(5);
+        System.out.println(l);
+        String a = "Hello World!";
+        String b = a.substring(6, 12) + a.substring(12, 6);
+        System.out.println(b);
         new NearestSmallerElement().
                 new Solution().
                 prevSmaller(new ArrayList<>(Arrays.asList(4, 5, 2, 10, 8))).
