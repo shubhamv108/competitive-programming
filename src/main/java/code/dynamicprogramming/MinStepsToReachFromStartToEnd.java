@@ -1,48 +1,43 @@
 package code.dynamicprogramming;
 
+import input.InputUtils;
+
 public class MinStepsToReachFromStartToEnd {
-
-    class SolutionRecursive {
-        int recurse(int[] A, int l, int r) {
-            if (l == r) return 0;
-            int minSteps = Integer.MAX_VALUE;
-            if (A[l] == 0) return minSteps;
-            for (int i = l + 1; i <= l + A[l] && i <= r; i++) {
-                int steps = recurse(A, i, r);
-                if (steps != Integer.MAX_VALUE) {
-                    minSteps = Math.min(minSteps, steps + 1);
-                }
-            }
-            return minSteps;
-        }
-
-        int solve(int[] A) {
-            return recurse(A, 0, A.length - 1);
-        }
-    }
 
     class SolutionDP {
 
+        int[] A;
+        int[] dp;
         SolutionDP(int[] A) {
-
+            this.A = A;
+            this.dp = new int[A.length];
         }
 
-        int recurse(int[] A, int l, int r) {
-            if (l == r) return 0;
-            int minSteps = Integer.MAX_VALUE;
-            if (A[l] == 0) return minSteps;
-            for (int i = l + 1; i <= r && i <= l + A[l]; i++) {
-                int steps = recurse(A, i, r);
-                if (steps != Integer.MAX_VALUE) {
-                    minSteps = Math.min(minSteps, steps + 1);
+        int solve() {
+            if (A.length == 0 || A[0] == 0)
+                return Integer.MAX_VALUE;
+            dp[A.length - 1] = 0;
+            for (int i = A.length - 2; i > -1 ; i--) {
+                if (A[i] == 0) dp[i] = Integer.MAX_VALUE;
+                if (i + A[i] >= A.length - 1) dp[i] = 1;
+                else {
+                    dp[i] = Integer.MAX_VALUE;
+                    for (int j = i + 1; j < A.length && j <= i + A[i]; j++) {
+                        if (dp[j] != Integer.MAX_VALUE) {
+                            dp[i] = Math.min(dp[i], dp[j] + 1);
+                        }
+                    }
                 }
             }
-            return minSteps;
+            return dp[0];
         }
+    }
 
-        int solve(int[] A) {
-            return recurse(A, 0, A.length - 1);
-        }
+    public static void main(String[] args) {
+        int[] A = InputUtils.nextIntLine();
+        System.out.println(
+                new MinStepsToReachFromStartToEnd().new SolutionDP(A).solve()
+        );
     }
 
 }

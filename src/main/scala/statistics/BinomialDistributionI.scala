@@ -1,4 +1,4 @@
-package code.statistics
+package statistics
 
 object BinomialDistributionI {
   def main(args: Array[String]) {

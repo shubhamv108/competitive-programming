@@ -112,6 +112,8 @@ public class ReverseListInGroupsOfSizeK {
 
         System.out.print( "\nReversed Linked list \n");
         printList(head);
+        java.util.Hashtable t = new java.util.Hashtable<>();
+        t.put(02, "dsa");
 
     }
 

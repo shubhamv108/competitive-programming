@@ -1,5 +1,7 @@
 package code.arrays;
 
+import input.InputUtils;
+
 public class SmallestMissingPositiveNumber {
 
     public int solution(int[] A) {
@@ -17,6 +19,12 @@ public class SmallestMissingPositiveNumber {
             if (A[i] != i+1) return i+1;
         }
         return A.length + 1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(
+                new SmallestMissingPositiveNumber().solution(InputUtils.nextIntLine())
+        );
     }
 
 }

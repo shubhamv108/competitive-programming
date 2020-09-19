@@ -18,11 +18,11 @@ public class KthSmallestInArraySortedRowAndColumnWise {
         }
 
         int solve() {
-            var maxHeap = new PriorityQueue<Integer>();
+            var maxHeap = new PriorityQueue<Integer>((x, y) -> y -x);
             var kInserted = false;
             int i = 0, j = 0;
             for (; i < A.length; i++) {
-               for (; j < A.length; j++) {
+               for (j = 0; j < A.length; j++) {
                    maxHeap.offer(A[i][j]);
                    if (maxHeap.size() == K) {
                        kInserted = true;
@@ -34,12 +34,19 @@ public class KthSmallestInArraySortedRowAndColumnWise {
 
             int endRow = A.length;
             int endColumn = A.length;
+            j++;
             for (; i < endRow; i++) {
                 for (; j < endColumn; j++) {
                     if (A[i][j] < maxHeap.peek()) {
                         maxHeap.poll();
                         maxHeap.offer(A[i][j]);
+                    } else {
+                        endColumn = j;
                     }
+                }
+                j = 0;
+                if (endColumn == 0) {
+                    endRow = 0;
                 }
             }
             return maxHeap.peek();

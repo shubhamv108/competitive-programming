@@ -1,6 +1,4 @@
-package code.statistics
-
-import code.statistics.Quartiles.median
+package statistics
 
 object InterQuartileRange {
 

@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import static java.lang.Integer.valueOf;
@@ -22,6 +23,18 @@ public class InputUtils {
             BR = new BufferedReader(new InputStreamReader(in));
         }
         return BR;
+    }
+
+    public static Integer[] nextIntegerLine() {
+        return Arrays.stream(splitNextLine()).map(Integer::valueOf).toArray(Integer[]::new);
+    }
+
+    public static int[] nextIntLine() {
+        return Arrays.stream(splitNextLine()).mapToInt(Integer::valueOf).toArray();
+    }
+
+    public static long[] nextLongLine() {
+        return Arrays.stream(splitNextLine()).mapToLong(Long::valueOf).toArray();
     }
 
     public static String[] splitNextLine() {

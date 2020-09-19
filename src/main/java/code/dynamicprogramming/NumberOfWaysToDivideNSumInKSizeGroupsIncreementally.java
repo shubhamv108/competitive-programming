@@ -1,8 +1,6 @@
-package code.math;
+package code.dynamicprogramming;
 
 import input.InputUtils;
-
-import java.util.Arrays;
 
 public class NumberOfWaysToDivideNSumInKSizeGroupsIncreementally {
 

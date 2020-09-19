@@ -5,7 +5,7 @@ import java.util.*;
 public class TwoSum {
     class Solution {
         public ArrayList<Integer> twoSum(final List<Integer> A, int B) {
-            ArrayList<Integer> result   = new ArrayList<>();
+            ArrayList<Integer> result = new ArrayList<>();
             Map<Integer, Integer> m = new HashMap<>();
             for (int i = 0; i < A.size(); i++) {
                 if (m.containsKey(B - A.get(i))) {
