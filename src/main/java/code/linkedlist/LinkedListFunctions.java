@@ -637,7 +637,7 @@ class   LinkedListFunctions {
 
     public static ListNode cycleNode(ListNode a) {
         ListNode slow = a;
-        ListNode fast = a;Cy
+        ListNode fast = a;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;

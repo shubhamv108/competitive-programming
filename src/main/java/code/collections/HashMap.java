@@ -2,21 +2,34 @@ package code.collections;
 
 import java.util.TreeMap;
 
+/**
+ * A simple implementation of Hash Map using separate chaining technique for collision handling.
+ * Support operation {@link HashMap#put(Object, Object)} and {@link HashMap#get(Object)}.
+ * @param <K>
+ * @param <V>
+ *
+ * @see java.util.HashMap
+ */
 public class HashMap<K, V> {
 
     int size;
-    int bucketCount = 16;
+    int bucketCount = 1 << 4;
+
+    // Load Factor
     float bucketCountThreshold = 0.75f;
     int treefyThresholdForBucketItems = 8;
-    Node<K, V>[] arr = new Node[bucketCount];
 
-    HashMap() {}
+    // DirectAccessTable
+    Node<K, V>[] arr;
+
+    HashMap() { arr = new Node[bucketCount]; }
     HashMap(float bucketCountThreshold) {
         this.bucketCountThreshold = bucketCountThreshold;
     }
     HashMap(int initialBucketCount, float bucketCountThreshold) {
         this(bucketCountThreshold);
         this.bucketCount = initialBucketCount;
+        arr = new Node[bucketCount];
     }
     HashMap(int initialBucketCount, float bucketCountThreshold, int treefyThresholdForBucketItems) {
         this(initialBucketCount, bucketCountThreshold);
@@ -26,12 +39,41 @@ public class HashMap<K, V> {
         this.treefyThresholdForBucketItems = treefyThresholdForBucketItems;
     }
 
+    int hashFunction(K k) {
+        int hashCode = k.hashCode();
+        return hashFunction(hashCode);
+    }
+
+    int hashFunction(int hashCode) {
+        return hashCode % bucketCount;
+    }
+
+    // HashFunction - Open Addressing Technique -
+    int hashFunctionOpenAddressing(K k, int increementCounter) {
+        return hashFunction(k.hashCode() + increementCounter);
+    }
+
+    int hashFunctionOpenAddressingQuadraticProbing(K k, int increementCounter) {
+        return hashFunctionOpenAddressing(k, (increementCounter * increementCounter));
+    }
+
+    int hashFunctionOpenAddressingDoubleHashing(K k, int increementCounter) {
+        return hashFunctionOpenAddressing(k, increementCounter + hashFunction2(k));
+    }
+
+    int PRIME = 7;
+    int hashFunction2(K k) {
+        int hashCode = k.hashCode();
+        return PRIME - (hashCode % PRIME);
+    }
+
+
     void put(K k, V v) {
         if (size >= 0.75 * bucketCount) {
             increaseBuckets();
         }
         int hashCode = k.hashCode();
-        int bucketNo = hashCode % bucketCount;
+        int bucketNo = hashFunction(hashCode);
         Node<K, V> bucketItem = arr[bucketNo];
         if (bucketItem == null) {
             arr[bucketNo] = new MapNode<>(k, v, hashCode);
@@ -43,13 +85,15 @@ public class HashMap<K, V> {
             } else {
                 int bucketItemCount = 0;
                 MapNode bucketListItem = (MapNode) bucketItem;
+
+                // SeparateChaining Technique for CollisionHandling
                 while (bucketListItem != null) {
                     if (++bucketItemCount == treefyThresholdForBucketItems) {
                         arr[bucketNo] = treefyAndInsert(bucketNo, k, v, hashCode);
                         size++;
                         break;
                     }
-                    if (bucketListItem.k.equals(k)) {
+                    if (bucketListItem.hash == hashCode && bucketListItem.k.equals(k)) {
                         bucketListItem.v = v;
                         break;
                     }
@@ -60,6 +104,7 @@ public class HashMap<K, V> {
                     }
                     bucketListItem = bucketListItem.next;
                 }
+
             }
         }
     }
@@ -156,8 +201,7 @@ public class HashMap<K, V> {
 
 
     V get(K k) {
-        int hashCode = k.hashCode();
-        int bucketNo = hashCode % bucketCount;
+        int bucketNo = hashFunction(k);
         Node<K, V> bucketItem = arr[bucketNo];
         if (bucketItem instanceof RBTreeMap) {
             return (V) ((RBTreeMap) bucketItem).get(k);
@@ -218,6 +262,12 @@ class MapNode<K, V> implements Node<K, V> {
 }
 
 /** ToDo */
+
+/**
+ * A BalancedBinarySearchTree
+ * @param <K>
+ * @param <V>
+ */
 class RBTreeMap<K, V> implements Node<K, V> {
 
     TreeMapNode<K, V> root;
