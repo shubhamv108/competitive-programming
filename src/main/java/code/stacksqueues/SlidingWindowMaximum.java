@@ -3,6 +3,7 @@ package code.stacksqueues;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -14,9 +15,11 @@ public class SlidingWindowMaximum {
     class Solution {
         public ArrayList<Integer> slidingMaximum (final List<Integer> A, int B) {
             ArrayList<Integer> result = new ArrayList<>();
-            java.util.Deque<Integer> q = new LinkedList<>();
+            if (A == null || A.size() == 0 || B == 0) return result;
+            Deque<Integer> q = new LinkedList<>();
             int i = 0;
-            for (;i<B;i++) {
+            int b = Math.min(B, A.size());
+            for (;i<b;i++) {
                 while (!q.isEmpty() && A.get(i) >= A.get(q.peekLast())) q.removeLast();
                 q.offerLast(i);
             }
@@ -146,18 +149,18 @@ public class SlidingWindowMaximum {
 
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 20, 5, -6, 7, 8, 9, 0 };
-//        new SlidingWindowMaximum().
-//                new Solution().
-//                slidingMaximum(Arrays.
-//                                stream(arr).
-//                                collect(ArrayList::new, ArrayList::add, ArrayList::addAll), 3).
-//                stream().
-//                forEach(e -> System.out.print(e + " "));
-        Arrays.stream(
         new SlidingWindowMaximum().
-                new Solution6().
-                maxSlidingWindow(arr, 3)).
-                forEach(e -> System.out.print(e + "  "));
+                new Solution().
+                slidingMaximum(Arrays.
+                                stream(arr).
+                                collect(ArrayList::new, ArrayList::add, ArrayList::addAll), 0).
+                stream().
+                forEach(e -> System.out.print(e + " "));
+//        Arrays.stream(
+//        new SlidingWindowMaximum().
+//                new Solution6().
+//                maxSlidingWindow(arr, 3)).
+//                forEach(e -> System.out.print(e + "  "));
 
     }
 
