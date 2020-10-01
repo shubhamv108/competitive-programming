@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 
 public class ReverseSentence {
 
-    static class Solution {
+    class Solution {
         char[] A;
 
         Solution(char[] A) {
@@ -12,15 +12,16 @@ public class ReverseSentence {
         }
 
         void solve() {
+            if (A == null || A.length < 2) return;
             reverseIndexRange(0, A.length - 1);
-
             int startIdx = 0;
-            for (int i = 0; i <= A.length; i++) {
-                if (i == A.length || A[i] == ' ') {
+            for (int i = 0; i < A.length; i++) {
+                if (A[i] == ' ') {
                     reverseIndexRange(startIdx, i-1);
                     startIdx = i+1;
                 }
             }
+            reverseIndexRange(startIdx, A.length - 1);
         }
 
         void reverseIndexRange(int start, int end) {
@@ -37,7 +38,7 @@ public class ReverseSentence {
 
     public static void main(String[] args) {
         char[] sentence = new char[] { 'a', 'b', ' ', 'c', 'd' };
-        new ReverseSentence.Solution(sentence).solve();
+        new ReverseSentence().new Solution(sentence).solve();
         IntStream.range(0, sentence.length).forEach(i -> System.out.print(sentence[i]));
     }
 
