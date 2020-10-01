@@ -21,15 +21,15 @@ public class SlidingWindowMaximum {
             int b = Math.min(B, A.size());
             for (;i<b;i++) {
                 while (!q.isEmpty() && A.get(i) >= A.get(q.peekLast())) q.removeLast();
-                q.offerLast(i);
+                q.offer(i);
             }
             for (; i < A.size(); i++) {
                 result.add(A.get(q.peekFirst()));
-                while (!q.isEmpty() && q.peekFirst() <= i - B) q.removeFirst();
+                while (!q.isEmpty() && q.peekFirst() <= i - B) q.poll();
                 while (!q.isEmpty() && A.get(i) >= A.get(q.peekLast())) q.removeLast();
-                q.offerLast(i);
+                q.offer(i);
             }
-            result.add(A.get(q.peekFirst()));
+            result.add(A.get(q.peek()));
             return result;
         }
     }
