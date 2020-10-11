@@ -62,11 +62,11 @@ public class RotatedSortedArray {
             int mid = (l+r)/2;
             if (A[mid] == k) return mid;
             if (A[l] <= A[mid]) {
-                if (k >= A[l] && k <= A[mid])
+                if (k >= A[l] && k < A[mid])
                     return findPosRecurse(l, mid-1);
                 return findPosRecurse(mid+1, r);
             }
-            if (k >= A[mid] && k <= A[r])
+            if (k > A[mid] && k <= A[r])
                 return findPosRecurse(mid+1, r);
             return findPosRecurse(l, mid-1);
         }

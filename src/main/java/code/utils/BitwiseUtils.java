@@ -22,10 +22,6 @@ public class BitwiseUtils {
         return a ^ b;
     }
 
-    public static int onesComplement ( int n ) {
-        return ~n;
-    }
-
     public static int twosComplement(int n) {
         return onesComplement(n) + 1;
     }
@@ -117,6 +113,14 @@ public class BitwiseUtils {
 
     private static boolean isOne(int b) {
         return 1 == b;
+    }
+
+    public static int numberOfBits(int n) {
+        return (int) (Math.floor(Math.log(n) / Math.log(2))) + 1;
+    }
+
+    public static int onesComplement(int n) {
+        return ((1 << numberOfBits(n)) - 1) ^ n;
     }
 
 }

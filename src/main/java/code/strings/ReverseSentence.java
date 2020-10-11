@@ -17,8 +17,8 @@ public class ReverseSentence {
             int startIdx = 0;
             for (int i = 0; i < A.length; i++) {
                 if (A[i] == ' ') {
-                    reverseIndexRange(startIdx, i-1);
-                    startIdx = i+1;
+                    reverseIndexRange(startIdx, i - 1);
+                    startIdx = i + 1;
                 }
             }
             reverseIndexRange(startIdx, A.length - 1);
@@ -28,10 +28,8 @@ public class ReverseSentence {
             char t;
             while (start < end) {
                 t = A[start];
-                A[start] = A[end];
-                A[end] = t;
-                start++;
-                end--;
+                A[start++] = A[end];
+                A[end--] = t;
             }
         }
     }

@@ -1,4 +1,4 @@
-package code.dynamicprogramming;
+package code.arrays;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +11,7 @@ public class RainWaterTrapped {
             int lm = 0;
             int rm = 0;
             int result = 0;
+            // move towards middle from both ends
             while (l <= r) {
                 if (A.get(l) < A.get(r)) {
                     if   (lm < A.get(l)) lm = A.get(l);
