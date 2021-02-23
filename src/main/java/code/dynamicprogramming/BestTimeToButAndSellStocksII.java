@@ -2,7 +2,7 @@ package code.dynamicprogramming;
 
 import java.util.List;
 
-public class BestTimeToButAndSellStocks2 {
+public class BestTimeToButAndSellStocksII {
     class Solution {
         public int maxProfit(final List<Integer> A) {
             int min = 0;
