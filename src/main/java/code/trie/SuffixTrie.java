@@ -1,8 +1,6 @@
 package code.trie;
 
-import code.tree.SuffixTree;
-
-import java.util.*;
+import java.util.List;
 
 public class SuffixTrie {
 
