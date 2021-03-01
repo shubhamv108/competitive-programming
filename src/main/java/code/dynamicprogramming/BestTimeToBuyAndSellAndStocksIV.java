@@ -1,6 +1,6 @@
 package code.dynamicprogramming;
 
-public class BetTimeToBuyAndSellAndStocksIV {
+public class BestTimeToBuyAndSellAndStocksIV {
 
     public static int maxProfit(int k, int[] prices) {
         int n = prices.length;
