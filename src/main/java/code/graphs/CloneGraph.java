@@ -1,6 +1,11 @@
 package code.graphs;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class CloneGraph {
 
@@ -27,6 +32,20 @@ public class CloneGraph {
                 }
             }
             return hm.get(node);
+        }
+    }
+
+    private class Solution2Recursive {
+        HashMap<UndirectedGraphNode, UndirectedGraphNode> visited = new HashMap<>();
+        public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+            UndirectedGraphNode n = visited.get(node);
+            if (n != null) return n;
+            UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
+            visited.put(node, newNode);
+            for (UndirectedGraphNode neighbor : node.neighbors) {
+                newNode.neighbors.add(cloneGraph(neighbor));
+            }
+            return newNode;
         }
     }
 
