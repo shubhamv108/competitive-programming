@@ -1,6 +1,6 @@
 package code.dynamicprogramming;
 
-import code.tree.TreeNode;
+import code.trees.TreeNode;
 
 public class MaxSumPathInBinaryTree {
     public class Solution {

@@ -26,7 +26,7 @@ public class PriorityQueue {
     private int root()          { return 0; }
     private int left(int idx)   { return  2 * idx + 1; }
     private int right(int idx)  { return  2 * idx + 2; }
-    private int parent(int idx) { return  (idx - 1)/2; }
+    private int parent(int idx) { return  idx == 0 ? -1 : (idx - 1)/2; }
     private void buildMinHeap() { for (int i = heapSize / 2 - 1; i >= 0; i--) minHeapify(i); }
     private void buildMaxHeap() { for (int i = heapSize / 2 - 1; i >= 0; i--) maxHeapify(i); }
 

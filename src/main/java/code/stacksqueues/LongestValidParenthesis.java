@@ -15,6 +15,7 @@ public class LongestValidParenthesis {
                 if (!z.isEmpty()) max = Math.max(max, i - z.peek());
                 else z.push(i);
             }
+
         }
         return max;
     }

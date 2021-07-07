@@ -16,8 +16,8 @@ public class BoundedBlockingQueue {
     }
 
     private void enqueue(Object e) {
-        putLock.lock();
         try {
+            this.putLock.lock();
             while (queue.size() == capacity) await();
             if (queue.size() == 0) notifyAll();
             this.queue.add(e);

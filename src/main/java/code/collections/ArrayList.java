@@ -2,6 +2,11 @@ package code.collections;
 
 import java.util.Objects;
 
+/**
+ * Dynamically capacity adjusted array
+ * No thread safety.
+ * @param <T>
+ */
 public class ArrayList<T> {
 
     int size = 0;

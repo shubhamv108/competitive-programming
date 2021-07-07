@@ -2,6 +2,6 @@ package code.graphs.disjointset;
 
 public interface IUnionFactory<Node> {
 
-    Node getUnion();
+    Node getUnion(Node x, Node y);
 
 }

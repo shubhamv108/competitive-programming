@@ -42,7 +42,7 @@ public class NQueens {
 
         public void solveNQueensUtil(ArrayList<String> board, int row) {
             if (row == board.size()) {
-                result.add(deepCopy(board));
+                result.add(new ArrayList<>(board));
                 return;
             }
             for (int i = 0; i < board.size(); i++) {
@@ -54,15 +54,11 @@ public class NQueens {
             }
         }
 
-        private ArrayList<String> deepCopy(ArrayList<String> board) {
-            return board.stream().collect(Collectors.toCollection(ArrayList::new));
-        }
-
         private boolean isSafe(ArrayList<String> board, int row, int col) {
-            return  isRowSafe(board, row) &&
+            return  // isRowSafe(board, row) &&
                     isColumnSafe(board, col) &&
-                    isRightDiagonalSafe(board, row, col);
-                    //isLeftDiagonalSafe(board, row, col);
+                    isRightDiagonalSafe(board, row, col) &&
+                    isLeftDiagonalSafe(board, row, col);
         }
 
         private boolean isRightDiagonalSafe(ArrayList<String> board, int row, int col) {
