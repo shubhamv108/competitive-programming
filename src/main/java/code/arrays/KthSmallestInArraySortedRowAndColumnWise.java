@@ -53,15 +53,76 @@ public class KthSmallestInArraySortedRowAndColumnWise {
         }
     }
 
+    class Solution2 {
+        class Pair {
+            int r;
+            int c;
+            Pair(int r, int c) {
+                this.r = r;
+                this.c = c;
+            }
+        }
+        public int kthSmallest(int[][] matrix, int k) {
+            int result = matrix[0][0];
+            PriorityQueue<Pair> minHeap = new PriorityQueue<>((n, m) -> matrix[n.r][n.c] - matrix[m.r][m.c]);
+
+            for (int i = 0; i < Math.min(k, matrix.length); i++) {
+                minHeap.offer(new Pair(i, 0));
+            }
+
+            int count = 0;
+            while (!minHeap.isEmpty()) {
+                Pair p = minHeap.poll();
+                if (++count == k) {
+                    result = matrix[p.r][p.c];
+                    break;
+                }
+                p.c++;
+                if (matrix[0].length > p.c) {
+                    minHeap.offer(p);
+                }
+            }
+            return result;
+        }
+    }
+
+    class Solution3 {
+        public int kthSmallest(int[][] matrix, int k) {
+            int l = matrix[0][0], r = matrix[matrix.length-1][matrix[0].length-1];
+            while (l <= r) {
+                int m = l + (r - l) / 2;
+                int count = getCount(matrix, m);
+                if (count < k) l = m + 1;
+                else r = m - 1;
+            }
+            return l;
+        }
+
+        int getCount(int[][] matrix, int val) {
+            int count = 0;
+            int i = matrix.length - 1, j = 0;
+            while (i > -1 && j < matrix.length) {
+                if (matrix[i][j] > val) {
+                    i--;
+                } else {
+                    count += i + 1;
+                    j++;
+                }
+            }
+            return count;
+        }
+    }
+
     public static void main(String[] args) {
-        int N = InputUtils.nextInt();
-        var arr = new int[N][N];
-        IntStream.range(0, N).forEach(i ->
-            arr[i] = InputUtils.nextIntLine()
-        );
-        int K = InputUtils.nextInt();
         System.out.println(
-                new KthSmallestInArraySortedRowAndColumnWise().new Solution(arr, K).solve()
+                new KthSmallestInArraySortedRowAndColumnWise().new Solution3().kthSmallest(
+                        new int[][] {
+                                {1, 5, 9},
+                                {10, 11, 13},
+                                {12, 13, 15}
+                        },
+                        8
+                )
         );
     }
 
