@@ -2,7 +2,7 @@ package code.arrays;
 
 import java.util.Arrays;
 
-public class GetMaxSumOfPairProducts {
+public class GetMaxSumOfProductOfPairs {
 
     int getSum(int[] arr) {
         int result = 0;
@@ -29,7 +29,7 @@ public class GetMaxSumOfPairProducts {
         int sum = 0;
         int i = 0;
         while (i < arr.length && arr[i] < 0) {
-            if (i < arr.length-1 && arr[i + 1] < 1) {
+            if (i < arr.length - 1 && arr[i + 1] < 1) {
                 sum += (arr[i] * arr[i + 1]);
                 i+=2;
             } else {
@@ -41,7 +41,7 @@ public class GetMaxSumOfPairProducts {
 
     public static void main (String[] args) throws java.lang.Exception
     {
-        System.out.println(new GetMaxSumOfPairProducts().getSum(new int[] { 3, 6, 7, -2, -1, 0, 0 }));
+        System.out.println(new GetMaxSumOfProductOfPairs().getSum(new int[] { 3, 6, 7, -2, -1, 0, 0 }));
     }
 
 }
