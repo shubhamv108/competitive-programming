@@ -71,10 +71,39 @@ public class ReverseListInGroupOfSizeK {
         while (null != h) { System.out.print(h.val + " "); h = h.next; }
     }
 
+
+    class Solution3 {
+        public ListNode reverseKGroup(ListNode head, int k) {
+            if (head == null) return null;
+            ListNode cur = head, prev = null;
+            int K = k;
+            while (K-- > 0 && cur != null) {
+                ListNode temp = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = temp;
+            }
+            if (K > 0) {
+                cur = prev;
+                prev = null;
+                while (cur != null) {
+                    ListNode temp = cur.next;
+                    cur.next = prev;
+                    prev = cur;
+                    cur = temp;
+                }
+                return prev;
+            }
+            head.next = reverseKGroup(cur, k);
+            return prev;
+        }
+
+    }
+
     public static void main(String[] args) {
-        ListNode head = createAndGetNewLN(6, 10, 0, 3, 4, 8, 9, 8);
-        int K = 1;
-        head = new ReverseListInGroupOfSizeK().new RecursiveSolution().reverseK(head, K);
+        ListNode head = createAndGetNewLN(1, 2, 3, 4, 5);
+        int K = 3;
+        head = new ReverseListInGroupOfSizeK().new Solution3().reverseKGroup(head, K);
         print(head);
     }
 

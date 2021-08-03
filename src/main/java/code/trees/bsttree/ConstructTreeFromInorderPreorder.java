@@ -1,6 +1,6 @@
 package code.trees.bsttree;
 
-import code.tree.BTNode;
+import code.trees.BTNode;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class ConstructTreeFromInorderPreorder {
         line = br.readLine().split(" ");
         int[] level = new int[n];
         for(int i=0;i<n;i++) level[i] = Integer.parseInt(line[i]);
-        code.tree.bsttree.BTree tree = new code.tree.bsttree.BTree();
+        code.trees.bsttree.BTree tree = new code.trees.bsttree.BTree();
         BTNode root = tree.buildTreeFromInorderAndLevelOrder(in, level);
 
         // building the tree by printing inorder traversal

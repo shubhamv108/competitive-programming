@@ -61,7 +61,7 @@ class JavaQueue {
                 }
                 if (minHeap.size() == maxHeap.size() - 2) minHeap.add(maxHeap.poll());
                 else if (maxHeap.size() == minHeap.size() - 2) maxHeap.add(minHeap.poll());
-                if ((i & 1) == 1) System.out.printf("%.2f ", ((double) (minHeap.peek() + maxHeap.peek()))/2);
+                if (((i & 1) == 1) || maxHeap.size() == minHeap.size()) System.out.printf("%.2f ", ((double) (minHeap.peek() + maxHeap.peek()))/2);
                 else if (minHeap.size() > maxHeap.size()) System.out.printf("%.2f ", (double) minHeap.peek());
                 else System.out.printf("%.2f ", (double) maxHeap.peek());
             }
@@ -69,3 +69,34 @@ class JavaQueue {
         }
     }
 }
+
+class MedianFinder {
+
+    /** initialize your data structure here. */
+
+    Queue<Integer> maxHeap = new java.util.PriorityQueue<>((a, b) -> b - a);
+    Queue<Integer> minHeap = new java.util.PriorityQueue<>((a, b) -> a - b);
+
+    public MedianFinder() {
+    }
+
+    public void addNum(int num) {
+        if (maxHeap.isEmpty() && minHeap.isEmpty()) maxHeap.offer(num);
+        else if (num <= maxHeap.peek()) maxHeap.offer(num);
+        else minHeap.offer(num);
+        this.balanceHeaps();
+    }
+
+    public void balanceHeaps() {
+        if (minHeap.size() == maxHeap.size() - 2) minHeap.offer(maxHeap.poll());
+        else if (maxHeap.size() == minHeap.size() - 2) maxHeap.offer(minHeap.poll());
+    }
+
+    public double findMedian() {
+        double result = maxHeap.peek();
+        if (minHeap.size() == maxHeap.size()) result = ((double) maxHeap.peek() + minHeap.peek()) / 2;
+        else if (minHeap.size() > maxHeap.size()) result = minHeap.peek();
+        return result;
+    }
+}
+

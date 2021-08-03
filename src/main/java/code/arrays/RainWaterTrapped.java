@@ -14,10 +14,10 @@ public class RainWaterTrapped {
             // move towards middle from both ends
             while (l <= r) {
                 if (A.get(l) < A.get(r)) {
-                    if   (lm < A.get(l)) lm = A.get(l);
+                    if   (lm < A.get(l)) lm = A.get(l++);
                     else result += lm - A.get(l++);
                 } else {
-                    if (rm < A.get(r)) rm = A.get(r);
+                    if (rm < A.get(r)) rm = A.get(r--);
                     else result += rm - A.get(r--);
                 }
             }

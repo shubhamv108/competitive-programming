@@ -1,4 +1,4 @@
-package code.tree;
+package code.trees;
 
 public class BTNode {
 

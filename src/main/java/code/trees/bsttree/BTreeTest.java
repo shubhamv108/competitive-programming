@@ -1,6 +1,6 @@
-package code.tree.bsttree;
+package code.trees.bsttree;
 
-import code.tree.BTNode;
+import code.trees.BTNode;
 
 public class BTreeTest {
     public static void main(String[] args) {

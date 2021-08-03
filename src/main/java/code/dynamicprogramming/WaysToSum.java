@@ -31,6 +31,16 @@ public class WaysToSum {
             }
             return dp[start][sum] = result;
         }
+
+        int recurse(int start, int sum) {
+            if (sum < 0) return 0;
+            if (sum == 0) return 1;
+            int result = 0;
+            for (int i = start; i <= N; i++) {
+                result += recurse(i, sum - i);
+            }
+            return result;
+        }
     }
 
     public static void main(String[] args) {

@@ -39,6 +39,21 @@ public class EditDistance {
         }
     }
 
+    class Solution3 {
+        Integer[][] dp;
+        public int minDistance(String word1, String word2) {
+            this.dp = new Integer[word1.length()+1][word2.length()+1];
+            return minDistance(word1.toCharArray(), word2.toCharArray(), word1.length(), word2.length());
+        }
+        public int minDistance(char[] a, char[] b, int n, int m) {
+            if (m == 0) return dp[n][m] = n;
+            if (n == 0) return dp[n][m] = m ;
+            if (dp[n][m] != null) return dp[n][m];
+            if (a[n-1] == b[m-1]) return dp[n][m] = minDistance(a, b, n-1, m-1);
+            return dp[n][m] = 1 + Math.min(minDistance(a, b, n, m-1), Math.min(minDistance(a, b, n-1, m), minDistance(a, b, n-1, m-1)));
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println(
         new EditDistance().new Solution().minDistance("abbcus", "bbacus"));

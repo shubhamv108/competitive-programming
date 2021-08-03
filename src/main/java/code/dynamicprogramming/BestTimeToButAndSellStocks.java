@@ -21,7 +21,6 @@ public class BestTimeToButAndSellStocks {
     }
 
     class Solution1 {
-        // DO NOT MODIFY THE LIST. IT IS READ ONLY
         public int maxProfit(final List<Integer> A) {
                 if (A.size() <= 1) return 0;
                 int maxProfit = 0;
