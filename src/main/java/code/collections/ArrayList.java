@@ -31,4 +31,13 @@ public class ArrayList<T> {
       return (T) arr[i];
     }
 
+
+    void remove(final int index) {
+        if (index >= this.size)
+            throw new ArrayIndexOutOfBoundsException(index);
+        for (int idx = index; idx < size-1; idx++)
+            this.arr[idx] = this.arr[idx+1];
+        this.arr[--size] = null;
+    }
+
 }
