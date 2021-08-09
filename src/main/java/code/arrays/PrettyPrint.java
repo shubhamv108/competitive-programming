@@ -1,5 +1,7 @@
 package code.arrays;
 
+import java.util.ArrayList;
+
 public class PrettyPrint {
 
     /**
@@ -18,12 +20,12 @@ public class PrettyPrint {
      * @param A
      * @return
      */
-    public static java.util.ArrayList<java.util.ArrayList<Integer>> prettyPrint(int A) {
-        java.util.ArrayList<java.util.ArrayList<Integer>> a = new java.util.ArrayList();
+    public static ArrayList<ArrayList<Integer>> prettyPrint(int A) {
+        ArrayList<ArrayList<Integer>> a = new ArrayList();
         int k = A;
         A = (2*A)-1;
         for (int i=0;i<A;i++) {
-            java.util.ArrayList<Integer> aa = new java.util.ArrayList<>();
+            ArrayList<Integer> aa = new ArrayList<>();
             for (int j=0;j<A;j++) {
                 aa.add(0);
             }
@@ -50,6 +52,12 @@ public class PrettyPrint {
             k--;
         }
         return a;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(
+                new PrettyPrint().prettyPrint(3)
+        );
     }
 
 }
