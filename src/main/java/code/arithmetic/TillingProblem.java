@@ -1,4 +1,4 @@
-package code.math;
+package code.arithmetic;
 
 /**
  *
