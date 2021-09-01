@@ -26,5 +26,4 @@ public class CharUtils {
         int a = (int) c;
         return a == 49;
     }
-
 }

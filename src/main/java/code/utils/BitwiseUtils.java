@@ -84,15 +84,15 @@ public class BitwiseUtils {
     }
 
     public static long setAllRightBits ( long N ) {
-
         N = N | ( N >> 1 );
         N = N | ( N >> 2 );
         N = N | ( N >> 4 );
         N = N | ( N >> 8 );
 
         boolean[] b = new boolean[11];
-        ArrayList<Integer> a = IntStream.range(0, 11).filter(i -> b[i] == true).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-
+        ArrayList<Integer> a = IntStream.range(0, 11)
+                .filter(i -> b[i] == true)
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
         return N;
     }
 

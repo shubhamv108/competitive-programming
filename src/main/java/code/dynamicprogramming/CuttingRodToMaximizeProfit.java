@@ -39,7 +39,9 @@ public class CuttingRodToMaximizeProfit {
     }
 
     public static void main(String[] args) {
-//        new CuttingRodToMaximizeProfit().getMaxProfit(5, new int[] { 2, 5, 7, 8 });
+//        System.out.println(
+//            new CuttingRodToMaximizeProfit().getMaxProfit(5, new int[] { 2, 5, 7, 8 })
+//        );
         new CuttingRodToMaximizeProfit().getLocations(5, new int[] { 2, 5, 7, 8 })
             .forEach(System.out::println);
     }

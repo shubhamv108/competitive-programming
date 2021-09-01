@@ -1,4 +1,4 @@
-package code.arrays;
+package code.arrays.mex;
 
 import input.InputUtils;
 

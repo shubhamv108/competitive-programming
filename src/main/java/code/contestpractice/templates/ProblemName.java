@@ -1,11 +1,16 @@
-//package code.contestpractice.templates;
-//
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 //import java.io.BufferedReader;
 //import java.io.IOException;
 //import java.io.InputStreamReader;
 //
 //
-//public class ProblemName {
+//public class A {
 //
 //    private class Solution {
 //
@@ -20,7 +25,6 @@
 //    }
 //
 //    private static class InputUtils {
-//
 //        private static BufferedReader BR;
 //        private static InputStreamReader inputStreamReader;
 //
@@ -32,8 +36,16 @@
 //            return BR;
 //        }
 //
+//        public static int[] nextLineIntArray() {
+//            return Arrays.stream(splitNextLine()).mapToInt(Integer::valueOf).toArray();
+//        }
+//s
+//        public static Integer[] nextLineIntegerArray() {
+//            return Arrays.stream(splitNextLine()).mapToInt(Integer::valueOf).boxed().toArray(Integer[]::new);
+//        }
+//
 //        public static String[] splitNextLine() {
-//            return splitNextLine(BR, " ");
+//            return splitNextLine(BR, "\\s");
 //        }
 //
 //        public static String[] splitNextLine(BufferedReader br) {
@@ -41,7 +53,7 @@
 //        }
 //
 //        public static String[] splitNextLine(BufferedReader br, String regex) {
-//            return nextLine().split(regex);
+//            return nextLine(br).split(regex);
 //        }
 //
 //        public static String nextLine() {
@@ -71,19 +83,178 @@
 //        public static long nextLong() {
 //            return toLong(nextLine());
 //        }
+//    }
+//    private static class OutputUtils {
+//        public static void print(Object o) {
+//            System.out.print(o);
+//        }
 //
+//        public static void println(Object o) {
+//            System.out.println(o);
+//        }
+//    }
+//        private static void print(Object o) {
+//            MikeAndGCDProblem.OutputUtils.print(o);
+//        }
+//        private static void println(Object o) {
+//            MikeAndGCDProblem.OutputUtils.println(o);
+//        }
+//    private static class MathUtils {
+//        public static int digits (long n) {
+//            return ((int) Math.log10(n)) + 1;
+//        }
+//        public static int digits (int n) {
+//            return ((int) Math.log10(n)) + 1;
+//        }
+//        private int gcd(int A, int B) {
+//            return B == 0 ? 1 : gcd(B, A % B);
+//        }
+//        private int gcd(int[] N) {
+//            if (N == null || N.length == 0) return -1;
+//            int gcd = N[0];
+//            for (int n : N) {
+//                gcd = gcd(gcd, n);
+//                if (1 == gcd) return 1;
+//            }
+//            return gcd;
+//        }
+//    }
+//    private static class BitwiseUtils {
+//        public static int NOT ( int n ) {
+//            return ~n;
+//        }
+//        public static int AND ( int a, int b ) {
+//            return a & b;
+//        }
+//        public static int OR(int a, int b) {
+//            return a | b;
+//        }
+//        public static int XOR(int a, int b) {
+//            return a ^ b;
+//        }
+//        public static int twosComplement(int n) {
+//            return onesComplement(n) + 1;
+//        }
+//        public static boolean isBitSet ( int n, int ithBit ) {
+//            return ( n & ( 1 << ithBit ) ) == 1;
+//        }
+//        public static boolean isOdd ( int n ) {
+//            return ( n & 1 ) == 1;
+//        }
+//        public static boolean isEven ( int n ) {
+//            return ( n & 1 ) == 0;
+//        }
+//        public static int leftShift ( int n ) {
+//            return leftShiftByK(n, 1);
+//        }
+//        public static int rightShift ( int n ) {
+//            return rightShiftByK(n, 1);
+//        }
+//        public static int leftShiftByK ( int n, int k ) {
+//            return n << k;
+//        }
+//        public static int rightShiftByK ( int n, int k ) {
+//            return n >> k;
+//        }
+//        public static int unsigndRightShift ( int n ) {
+//            return unsignedRightShiftByK ( n, 1 );
+//        }
+//        public static int unsignedRightShiftByK ( int n, int k ) {
+//            return n >>> k;
+//        }
+//        public static boolean isPowerOfTwo ( int n ) {
+//            return n != 0 && ( ( n & ( n - 1 ) ) == 0);
+//        }
+//        public static int countOfSetBits ( int n ) {
+//            int count = 0;
+//            while( n > 0 ) {
+//                n = n & ( n-1 );
+//                count++;
+//            }
+//            return count;
+//        }
+//        public static int ithBitSetNumber ( int n, int i ) {
+//            return n | (1 << i);
+//        }
+//        public static int rightMostOneNumber ( int n) {
+//            return n & twosComplement(n);
+//        }
+//        public static long setAllRightBits ( long N ) {
+//            N = N | ( N >> 1 );
+//            N = N | ( N >> 2 );
+//            N = N | ( N >> 4 );
+//            N = N | ( N >> 8 );
 //
+//            boolean[] b = new boolean[11];
+//            ArrayList<Integer> a = IntStream.range(0, 11)
+//                    .filter(i -> b[i] == true)
+//                    .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+//            return N;
+//        }
+//        public static long largestPowerOf2LesserThan(long N) {
+//            setAllRightBits(N);
+//            return ( N + 1 ) >> 1;
+//        }
+//        private static boolean isZero(String s) {
+//            return "0".equals(s);
+//        }
+//        private static boolean isOne(String s) {
+//            return "1".equals(s);
+//        }
+//        private static boolean isZero(int b) { return 0 == b; }
+//        private static boolean isOne(int b) {
+//            return 1 == b;
+//        }
+//        public static int numberOfBits(int n) {
+//            return (int) (Math.floor(Math.log(n) / Math.log(2))) + 1;
+//        }
+//        public static int onesComplement(int n) {
+//            return ((1 << numberOfBits(n)) - 1) ^ n;
+//        }
+//    }
+//    private static class CharUtils {
+//        public static boolean isAlpha(char ch) {
+//            int a = (int) ch;
+//            return (a > 64 && a < 91) || (a > 96 && a < 123);
+//        }
+//        public static boolean isUpperCase(char ch) {
+//            int a = (int) ch;
+//            return (a > 64 && a < 91);
+//        }
+//        public static boolean isLowerCase(char ch) {
+//            int a = (int) ch;
+//            return (a > 96 && a < 123);
+//        }
+//        private static boolean isZero(char c) {
+//            int a = (int) c;
+//            return a == 48;
+//        }
+//        private static boolean isOne(char c) {
+//            int a = (int) c;
+//            return a == 49;
+//        }
+//    }
+//    private static class ArrayUtils {
+//        private static void swap(int[] A, int x, int y) {
+//            int t = A[x];
+//            A[x] = A[y];
+//            A[y] = t;
+//        }
+//        private int[] toInt(String[] A) {
+//            return Arrays.stream(A).mapToInt(Integer::valueOf).toArray();
+//        }
+//        private Integer[] toInteger(String[] A) {
+//            return Arrays.stream(A).mapToInt(Integer::valueOf).boxed().toArray(Integer[]::new);
+//        }
 //    }
 //
 //    public static void main(String[] args) {
 //        int t = InputUtils.nextInt();
-//        String[] line = null;
-//        int n;
-//        ProblemName problemNameObject = new ProblemName();
+//        A obj = new A();
 //        while (t-- > 0) {
-//             line = InputUtils.splitNextLine();
+//             var line = InputUtils.splitNextLine();
 ////            System.out.println(
-//                problemNameObject.new Solution().solve();
+//                obj.new Solution().solve();
 ////            );
 //        }
 //    }
