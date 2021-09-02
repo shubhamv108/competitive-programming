@@ -14,9 +14,7 @@ public class MikeAndGCDProblem {
         }
 
         private int solve(int[] A) {
-            if (A[0] == A[1]) return A[0] == 0 ? 0 : 1;
-            if (((A[0] + A[1]) & 1) == 1) return -1;
-            else return 2;
+           
         }
     }
 
