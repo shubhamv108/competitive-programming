@@ -18,8 +18,8 @@ public class KthSmallestInArraySortedRowAndColumnWise {
         }
 
         int solve() {
-            var maxHeap = new PriorityQueue<Integer>((x, y) -> y -x);
-            var kInserted = false;
+            PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>((x, y) -> y -x);
+            boolean kInserted = false;
             int i = 0, j = 0;
             for (; i < A.length; i++) {
                for (j = 0; j < A.length; j++) {

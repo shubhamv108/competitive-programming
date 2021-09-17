@@ -1,6 +1,6 @@
 package code.trees.bsttree;
 
-import code.tree.BSTNode;
+import code.trees.BSTNode;
 import code.trees.BTNode;
 import code.trees.TreeNode;
 
@@ -262,7 +262,7 @@ public class BTree {
         if(root == null) { return 0; }
         int lh = diameterHelper(root.left);
         int rh = diameterHelper(root.right);
-        diameter = Math.max(diameter, lh+rh+1);
+        diameter = Math.max(diameter, lh+rh);
         return 1 + Math.max(lh, rh);
     }
 

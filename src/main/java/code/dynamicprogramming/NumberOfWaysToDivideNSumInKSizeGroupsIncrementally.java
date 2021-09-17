@@ -2,7 +2,7 @@ package code.dynamicprogramming;
 
 import input.InputUtils;
 
-public class NumberOfWaysToDivideNSumInKSizeGroupsIncreementally {
+public class NumberOfWaysToDivideNSumInKSizeGroupsIncrementally {
 
     class SolutionRecursive {
         int recurse(int prev, int sum, int pos, int len) {
@@ -11,8 +11,8 @@ public class NumberOfWaysToDivideNSumInKSizeGroupsIncreementally {
                 else return 0;
             }
             if (sum == 0) return 0;
-            var result = 0;
-            for (var i = prev; i <= sum; i++) {
+            int result = 0;
+            for (int i = prev; i <= sum; i++) {
                 result += recurse(i, sum - i, pos + 1, len);
             }
             return result;
@@ -42,8 +42,8 @@ public class NumberOfWaysToDivideNSumInKSizeGroupsIncreementally {
             if (dp[pos][prevValue - 1][remainingSum - 1] != null) {
                 return dp[pos][prevValue - 1][remainingSum - 1];
             }
-            var result = 0;
-            for (var i = prevValue; i <= remainingSum; i++) {
+            int result = 0;
+            for (int i = prevValue; i <= remainingSum; i++) {
                 result += recurse(i, remainingSum - i, pos + 1);
             }
             return dp[pos][prevValue - 1][remainingSum - 1] = result;
@@ -55,15 +55,15 @@ public class NumberOfWaysToDivideNSumInKSizeGroupsIncreementally {
     }
 
     public static void main(String[] args) {
-        var object = new NumberOfWaysToDivideNSumInKSizeGroupsIncreementally();
+        NumberOfWaysToDivideNSumInKSizeGroupsIncrementally object = new NumberOfWaysToDivideNSumInKSizeGroupsIncrementally();
         while (1 == 1) {
-            var N = InputUtils.nextInt();
-            var K = InputUtils.nextInt();
+            int N = InputUtils.nextInt();
+            int K = InputUtils.nextInt();
 //            System.out.println(
 //                    object.new SolutionRecursive().solve(N, K)
 //            );
             System.out.println(
-                    new NumberOfWaysToDivideNSumInKSizeGroupsIncreementally.SolutionDP(N, K).solve()
+                    new NumberOfWaysToDivideNSumInKSizeGroupsIncrementally.SolutionDP(N, K).solve()
             );
         }
     }

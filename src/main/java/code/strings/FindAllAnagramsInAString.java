@@ -91,9 +91,50 @@ public class FindAllAnagramsInAString {
         }
     }
 
+    class Solution4 {
+        public List<Integer> findAnagrams(String sS, String pP) {
+            List<Integer> result = new ArrayList<>();
+            char[] s = sS.toCharArray();
+            char[] p = pP.toCharArray();
+            Map<Integer, Integer> pM = new HashMap<>();
+            for (int i = 0; i < p.length; i++)
+                pM.put(p[i] - 'a', pM.getOrDefault(p[i] - 'a', 0) + 1);
+
+            Map<Integer, Integer> cM = new HashMap<>(pM);
+            for (int i = 0; i < p.length; i++) {
+                this.remove(cM, s[i]);
+                if (cM.size() == 0)
+                    result.add(0);
+            }
+
+
+            for (int i = p.length; i < s.length; i++) {
+                if (pM.containsKey(s[i - p.length]-'a'))
+                    cM.put(s[i - p.length] - 'a', cM.getOrDefault(s[i - p.length] - 'a', 0) + 1);
+                if (pM.containsKey(s[i]-'a'))
+                    this.remove(cM, s[i]);
+                if (cM.size() == 0)
+                    result.add(i-p.length + 1);
+            }
+            return result;
+        }
+
+        void remove(Map<Integer, Integer> cM, char c) {
+            Integer count = cM.get(c - 'a');
+            if (count != null) {
+                if (count == 1) {
+                    cM.remove(c - 'a');
+                } else {
+                    cM.put(c - 'a', count-1);
+                }
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
         System.out.println(
-                new FindAllAnagramsInAString().new Solution2().findAnagrams("abab", "ab")
+                new FindAllAnagramsInAString().new Solution4().findAnagrams("cbaebabacd", "abc")
         );
     }
 

@@ -1,6 +1,7 @@
 package code.hashing;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CopyList {
 
@@ -111,6 +112,108 @@ public class CopyList {
             return copyHead;
         }
 
+    }
+
+    class Solution4 {
+        class Node {
+            int val;
+            Node next;
+            Node random;
+            public Node(int val) {
+                this.val = val;
+                this.next = null;
+                this.random = null;
+            }
+        }
+
+        public Node copyRandomList(Node head) {
+            if (head == null) return null;
+            Map<Node, Node> copy = new HashMap<>();
+            Node t = head;
+            while (t != null) {
+                copy.put(t, new Node(t.val));
+                t = t.next;
+            }
+            t = head;
+            while (t != null) {
+                Node node = copy.get(t);
+                node.next = copy.get(t.next);
+                node.random = copy.get(t.random);
+                t = t.next;
+            }
+            return copy.get(head);
+        }
+    }
+
+    class Solution5 {
+        class Node {
+            int val;
+            Node next;
+            Node random;
+            public Node(int val) {
+                this.val = val;
+                this.next = null;
+                this.random = null;
+            }
+        }
+        public Node copyRandomList(Node head) {
+            if (head == null) return null;
+            Map<Node, Node> copy = new HashMap<>();
+            copy.put(head, new Node(head.val));
+            Node t = head;
+            while (t != null) {
+                Node c = copy.get(t);
+//                if (c == null) copy.put(t, c = new Node(t.val));
+                if (t.next != null) {
+                    Node cNext = copy.get(t.next);
+                    if (cNext == null) copy.put(t.next, cNext = new Node(t.next.val));
+                    c.next = cNext;
+                }
+                if (t.random != null) {
+                    Node cRandom = copy.get(t.random);
+                    if (cRandom == null) copy.put(t.random, cRandom = new Node(t.random.val));
+                    c.random = cRandom;
+                }
+                t = t.next;
+            }
+            return copy.get(head);
+        }
+    }
+
+    class Solution6 {
+        private class Node {
+            int val;
+            Node next;
+            Node random;
+            public Node(int val) {
+                this.val = val;
+                this.next = null;
+                this.random = null;
+            }
+        }
+        public Node copyRandomList(Node head) {
+            if (head == null) return null;
+            Map<Node, Node> copy = new HashMap<>();
+            copy.put(head, new Node(head.val));
+            Node t = head;
+            while (t != null) {
+                Node c = copy.get(t);
+                if (t.next != null) {
+                    if (!copy.containsKey(t.next)) {
+                        copy.put(t.next, new Node(t.next.val));
+                    }
+                    c.next = copy.get(t.next);
+                }
+                if (t.random != null) {
+                    if (!copy.containsKey(t.random)) {
+                        copy.put(t.random, new Node(t.random.val));
+                    }
+                    c.random = copy.get(t.random);
+                }
+                t = t.next;
+            }
+            return copy.get(head);
+        }
     }
 
     public static void main(String[] args) {

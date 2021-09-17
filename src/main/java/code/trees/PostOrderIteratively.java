@@ -1,5 +1,9 @@
 package code.trees;
 
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 public class PostOrderIteratively {
@@ -37,7 +41,26 @@ public class PostOrderIteratively {
                         t.state += 1;
             }
         }
+    }
 
+    class Solution2 {
+        public List<Integer> postorderTraversal(TreeNode root) {
+            LinkedList<Integer> result = new LinkedList<>();
+            if (root == null) return result;
+            Deque<TreeNode> stack = new LinkedList<>();
+            TreeNode p = root;
+            while (!stack.isEmpty() || p != null) {
+                if (p != null) {
+                    stack.push(p);
+                    result.offerFirst(p.val);
+                    p = p.right;
+                } else {
+                    TreeNode node = stack.pop();
+                    p = node.left;
+                }
+            }
+            return result;
+        }
     }
 
     public static void main(String[] args) {

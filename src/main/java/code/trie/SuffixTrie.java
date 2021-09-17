@@ -1,5 +1,6 @@
 package code.trie;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SuffixTrie {
@@ -48,7 +49,7 @@ public class SuffixTrie {
 
     public static void main(String[] args) {
         SuffixTrieNode root = new SuffixTrie().new SuffixTrieNode();
-        List.of("apple", "a", "app", "appilcation", "banana").forEach(root::setWord);
+        Arrays.asList("apple", "a", "app", "appilcation", "banana").forEach(root::setWord);
         System.out.println(root.isWordPresent("appl"));
     }
 

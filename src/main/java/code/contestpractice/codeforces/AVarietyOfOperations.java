@@ -98,9 +98,9 @@ public class AVarietyOfOperations {
 
     public static void main(String[] args) {
         int t = InputUtils.nextInt();
-        var object = new AVarietyOfOperations();
+        AVarietyOfOperations object = new AVarietyOfOperations();
         while (t-- > 0) {
-             var line = InputUtils.nextLineIntArray();
+             int[] line = InputUtils.nextLineIntArray();
              println(object.new Solution().solve(line));
         }
     }

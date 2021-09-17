@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class MikeAndGCDProblem {
@@ -14,7 +13,7 @@ public class MikeAndGCDProblem {
         }
 
         private int solve(int[] A) {
-           
+           return 0;
         }
     }
 
@@ -100,10 +99,10 @@ public class MikeAndGCDProblem {
         public static int digits (int n) {
             return ((int) Math.log10(n)) + 1;
         }
-        private int gcd(int A, int B) {
+        public static int gcd(int A, int B) {
             return B == 0 ? 1 : gcd(B, A % B);
         }
-        private int gcd(int[] N) {
+        public static int gcd(int[] N) {
             if (N == null || N.length == 0) return -1;
             int gcd = N[0];
             for (int n : N) {
@@ -111,6 +110,32 @@ public class MikeAndGCDProblem {
                 if (1 == gcd) return 1;
             }
             return gcd;
+        }
+        public static boolean[] SOE(int n) {
+            boolean[] isPrime = new boolean[n+1];
+            Arrays.fill(isPrime, true);
+            isPrime[0] = isPrime[1] = false;
+            double sqrt = Math.sqrt(n);
+            for (int i = 2; i < sqrt; i++)
+                if (isPrime[i])
+                    for (int j = i*i; j < n; j+=i)
+                        isPrime[j] = false;
+            return isPrime;
+        }
+        public static long factorial(int n) {
+            boolean[] isPrime = SOE(n);
+            long factorial = 1;
+            for (int i = 2; i <= n; i++) {
+                if (isPrime[i]) {
+                    int k = n, power = 0;
+                    while(k > 1) {
+                        k /= i;
+                        power += k;
+                    }
+                    factorial *= Math.pow(i, power);
+                }
+            }
+            return factorial;
         }
     }
     private static class BitwiseUtils {
@@ -244,9 +269,9 @@ public class MikeAndGCDProblem {
 
     public static void main(String[] args) {
         int t = InputUtils.nextInt();
-        var object = new MikeAndGCDProblem();
+        MikeAndGCDProblem object = new MikeAndGCDProblem();
         while (t-- > 0) {
-            var line = InputUtils.nextLineIntArray();
+            int[] line = InputUtils.nextLineIntArray();
             println(object.new Solution().solve(line));
         }
     }

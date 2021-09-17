@@ -5,8 +5,8 @@ import java.util.Stack;
 public class SimplifyUnixPath {
 
     public String simplifyPath(String A) {
-        var stack = new Stack<String>();
-        var builder = new StringBuilder();
+        Stack<String> stack = new Stack<String>();
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < A.length(); i++) {
             while (i < A.length() && A.charAt(i) == '/') i++;
             while (i < A.length() && A.charAt(i) != '/') builder.append(A.charAt(i++));

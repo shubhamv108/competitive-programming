@@ -1,6 +1,7 @@
 package code.graphs;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 import static code.graphs.LargestIslandInA2DMatrix.Solution.*;
 
@@ -18,9 +19,9 @@ public class LargestIslandInA2DMatrix {
         }
 
         int solve() {
-            var maxSize = Integer.MIN_VALUE;
-            for (var i = 0; i < A.length; i++) {
-                for (var j = 0; j < A[i].length; j++) {
+            int maxSize = Integer.MIN_VALUE;
+            for (int i = 0; i < A.length; i++) {
+                for (int j = 0; j < A[i].length; j++) {
                     if (isSafeToVisit(i, j)) {
                         maxSize = Math.max(maxSize, bfsVisitAndGetSize(i, j));
                     }
@@ -39,7 +40,7 @@ public class LargestIslandInA2DMatrix {
         }
 
         int bfsVisitAndGetSize(int x, int y) {
-            var queue = new LinkedList<Position>();
+            Queue<Position> queue = new LinkedList<Position>();
             queue.offer(new Position(x, y));
             while (!queue.isEmpty()) {
                 Position temp = queue.poll();

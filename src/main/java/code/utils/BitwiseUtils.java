@@ -26,10 +26,6 @@ public class BitwiseUtils {
         return onesComplement(n) + 1;
     }
 
-    public static boolean isBitSet ( int n, int ithBit ) {
-        return ( n & ( 1 << ithBit ) ) == 1;
-    }
-
     public static boolean isOdd ( int n ) {
         return ( n & 1 ) == 1;
     }
@@ -63,20 +59,36 @@ public class BitwiseUtils {
     }
 
     public static boolean isPowerOfTwo ( int n ) {
-        return n != 0 && ( ( n & ( n - 1 ) ) == 0);
+        return n > 0 && (n & (n - 1)) == 0;
     }
 
     public static int countOfSetBits ( int n ) {
         int count = 0;
-        while( n > 0 ) {
+        while( n != 0 ) {
             n = n & ( n-1 );
             count++;
         }
         return count;
     }
 
-    public static int ithBitSetNumber ( int n, int i ) {
-        return n | (1 << i);
+    public static boolean isBitSet ( int n, int ithBit ) {
+        return ( n & ( 1 << ithBit ) ) > 1;
+    }
+
+    public static int setIthBit ( int n, int ithBit ) {
+        return n | (1 << ithBit);
+    }
+
+    public static int unsetIthBit ( int n, int ithBit ) {
+        return n & ~(1 << ithBit);
+    }
+
+    public static int toggleIthBit(int n, int ithBit) {
+        return n ^ (1 << ithBit);
+    }
+
+    public int getBit(int n, int ithBit) {
+        return ((n >> ithBit) & 1);
     }
 
     public static int rightMostOneNumber ( int n) {
