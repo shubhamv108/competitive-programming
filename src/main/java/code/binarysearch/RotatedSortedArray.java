@@ -78,14 +78,14 @@ public class RotatedSortedArray {
                 if (A[mid] == k) returnedPosition = mid;
                 if (A[l] <= A[mid]) {
                     if (k >= A[l] && k < A[mid]) {
-                        r =- 1;
+                        r = mid - 1;
                     }
-                    l += 1;
+                    l = mid + 1;
                 } else {
                     if (k > A[mid] && k <= A[r]) {
-                        l += 1;
+                        l = mid + 1;
                     } else {
-                        r =- 1;
+                        r = mid - 1;
                     }
                 }
             }
