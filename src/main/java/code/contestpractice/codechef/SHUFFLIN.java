@@ -385,6 +385,65 @@ class SHUFFLIN {
             Arrays.stream(A).forEach(e -> System.out.println(e + " "));
         }
     }
+    private static class BinarySearchUtils {
+        public static int getLowerBoundIndex(int[] A, int searchValue) {
+            if (A[A.length - 1] < searchValue) return A.length - 1;
+            if (searchValue < A[0]) return -1;
+            int l = 0, r = A.length - 1;
+            while (l <= r) {
+                int m = l + (r - l) / 2;
+                if (searchValue == A[m]) {
+                    return m;
+                } if (m > 0 && A[m-1] < searchValue && searchValue < A[m]) {
+                    return m-1;
+                }
+                if (A[m] < searchValue) {
+                    l = m+1;
+                } else {
+                    r = m-1;
+                }
+            }
+            return -1;
+        }
+        public static int getHigherBoundIndex(int[] A, int searchValue) {
+            if (A[A.length - 1] < searchValue) return -1;
+            if (searchValue < A[0]) return 0;
+            int l = 0, r = A.length - 1;
+            while (l <= r) {
+                int m = l + (r - l) / 2;
+                if (searchValue == A[m]) {
+                    return m;
+                } if (m < A.length - 1 && A[m] < searchValue && searchValue < A[m+1]) {
+                    return m + 1;
+                }
+                if (A[m] < searchValue) {
+                    l = m+1;
+                } else {
+                    r = m-1;
+                }
+            }
+            return -1;
+        }
+        public int getHigherBoundIndex(ArrayList<Integer> A, int searchValue) {
+            if (A.get(A.size() - 1) < searchValue) return -1;
+            if (searchValue < A.get(0)) return 0;
+            int l = 0, r = A.size() - 1;
+            while (l <= r) {
+                int m = l + (r - l) / 2;
+                if (searchValue == A.get(m)) {
+                    return m;
+                } if (m < A.size() - 1 && A.get(m) < searchValue && searchValue < A.get(m+1)) {
+                    return m + 1;
+                }
+                if (A.get(m) < searchValue) {
+                    l = m+1;
+                } else {
+                    r = m-1;
+                }
+            }
+            return -1;
+        }
+    }
 
     public static void main(String[] args) {
         try {
