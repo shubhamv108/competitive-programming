@@ -102,8 +102,8 @@ public class ReverseListInGroupOfSizeK {
 
     public static void main(String[] args) {
         ListNode head = createAndGetNewLN(1, 2, 3, 4, 5);
-        int K = 3;
-        head = new ReverseListInGroupOfSizeK().new Solution3().reverseKGroup(head, K);
+        int K = 2;
+        head = new ReverseListInGroupOfSizeK().new RecursiveSolution().reverseK(head, K);
         print(head);
     }
 

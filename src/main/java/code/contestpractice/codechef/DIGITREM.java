@@ -1,4 +1,4 @@
-
+package code.contestpractice.codechef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,25 +7,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-class SHUFFLIN {
+class DIGITREM {
     private class Solution {
 
         private Solution() {
 
         }
 
-        private long solve(long N, long[] A) {
-            int i = 0, j = 1;
-            while (i < N && j < N) {
-                while (i < N && BitwiseUtils.isEven(A[i])) i += 2;
-                while (j < N && BitwiseUtils.isOdd(A[j])) j += 2;
-                if (i < N && j < N) {
-                    ArrayUtils.swap(A, i, j);
+        private int solve(int N, int D) {
+            int digitCount = 0, n = N, result = 0;
+            while (n > 0) {
+                int d = n % 10;
+                n /= 10;
+                digitCount++;
+                if (d == D) {
+                    n = n * (int) Math.pow(10, digitCount) + (d + 1) * (int) Math.pow(10, digitCount - 1);
+                    result = n - N;
+                    digitCount = 0;
                 }
-            }
-            long result = 0;
-            for (int k = 0; k < N; k++) {
-                result += BitwiseUtils.isOdd(A[k]+1+k) ? 1 : 0;
             }
             return result;
         }
@@ -409,6 +408,22 @@ class SHUFFLIN {
         public static void print(int[] A) {
             Arrays.stream(A).forEach(e -> System.out.println(e + " "));
         }
+        public int MEX(int[] A) {
+            for (int i = 0; i < A.length; i++) {
+                if (A[i] <= 0 || A[i] >= A.length) continue;
+                int cur = A[i], point;
+                while (cur > 0 && cur <= A.length && A[cur - 1] != cur) {
+                    point = A[cur - 1];
+                    A[cur - 1] = cur;
+                    cur = point;
+                    if (cur < 0 || cur >= A.length) break;
+                }
+            }
+            for (int i = 0; i < A.length; i++)
+                if (A[i] != i+1)
+                    return i + 1;
+            return A.length + 1;
+        }
     }
     private static class BinarySearchUtils {
         public static int getLowerBoundIndex(int[] A, int searchValue) {
@@ -473,11 +488,10 @@ class SHUFFLIN {
     public static void main(String[] args) {
         try {
             int t = InputUtils.nextInt();
-            SHUFFLIN object = new SHUFFLIN();
+            DIGITREM object = new DIGITREM();
             while (t-- > 0) {
-                int N = InputUtils.nextInt();
-                long[] A = InputUtils.nextLinelongArray();
-                println(object.new Solution().solve(N, A));
+                int[] N = InputUtils.nextLineIntArray();
+                println(object.new Solution().solve(N[0], N[1]));
             }
         } catch (Throwable throwable) {
             throwable.printStackTrace();

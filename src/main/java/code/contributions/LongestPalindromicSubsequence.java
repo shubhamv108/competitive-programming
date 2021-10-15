@@ -20,9 +20,29 @@ public class LongestPalindromicSubsequence {
         return max;
     }
 
+    class Solution2 {
+        int solve(String s) {
+            int len = s.length();
+            char[] chrs = s.toCharArray();
+            int[][] dp = new int[len][len];
+            for (int i = len - 1; i >= 0; i--) {
+                dp[i][i] = 1;
+                for (int j = i+1; j < s.length(); j++)
+                    if (chrs[i] == chrs[j])
+                        dp[i][j] = dp[i+1][j-1] + 2;
+                    else
+                        dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]);
+            }
+            return dp[0][len-1];
+        }
+    }
+
     public static void main(String[] args) {
+//        System.out.println(
+//                new LongestPalindromicSubsequence().get("bbbab")
+//        );
         System.out.println(
-                new LongestPalindromicSubsequence().get("bbbab")
+                new LongestPalindromicSubsequence().new Solution2().solve("bbbab")
         );
     }
 }

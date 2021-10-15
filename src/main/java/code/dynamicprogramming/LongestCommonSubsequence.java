@@ -94,4 +94,20 @@ public class LongestCommonSubsequence {
         }
     }
 
+    class Solution {
+        public int longestCommonSubsequence(String text1, String text2) {
+            return lcs(text1.toCharArray(), text2.toCharArray(), text1.length(), text2.length(), new int[text1.length() + 1][text2.length() + 1]);
+        }
+
+        int lcs(char[] a, char[] b, int n, int m, int[][] dp) {
+            if (n == 0 || m == 0)
+                return 0;
+            if (dp[n][m] != 0)
+                return dp[n][m];
+            if (a[n-1] == b[m-1])
+                return dp[n][m] = 1 + lcs(a, b, n-1, m-1, dp);
+            return dp[n][m] = Math.max(lcs(a, b, n-1, m, dp), lcs(a, b, n, m-1, dp));
+        }
+    }
+
 }

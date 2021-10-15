@@ -13,8 +13,7 @@ public class LongestPalindromicSubstring {
             for (int i = 0; i < s.length(); i++) {
                 int a = getLps(s, i, i);
                 int b = getLps(s, i, i + 1);
-                int c = Math.max(a, b);
-                max = Math.max(max, c);
+                max = Math.max(max, Math.max(a, b));
             }
             return max;
         }

@@ -9,19 +9,24 @@ import java.util.Map;
 public class AirportConnections {
 
     HashMap<String, HashSet<String>> routes = new HashMap<>();
-    String zeroOutOrderAirport;
+    Map<String, Integer> inDegrees = new HashMap<>();
+    AirportConnections(String[] airports, String[][] airportRoutes, String startingAirport) {
 
-    AirportConnections(String[][] airportRoutes) {
+        for (String airport : airports)
+            inDegrees.put(airport, 0);
+
         for (String[] airportRoute : airportRoutes) {
             routes.putIfAbsent(airportRoute[0], new HashSet<>()).add(airportRoute[1]);
             routes.putIfAbsent(airportRoute[1], new HashSet<>());
+            inDegrees.put(airportRoute[1], inDegrees.getOrDefault(airportRoute[1], 0) + 1);
         }
-        for (String airport : routes.keySet()) {
-            if (routes.get(airport).size() == 0) {
-                zeroOutOrderAirport = airport;
-                break;
-            }
+    }
+
+    int get() {
+        for (Map.Entry<String, Integer> entry : this.inDegrees.entrySet()) {
+
         }
+        return 0;
     }
 
     public static void main(String[] args) {
