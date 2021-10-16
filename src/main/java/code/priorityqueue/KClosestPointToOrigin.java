@@ -35,7 +35,7 @@ public class KClosestPointToOrigin {
 
         double dist(int[] pointA) {
             return Math.sqrt(
-                    Math.pow((pointA[0] - 0), 2)
+                            Math.pow((pointA[0] - 0), 2)
                             +
                             Math.pow((pointA[1] - 0), 2)
             );

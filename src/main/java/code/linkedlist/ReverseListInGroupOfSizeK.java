@@ -76,6 +76,7 @@ public class ReverseListInGroupOfSizeK {
         public ListNode reverseKGroup(ListNode head, int k) {
             if (head == null) return null;
             ListNode cur = head, prev = null;
+
             int K = k;
             while (K-- > 0 && cur != null) {
                 ListNode temp = cur.next;
