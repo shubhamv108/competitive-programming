@@ -1,6 +1,7 @@
 package code.contestpractice.templates;
 
 import com.google.gson.Gson;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,12 +9,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
 class Solution {
-    public static List<String> solve(String city, int maxCost) {
-        String url = "https://jsonmock";
+    public static List<String> get(String city, int maxCost) {
+        String url = "https://jsonmock.hackerrank.com/api/operation?key=%s";
         Function<Data, String> resultExtractor = (data) ->
                 data.estimated_cost < maxCost
                         ? data.name
@@ -86,7 +88,7 @@ class HackerEarthAPIInvoker<Result> {
     private final HttpsClient<Response> httpsClient;
     private final Function<Data, Result> dataResultExtractor;
     public HackerEarthAPIInvoker(final String formattableUrl, final Function<Data, Result> dataResultExtractor) {
-        this.formattableUrl = formattableUrl;
+        this.formattableUrl = formattableUrl.replaceAll("\\s", "+");
         this.httpsClient = new HttpsClient<>();
         this.dataResultExtractor = dataResultExtractor;
     }
@@ -95,8 +97,12 @@ class HackerEarthAPIInvoker<Result> {
         List<Result> results = new ArrayList<>();
         try {
             int totalPages = -1, curPage = 1;
+            String[] formatFieldStringValues = Arrays.stream(formatFieldValues)
+                    .map(String::valueOf)
+                    .map(field -> field.replaceAll("\\s", "+"))
+                    .toArray(String[]::new);
             while (totalPages == -1 || curPage <= totalPages) {
-                String url = String.format(this.formattableUrl, formatFieldValues, curPage);
+                String url = String.format(this.formattableUrl, formatFieldStringValues, curPage);
                 Response response = this.httpsClient.invoke(url, Response.class);
                 if (totalPages == -1) {
                     totalPages = response.getTotal_pages();

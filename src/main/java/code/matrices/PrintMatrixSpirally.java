@@ -1,6 +1,7 @@
 package code.matrices;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PrintMatrixSpirally {
@@ -40,6 +41,39 @@ public class PrintMatrixSpirally {
         }
     }
 
+    
+    // ReDo
+    static class Solution {
+        public static List<Integer> spiralOrder(int[][] matrix) {
+            List<Integer> result = new ArrayList<>();
+            int n = matrix.length, m = matrix[0].length, r = 0, R = n, c = 0, C = m;
+            boolean flag = false;
+            while (result.size() < n*m) {
+                for (int i = c; i != C; i = i + (!flag ? 1 : -1)) {
+                    result.add(matrix[r][i]);
+                }
+                for (int i = r; i != R; i = i + (!flag ? 1 : -1)) {
+                    result.add(matrix[i][C-1]);
+                }
+                int t = r;
+                r = R;
+                R = t;
+                t = c;
+                c = C;
+                C = t;
+                flag = !flag;
+                if (flag) {
+                    c--;
+                    R++;
+                } else {
+                    c++;
+                    R--;
+                }
+            }
+            return result;
+        }
+    }
+
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
 //        int r = 3, c = r, a[][] = new int[r][c];
@@ -53,7 +87,8 @@ public class PrintMatrixSpirally {
             {7,  8,  9,  10, 11, 12},
             {13, 14, 15, 16, 17, 18}
         };
-        printMatrixSpirally(a);
+//        printMatrixSpirally(a);
+        PrintMatrixSpirally.Solution.spiralOrder(a);
     }
 
     public static ArrayList<ArrayList<Integer>> generateMatrix(int A) {
