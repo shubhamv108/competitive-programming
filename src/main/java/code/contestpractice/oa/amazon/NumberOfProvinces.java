@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class NumberOfProvinces {
     class Solution {
         public int findCircleNum(int[][] isConnected) {
-            int resulttg = 0, n = isConnected.length;
+            int result = 0, n = isConnected.length;
             HashSet<Integer> visited = new HashSet<>();
             for (int v = 0; v < n; v++)
                 if (!visited.contains(v)) {

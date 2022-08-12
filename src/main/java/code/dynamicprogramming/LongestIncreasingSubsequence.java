@@ -4,35 +4,45 @@ import java.util.Arrays;
 
 public class LongestIncreasingSubsequence {
 
-    private static int[] a;
-    private static int n;
+    class Solution {
+        public int lengthOfLIS(int[] nums) {
+            int result = 0, len = nums.length;
+            int[] dp = new int[len];
 
-;    private static int x[];
+            for (int i = 0; i < len; i++) {
+                dp[i] = 1;
+                for (int j = 0; j < i; j++)
+                    if (nums[i] > nums[j])
+                        dp[i] = Math.max(dp[i], dp[j] + 1);
+                result = Math.max(result, dp[i]);
+            }
 
-
-    private static int longestLISLength() {
-        int largestCount = 1;
-        for (int i = 1; i < n; i++)
-            for (int j = 0; j < i; j++)
-                if (a[i] > a[j] && x[i] < x[j] + 1) {
-                    x[i] = x[j] + 1;
-                    largestCount = Math.max(largestCount, x[i]);
-                }
-        return largestCount;
+            return result;
+        }
     }
 
-    public static int longestLISLength(int arr[]) {
-        if(arr.length == 0) return 0;
-        a = arr;
-        n = a.length;
-        x = new int[a.length];
-        Arrays.fill(x, 1);
-        return longestLISLength();
+    class Solution2 {
+        public int lengthOfLIS(int[] nums) {
+            int len = 0, dp[] = new int[nums.length];
+
+            for(int n : nums) {
+                int i = Arrays.binarySearch(dp, 0, len, n);
+                if (i < 0)
+                    i = -(i + 1);
+                dp[i] = n;
+                if(i == len)
+                    len++;
+            }
+
+            return len;
+        }
     }
 
     public static void main(String[] args) {
         int[] a = {10, 22, 9, 33, 21, 50, 41, 60};
-        System.out.println(longestLISLength(a));
+        System.out.println(
+                new LongestIncreasingSubsequence().new Solution2().lengthOfLIS(a)
+        );
     }
 
 }

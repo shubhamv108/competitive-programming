@@ -45,6 +45,6 @@ public class ClimbStairs {
     }
 
     public static void main(String[] args) {
-        System.out.println(new ClimbStairs().new Solution().climbStairs(4));
+        System.out.println(new ClimbStairs().new Solution().climbStairs(5));
     }
 }
