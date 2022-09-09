@@ -64,7 +64,8 @@ public class MeetingRooms {
             TreeMap<Integer, int[]> timings = new TreeMap<>();
             A.stream().forEach(a -> {
                 int[] c = timings.get(a.get(0));
-                if (c == null) timings.put(a.get(0), c = new int[2]);
+                if (c == null)
+                    timings.put(a.get(0), c = new int[2]);
                 c[0]++;
 
                 c = timings.get(a.get(1));

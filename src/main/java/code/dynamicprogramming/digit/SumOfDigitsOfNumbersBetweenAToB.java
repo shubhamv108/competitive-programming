@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class SumOfDigitsOfNumbersBetweenAToB {
     class Solution {
         long solve(int a, int b) {
-            ArrayList<Integer> dA1 = this.digits(a - 1);
+            ArrayList<Integer> dA = this.digits(a - 1);
             ArrayList<Integer> dB = this.digits(b);
-            long sumA1 = this.digitSum(dA1, dA1.size() - 1, 0, true);
-            long sumB = this.digitSum(dB, dB.size() - 1, 0, true);
+            long sumA1 = this.digitSum(dA, dA.size() - 1, 0, true);
+            long sumB  = this.digitSum(dB, dB.size() - 1, 0, true);
             return sumB - sumA1;
         }
 
@@ -22,7 +22,8 @@ public class SumOfDigitsOfNumbersBetweenAToB {
             for (int d = 0; d <= maxDigit; d++) {
                 curSum += digitSum(originalDigits, idx - 1, sum + d, d == originalDigits.get(idx));
             }
-            if (!tight) dp[idx][sum][0] = curSum;
+            if (!tight)
+                dp[idx][sum][0] = curSum;
             return curSum;
         }
 

@@ -10,8 +10,10 @@ public class AllPairOfCoPrimeFactorsOfANumber {
             double sqrt = Math.sqrt(n);
             for (int i = 2; i <= sqrt; i++) {
                 if (n % i == 0) {
-                    while (n % i == 0) n /= i;
-                    if (n > 1) result.add(new int[] { i, n });
+                    while (n % i == 0)
+                        n /= i;
+                    if (n > 1)
+                        result.add(new int[] { i, n });
                 }
             }
             return result;

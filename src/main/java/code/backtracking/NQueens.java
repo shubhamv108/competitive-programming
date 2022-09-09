@@ -86,14 +86,10 @@ public class NQueens {
         }
 
         private boolean isColumnSafe(ArrayList<String> board, int col) {
-            boolean result = true;
-            for (int i=0; i < board.size(); i++) {
-                 if (board.get(i).charAt(col) == 'Q') {
-                     result = false;
-                     break;
-                 }
-            }
-            return result;
+            for (int i=0; i < board.size(); i++)
+                 if (board.get(i).charAt(col) == 'Q')
+                     return false;
+            return true;
         }
 
         private boolean isRowSafe(ArrayList<String> board, int row) {
