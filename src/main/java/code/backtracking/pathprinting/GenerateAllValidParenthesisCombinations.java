@@ -10,13 +10,14 @@ class Solver {
             System.out.printf(" ");
             return;
         }
-        if(open > close) {
-            p[pi] = ')';
-            validParanthesisOfNPairs(n, p, pi + 1, open, close + 1);
-        }
+
         if(open < n) {
             p[pi] = '(';
             validParanthesisOfNPairs(n, p, pi + 1, open + 1, close);
+        }
+        if(close < open) {
+            p[pi] = ')';
+            validParanthesisOfNPairs(n, p, pi + 1, open, close + 1);
         }
     }
 

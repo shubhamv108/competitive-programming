@@ -34,31 +34,34 @@ public class CopyListWithRandomPointer {
 
     class Solution {
         public Node copyRandomList(Node head) {
-            if (head == null) return null;
-            Node n = head;
-            while (n != null) {
-                Node t = n.next;
-                n.next = new Node(n.val);
-                n.next.next = t;
-                n = t;
+            if (head == null)
+                return null;
+
+            Node h = head, next;
+            while (h != null) {
+                next = h.next;
+                h.next = new Node(h.val);
+                h.next.next = next;
+                h = next;
             }
 
-            n = head;
-            while (n != null) {
-                if (n.random != null)
-                    n.next.random = n.random.next;
-                n = n.next.next;
+            h = head;
+            while (h != null) {
+                if (h.random != null)
+                    h.next.random = h.random.next;
+                h = h.next.next;
             }
 
-            n = head;
-            Node copyHead = head.next;
-            while (n != null) {
-                Node t = n.next;
-                n.next = t.next;
-                if (t.next != null)
-                    t.next = n.next.next;
-                n = n.next;
+            h = head;
+            Node copyHead = head.next, copy = copyHead;
+            while (h != null) {
+                h.next = h.next.next;
+                if (h.next != null)
+                    copy.next = copy.next.next;
+                h = h.next;
+                copy = copy.next;
             }
+
             return copyHead;
         }
     }

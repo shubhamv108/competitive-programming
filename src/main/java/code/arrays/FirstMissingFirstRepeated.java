@@ -7,9 +7,11 @@ public class FirstMissingFirstRepeated {
         public int[] repeatedNumber(final int[] nums) {
             int[] result = new int[] {-1, -1};
             for (int i = 0; i < nums.length; i++) {
-                if (nums[Math.abs(nums[i]) - 1] < 0)
-                    result[0] = Math.abs(nums[i]);
-                else nums[Math.abs(nums[i]) - 1] *= -1;
+                int n = Math.abs(nums[i]);
+                if (nums[n - 1] < 0)
+                    result[0] = n;
+                else
+                    nums[n - 1] *= -1;
             }
 
             for (int i = 0; i < nums.length; i++) {
