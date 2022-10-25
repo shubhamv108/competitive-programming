@@ -35,21 +35,17 @@ public class RainWaterTrapped {
 
             while (l < r) {
                 if (height[l] < height[r]) {
-                    if (height[l] > height[lm]) {
+                    if (height[l] > height[lm])
                         lm = l;
-                        l++;
-                    } else {
+                    else
                         result += (height[lm] - height[l]);
-                        l++;
-                    }
+                    l++;
                 } else {
-                    if (height[r] > height[rm]) {
+                    if (height[r] > height[rm])
                         rm = r;
-                        r--;
-                    } else {
+                    else
                         result += (height[rm] - height[r]);
-                        r--;
-                    }
+                    r--;
                 }
             }
             return result;

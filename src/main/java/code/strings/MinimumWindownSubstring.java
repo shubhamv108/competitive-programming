@@ -1,6 +1,7 @@
 package code.strings;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class MinimumWindownSubstring {
@@ -81,9 +82,38 @@ public class MinimumWindownSubstring {
         }
     }
 
+    class Solution3 {
+        public String minWindow(String S, String T) {
+            char[] s = S.toCharArray(), t = T.toCharArray();
+            int[] freq = new int[256];
+            for (char chr : t)
+                freq[chr]++;
+
+            int counter = t.length, left = 0, right = 0, resultLeft = 0, resultRight = s.length + 1;
+            while (right < s.length) {
+                if (freq[s[right++]]-- > 0)
+                    counter--;
+
+                while (counter == 0) {
+                    if ((right - left) < (resultRight - resultLeft)) {
+                        resultLeft = left;
+                        resultRight = right;
+                    }
+
+                    if (freq[s[left++]]++ == 0)
+                        counter++;
+                }
+            }
+
+            return resultRight == s.length + 1 ? "" : S.substring(resultLeft, resultRight);
+        }
+    }
     public static void main(String[] args) {
         System.out.println(
-                new MinimumWindownSubstring().new Solution().minWindow("ab", "b")
+                new MinimumWindownSubstring().new Solution3().minWindow("aaabbbbbcdd",
+                        "abcdd"
+
+                )
         );
     }
 

@@ -1,14 +1,10 @@
 package code.contestpractice.hackerearth;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class BuildingsinCities {
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
-
     static class TestClass {
         public static void main(String args[] ) throws Exception {
             Scanner sc = new Scanner(System.in);

@@ -1,90 +1,79 @@
 package code.caching;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashSet;
+import java.util.TreeMap;
 
 public class LFUCache {
-
-    class Node {
-        int key, val;
-        long freq;
-        Node prev, next;
-        Node(long freq) {
-            this.freq = freq;
-        }
-        Node(int key, int val) {
-            this.key = key;
-            this.val = val;
-        }
-
-        Node clear() {
-            this.prev.next = this.next;
-            this.next.prev = this.prev;
-            this.prev = null;
-            this.next = null;
-            return this;
-        }
-
-        Node insertNext(Node node) {
-            node.prev = this;
-            node.next = this.next;
-            this.next.prev = node;
-            this.next = node;
-            return this;
-        }
-    }
-
-    Map<Integer, Node> m;
-    Node head = new Node(Long.MAX_VALUE), tail = new Node(Long.MIN_VALUE);
-    int capacity;
-
+    int capacity, min = -1;
+    HashMap<Integer, Integer> entries = new HashMap<>();
+    HashMap<Integer, Integer> keyFrequency = new HashMap<>();
+    HashMap<Integer, LinkedHashSet<Integer>> frequencyKeys = new HashMap<>();
     public LFUCache(int capacity) {
-        this.m = new HashMap<>(capacity);
-        head.next = tail;
-        tail.prev = head;
         this.capacity = capacity;
+        this.frequencyKeys.put(1, new LinkedHashSet<>());
     }
 
     public int get(int key) {
-        Node node = m.get(key);
-        if (node == null)
+        Integer value = entries.get(key);
+        if (value == null)
             return -1;
 
-        node.freq++;
-        Node prev = node.prev;
-        while (prev.freq <= node.freq)
-            prev = prev.prev;
+        int curFreq = keyFrequency.get(key);
+        LinkedHashSet<Integer> list = frequencyKeys.get(curFreq);
+        list.remove(key);
+        if (curFreq == min && list.size() == 0)
+            min++;
 
-        if (prev != node.prev)
-            prev.insertNext(node.clear());
-
-        return node.val;
+        keyFrequency.put(key, curFreq+1);
+        list = frequencyKeys.get(curFreq+1);
+        if (list == null)
+            frequencyKeys.put(curFreq+1, list = new LinkedHashSet<>());
+        list.add(key);
+        return value;
     }
 
     public void put(int key, int value) {
-        if (this.capacity < 1)
+        if (capacity < 1)
             return;
 
-        Node node = m.get(key);
-        if (node != null) {
+        if (entries.containsKey(key)) {
+            entries.put(key, value);
             get(key);
-            node.val = value;
             return;
         }
 
-        evict();
-
-        node = new Node(key, value);
-        tail.prev.insertNext(node);
-        m.put(key, node);
-        get(key);
+        if (entries.size() == capacity) {
+            LinkedHashSet<Integer> list = this.frequencyKeys.get(min);
+            int toEvict = list.iterator().next();
+            list.remove(toEvict);
+            entries.remove(toEvict);
+        }
+        entries.put(key, value);
+        keyFrequency.put(key, 1);
+        min = 1;
+        frequencyKeys.get(1).add(key);
     }
 
-    void evict() {
-        if (this.m.size() == 0 || this.m.size() < this.capacity)
-            return;
-        Node removed = tail.prev.clear();
-        this.m.remove(removed.key);
+    public static void main(String[] args) {
+        LFUCache cache = new LFUCache(2);
+        LFUCache lfu = new LFUCache(2);
+        lfu.put(1, 1);   // cache=[1,_], cnt(1)=1
+        lfu.put(2, 2);   // cache=[2,1], cnt(2)=1, cnt(1)=1
+        lfu.get(1);      // return 1
+        // cache=[1,2], cnt(2)=1, cnt(1)=2
+        lfu.put(3, 3);   // 2 is the LFU key because cnt(2)=1 is the smallest, invalidate 2.
+        // cache=[3,1], cnt(3)=1, cnt(1)=2
+        lfu.get(2);      // return -1 (not found)
+        lfu.get(3);      // return 3
+        // cache=[3,1], cnt(3)=2, cnt(1)=2
+        lfu.put(4, 4);   // Both 1 and 3 have the same cnt, but 1 is LRU, invalidate 1.
+        // cache=[4,3], cnt(4)=1, cnt(3)=2
+        lfu.get(1);      // return -1 (not found)
+        lfu.get(3);      // return 3
+        // cache=[3,4], cnt(4)=1, cnt(3)=3
+        lfu.get(4);      // return 4
+        // cache=[4,3], cnt(4)=2, cnt(3)=3
     }
 }
 

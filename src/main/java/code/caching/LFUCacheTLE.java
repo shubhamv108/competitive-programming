@@ -2,7 +2,7 @@ package code.caching;
 
 import java.util.HashMap;
 
-public class LFU {
+public class LFUCacheTLE {
 
     class Node {
         int key;
@@ -38,7 +38,7 @@ public class LFU {
     Node head = new Node(Integer.MAX_VALUE, null, null);
     Node tail = new Node(Integer.MIN_VALUE, head, null);
 
-    public LFU(int capacity) {
+    public LFUCacheTLE(int capacity) {
         map = new HashMap<>(capacity);
         this.capacity = capacity;
         head.next = tail;
@@ -87,15 +87,4 @@ public class LFU {
         Node removed = tail.previous.remove();
         return map.remove(removed.key);
     }
-
-
-    public static void main(String[] args) {
-        LFU cache = new LFU(3);
-        cache.put(1,1);
-        cache.put(2,2);
-        cache.put(3,3);
-        cache.put(4,4);
-        cache.get(3);
-    }
-
 }

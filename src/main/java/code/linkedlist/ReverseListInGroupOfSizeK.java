@@ -39,14 +39,14 @@ public class ReverseListInGroupOfSizeK {
             if (head == null || head.next == null || K < 2) return head;
             ListNode current = head;
             ListNode prev = null;
-            ListNode tmp;
+            ListNode next;
 
             int count = K;
             while (count-- > 0 && current != null) {
-                tmp = current.next;
+                next = current.next;
                 current.next = prev;
                 prev = current;
-                current = tmp;
+                current = next;
             }
 
             head.next = reverseK(current, K);

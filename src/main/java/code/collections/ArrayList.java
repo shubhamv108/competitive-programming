@@ -1,7 +1,5 @@
 package code.collections;
 
-import java.util.Objects;
-
 /**
  * Dynamically capacity adjusted array
  * No thread safety.
