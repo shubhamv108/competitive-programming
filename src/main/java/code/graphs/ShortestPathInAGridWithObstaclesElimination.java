@@ -49,32 +49,39 @@ public class ShortestPathInAGridWithObstaclesElimination {
 
 
     class Solution2 {
-        public int shortestPath(int[][] grid, int k) {
-            int steps = 0;
-            if (grid == null || grid.length == 0) return steps;
-            int[][] directions = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} };
-            Integer[][] visited = new Integer[grid.length][grid[0].length];
+        public int shortestPath(int[][] A, int k) {
+            int m = A.length, n = A[0].length;
+            int[][] dirs = new int[][] { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };
+
             Queue<int[]> q = new LinkedList<>();
             q.offer(new int[] { 0, 0, 0 });
-            visited[0][0] = 0;
-            while(!q.isEmpty()) {
-                int size = q.size();
+            Integer[][] visited = new Integer[m][n];
+            visited[0][0] = A[0][0];
+            k -= A[0][0];
+            int size, steps = 0, e;
+            while (!q.isEmpty()) {
+                size = q.size();
                 while (size-- > 0) {
-                    int[] cur = q.poll();
-                    if (cur[0] == grid.length - 1 && cur[1] == grid[0].length - 1) return steps;
+                    int[] pos = q.poll();
+                    if (pos[0] == m-1 && pos[1] == n-1)
+                        return steps;
 
-                    for (int[] dir : directions) {
-                        int row = cur[0] + dir[0];
-                        int col = cur[1] + dir[1];
-                        if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length) continue;
-                        int eliminate = cur[2] + grid[row][col];
-                        if ((visited[row][col] != null && eliminate >= visited[row][col]) || eliminate > k) continue;
-                        visited[row][col] = cur[2];
-                        q.offer(new int[]{ row, col, eliminate });
+                    for (int[] dir : dirs) {
+                        int r = pos[0] + dir[0], c = pos[1] + dir[1];
+                        if (r < 0 || c < 0 || r >= m || c >= n)
+                            continue;
+                        e = pos[2] + A[r][c];
+                        if (e > k || (visited[r][c] != null && e >= visited[r][c] ))
+                            continue;
+
+                        visited[r][c] = e;
+                        q.offer(new int[] { r, c, e });
+
                     }
                 }
                 steps++;
             }
+
             return -1;
         }
     }
