@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-class HttpsClient<Response> {
+public class HttpsClient<Response> {
     private static Gson GSON = new Gson();
 
     public Response invoke(final String url, final Class<Response> responseClass) throws IOException {

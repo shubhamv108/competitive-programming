@@ -1,18 +1,46 @@
 package code.api;
 
-class Data {
-    String city;
-    String name;
-    UserRating user_rating;
+public class Data {
     int id;
+    String name;
+    String username;
+    String email;
+    Address address;
+    String website;
+    Company company;
+
+    public Data(Address address) {
+        this.address = address;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     @Override
     public String toString() {
         return "Data{" +
-                "city='" + city + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
-                ", user_rating=" + user_rating +
-                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", address=" + address +
+                ", website='" + website + '\'' +
+                ", company=" + company +
                 '}';
     }
+}
+
+class Company {
+    String name;
+    String basename;
+}
+
+class Geo {
+    String lat;
+    String lng;
 }

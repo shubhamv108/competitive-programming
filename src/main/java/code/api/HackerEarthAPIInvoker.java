@@ -1,5 +1,9 @@
 package code.api;
 
+import code.api.Data;
+import code.api.HttpsClient;
+import code.api.Response;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -13,7 +17,9 @@ class HackerEarthAPIInvoker<Result> {
         this.httpsClient = new HttpsClient<>();
     }
 
-    public List<Result> invoke(final Function<Data, Result> dataResultExtractor, final Object... formatFieldValues) {
+    public List<Result> invoke(
+            final Function<Data, Result> dataResultExtractor,
+            final Object... formatFieldValues) {
         List<Result> results = new ArrayList<>();
         try {
             String url = String.format(this.formattableUrl, formatFieldValues);

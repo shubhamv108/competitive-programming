@@ -2,7 +2,7 @@ package code.api;
 
 import java.util.List;
 
-class Response {
+public class Response {
     private int page;
     private int per_page;
     private int total;
