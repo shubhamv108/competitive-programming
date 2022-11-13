@@ -24,7 +24,7 @@ public class ReflectionUtils {
                 return getValueForField(fieldPath, index + 1, field.get(object));
             }
         }
-        return "";
+        return null;
     }
 
     public static void main(String[] args) throws IllegalAccessException {
