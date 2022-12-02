@@ -84,28 +84,31 @@ public class KthSmallestInArraySortedRowAndColumnWise {
     }
 
     class Solution3 {
-        public int kthSmallest(int[][] matrix, int k) {
-            int l = matrix[0][0], r = matrix[matrix.length-1][matrix[0].length-1];
+        public int kthSmallest(int[][] A, int k) {
+            int rows = A.length, cols = A[0].length, l = A[0][0], r = A[rows-1][cols-1];
             while (l <= r) {
                 int m = l + (r - l) / 2;
-                int count = getCount(matrix, m);
-                if (count < k) l = m + 1;
-                else r = m - 1;
+                int count = getCount(A, rows, cols, m);
+                if (count < k)
+                    l = m + 1;
+                else
+                    r = m - 1;
             }
             return l;
         }
 
-        int getCount(int[][] matrix, int val) {
-            int count = 0;
-            int i = matrix.length - 1, j = 0;
-            while (i > -1 && j < matrix.length) {
-                if (matrix[i][j] > val) {
-                    i--;
+        int getCount(int[][] A, int rows, int cols, int m) {
+            int r = rows - 1, c = 0, count = 0;
+
+            while (r > -1 && c < cols) {
+                if (m < A[r][c]) {
+                    r--;
                 } else {
-                    count += i + 1;
-                    j++;
+                    count += r+1;
+                    c++;
                 }
             }
+
             return count;
         }
     }
