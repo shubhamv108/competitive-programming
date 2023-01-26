@@ -3,16 +3,15 @@ package code.shubham.dynamicprogramming;
 public class CoinChange {
     class Solution {
         public int coinChange(int[] coins, int amount) {
-//            Arrays.sort(coins);
             Integer[] dp = new Integer[amount+1];
             dp[0] = 0;
             for (int coin : coins) {
-                for (int i = coin; i <= amount; i++) {
-                    if (dp[i - coin] != null)
-                        if (dp[i] != null)
-                            dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+                for (int amt = coin; amt <= amount; amt++) {
+                    if (dp[amt - coin] != null)
+                        if (dp[amt] == null)
+                            dp[amt] = 1 + dp[amt - coin];
                         else
-                            dp[i] = 1 + dp[i - coin];
+                            dp[amt] = Math.min(dp[amt], 1 + dp[amt - coin]);
                 }
             }
             return dp[amount] == null ? -1 : dp[amount];

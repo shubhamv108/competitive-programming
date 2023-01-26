@@ -5,11 +5,9 @@ public class CoinChange2 {
         public int change(int amount, int[] coins) {
             int[] dp = new int[amount + 1];
             dp[0] = 1;
-            for (int coin : coins) {
-                for (int i = coin; i <= amount; i++) {
-                    dp[i] += dp[i-coin];
-                }
-            }
+            for (int coin : coins)
+                for (int amt = coin; amt <= amount; amt++)
+                    dp[amt] += dp[amt-coin];
             return dp[amount];
         }
     }

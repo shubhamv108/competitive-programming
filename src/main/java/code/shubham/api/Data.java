@@ -3,6 +3,8 @@ package code.shubham.api;
 public class Data {
     int id;
     String name;
+
+    String title;
     String username;
     String email;
     Address address;
@@ -19,6 +21,10 @@ public class Data {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     @Override
