@@ -7,10 +7,17 @@ import java.util.function.Function;
 class HackerEarthAPIInvoker<Result> {
 
     private String formattableUrl;
-    private HttpsClient<Response> httpsClient;
+    private final HttpsClient<Response> httpsClient;
+
+    private int threadCount;
     public HackerEarthAPIInvoker(final String formattableUrl) {
+        this(formattableUrl, 10);
+    }
+
+    public HackerEarthAPIInvoker(final String formattableUrl, int threadCount) {
         this.formattableUrl = formattableUrl;
         this.httpsClient = new HttpsClient<>();
+        this.threadCount = threadCount;
     }
 
     public List<Result> invoke(
@@ -22,14 +29,19 @@ class HackerEarthAPIInvoker<Result> {
             int totalPages = -1, curPage = 1;
             while (totalPages == -1 || curPage <= totalPages) {
                 Response response = this.httpsClient.invoke(url, Response.class);
-                if (totalPages == -1) {
+
+                if (totalPages == -1)
                     totalPages = response.getTotal_pages();
-                }
+
+
+                if (totalPages > 3)
+                    return new HackerEarthConcurrentAPIInvoker<Result>(this.formattableUrl, this.threadCount)
+                            .invokeConcurrently(dataResultExtractor, totalPages, formatFieldValues);
+
                 for (final Data data : response.getData()) {
                     Result result = dataResultExtractor.apply(data);
-                    if (result != null) {
+                    if (result != null)
                         results.add(result);
-                    }
                 }
                 curPage++;
             }

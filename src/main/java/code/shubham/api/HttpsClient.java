@@ -1,19 +1,20 @@
 package code.shubham.api;
 
 import com.google.gson.Gson;
+import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 
 public class HttpsClient<Response> {
     private static final Gson GSON = new Gson();
 
     public Response invoke(final String url, final Class<Response> responseClass) throws IOException {
 //        System.out.println("Invoking Url: " + url);
-        return invoke(new URL(url), responseClass);
+        String finalUrl = url.replaceAll("\\s", "%20");
+        return invoke(new URL(finalUrl), responseClass);
     }
 
     private Response invoke(final URL url, final Class<Response> responseClass) throws IOException {
