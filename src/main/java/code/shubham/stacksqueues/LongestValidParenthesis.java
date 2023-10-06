@@ -9,11 +9,14 @@ public class LongestValidParenthesis {
         Stack<Integer> z = new Stack<>();
         z.push(-1);
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') z.push(i);
+            if (s.charAt(i) == '(')
+                z.push(i);
             else {
                 z.pop();
-                if (!z.isEmpty()) max = Math.max(max, i - z.peek());
-                else z.push(i);
+                if (!z.isEmpty())
+                    max = Math.max(max, i - z.peek());
+                else
+                    z.push(i);
             }
 
         }
@@ -36,9 +39,32 @@ public class LongestValidParenthesis {
         return max;
     }
 
+    class Solution {
+        public int longestValidParentheses(String s) {
+            int result = 0, left = -1;
+            Stack<Integer> stack = new Stack<>();
+            for (int i = 0; i < s.length(); i++) {
+                if (s.charAt(i) == '(')
+                    stack.push(i);
+                else {
+                    if (stack.isEmpty())
+                        left = i;
+                    else {
+                        stack.pop();
+                        if (stack.isEmpty())
+                            result = Math.max(result, i - left);
+                        else
+                            result = Math.max(result, i - stack.peek());
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println(
-            longestValidParentheses(")()())((()))")
+            longestValidParentheses("))()())((()))")
         );
     }
 

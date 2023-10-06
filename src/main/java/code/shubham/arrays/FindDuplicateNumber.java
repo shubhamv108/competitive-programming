@@ -33,4 +33,8 @@ public class FindDuplicateNumber {
         }
     }
 
+    public static void main(String[] args) {
+        System.out.println(new FindDuplicateNumber().new Solution2().findDuplicate(new int[] {1, 2, 3, 4, 5, 5}));
+    }
+
 }
