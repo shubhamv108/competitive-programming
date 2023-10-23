@@ -42,6 +42,6 @@ public class HttpsClient<Response> {
     }
 
     private Response parseJsonString(final String jsonString, final Class<Response> responseClass) {
-        return GSON.fromJson(jsonString, responseClass);
+    return GSON.fromJson(jsonString, responseClass);
     }
 }
