@@ -10,7 +10,7 @@ import javax.net.ssl.*;
 
 public class HackerrankRestAPI {
     class Solution {
-        static Gson gson = new Gson();
+        Gson gson = new Gson();
         public int invoke(int doctorId, String diagnosisName) {
             return invokeAPI("https://jsonmock.hackerrank.com/api/medical_records?page=%s")
                     .filter(data -> data.doctor.id == doctorId && data.diagnosis.name.equals(diagnosisName))
