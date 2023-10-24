@@ -17,8 +17,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class HackerrankRestAPI {
 
     static Gson gson = new Gson();
-
-    static int invoke(int doctorId, String diagnosisName) {
+    public static int invoke(int doctorId, String diagnosisName) {
         return invokeAPI("https://jsonmock.hackerrank.com/api/medical_records?page=%s")
                 .map(r -> r.data)
                 .flatMap(List::stream)
@@ -33,7 +32,7 @@ public class HackerrankRestAPI {
                 .orElse(0);
     }
 
-    static class Response {
+    class Response {
         int page;
         int per_page;
         int total;
@@ -41,7 +40,7 @@ public class HackerrankRestAPI {
         List<Data> data;
     }
 
-    static class Data {
+    class Data {
         int id;
         Diagnosis diagnosis;
         Doctor doctor;
@@ -64,23 +63,21 @@ public class HackerrankRestAPI {
         ExecutorService executor = Executors.newFixedThreadPool(10);
         try {
             Response resp = invoke(String.format(url, 1));
-            List<Callable<Response>> l = IntStream.rangeClosed(1, resp.total_pages)
+            List<Callable<Response>> l = IntStream.rangeClosed(2, resp.total_pages)
                     .mapToObj(
                             i -> (Callable<Response>) (() -> invoke(String.format(url, i)))
                     ).toList();
-            return executor
+            return Stream.concat(Stream.of(resp), executor
                     .invokeAll(l)
                     .stream()
                     .map(f -> {
                         try {
                             return f.get();
                         } catch (Exception ex) {
-                            ex.printStackTrace();
                         }
                         return null;
-                    });
+                    }));
         } catch (Exception ex) {
-            ex.printStackTrace();
         } finally {
             while (!executor.isTerminated())
                 executor.shutdown();
