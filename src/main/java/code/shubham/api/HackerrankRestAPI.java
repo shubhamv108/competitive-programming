@@ -64,20 +64,21 @@ public class HackerrankRestAPI {
         ExecutorService executor = Executors.newFixedThreadPool(10);
         try {
             Response resp = invoke(String.format(url, 1));
-            return executor.invokeAll(
-                IntStream.rangeClosed(1, resp.total_pages)
-                        .mapToObj(
-                                i -> (Callable<Response>) (() -> invoke(String.format(url, i)))
-                        ).toList()
-            ).stream()
-            .map(f -> {
-                try {
-                    return f.get();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                return null;
-            });
+            List<Callable<Response>> l = IntStream.rangeClosed(1, resp.total_pages)
+                    .mapToObj(
+                            i -> (Callable<Response>) (() -> invoke(String.format(url, i)))
+                    ).toList();
+            return executor
+                    .invokeAll(l)
+                    .stream()
+                    .map(f -> {
+                        try {
+                            return f.get();
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                        return null;
+                    });
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
