@@ -1,18 +1,12 @@
 package code.shubham.api;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.util.stream.*;
 
-import com.google.gson.Gson;
-import javax.net.ssl.HttpsURLConnection;
+import com.google.gson.*;
+import javax.net.ssl.*;
 
 public class HackerrankRestAPI {
 
@@ -33,15 +27,11 @@ public class HackerrankRestAPI {
     }
 
     class Response {
-        int page;
-        int per_page;
-        int total;
         int total_pages;
         List<Data> data;
     }
 
     class Data {
-        int id;
         Diagnosis diagnosis;
         Doctor doctor;
         Vitals vitals;
@@ -60,42 +50,27 @@ public class HackerrankRestAPI {
     }
 
     static Stream<Response> invokeAPI(String url) {
-        ExecutorService executor = Executors.newFixedThreadPool(10);
-        try {
-            Response resp = invoke(String.format(url, 1));
-            List<Callable<Response>> l = IntStream.rangeClosed(2, resp.total_pages)
-                    .mapToObj(
-                            i -> (Callable<Response>) (() -> invoke(String.format(url, i)))
-                    ).toList();
-            return Stream.concat(Stream.of(resp), executor
-                    .invokeAll(l)
-                    .stream()
-                    .map(f -> {
-                        try {
-                            return f.get();
-                        } catch (Exception ex) {
-                        }
-                        return null;
-                    }));
-        } catch (Exception ex) {
-        } finally {
-            while (!executor.isTerminated())
-                executor.shutdown();
-        }
-        return Stream.of();
+        Response resp = invoke(String.format(url, 1));
+        return Stream.concat(Stream.of(resp), IntStream.rangeClosed(2, resp.total_pages)
+                .parallel()
+                .mapToObj(i -> String.format(url, i))
+                .map(HackerrankRestAPI::invoke));
     }
 
-    static Response invoke(String url) throws IOException {
-        HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
-        con.getResponseCode();
+    static Response invoke(String url) {
+        try {
+            HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
+            con.getResponseCode();
 
-        StringBuilder c = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
-            String inp;
-            while ((inp = br.readLine()) != null)
-                c.append(inp);
-        }
-        return gson.fromJson(c.toString(), Response.class);
+            StringBuilder c = new StringBuilder();
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+                String inp;
+                while ((inp = br.readLine()) != null)
+                    c.append(inp);
+            }
+            return gson.fromJson(c.toString(), Response.class);
+        } catch (Exception ex) {}
+        return null;
     }
 
     public static void main(String[] args) {
