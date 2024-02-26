@@ -9,27 +9,31 @@ import java.util.List;
 public class ThreeSum {
 
     class Solution {
-        public List<List<Integer>> threeSum(int[] nums) {
+        public List<List<Integer>> threeSum(int[] A) {
             List<List<Integer>> result = new ArrayList<>();
-            Arrays.sort(nums);
-            int len = nums.length;
-            for (int i = 0; i < len - 2; i++) {
-                if (i > 0 && nums[i] == nums[i - 1]) continue;
-                int j = i+1, k = len - 1, target = -nums[i];
+            Arrays.sort(A);
+            int n = A.length;
+
+            for (int i = 0; i < n-2; ++i) {
+                int j = i + 1, k = n - 1;
                 while (j < k) {
-                    int sum = nums[j] + nums[k];
-                    if (sum == target) {
-                        result.add(new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[k])));
+                    if (A[i] + A[j] + A[k] < 0)
+                        j++;
+                    else if(A[i] + A[j] + A[k] > 0)
+                        k--;
+                    else {
+                        result.add(Arrays.asList(A[i], A[j], A[k]));
+                        while(j+1 <= k && A[j] == A[j+1])
+                            j++;
+                        while(k-1 >= j && A[k-1] == A[k])
+                            k--;
                         j++;
                         k--;
-                        while (j < k && nums[j-1] == nums[j]) j++;
-                        while (k > j && nums[k] == nums[k+1]) k--;
                     }
-                    else {
-                        if (sum <= target) j++;
-                        else k--;
-                    }
+
                 }
+                while(i + 1 < n && A[i] == A[i+1])
+                    ++i;
             }
             return result;
         }

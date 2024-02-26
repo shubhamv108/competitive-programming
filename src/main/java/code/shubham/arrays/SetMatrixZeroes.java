@@ -6,28 +6,29 @@ import java.util.Set;
 public class SetMatrixZeroes {
 
     class Solution {
-        public void setZeroes(int[][] matrix) {
-            Set<Integer> columns = new HashSet<>();
-            Set<Integer> rows = new HashSet<>();
-            for (int i = 0; i < matrix.length; i++) {
-                for (int j = 0; j < matrix[0].length; j++) {
-                    if (matrix[i][j] == 0) {
-                        columns.add(j);
-                        rows.add(i);
+        public void setZeroes(int[][] A) {
+            int m = A.length, n = A[0].length, i, j;
+
+            for (i = 0; i < m; ++i)
+                for (j = 0; j < n; ++j)
+                    if (A[i][j] == 0) {
+                        A[i][0] = 0;
+                        A[0][j] = 0;
                     }
-                }
-            }
-            for (int r : rows) {
-                for (int i = 0; i < matrix[0].length; i++) {
-                    matrix[r][i] = 0;
-                }
-            }
-            for (int c : columns) {
-                for (int i = 0; i < matrix.length; i++) {
-                    matrix[i][c] = 0;
-                }
-            }
-            matrix = null;
+
+            for (i = 1; i < m; ++i)
+                if (A[i][0] == 0)
+                    for (j = 1; j < n; ++j)
+                        A[i][j] = 0;
+
+            for (j = 1; j < n; ++j)
+                if (A[0][j] == 0)
+                    for (i = 1; i < m; ++i)
+                        A[i][j] = 0;
+
+            for (i = 0; i < m; ++i)
+                for (j = 0; j < n; ++j)
+                    System.out.println(A[i][j]);
         }
     }
 

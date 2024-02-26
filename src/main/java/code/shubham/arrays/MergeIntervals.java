@@ -37,6 +37,23 @@ public class MergeIntervals {
         }
     }
 
+    class Solution2 {
+        public int[][] merge(int[][] A) {
+            Arrays.sort(A, (x, y) -> x[1] - y[1]);
+
+            ArrayList<int[]> result = new ArrayList<>();
+            result.add(A[0]);
+            for (int i = 1; i < A.length; ++i) {
+                if (result.get(result.size() - 1)[1] > A[i][0]) {
+                    result.get(result.size() - 1)[1] = A[i][1];
+                } else {
+                    result.add(A[i]);
+                }
+            }
+            return result.stream().toArray(int[][]::new);
+        }
+    }
+
     public static void main(String[] args) {
         ArrayList<Interval> l = new ArrayList<>();
         l.add(new Interval(1, 1));

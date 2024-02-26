@@ -10,7 +10,8 @@ import javax.net.ssl.*;
 
 public class HackerrankRestAPI {
     class Solution {
-        Gson gson = new Gson();
+        private static Gson GSON = new Gson();
+
         public int invoke(int doctorId, String diagnosisName) {
             return invokeAPI("https://jsonmock.hackerrank.com/api/medical_records?page=%s")
                     .filter(data -> data.doctor.id == doctorId && data.diagnosis.name.equals(diagnosisName))
@@ -46,7 +47,7 @@ public class HackerrankRestAPI {
             String name;
         }
 
-        Stream<Data> invokeAPI(String url) {
+        public Stream<Data> invokeAPI(String url) {
             Response resp = invoke(String.format(url, 1));
             return Stream.concat(Stream.of(resp), IntStream.rangeClosed(2, resp.total_pages)
                     .parallel()
@@ -56,10 +57,10 @@ public class HackerrankRestAPI {
                     .flatMap(List::stream);
         }
 
-        Response invoke(String url) {
-            StringBuilder c = new StringBuilder();
+        public Response invoke(String url) {
+            final StringBuilder c = new StringBuilder();
             try {
-                HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
+                final HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
                 con.getResponseCode();
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
                     String l;
@@ -67,8 +68,10 @@ public class HackerrankRestAPI {
                         c.append(l);
                 }
                 con.disconnect();
-            } catch (Exception ex) {}
-            return gson.fromJson(c.toString(), Response.class);
+            } catch (final Exception ex) {
+                ex.printStackTrace();
+            }
+            return GSON.fromJson(c.toString(), Response.class);
         }
     }
 

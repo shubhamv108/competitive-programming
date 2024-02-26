@@ -5,62 +5,55 @@ import java.util.List;
 
 public class WordSearchII {
     class Solution {
-        int[][] dirs = new int[][] { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };
-        public List<String> findWords(char[][] board, String[] words) {
-            ArrayList<String> result = new ArrayList<>();
-            Node root = new Node();
-            for (String word : words)
-                root.insert(word);
+        int[][] dirs = {{-1, 0}, {0,  1}, {1, 0}, {0, -1}};
+        class Node {
+            String isEOW;
+            Node[] next = new Node[26];
 
-            int m = board.length, n = board[0].length;
-            for (int r = 0; r < m; r++)
-                for (int c = 0; c < n; c++)
-                    search(board, r, c, m, n, root, result);
+            void add(String word, int idx) {
+                if (idx == word.length()) {
+                    isEOW = word;
+                    return;
+                }
+                int nextIdx = word.charAt(idx) - 97;
+                if (next[nextIdx] == null)
+                    next[nextIdx] = new Node();
+                next[nextIdx].add(word, idx + 1);
+            }
+        }
 
+
+        public List<String> findWords(char[][] A, String[] words) {
+            ArrayList<String> result = new ArrayList();
+
+            Node trie = new Node();
+            for (String w : words)
+                trie.add(w, 0);
+
+            for (int i = 0; i < A.length; ++i)
+                for (int j = 0; j < A[0].length; ++j)
+                    visit(A, i, j, trie, result);
             return result;
         }
 
-        void search(char[][] A, int r, int c, int m, int n, Node node, ArrayList<String> result) {
-            if (r < 0 || c < 0 || r >= m || c >= n || A[r][c] == '#')
+        void visit(char[][] A, int i, int j, Node node, ArrayList<String> result) {
+            if (i < 0 || j < 0 || i == A.length || j == A[0].length || A[i][j] == ' ')
                 return;
 
-            int nextIndex = A[r][c] - 'a';
-            if (node.next[nextIndex] == null)
+            Node cur = node.next[A[i][j] - 97];
+            if (cur == null)
                 return;
 
-            if (node.next[nextIndex].word != null) {
-                result.add(node.next[nextIndex].word);
-                node.next[nextIndex].word = null;
+            if (cur.isEOW != null) {
+                result.add(cur.isEOW);
+                cur.isEOW = null;
             }
 
-            char t = A[r][c];
-            A[r][c] = '#';
+            char t = A[i][j];
+            A[i][j] = ' ';
             for (int[] dir : dirs)
-                search(A, r + dir[0], c + dir[1], m, n, node.next[nextIndex], result);
-            A[r][c] = t;
-        }
-
-
-
-        class Node {
-            String word;
-            Node[] next = new Node[26];
-
-            void insert(String A) {
-                insert(A, A.toCharArray(), 0);
-            }
-
-            void insert(String word, char[] A, int index) {
-                if (index == A.length) {
-                    this.word = word;
-                    return;
-                }
-
-                int nextIndex = A[index] - 'a';
-                if (next[nextIndex] == null)
-                    next[nextIndex] = new Node();
-                next[nextIndex].insert(word, A, index+1);
-            }
+                visit(A, i + dir[0], j + dir[1], cur, result);
+            A[i][j] = t;
         }
     }
 
