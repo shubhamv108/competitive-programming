@@ -46,10 +46,6 @@ public class HackerrankRestAPI {
             int total_pages;
 
             List<Data> data;
-
-            List<Data> getData() {
-                return data;
-            }
         }
 
         public static <DataEncapsulator> Stream<DataEncapsulator> invokeAPI(
@@ -60,7 +56,7 @@ public class HackerrankRestAPI {
                     .parallel()
                     .mapToObj(i -> String.format(url, i))
                     .map(uri -> invoke(uri, clazz)))
-                    .map(Response::getData)
+                    .map(response -> response.data)
                     .flatMap(List::stream);
         }
 
