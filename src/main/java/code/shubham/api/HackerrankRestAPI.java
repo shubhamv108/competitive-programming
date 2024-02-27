@@ -1,66 +1,84 @@
 package code.shubham.api;
 
 import java.io.*;
-import java.net.*;
 import java.util.*;
 import java.util.stream.*;
 
+
 import com.google.gson.*;
+import java.net.*;
 import javax.net.ssl.*;
 
 public class HackerrankRestAPI {
-    class Solution {
+    class Result {
         private static Gson GSON = new Gson();
 
-        public int invoke(int doctorId, String diagnosisName) {
-            return invokeAPI("https://jsonmock.hackerrank.com/api/medical_records?page=%s")
-                    .filter(data -> data.doctor.id == doctorId && data.diagnosis.name.equals(diagnosisName))
-                    .mapToInt(data -> data.vitals.pulse)
-                    .average()
-                    .stream()
-                    .mapToLong(Math::round)
-                    .mapToInt(e -> (int) e)
-                    .findAny()
-                    .orElse(0);
-        }
+        interface Data {}
 
-        class Response {
+        abstract class AbstractResponse<DataEncapsulator extends Data> {
             int total_pages;
-            List<Data> data;
+
+            protected List<DataEncapsulator> data;
+
+            abstract List<DataEncapsulator> getData();
         }
 
-        class Data {
-            Diagnosis diagnosis;
-            Doctor doctor;
-            Vitals vitals;
+        class ResponseCompetition extends AbstractResponse<DataCompetition> {
+            @Override
+            public List<DataCompetition> getData() {
+                return data;
+            }
         }
 
-        class Doctor {
-            int id;
-        }
-
-        class Vitals {
-            int pulse;
-        }
-
-        class Diagnosis {
+        class DataCompetition implements Data {
             String name;
+            int year;
+            String winner;
         }
 
-        public Stream<Data> invokeAPI(String url) {
-            Response resp = invoke(String.format(url, 1));
+        class ResponseMatches extends AbstractResponse<DataMatches> {
+            @Override
+            public List<DataMatches> getData() {
+                return data;
+            }
+        }
+
+        class DataMatches implements Data {
+            int team1goals;
+            int team2goals;
+        }
+
+        public static int getWinnerTotalGoals(String competition, int year) {
+             final String winner = Result.invokeAPI("https://jsonmock.hackerrank.com/api/football_competitions?name=" + competition + "&year=" + year + "&page=%s", ResponseCompetition.class)
+                     .map(dataCompetition -> dataCompetition.winner)
+                     .findFirst()
+                     .orElse("");
+             final int team1Goals = Result.invokeAPI("https://jsonmock.hackerrank.com/api/football_matches?competition=" + competition + "&year=" + year + "&team1=" + winner + "&page=%s", ResponseMatches.class)
+                    .mapToInt(data -> data.team1goals)
+                     .sum();
+             final int team2Goals = Result.invokeAPI("https://jsonmock.hackerrank.com/api/football_matches?competition=" + competition + "&year=" + year + "&team2=" + winner + "&page=%s", ResponseMatches.class)
+                    .mapToInt(data -> data.team2goals)
+                    .sum();
+             return team1Goals + team2Goals;
+        }
+
+        public static <DataEncapsulator extends Data> Stream<DataEncapsulator> invokeAPI(
+                final String url,
+                final Class<? extends AbstractResponse<DataEncapsulator>> clazz) {
+            final AbstractResponse resp = invoke(String.format(url, 1), clazz);
             return Stream.concat(Stream.of(resp), IntStream.rangeClosed(2, resp.total_pages)
                     .parallel()
                     .mapToObj(i -> String.format(url, i))
-                    .map(this::invoke))
-                    .map(r -> r.data)
+                    .map(uri -> invoke(uri, clazz)))
+                    .map(AbstractResponse::getData)
                     .flatMap(List::stream);
         }
 
-        public Response invoke(String url) {
+        public static <Response> Response invoke(final String url, final Class<Response> clazz) {
+            final String finalUrl = url.replace(" ", "%20");
             final StringBuilder c = new StringBuilder();
             try {
-                final HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
+                final HttpsURLConnection con = (HttpsURLConnection) new URL(finalUrl).openConnection();
                 con.getResponseCode();
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
                     String l;
@@ -71,11 +89,11 @@ public class HackerrankRestAPI {
             } catch (final Exception ex) {
                 ex.printStackTrace();
             }
-            return GSON.fromJson(c.toString(), Response.class);
+            return GSON.fromJson(c.toString(), clazz);
         }
     }
 
     public static void main(String[] args) {
-        System.out.println(new HackerrankRestAPI().new Solution().invoke(2, "Pulmonary embolism"));
+        System.out.println(HackerrankRestAPI.Result.getWinnerTotalGoals("UEFA Champions League", 2011));
     }
 }
