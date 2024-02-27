@@ -11,42 +11,20 @@ import javax.net.ssl.*;
 
 public class HackerrankRestAPI {
     class Result {
-        private static Gson GSON = new Gson();
 
-        interface Data {}
-
-        abstract class AbstractResponse<DataEncapsulator extends Data> {
-            int total_pages;
-
-            protected List<DataEncapsulator> data;
-
-            abstract List<DataEncapsulator> getData();
-        }
-
-        class ResponseCompetition extends AbstractResponse<DataCompetition> {
-            @Override
-            public List<DataCompetition> getData() {
-                return data;
-            }
-        }
-
-        class DataCompetition implements Data {
+        class DataCompetition {
             String name;
             int year;
             String winner;
         }
 
-        class ResponseMatches extends AbstractResponse<DataMatches> {
-            @Override
-            public List<DataMatches> getData() {
-                return data;
-            }
-        }
-
-        class DataMatches implements Data {
+        class DataMatches {
             int team1goals;
             int team2goals;
         }
+
+        class ResponseCompetition extends AbstractResponse<DataCompetition> {}
+        class ResponseMatches extends AbstractResponse<DataMatches> {}
 
         public static int getWinnerTotalGoals(String competition, int year) {
              final String winner = Result.invokeAPI("https://jsonmock.hackerrank.com/api/football_competitions?name=" + competition + "&year=" + year + "&page=%s", ResponseCompetition.class)
@@ -62,7 +40,19 @@ public class HackerrankRestAPI {
              return team1Goals + team2Goals;
         }
 
-        public static <DataEncapsulator extends Data> Stream<DataEncapsulator> invokeAPI(
+        private static Gson GSON = new Gson();
+
+        class AbstractResponse<Data> {
+            int total_pages;
+
+            List<Data> data;
+
+            List<Data> getData() {
+                return data;
+            }
+        }
+
+        public static <DataEncapsulator> Stream<DataEncapsulator> invokeAPI(
                 final String url,
                 final Class<? extends AbstractResponse<DataEncapsulator>> clazz) {
             final AbstractResponse resp = invoke(String.format(url, 1), clazz);
