@@ -23,8 +23,8 @@ public class HackerrankRestAPI {
             int team2goals;
         }
 
-        class ResponseCompetition extends AbstractResponse<DataCompetition> {}
-        class ResponseMatches extends AbstractResponse<DataMatches> {}
+        class ResponseCompetition extends Response<DataCompetition> {}
+        class ResponseMatches extends Response<DataMatches> {}
 
         public static int getWinnerTotalGoals(String competition, int year) {
              final String winner = Result.invokeAPI("https://jsonmock.hackerrank.com/api/football_competitions?name=" + competition + "&year=" + year + "&page=%s", ResponseCompetition.class)
@@ -42,7 +42,7 @@ public class HackerrankRestAPI {
 
         private static Gson GSON = new Gson();
 
-        class AbstractResponse<Data> {
+        abstract class Response<Data> {
             int total_pages;
 
             List<Data> data;
@@ -54,13 +54,13 @@ public class HackerrankRestAPI {
 
         public static <DataEncapsulator> Stream<DataEncapsulator> invokeAPI(
                 final String url,
-                final Class<? extends AbstractResponse<DataEncapsulator>> clazz) {
-            final AbstractResponse resp = invoke(String.format(url, 1), clazz);
+                final Class<? extends Response<DataEncapsulator>> clazz) {
+            final Response resp = invoke(String.format(url, 1), clazz);
             return Stream.concat(Stream.of(resp), IntStream.rangeClosed(2, resp.total_pages)
                     .parallel()
                     .mapToObj(i -> String.format(url, i))
                     .map(uri -> invoke(uri, clazz)))
-                    .map(AbstractResponse::getData)
+                    .map(Response::getData)
                     .flatMap(List::stream);
         }
 
