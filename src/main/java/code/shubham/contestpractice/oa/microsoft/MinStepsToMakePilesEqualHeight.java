@@ -18,4 +18,15 @@ public class MinStepsToMakePilesEqualHeight {
         }
     }
 
+    class Solution2 {
+        int solve(int[] A) {
+            int result = 0;
+            Arrays.sort(A);
+            for (int i = A.length - 1; i > -1; --i)
+                if (A[i] != A[i + 1])
+                    result += i;
+            return result;
+        }
+    }
+
 }

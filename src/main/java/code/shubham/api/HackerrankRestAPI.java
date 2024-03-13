@@ -27,20 +27,22 @@ public class HackerrankRestAPI {
         class ResponseMatches extends Response<DataMatches> {}
 
         public static int getWinnerTotalGoals(String competition, int year) {
-             final String winner = Result.invokeAPI("https://jsonmock.hackerrank.com/api/football_competitions?name=" + competition + "&year=" + year + "&page=%s", ResponseCompetition.class)
+             final String winner = Result.invokeAPI(BASE_URL + "/football_competitions?name=" + competition + "&year=" + year + "&page=%s", ResponseCompetition.class)
                      .map(dataCompetition -> dataCompetition.winner)
                      .findFirst()
                      .orElse("");
-             final int team1Goals = Result.invokeAPI("https://jsonmock.hackerrank.com/api/football_matches?competition=" + competition + "&year=" + year + "&team1=" + winner + "&page=%s", ResponseMatches.class)
+             final int team1Goals = Result.invokeAPI(BASE_URL + "/football_matches?competition=" + competition + "&year=" + year + "&team1=" + winner + "&page=%s", ResponseMatches.class)
                     .mapToInt(data -> data.team1goals)
                      .sum();
-             final int team2Goals = Result.invokeAPI("https://jsonmock.hackerrank.com/api/football_matches?competition=" + competition + "&year=" + year + "&team2=" + winner + "&page=%s", ResponseMatches.class)
+             final int team2Goals = Result.invokeAPI(BASE_URL + "/football_matches?competition=" + competition + "&year=" + year + "&team2=" + winner + "&page=%s", ResponseMatches.class)
                     .mapToInt(data -> data.team2goals)
                     .sum();
              return team1Goals + team2Goals;
         }
 
-        private static Gson GSON = new Gson();
+        private static final String BASE_URL = "https://jsonmock.hackerrank.com/api";
+
+        private static final Gson GSON = new Gson();
 
         abstract class Response<Data> {
             int total_pages;

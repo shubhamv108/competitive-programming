@@ -47,8 +47,8 @@ public class PartitionArrayWithNSubsetsWithEqualSum {
         public boolean canPartitionKSubsets(int[] A, int k) {
             int n = A.length;
             int sum = 0;
-            for (int i: A)
-                sum += i;
+            for (int a: A)
+                sum += a;
             if (sum % k != 0)
                 return false;
             Arrays.sort(A);

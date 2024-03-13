@@ -1,6 +1,7 @@
 package code.shubham.caching;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class LFUCacheTLE {
 
