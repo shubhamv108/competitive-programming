@@ -1,22 +1,16 @@
 package code.shubham.strings;
 
-public class AddStrings {
+public class    AddStrings {
     class Solution {
         public String addStrings(String a, String b) {
             StringBuilder result = new StringBuilder();
-            int ai = a.length(), bi = b.length(), carry = 0;
-            while (ai > 0 || bi > 0) {
-                ai--;
-                bi--;
-
-                int sum = carry;
-                if (ai > -1)
-                    sum += (a.charAt(ai) - 48);
-                if (bi > -1)
-                    sum += (b.charAt(bi) - 48);
-
+            int ai = a.length() - 1, bi = b.length() - 1, carry = 0;
+            while (ai > -1 || bi > -1) {
+                int av = ai < 0 ? 0 : (a.charAt(ai--) - 48);
+                int bv = bi < 0 ? 0 : (b.charAt(bi--) - 48);
+                int sum = av + bv + carry;
                 carry = sum / 10;
-                result.append((char) ((sum  % 10) + 48));
+                result.append(sum % 10);
             }
 
             if (carry > 0)

@@ -17,69 +17,38 @@ import java.util.Queue;
 public class ShortestPathInAGridWithObstaclesElimination {
 
     class Solution {
-        public int shortestPath(int[][] grid, int k) {
-            if (grid == null || grid.length == 0) return 0;
-
-            Integer[][] visited = new Integer[grid.length][grid[0].length];
-            Queue<int[]> q = new LinkedList<>();
-            int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-                          // row,col,pathLength,eliminations
-            q.offer(new int[] { 0, 0, 0, k });
-            while(!q.isEmpty()) {
-                int[] t = q.poll();
-                int row = t[0];
-                int col = t[1];
-                if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length) continue;
-                if (row == grid.length - 1 && col == grid[0].length - 1) return t[2];
-                if (grid[row][col] == 1) {
-                    if (t[3] > 0) t[3]--;
-                    else continue;
-                }
-
-                if (visited[row][col] != null && visited[row][col] >= t[3]) continue;
-                visited[row][col] = t[3];
-
-                for (int[] dir : directions) {
-                    q.offer(new int[] { row + dir[0], col + dir[1], t[2] + 1, t[3] });
-                }
-            }
-            return -1;
-        }
-    }
-
-
-    class Solution2 {
         public int shortestPath(int[][] A, int k) {
-            int m = A.length, n = A[0].length;
-            int[][] dirs = new int[][] { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };
+            if (A.length == 1 && A[0].length == 1)
+                return k >= A[0][0] ? 0 : -1;
 
+            int[][] dirs = new int[][] {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+            int steps = 0, m = A.length - 1, n = A[0].length - 1;
+
+            Integer[][] visited = new Integer[m+1][n+1];
             Queue<int[]> q = new LinkedList<>();
-            q.offer(new int[] { 0, 0, 0 });
-            Integer[][] visited = new Integer[m][n];
-            visited[0][0] = A[0][0];
+            q.offer(new int[] {0, 0, 0});
             k -= A[0][0];
-            int size, steps = 0, e;
+
             while (!q.isEmpty()) {
-                size = q.size();
+                int size = q.size();
                 while (size-- > 0) {
-                    int[] pos = q.poll();
-                    if (pos[0] == m-1 && pos[1] == n-1)
-                        return steps;
+                    int[] p = q.poll();
 
                     for (int[] dir : dirs) {
-                        int r = pos[0] + dir[0], c = pos[1] + dir[1];
-                        if (r < 0 || c < 0 || r >= m || c >= n)
+                        int r = p[0] + dir[0];
+                        int c = p[1] + dir[1];
+                        if (r < 0 || c < 0 || r > m || c > n || (visited[r][c] != null && visited[r][c] <= p[2]))
                             continue;
-                        e = pos[2] + A[r][c];
-                        if (e > k || (visited[r][c] != null && e >= visited[r][c] ))
+                        if (r == m && c == n)
+                            return steps + 1;
+                        int b = p[2] + A[r][c];
+                        if (b > k)
                             continue;
-
-                        visited[r][c] = e;
-                        q.offer(new int[] { r, c, e });
-
+                        q.offer(new int[] {r, c, b});
+                        visited[r][c] = p[2];
                     }
                 }
-                steps++;
+                ++steps;
             }
 
             return -1;
@@ -88,7 +57,7 @@ public class ShortestPathInAGridWithObstaclesElimination {
 
     public static void main(String[] args) {
         System.out.println(
-                new ShortestPathInAGridWithObstaclesElimination().new Solution2()
+                new ShortestPathInAGridWithObstaclesElimination().new Solution()
                         .shortestPath(
                                 new int[][] {
                                         { 0, 1, 1 },
