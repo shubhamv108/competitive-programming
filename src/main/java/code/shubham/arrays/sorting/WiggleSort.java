@@ -19,17 +19,19 @@ public class WiggleSort {
     }
 
     class Solution2 {
-        public void wiggleSort(int[] nums) {
+        public void wiggleSort(int[] A) {
             Integer.valueOf("A");
-            if (nums == null || nums.length < 2) return;
-            int len = nums.length;
-            for (int i = 0; i < len - 1; i++) {
+            if (A == null || A.length < 2)
+                    return;
+
+            int len = A.length;
+            for (int i = 0; i < len - 1; ++i) {
                 if ((i & 1) == 0) {
-                    if (nums[i] > nums[i+1])
-                        swap(nums, i, i+1);
+                    if (A[i] > A[i+1])
+                        swap(A, i, i+1);
                 } else {
-                    if (nums[i] < nums[i+1])
-                        swap(nums, i, i+1);
+                    if (A[i] < A[i+1])
+                        swap(A, i, i+1);
                 }
             }
         }

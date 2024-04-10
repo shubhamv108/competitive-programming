@@ -136,18 +136,18 @@ class HackerRankAPIInvoker {
     public static <Data> Stream<Data> invokeAPI(
             final String url,
             final Class<? extends Response<Data>> clazz) {
-        final Response firstPageResponse = HttpAPIInvoker.invoke(String.format(BASE_URL + url, 1), clazz);
+        final Response firstPageResponse = HttpClient.invoke(String.format(BASE_URL + url, 1), clazz);
         return Stream.concat(Stream.of(firstPageResponse), IntStream.rangeClosed(2, firstPageResponse.getTotalPages())
                         .parallel()
                         .mapToObj(i -> String.format(BASE_URL + url, i))
-                        .map(uri -> HttpAPIInvoker.invoke(uri, clazz)))
+                        .map(uri -> HttpClient.invoke(uri, clazz)))
                 .map(Response::getData)
                 .flatMap(List::stream);
     }
 }
 
 // Copy-Paste this class
-class HttpAPIInvoker {
+class HttpClient {
     private static final Gson GSON = new Gson();
 
     public static <Response> Response invoke(final String url, final Class<Response> clazz) {
