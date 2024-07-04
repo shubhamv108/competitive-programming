@@ -110,4 +110,23 @@ public class LongestCommonSubsequence {
         }
     }
 
+    class SolutionRecursiveDP {
+        public int longestCommonSubsequence(String a, String b) {
+            return lcs(a, b, 0, 0, new Integer[a.length()][b.length()]);
+        }
+
+        public int lcs(String a, String b, int ai, int bi, Integer[][] dp) {
+            if (ai >= a.length() || bi >= b.length())
+                return 0;
+
+            if (dp[ai][bi] != null)
+                return dp[ai][bi];
+
+            if (a.charAt(ai) == b.charAt(bi))
+                return dp[ai][bi] = 1 + lcs(a, b, ai + 1, bi + 1, dp);
+
+            return dp[ai][bi] = Math.max(lcs(a, b, ai, bi+1, dp), lcs(a, b, ai+1, bi, dp));
+        }
+    }
+
 }
