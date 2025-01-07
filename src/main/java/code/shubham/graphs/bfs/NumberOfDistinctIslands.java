@@ -45,4 +45,40 @@ public class NumberOfDistinctIslands {
         }
     }
 
+    public class Solution2 {
+        /**
+         * @param grid: the 2D grid
+         * @return: the number of distinct islands
+         */
+
+        int[][] dirs = new int[][] {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+
+        public int numberOfDistinctIslands(int[][] A) {
+            HashSet<String> result = new HashSet<>();
+
+            for (int r = 0; r < A.length; ++r)
+                for (int c  = 0; c < A[0].length; ++c)
+                    if (A[r][c] == 1) {
+                        StringBuilder island = new StringBuilder();
+                        visit(A, r, c, island);
+                        result.add(island.toString());
+                    }
+
+            return result.size();
+        }
+
+        void visit(int[][] A, int r, int c, StringBuilder s) {
+            if (r < 0 || c < 0 || r == A.length || c == A[0].length || A[r][c] != 1) {
+                s.append(0);
+                return;
+            }
+
+            A[r][c] = 0;
+            s.append(1);
+
+            for (int[] dir : dirs)
+                visit(A, r + dir[0], c + dir[1], s);
+        }
+    }
+
 }

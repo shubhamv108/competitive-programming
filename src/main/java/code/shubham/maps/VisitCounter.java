@@ -1,10 +1,13 @@
-package com.shubham.java;
+package code.shubham.maps;
 
-import javax.swing.text.html.Option;
-import java.util.*;
-import java.util.stream.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
-class VisitCounter {
+public class VisitCounter {
 
     static class UserStats {
         final Optional<Long> visitCount;
