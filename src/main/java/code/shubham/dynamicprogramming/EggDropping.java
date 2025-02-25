@@ -6,7 +6,7 @@ public class EggDropping {
      * Time: O(n^2 * k)
      * Space (n * k)
      */
-    class Solution {
+    class Solution1 {
         /**
          *
          * @param n eggs
@@ -36,7 +36,17 @@ public class EggDropping {
         }
     }
 
+    class Solution2 {
+        public int superEggDrop(int K, int N) {
+            int dp[] = new int[K + 1], m = 0;
+            for (m = 0; dp[K] < N; ++m)
+                for (int k = K; k > 0; --k)
+                    dp[k] += dp[k - 1] + 1;
+            return m;
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println(new EggDropping().new Solution().superEggDrop(7, 10000));
+        System.out.println(new EggDropping().new Solution2().superEggDrop(2, 3));
     }
 }

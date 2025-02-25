@@ -1,13 +1,14 @@
 package code.shubham.api;
 
-import java.io.*;
-import java.util.*;
-import java.util.stream.*;
+import com.google.gson.Gson;
 
-// Copy-Paste these 3 imports
-import com.google.gson.*;
-import java.net.*;
-import javax.net.ssl.*;
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class HackerrankRestAPIDriver {
     public static void main(String[] args) {
@@ -40,10 +41,10 @@ class Result {
         }
     }
 
-    class ResponseCompetition extends HackerRankAPIInvoker.Response<DataCompetition> {
+    class ResponseCompetition extends HackerRankAPIResponse<DataCompetition> {
     }
 
-    class ResponseMatches extends HackerRankAPIInvoker.Response<DataMatches> {
+    class ResponseMatches extends HackerRankAPIResponse<DataMatches> {
     }
 
     public static int getWinnerTotalGoals(String competition, int year) {
@@ -70,7 +71,7 @@ class Result2 {
         }
     }
 
-    class ResponseCityData extends HackerRankAPIInvoker.Response<CityData> {}
+    class ResponseCityData extends HackerRankAPIResponse<CityData> {}
 
     public static String getCapitalCity(String country) {
         return HackerRankAPIInvoker.invokeAPI("/countries?name=" + country, ResponseCityData.class)
@@ -100,7 +101,7 @@ class Result3 {
         String name;
     }
 
-    class ResponseData extends HackerRankAPIInvoker.Response<Data> {}
+    class ResponseData extends HackerRankAPIResponse<Data> {}
 
     public static int invoke(int doctorId, String diagnosisName) {
         return HackerRankAPIInvoker.invokeAPI("/medical_records?page=%s", ResponseData.class)
@@ -116,55 +117,50 @@ class Result3 {
 }
 
 // Copy-Paste this class
-class HackerRankAPIInvoker {
-    private static final String BASE_URL = "https://jsonmock.hackerrank.com/api";
+abstract class HackerRankAPIResponse<Data> {
+    private int total_pages;
 
-    public static abstract class Response<Data> {
-        private int total_pages;
+    private List<Data> data;
 
-        private List<Data> data;
-
-        public int getTotalPages() {
-            return total_pages;
-        }
-
-        public List<Data> getData() {
-            return data;
-        }
+    public int getTotalPages() {
+        return total_pages;
     }
 
-    public static <Data> Stream<Data> invokeAPI(
-            final String url,
-            final Class<? extends Response<Data>> clazz) {
-        final Response firstPageResponse = HttpClient.invoke(String.format(BASE_URL + url, 1), clazz);
-        return Stream.concat(Stream.of(firstPageResponse), IntStream.rangeClosed(2, firstPageResponse.getTotalPages())
-                        .parallel()
-                        .mapToObj(i -> String.format(BASE_URL + url, i))
-                        .map(uri -> HttpClient.invoke(uri, clazz)))
-                .map(Response::getData)
-                .flatMap(List::stream);
+    public List<Data> getData() {
+        return data;
     }
 }
 
 // Copy-Paste this class
-class HttpClient {
+class HackerRankAPIInvoker {
+
     private static final Gson GSON = new Gson();
 
-    public static <Response> Response invoke(final String url, final Class<Response> clazz) {
-        final String finalUrl = url.replace(" ", "%20");
-        final StringBuilder responseBuilder = new StringBuilder();
-        try {
-            final HttpsURLConnection connection = (HttpsURLConnection) new URL(finalUrl).openConnection();
-            connection.getResponseCode();
-            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-                String l;
-                while ((l = bufferedReader.readLine()) != null)
-                    responseBuilder.append(l);
-            }
-            connection.disconnect();
-        } catch (final Exception ex) {
-            ex.printStackTrace();
-        }
-        return GSON.fromJson(responseBuilder.toString(), clazz);
+    private static final String BASE_URL = "https://jsonmock.hackerrank.com/api";
+
+    public static <Data> Stream<Data> invokeAPI(
+            final String url,
+            final Class<? extends HackerRankAPIResponse<Data>> clazz) {
+        final String finalUrl = BASE_URL + url;
+        final HackerRankAPIResponse<Data> firstPageResponse = HttpClientDirector.invoke(String.format(finalUrl, 1), clazz);
+        return Stream.concat(Stream.of(firstPageResponse), IntStream.rangeClosed(2, firstPageResponse.getTotalPages())
+                        .parallel()
+                        .mapToObj(pageNumber -> String.format(finalUrl, pageNumber))
+                        .map(uri -> uri.replace(" ", "%20"))
+                        .map(uri -> {
+                            try {
+                                return java.net.http.HttpClient.newHttpClient()
+                                        .send(
+                                                HttpRequest.newBuilder(new URI(uri)).GET().build(),
+                                                BodyHandlers.ofString());
+                            } catch (Exception exception) {
+                                throw new RuntimeException(exception);
+                            }
+                        })
+                        .map(HttpResponse::body)
+                        .map(body -> GSON.fromJson(body, clazz)))
+                .map(HackerRankAPIResponse::getData)
+                .flatMap(List::stream);
     }
 }
+

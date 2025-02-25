@@ -30,7 +30,7 @@ public class GraphvalidTree {
 
             int find(int a) {
                 if (parent[a] != a)
-                    return parent[a] = find(parent[a]);
+                    parent[a] = find(parent[a]);
                 return parent[a];
             }
 
@@ -42,7 +42,6 @@ public class GraphvalidTree {
                     --count;
                 }
             }
-
         }
     }
 }

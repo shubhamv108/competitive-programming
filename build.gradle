@@ -12,7 +12,7 @@ group = 'code.shubham'
 version = '0.0.1'
 
 java {
-	sourceCompatibility = '21'
+	sourceCompatibility = '23'
 }
 
 configurations {
@@ -43,4 +43,15 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+task buildFatJar(type: Jar) {
+	manifest {
+		attributes 'Main-Class': 'code.shubham.Main'
+	}
+	archiveBaseName = 'competitive-programming'
+	archiveVersion = '1.0.0'
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
 }

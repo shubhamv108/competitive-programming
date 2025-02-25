@@ -1,6 +1,14 @@
 package code.shubham.linkedlist;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Stack;
 
 class   LinkedListFunctions {
     LLNode last = null;
@@ -304,15 +312,7 @@ class   LinkedListFunctions {
     }
 
     private static List<LLNode> createAndGetLinkedList (int... a) {
-        List<LLNode> l = new LinkedList<LLNode>() {
-            public void finalize() {
-                try {
-                    finalize();
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
-            }
-        };
+        List<LLNode> l = new LinkedList<>();
         return Arrays.stream(a).mapToObj(e -> new LLNode(e)).collect(() -> l, List::add, List::addAll);
     }
 

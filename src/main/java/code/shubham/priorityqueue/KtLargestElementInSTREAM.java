@@ -10,14 +10,14 @@ public class KtLargestElementInSTREAM {
             int k = sc.nextInt();
             int n = sc.nextInt();
             int[] arr = new int[k];
-            PriorityQueue minHeapofSizeK = new PriorityQueue(arr, 0, true);
+            PriorityQueue minHeapOfSizeK = new PriorityQueue(arr, 0, true);
             while(n-- > 0) {
                 int e = sc.nextInt();
-                if (minHeapofSizeK.size() >= k-1) {
-                    minHeapofSizeK.addForcefully(e);
-                    System.out.printf("%d ", minHeapofSizeK.peek());
+                if (minHeapOfSizeK.size() >= k-1) {
+                    minHeapOfSizeK.addForcefully(e);
+                    System.out.printf("%d ", minHeapOfSizeK.peek());
                 } else {
-                    minHeapofSizeK.add(e);
+                    minHeapOfSizeK.add(e);
                     System.out.printf("%d ", -1);
                 }
             }

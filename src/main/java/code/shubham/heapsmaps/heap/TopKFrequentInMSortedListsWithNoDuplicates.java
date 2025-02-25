@@ -29,8 +29,10 @@ public class TopKFrequentInMSortedListsWithNoDuplicates {
             int maxSizeArray = Arrays.stream(A).map(List::size).max((x, y) -> x - y).get();
             PriorityQueue<int[]> q = new PriorityQueue<>(m, (x, y) -> x[0] - y[0]);
             PriorityQueue<int[]> topK = new PriorityQueue<>(k, (x, y) -> x[0] - y[0]);
+
             for (int a = 0; a < A.length; a++)
                 q.offer(new int[] { A[a].get(0), a, 0 });
+
             int e, count, p[], a, nextIndex;
             while (!q.isEmpty()) {
                 e = q.peek()[0];
