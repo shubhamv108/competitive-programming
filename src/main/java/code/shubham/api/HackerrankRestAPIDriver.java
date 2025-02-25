@@ -3,6 +3,7 @@ package code.shubham.api;
 import com.google.gson.Gson;
 
 import java.net.URI;
+import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
@@ -149,10 +150,9 @@ class HackerRankAPIInvoker {
                         .map(uri -> uri.replace(" ", "%20"))
                         .map(uri -> {
                             try {
-                                return java.net.http.HttpClient.newHttpClient()
-                                        .send(
-                                                HttpRequest.newBuilder(new URI(uri)).GET().build(),
-                                                BodyHandlers.ofString());
+                                return HttpClient.newHttpClient().send(
+                                        HttpRequest.newBuilder(new URI(uri)).GET().build(),
+                                        BodyHandlers.ofString());
                             } catch (Exception exception) {
                                 throw new RuntimeException(exception);
                             }
