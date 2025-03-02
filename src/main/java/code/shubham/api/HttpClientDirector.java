@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
@@ -39,10 +40,12 @@ class HttpClientDirector {
 
     public static <Response> Response invokeSync(final String url, final Class<Response> clazz) {
         final String finalUrl = url.replace(" ", "%20");
-        try {
-            HttpResponse<String> response = java.net.http.HttpClient.newHttpClient()
-                    .send(HttpRequest.newBuilder(new URI(finalUrl)).GET().build(), BodyHandlers.ofString());
-            return GSON.fromJson(response.body(), clazz);
+        try (final HttpClient client = HttpClient.newHttpClient()) {
+            final HttpResponse<String> response = client.send(
+                    HttpRequest.newBuilder(new URI(finalUrl)).GET().build(),
+                    BodyHandlers.ofString());
+            final String body = response.body();
+            return GSON.fromJson(body, clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
@@ -54,10 +57,12 @@ class HttpClientDirector {
 
     public static <Response> CompletableFuture<Response> invokeAsync(final String url, final Class<Response> clazz) {
         final String finalUrl = url.replace(" ", "%20");
-        try {
-            return java.net.http.HttpClient.newHttpClient()
-                    .sendAsync(HttpRequest.newBuilder(new URI(finalUrl)).GET().build(), BodyHandlers.ofString())
-                    .thenApplyAsync(stringHttpResponse -> GSON.fromJson(stringHttpResponse.body(), clazz));
+        try (final HttpClient client = HttpClient.newHttpClient()) {
+            return client.sendAsync(
+                    HttpRequest.newBuilder(new URI(finalUrl)).GET().build(),
+                    BodyHandlers.ofString())
+                    .thenApplyAsync(HttpResponse::body)
+                    .thenApplyAsync(body -> GSON.fromJson(body, clazz));
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

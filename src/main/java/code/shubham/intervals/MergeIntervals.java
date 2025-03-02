@@ -1,6 +1,10 @@
-package code.shubham.arrays;
+package code.shubham.intervals;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+
+
 
 class Interval {
     public int start;
@@ -9,6 +13,9 @@ class Interval {
     Interval(int s, int e) { start = s; end = e; }
 }
 
+/**
+ * https://leetcode.com/problems/merge-intervals/description/
+ */
 public class MergeIntervals {
 
     public class Solution {
@@ -54,6 +61,38 @@ public class MergeIntervals {
         }
     }
 
+    class Solution3 {
+        public int[][] merge(int[][] A) {
+            int min = A[0][0], max = A[0][0];
+            for (int[] a : A) {
+                min = Math.min(min, a[0]);
+                max = Math.max(max, a[0]);
+            }
+
+            int[] range = new int[max - min + 1];
+            for (int[] a : A)
+                range[a[0] - min] = Math.max(range[a[0] - min], a[1] - min);
+
+            int start = 0, end = 0;
+            ArrayList<int[]> result = new ArrayList<>();
+            for (int i = 0; i < range.length; ++i) {
+                if (range[i] == 0)
+                    continue;
+
+                if (i <= end) {
+                    end = Math.max(range[i], end);
+                } else {
+                    result.add(new int[] { start + min, end + min});
+                    start = i;
+                    end = range[i];
+                }
+            }
+
+            result.add(new int[] {start + min, end + min});
+            return result.toArray(int[][]::new);
+        }
+    }
+
     public static void main(String[] args) {
         ArrayList<Interval> l = new ArrayList<>();
         l.add(new Interval(1, 1));
@@ -63,8 +102,12 @@ public class MergeIntervals {
         l.add(new Interval(5, 6));
         l.add(new Interval(6, 6));
         l.add(new Interval(5, 19));
-        new MergeIntervals().new Solution().merge(l).
-                forEach(e -> System.out.println(e.start + " " + e.end));
+        int[][] mergeintervals = new MergeIntervals().new Solution3().merge(new int[][] {
+            {8, 10},
+            {10, 12},
+            {14, 16}
+        });
+        Arrays.stream(mergeintervals).forEach(e -> System.out.println(e[0] + " " + e[1]));
     }
 
 }

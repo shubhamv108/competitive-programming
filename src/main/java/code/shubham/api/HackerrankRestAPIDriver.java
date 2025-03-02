@@ -149,8 +149,8 @@ class HackerRankAPIInvoker {
                         .mapToObj(pageNumber -> String.format(finalUrl, pageNumber))
                         .map(uri -> uri.replace(" ", "%20"))
                         .map(uri -> {
-                            try {
-                                return HttpClient.newHttpClient().send(
+                            try (HttpClient client = HttpClient.newHttpClient()) {
+                                return client.send(
                                         HttpRequest.newBuilder(new URI(uri)).GET().build(),
                                         BodyHandlers.ofString());
                             } catch (Exception exception) {
