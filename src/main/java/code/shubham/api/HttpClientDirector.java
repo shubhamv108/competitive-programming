@@ -21,7 +21,7 @@ class HttpClientDirector {
 
     public static <Response> Response invoke(final String url, final Class<Response> clazz) {
         final String finalUrl = url.replace(" ", "%20");
-
+        System.out.println(finalUrl);
         final StringBuilder responseBuilder = new StringBuilder();
         try {
             final HttpsURLConnection connection = (HttpsURLConnection) new URL(finalUrl).openConnection();
