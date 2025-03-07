@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -42,21 +41,21 @@ class Result {
         }
     }
 
-    class ResponseCompetition extends HackerRankAPIResponse<DataCompetition> {
+    class ResponseCompetition extends Response<DataCompetition> {
     }
 
-    class ResponseMatches extends HackerRankAPIResponse<DataMatches> {
+    class ResponseMatches extends Response<DataMatches> {
     }
 
     public static int getWinnerTotalGoals(String competition, int year) {
-        String winner = new HackerRankAPIInvoker().get("/football_competitions?name=" + competition + "&year=" + year + "&page=%s", ResponseCompetition.class)
+        String winner = new Invoker().get("/football_competitions?name=" + competition + "&year=" + year + "&page=%s", ResponseCompetition.class)
                 .map(DataCompetition::getWinner)
                 .findFirst()
                 .orElse("");
-        int team1Goals = new HackerRankAPIInvoker().get("/football_matches?competition=" + competition + "&year=" + year + "&team1=" + winner + "&page=%s", ResponseMatches.class)
+        int team1Goals = new Invoker().get("/football_matches?competition=" + competition + "&year=" + year + "&team1=" + winner + "&page=%s", ResponseMatches.class)
                 .mapToInt(DataMatches::getTeam1goals)
                 .sum();
-        int team2Goals = new HackerRankAPIInvoker().get("/football_matches?competition=" + competition + "&year=" + year + "&team2=" + winner + "&page=%s", ResponseMatches.class)
+        int team2Goals = new Invoker().get("/football_matches?competition=" + competition + "&year=" + year + "&team2=" + winner + "&page=%s", ResponseMatches.class)
                 .mapToInt(DataMatches::getTeam2goals)
                 .sum();
         return team1Goals + team2Goals;
@@ -72,10 +71,10 @@ class Result2 {
         }
     }
 
-    class ResponseCityData extends HackerRankAPIResponse<CityData> {}
+    class ResponseCityData extends Response<CityData> {}
 
     public static String getCapitalCity(String country) {
-        return new HackerRankAPIInvoker().get("/countries?name=" + country, ResponseCityData.class)
+        return new Invoker().get("/countries?name=" + country, ResponseCityData.class)
                 .findAny()
                 .map(CityData::getCapital)
                 .orElse("-1");
@@ -102,10 +101,10 @@ class Result3 {
         String name;
     }
 
-    class ResponseData extends HackerRankAPIResponse<Data> {}
+    class ResponseData extends Response<Data> {}
 
     public static int invoke(int doctorId, String diagnosisName) {
-        return new HackerRankAPIInvoker().get("/medical_records?page=%s", ResponseData.class)
+        return new Invoker().get("/medical_records?page=%s", ResponseData.class)
                 .filter(data -> data.doctor.id == doctorId && data.diagnosis.name.equals(diagnosisName))
                 .mapToInt(data -> data.vitals.pulse)
                 .average()
@@ -129,10 +128,10 @@ class Result4 {
         UserRating user_rating;
     }
 
-    class ResponseData extends HackerRankAPIResponse<Data> {}
+    class ResponseData extends Response<Data> {}
 
     public static String invoke(String city) {
-        return new HackerRankAPIInvoker().get("/food_outlets?city=" + city + "&page=%s", ResponseData.class)
+        return new Invoker().get("/food_outlets?city=" + city + "&page=%s", ResponseData.class)
                 .sorted((x, y) -> x.user_rating.average_rating == y.user_rating.average_rating ? x.estimated_cost - y.estimated_cost : (int) (y.user_rating.average_rating - x.user_rating.average_rating))
                 .findFirst()
                 .get()
@@ -140,38 +139,35 @@ class Result4 {
     }
 }
 
-// Copy-Paste this class
-class HackerRankAPIResponse<D> {
+
+class Response<D> {
     int total_pages;
     List<D> data;
 }
 
-class HackerRankAPIInvoker {
-
+class Invoker {
     static Gson GSON = new Gson();
-
-    String BASE_URL = "https://jsonmock.hackerrank.com/api";
+    String baseUrl = "https://jsonmock.hackerrank.com/api";
 
     public <D> Stream<D> get(
             String url,
-            Class<? extends HackerRankAPIResponse<D>> clazz) {
-        String finalUrl = BASE_URL + url;
-        HackerRankAPIResponse<D> firstPageResponse = invoke(String.format(finalUrl, 1), clazz);
-        return Stream.concat(Stream.of(firstPageResponse), IntStream.rangeClosed(2, firstPageResponse.total_pages)
+            Class<? extends Response<D>> clazz) {
+        var finalUrl = baseUrl + url;
+        var f = invoke(String.format(finalUrl, 1), clazz);
+        return Stream.concat(Stream.of(f), IntStream.rangeClosed(2, f.total_pages)
                         .parallel()
-                        .mapToObj(pageNumber -> String.format(finalUrl, pageNumber))
-                        .map(uri -> invoke(uri, clazz)))
+                        .mapToObj(page -> invoke(String.format(finalUrl, page), clazz)))
                 .map(r -> r.data)
                 .flatMap(List::stream);
     }
 
-    public static <R> R invoke(String url, Class<R> clazz) {
-        try (HttpClient client = HttpClient.newHttpClient()) {
-            HttpResponse<String> response = client.send(
-                    HttpRequest.newBuilder(new URI(url.replace(" ", "%20"))).GET().build(),
-                    BodyHandlers.ofString());
-            String body = response.body();
-            return GSON.fromJson(body, clazz);
+    public <R> R invoke(String url, Class<R> clazz) {
+        try {
+            return GSON.fromJson(
+                    HttpClient.newHttpClient().send(
+                        HttpRequest.newBuilder(new URI(url.replace(" ", "%20"))).GET().build(),
+                        BodyHandlers.ofString()).body(),
+                    clazz);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
