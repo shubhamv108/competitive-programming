@@ -1,11 +1,16 @@
 package code.shubham.priorityqueue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -80,12 +85,60 @@ public class TopKUserVisited3PathsOnAWebsite {
 
         public ArrayList<String[]> top(int k) {
             HashMap<String, Integer> m = new HashMap<>();
-return null;
-
+            return null;
         }
+    }
 
+    class Solution2 {
+        public List<String> mostVisitedPattern(String[] U, int[] T, String[] W) {
+            class Node implements Comparable<Node> {
+                int i;
+                Node (int i) { this.i = i; }
+                public int compareTo(Node o) {
+                    return T[i] - T[o.i];
+                }
+            }
 
+            HashMap<String, TreeSet<Node>> v = new HashMap<>();
+            for (int i = 0; i < U.length; ++i)
+                v.computeIfAbsent(U[i], e -> new TreeSet<>()).add(new Node(i));
 
+            Map<String, Integer> f = new HashMap<>();
+            for (TreeSet<Node> a : v.values()) {
+                LinkedList<Integer> w = new LinkedList<>();
+                Iterator<Node> itr = a.iterator();
+                for (int i = 0; i < 3; ++i)
+                    w.offer(itr.next().i);
+
+                f.merge(w.stream().map(i -> W[i] + "/").collect(StringBuilder::new, StringBuilder::append, StringBuilder::append).toString(), 1, Integer::sum);
+                while (itr.hasNext()) {
+                    w.poll();
+                    w.offer(itr.next().i);
+
+                    f.merge(w.stream().map(i -> W[i] + "/").collect(StringBuilder::new, StringBuilder::append, StringBuilder::append).toString(), 1, Integer::sum);
+                }
+            }
+
+            int maxF = 0;
+            String result = null;
+            for (Map.Entry<String, Integer> e : f.entrySet())
+                if (e.getValue() > maxF) {
+                    maxF = e.getValue();
+                    result = e.getKey();
+                } else if (e.getValue() == maxF && e.getKey().compareTo(result) < 0) {
+                    result = e.getKey();
+                }
+
+            return Arrays.stream(result.split("/")).filter(e -> e != "").toList();
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new TopKUserVisited3PathsOnAWebsite().new Solution2().mostVisitedPattern(
+            new String[] {"zkiikgv","zkiikgv","zkiikgv","zkiikgv"},
+            new int[] {436363475,710406388,386655081,797150921},
+            new String[] {"wnaaxbfhxp","mryxsjc","oz","wlarkzzqht"}
+        ));
     }
 
 }
