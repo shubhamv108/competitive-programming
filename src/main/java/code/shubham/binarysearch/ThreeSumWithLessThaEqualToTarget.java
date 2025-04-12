@@ -44,7 +44,7 @@ public class ThreeSumWithLessThaEqualToTarget {
     }
 
     public static void main(String[] args) {
-        System.out.println(new ThreeSumWithLessThaEqualToTarget().new Solution().solve(new int[] {1, 2, 3, 4, 5}, 9));
+        System.out.println(new ThreeSumWithLessThaEqualToTarget().new Solution().solve(new int[] {1, 2, 3, 4, 5, 6}, 9));
     }
 
 }

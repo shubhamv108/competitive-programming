@@ -129,4 +129,35 @@ public class LongestCommonSubsequence {
         }
     }
 
+    class Solution3 {
+        public static String lcs(String a, String b) {
+            int[][] dp = new int[a.length() + 1][b.length() + 1];
+
+            for (int ai = 1; ai <= a.length(); ++ai) {
+                for (int bi = 1; bi <= b.length(); ++bi) {
+                    if (a.charAt(ai - 1) == b.charAt(bi - 1))
+                        dp[ai][bi] = 1 + dp[ai - 1][bi - 1];
+                    else
+                        dp[ai][bi] = Math.max(dp[ai - 1][bi], dp[ai][bi - 1]);
+                }
+            }
+
+            StringBuilder lcs = new StringBuilder();
+            int ai = a.length(), bi = b.length();
+            while (ai > 0 && bi > 0) {
+                if (a.charAt(ai - 1) == b.charAt(bi - 1)) {
+                    lcs.append(a.charAt(ai - 1));
+                    --ai;
+                    --bi;
+                } else if (dp[ai - 1][bi] > dp[ai][bi - 1]) {
+                    --ai;
+                } else {
+                    --bi;
+                }
+            }
+
+            return lcs.reverse().toString();
+        }
+    }
+
 }
