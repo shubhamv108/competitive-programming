@@ -49,7 +49,7 @@ public class BinarySearchnBitManipulation {
                 high = mid - 1;
                 sum ^= 1;
             }
-            sum++;
+            ++sum;
         }
         System.out.println(sum);
     }

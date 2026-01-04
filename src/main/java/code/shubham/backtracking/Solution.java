@@ -1,6 +1,6 @@
 package code.shubham.backtracking;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Solution {
 
@@ -23,6 +23,7 @@ public class Solution {
 
     public static int countPathsFromOriginToEndWithSum(int a[][], int sum)
     {
+
         R = a.length;
         C = a[0].length;
         arr = a;

@@ -56,6 +56,48 @@ public class EncodeAndDecodeStrings {
         }
     }
 
+    public class Codec {
+
+        // Encodes a list of strings to a single string.
+        public String encode(List<String> A) {
+            StringBuilder result = new StringBuilder();
+            A.stream().forEach(a -> result.append(a).append("π"));
+            return result.toString();
+        }
+
+        // Decodes a single string to a list of strings.
+        public List<String> decode(String s) {
+            var a = s.split("π", -1);
+            return Arrays.asList(a).subList(0, a.length - 1);
+        }
+    }
+
+    public class Codec2 {
+
+        // Encodes a list of strings to a single string.
+        public String encode(List<String> A) {
+            StringBuilder result = new StringBuilder();
+            A.stream().forEach(a -> result
+                    .append(a.length())
+                    .append("/:")
+                    .append(a));
+            return result.toString();
+        }
+
+        // Decodes a single string to a list of strings.
+        public List<String> decode(String s) {
+            List<String> result = new ArrayList<>();
+            int i = 0;
+            while (i < s.length()) {
+                int idx = s.indexOf("/:", i);
+                int length = Integer.parseInt(s.substring(i, idx));
+                result.add(s.substring(idx + 2, idx + 2 + length));
+                i = idx + 2 + length;
+            }
+            return result;
+        }
+    }
+
     public static void main(String[] args) {
         List<String> input = Arrays.asList("");
         System.out.println(
