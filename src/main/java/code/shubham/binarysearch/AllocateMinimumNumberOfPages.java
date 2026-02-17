@@ -20,7 +20,7 @@ public class AllocateMinimumNumberOfPages {
             // System.out.println(sum + "   " + max);
             int l = max, r = sum, result = l;
             while (l <= r) {
-                int m = l + ((r - l) / 2);
+                int m = l + ((r - l) >> 1);
                 if (isPossible(A, B, m)) {
                     result = m;
                     r = m - 1;

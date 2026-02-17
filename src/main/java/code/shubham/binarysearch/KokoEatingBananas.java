@@ -7,7 +7,7 @@ public class KokoEatingBananas {
         public int minEatingSpeed(int[] A, int h) {
             int l = 0, r = IntStream.of(A).max().getAsInt(), m;
             while (l < r) {
-                m = l + ((r - l) >> 2);
+                m = l + ((r - l) >> 1);
 
                 int t = 0;
                 for (int a: A)

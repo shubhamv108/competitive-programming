@@ -2,20 +2,14 @@ package code.shubham.design.datastructure;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.TreeMap;
+import java.util.Set;
 
 public class AllOOneDataStructure {
-    class Solution1 {
+    class AllOne {
 
         class Node {
-            String k;
-            int v;
+            Set<String> keys = new HashSet<>();
             Node prev, next;
-
-            Node(String k, int v) {
-                this.k = k;
-                this.v = v;
-            }
 
             void remove() {
                 this.prev.next = next;
@@ -30,113 +24,78 @@ public class AllOOneDataStructure {
                 this.prev.next = this;
                 this.next.prev = this;
             }
+
+            void addKey(String key) {
+                keys.add(key);
+            }
         }
 
-        Node head = new Node(null, -1);
-        Node tail = new Node(null, -1);
-        HashMap<String, Node> m = new HashMap<>();
+        Node head = new Node();
+        Node tail = new Node();
+        HashMap<String, Integer> f = new HashMap<>();
+        HashMap<Integer, Node> m = new HashMap<>();
 
-        public Solution1() {
+        public AllOne() {
             head.next = tail;
             tail.prev = head;
         }
 
         public void inc(String key) {
-            Node n = m.get(key);
-            if (n == null) {
-                n = new Node(key, 1);
-                n.add(head, head.next);
-                return;
-            }
-            n.v++;
-            if (n.next == null)
-                return;
-            n.remove();
-            if (n.v > tail.prev.v)
-                n.add(tail.prev, tail);
-            else
-                n.add(tail.prev.prev, tail.prev);
+            int c = f.getOrDefault(key, 0);
+            Node cur = m.getOrDefault(c, head);
+            f.put(key, ++c);
+            Node next = m.get(c);
+            if (next == null)
+                next = add(c, cur, cur.next);
+            next.addKey(key);
+            removeKeyFromNode(cur, key, c-1);
         }
 
         public void dec(String key) {
-            Node n = m.get(key);
-            if (n == null)
-                return;
-
-            if (n.v == 1) {
-                n.remove();
-                m.remove(key);
+            Integer c = f.get(key);
+            Node cur = m.get(c);
+            if (c == 1) {
+                f.remove(key);
+                removeKeyFromNode(cur, key, c);
                 return;
             }
+            f.put(key, --c);
+            Node prev = m.get(c);
+            if (prev == null)
+                prev = add(c, cur.prev, cur);
+            prev.addKey(key);
+            removeKeyFromNode(cur, key, c+1);
+        }
 
-            n.v--;
-            if (n.prev == head)
+        Node add(int f, Node prev, Node next) {
+            Node node = new Node();
+            node.add(prev, next);
+            m.put(f, node);
+            return node;
+        }
+
+        void removeKeyFromNode(Node node, String key, int f) {
+            if (node == head || node == tail)
                 return;
-            n.remove();
-            if (n.v < head.next.v)
-                n.add(head, head.next);
-            else
-                n.add(head.next, head.next.next);
-        }
-
-        public String getMaxKey() {
-            if (m.isEmpty())
-                return "";
-            return tail.prev.k;
-        }
-
-        public String getMinKey() {
-            if (m.isEmpty())
-                return "";
-            return head.next.k;
-        }
-    }
-
-    class Solution2 {
-        HashMap<String, Integer> count = new HashMap<>();
-        TreeMap<Integer, HashSet<String>> set = new TreeMap<>();
-
-        public void inc(String key) {
-            inc(key, count.getOrDefault(key, 0), 1);
-        }
-
-        public void dec(String key) {
-            inc(key, count.get(key), -1);
-        }
-
-        private void inc(String key, int c, int by) {
-            if (c > 0) {
-                HashSet<String> contents = set.get(c);
-                if (contents.size() == 1)
-                    set.remove(c);
-                else
-                    contents.remove(key);
-            }
-            c += by;
-            if (c == 0) {
-                count.remove(key);
-            } else {
-                count.put(key, c);
-                set.computeIfAbsent(c, k -> new HashSet<>()).add(key);
+            node.keys.remove(key);
+            if (node.keys.isEmpty()) {
+                node.remove();
+                m.remove(f);
             }
         }
 
         public String getMaxKey() {
-            if (set.isEmpty())
-                return "";
-            return set.lastEntry().getValue().stream().findFirst().get();
+            return tail.prev.keys.stream().findFirst().orElse("");
         }
 
         public String getMinKey() {
-            if (set.isEmpty())
-                return "";
-            return set.firstEntry().getValue().stream().findFirst().get();
+            return head.next.keys.stream().findFirst().orElse("");
         }
     }
 
     public static void main(String[] args) {
         AllOOneDataStructure allOOneDataStructure = new AllOOneDataStructure();
-        Solution2 allOne = allOOneDataStructure.new Solution2();
+        AllOne allOne = allOOneDataStructure.new AllOne();
         allOne.inc("a");
         allOne.inc("b");
         allOne.inc("b");
@@ -145,7 +104,7 @@ public class AllOOneDataStructure {
         allOne.inc("c");
         allOne.dec("b");
         allOne.dec("b");
-        System.out.println(allOne.getMinKey ());
+        System.out.println(allOne.getMinKey());
         allOne.dec("a");
         System.out.println(allOne.getMaxKey());
         System.out.println(allOne.getMinKey());

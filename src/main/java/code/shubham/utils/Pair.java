@@ -4,7 +4,7 @@ public class Pair<Key extends Object, Value extends  Object> {
     public final Key k;
     public final Value v;
 
-    public Pair(Key k, Value v) {
+    public Pair (Key k, Value v) {
         this.k = k;
         this.v = v;
     }
@@ -14,6 +14,14 @@ public class Pair<Key extends Object, Value extends  Object> {
     }
 
     public Value v() {
+        return v;
+    }
+
+    public Key getKey() {
+        return k;
+    }
+
+    public Value getValue() {
         return v;
     }
 }
