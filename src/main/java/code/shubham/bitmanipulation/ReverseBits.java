@@ -4,7 +4,7 @@ public class ReverseBits {
     class Solution {
         public int reverseBits(int n) {
             int l = 31, r = 0;
-            while (l < r) {
+            while (l > r) {
                 int lth = 1 << l, rth = 1 << r;
                 boolean lset = (n & lth) != 0;
                 boolean rset = (n & rth) != 0;
