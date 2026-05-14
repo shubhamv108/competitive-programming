@@ -1,39 +1,43 @@
 package code.shubham.stacksqueues;
 
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class LargestAreaInHistogram {
 
-    public int largestRectangleArea(int[] heights) {
-        int maxArea = 0;
+    public int largestRectangleArea(int[] A) {
+        int n = A.length, result = 0;
 
-        Stack<Integer> s = new Stack<>();
-
-        for (int i = 0; i < heights.length; i++) {
-            while (!s.empty() && heights[i] < heights[s.peek()]) {
+        Deque<Integer> s = new LinkedList<>();
+        for (int i = 0; i < n; ++i) {
+            while (!s.isEmpty() && A[i] < A[s.peek()]) {
                 int top = s.pop();
-                if (s.isEmpty()) {
-                    maxArea = Math.max(maxArea, heights[top] * i);
-                } else {
-                    maxArea = Math.max(maxArea, heights[top] * (i - s.peek() - 1));
-                }
+                if (s.isEmpty())
+                    result = Math.max(result, A[top] * i);
+                else
+                    result = Math.max(result, A[top] * (i - s.peek() - 1));
             }
             s.push(i);
         }
 
-        if (!s.isEmpty()) {
-            int i = heights.length;
-            while (!s.empty()) {
-                int top = s.pop();
-                if (s.isEmpty()) {
-                    maxArea = Math.max(maxArea, heights[top] * i);
-                } else {
-                    maxArea = Math.max(maxArea, heights[top] * (i - s.peek() - 1));
-                }
-            }
+        if (s.isEmpty())
+            return result;
+
+        int i = n;
+        while (!s.isEmpty()) {
+            int top = s.pop();
+            if (s.isEmpty())
+                result = Math.max(result, A[top] * i);
+            else
+                result = Math.max(result, A[top] * (i - s.peek() - 1));
         }
 
-        return maxArea;
+
+        return result;
+    }
+
+    void main() {
+        System.out.println(new LargestAreaInHistogram().largestRectangleArea(new int[] { 2, 1, 5, 6, 2, 3 }));
     }
 
 }

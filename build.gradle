@@ -12,7 +12,7 @@ group = 'code.shubham'
 version = '0.0.1'
 
 java {
-	sourceCompatibility = '23'
+	sourceCompatibility = '25'
 }
 
 configurations {
@@ -31,13 +31,13 @@ dependencies {
 		'io.github.java-diff-utils:java-diff-utils:4.12',
 	)
 	testImplementation (
-		'junit:junit:4.13.1',
-		'org.junit.jupiter:junit-jupiter-api:5.9.0',
-		'org.junit.jupiter:junit-jupiter-engine:5.9.0',
-		'org.junit.vintage:junit-vintage-engine:5.9.0',
-		'org.junit.platform:junit-platform-runner:1.9.0',
-		'org.mockito:mockito-core:4.8.0',
-		'org.mockito:mockito-junit-jupiter:4.8.0',
+		'junit:junit:4.13.2',
+		'org.junit.jupiter:junit-jupiter-api:5.11.4',
+		'org.junit.jupiter:junit-jupiter-engine:5.11.4',
+		'org.junit.vintage:junit-vintage-engine:5.11.4',
+		'org.junit.platform:junit-platform-runner:1.11.4',
+		'org.mockito:mockito-core:5.14.2',
+		'org.mockito:mockito-junit-jupiter:5.14.2',
 	)
 }
 

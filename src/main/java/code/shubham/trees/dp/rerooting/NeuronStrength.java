@@ -51,7 +51,7 @@ public class NeuronStrength {
         }
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println(new NeuronStrength().getNeuronStrengths(
                 4,
                 new int[] { 1, 1, 1 },
