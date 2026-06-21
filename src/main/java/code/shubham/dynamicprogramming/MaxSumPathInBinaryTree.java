@@ -1,6 +1,6 @@
 package code.shubham.dynamicprogramming;
 
-import code.shubham.trees.TreeNode;
+import code.shubham.graphs.trees.TreeNode;
 
 public class MaxSumPathInBinaryTree {
     public class Solution {

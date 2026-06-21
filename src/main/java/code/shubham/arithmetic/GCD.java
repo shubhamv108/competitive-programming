@@ -12,7 +12,8 @@ public class GCD {
             int gcd = A[0];
             for (int n : A) {
                 gcd = gcd(gcd, n);
-                if (1 == gcd) return 1;
+                if (1 == gcd)
+                    return 1;
             }
             return gcd;
         }
