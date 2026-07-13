@@ -49,7 +49,7 @@ public class NonZeroMatrices {
     // 2*n*m
     int[][] sumOFRectangleFromOrigin(int[][] matrix) {
         int[][] sums = new int[matrix.length][matrix[0].length];
-        for (int i = 0; i < sums.length; i++) {
+        for (int i = 0; i < sums.length; ++i) {
             int sum = 0;
             for (int j = 0; j < sums[0].length; j++) {
                 sums[i][j] = sum += matrix[i][j];

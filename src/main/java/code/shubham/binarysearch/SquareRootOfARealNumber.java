@@ -51,7 +51,7 @@ public class SquareRootOfARealNumber {
         }
 
         double increment = 0.1;
-        for (int i = 0; i < precision; i++) {
+        for (int i = 0; i < precision; ++i) {
             while (ans * ans <= n) {
                 ans += increment;
             }

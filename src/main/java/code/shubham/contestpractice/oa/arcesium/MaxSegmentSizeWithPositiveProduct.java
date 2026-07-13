@@ -6,7 +6,7 @@ public class MaxSegmentSizeWithPositiveProduct {
             int n = A.length;
             int negStart = -1, negCount = 0, zeroStart = -1, result = 0;
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 if (A[i] < 0) {
                     negCount++;
                     if (negStart == -1)

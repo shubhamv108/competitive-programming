@@ -11,7 +11,7 @@ public class MaximumNumberOfOccurrencesOfASubstring {
             int len = A.length;
             HashMap<String, Integer> freq = new HashMap<>();
             HashSet<Character> unique = new HashSet<>();
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; ++i) {
                 StringBuilder s = new StringBuilder();
                 unique.clear();
                 for (int j = i; j < len; j++) {

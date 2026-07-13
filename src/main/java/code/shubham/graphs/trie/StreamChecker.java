@@ -1,4 +1,4 @@
-package code.shubham.trie;
+package code.shubham.graphs.trie;
 
 import java.util.LinkedList;
 import java.util.Queue;

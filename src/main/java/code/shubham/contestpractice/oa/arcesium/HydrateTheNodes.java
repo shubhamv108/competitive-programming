@@ -22,7 +22,7 @@ public class HydrateTheNodes {
             int ifNoWater = (count.get(familyHead)[0] * underHydratedPenalty) +
                             (count.get(familyHead)[1] * overHydratedPenalty);
             int result = ifNoWater;
-//            for (int i = 0; i < P.length; i++) {
+//            for (int i = 0; i < P.length; ++i) {
 //                int currMax = 0;
 //                currMax -= (count.get(i)[0] * underHydratedPenalty);
 //                result = Math.min(result, (ifNoWater + currMax));

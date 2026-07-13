@@ -9,7 +9,7 @@ public class MinimumNumberOfDaysToDisconnectIslands {
             int islandCount = countIslands(grid);
             if (islandCount == 0 || islandCount > 1) return 0;
 
-            for (int i = 0; i < grid.length; i++) {
+            for (int i = 0; i < grid.length; ++i) {
                 for (int j = 0; j < grid[0].length; j++) {
                     if (grid[i][j] == curColor) {
                         grid[i][j] = 0;
@@ -25,7 +25,7 @@ public class MinimumNumberOfDaysToDisconnectIslands {
 
         int countIslands(int[][] grid) {
             int count = 0;
-            for (int i = 0; i < grid.length; i++) {
+            for (int i = 0; i < grid.length; ++i) {
                 for (int j = 0; j < grid[0].length; j++) {
                     if (grid[i][j] == curColor) {
                         colorIslands(grid, i, j);

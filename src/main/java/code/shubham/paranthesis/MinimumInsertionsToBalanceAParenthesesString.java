@@ -6,7 +6,7 @@ public class MinimumInsertionsToBalanceAParenthesesString {
             char[] chrs = s.toCharArray();
             int stackSize = 0, i, openInsertions = 0, closeInsertions = 0;
             boolean isLastUtilized = false;
-            for (i = 0; i < chrs.length - 1; i++) {
+            for (i = 0; i < chrs.length - 1; ++i) {
                 if (chrs[i] == '(') {
                     stackSize++;
                     closeInsertions += 2;

@@ -14,13 +14,13 @@ public class PermutationsOfAString {
 
     void permutations(char[] s, int idx) {
         if(idx == s.length - 1) {
-            for(int i=0;i<s.length; i++) {
+            for(int i=0;i<s.length; ++i) {
                 System.out.printf("%c", s[i]);
             }
             System.out.printf("\n");
             return;
         }
-        for(int i=idx; i < s.length; i++) {
+        for(int i=idx; i < s.length; ++i) {
             swap(s, idx, i);
             permutations(s, idx+1);
             swap(s, idx, i);

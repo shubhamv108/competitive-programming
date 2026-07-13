@@ -44,7 +44,7 @@ class Solver {
 
     int solve() {
         calculateCountOfPaths();
-        for(int i=0;i<n;i++) {
+        for(int i=0;i<n;++i) {
             for(int j=0;j<n;j++) System.out.print(s[i][j] + " ");
             System.out.println();
         }
@@ -180,7 +180,7 @@ public class RatInTheMaze {
         try {
             n = reader.nextInt();
             a = new int[n][n];
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 for (int j = 0; j < n; j++)
                     a[i][j] = reader.nextInt();
             }

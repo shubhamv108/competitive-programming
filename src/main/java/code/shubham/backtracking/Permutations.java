@@ -19,7 +19,7 @@ public class Permutations {
                 result.add(Arrays.stream(nums).boxed().collect(Collectors.toList()));
                 return;
             }
-            for (int i = index; i < nums.length; i++) {
+            for (int i = index; i < nums.length; ++i) {
                 swap(nums, i, index);
                 permutations(nums, index + 1);
                 swap(nums, i, index);

@@ -24,7 +24,7 @@ public class SquareOfZeroesOnBorder {
 
     Pair[][] computeSums() {
         Pair[][] sums = new Pair[matrix.length][matrix[0].length];
-        for (int i = 0; i < matrix.length; i++) {
+        for (int i = 0; i < matrix.length; ++i) {
             int sum = 0;
             for (int j = 0; j < matrix[i].length; j++) {
                 sums[i][j] = new Pair(sum += matrix[i][j]);
@@ -33,7 +33,7 @@ public class SquareOfZeroesOnBorder {
 
         for (int j = 0; j < matrix[0].length; j++) {
             int sum = 0;
-            for (int i = 0; i < matrix.length; i++) {
+            for (int i = 0; i < matrix.length; ++i) {
                 sums[i][j].setY(sum += matrix[i][j]);
             }
         }

@@ -16,7 +16,7 @@ class SearchSuggestionSystem {
         char[] searched = searchWord.toCharArray();
         root.insert(-1, searched, 0, searchWord.length() - 1, true);
         Node first = root.suffixes.get(searched[0] - 'a');
-        for (int i = 0; i < products.length; i++) {
+        for (int i = 0; i < products.length; ++i) {
             root.insert(i, products[i].toCharArray(), 0, products[i].length() - 1, false);
         }
 

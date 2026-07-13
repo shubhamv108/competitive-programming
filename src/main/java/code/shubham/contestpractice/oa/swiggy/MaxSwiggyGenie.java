@@ -9,11 +9,11 @@ public class MaxSwiggyGenie {
         long solve(int[] pickup, int[] drop, int[] tip) {
             int len = pickup.length;
             int[][] schedule = new int[len][3];
-            for (int i = 0; i < len; i++) schedule[i] = new int[] { pickup[i], drop[i], tip[i] };
+            for (int i = 0; i < len; ++i) schedule[i] = new int[] { pickup[i], drop[i], tip[i] };
             Arrays.sort(schedule, (a, b) -> a[1] - b[1]);
             long[] dp = new long[len];
             dp[0] = schedule[0][1] -  schedule[0][0] +  schedule[0][2];
-            for (int i = 1; i < len; i++) {
+            for (int i = 1; i < len; ++i) {
                 long curTip = schedule[i][1] -  schedule[i][0] +  schedule[i][2];
                 int index = -1;
                 for (int j = i-1; j > -1; j--) {
@@ -35,14 +35,14 @@ public class MaxSwiggyGenie {
         long solve(int[] pickup, int[] drop, int[] tip) {
             int len = pickup.length;
             int[][] schedule = new int[len][3];
-            for (int i = 0; i < len; i++) schedule[i] = new int[] { pickup[i], drop[i], tip[i] };
+            for (int i = 0; i < len; ++i) schedule[i] = new int[] { pickup[i], drop[i], tip[i] };
             Arrays.sort(schedule, (a, b) -> a[1] - b[1]);
             
             TreeMap<Integer, Long> cache = new TreeMap<>();
             cache.put(schedule[0][1], (long) schedule[0][1] -  schedule[0][0] +  schedule[0][2]);
             long prev = schedule[0][1] -  schedule[0][0] +  schedule[0][2];
 
-            for (int i = 1; i < schedule.length; i++) {
+            for (int i = 1; i < schedule.length; ++i) {
                 long curEarn = schedule[i][1] -  schedule[i][0] +  schedule[i][2];
                 Map.Entry<Integer, Long> lower = cache.floorEntry(schedule[i][0]);
                 if (lower != null)

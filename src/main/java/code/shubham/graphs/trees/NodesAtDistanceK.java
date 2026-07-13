@@ -92,7 +92,7 @@ public class NodesAtDistanceK {
             while (!q.isEmpty()) {
                 level++;
                 size = q.size();
-                for (int i = 0; i < size; i++) {
+                for (int i = 0; i < size; ++i) {
                     resolveNode(q.peek().left, q, result, distance, level, s);
                     resolveNode(q.peek().right, q, result, distance, level, s);
                     resolveNode(parents.get(q.peek()), q, result, distance, level, s);

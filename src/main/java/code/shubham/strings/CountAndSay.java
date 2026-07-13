@@ -14,7 +14,7 @@ public class CountAndSay {
                     result.append('1');
                     result.append(c[0]);
                 } else {
-                    for (int i = 1; i <= c.length; i++) {
+                    for (int i = 1; i <= c.length; ++i) {
                         if (i < c.length && c[i] == c[i-1]) {
                             count++;
                         } else {

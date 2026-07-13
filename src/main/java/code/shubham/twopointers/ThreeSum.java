@@ -11,7 +11,7 @@ public class ThreeSum {
         int result = 0;
         Collections.sort(A);
 
-        for(int i = 0; i < A.size(); i++){
+        for(int i = 0; i < A.size(); ++i){
             int j = i+1;
             int k = A.size()-1;
             while(j < k){

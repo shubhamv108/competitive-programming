@@ -15,7 +15,7 @@ public class Subsets {
         void f(int[] A, int index, ArrayList<Integer> l, ArrayList<List<Integer>> result) {
             result.add(new ArrayList<>(l));
 
-            for (int i = index; i < A.length; i++) {
+            for (int i = index; i < A.length; ++i) {
                 l.add(A[i]);
                 f(A, i + 1, l, result);
                 l.remove(l.size() - 1);

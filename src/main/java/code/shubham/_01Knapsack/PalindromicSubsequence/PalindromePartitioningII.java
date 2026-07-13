@@ -9,7 +9,7 @@ public class PalindromePartitioningII {
             for (int i = 0; i < n; ++i)
                 dp[i] = i;
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 solve(s, i, i,     n, dp);
                 solve(s, i, i + 1, n, dp);
             }

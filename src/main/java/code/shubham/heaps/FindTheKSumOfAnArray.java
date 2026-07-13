@@ -12,7 +12,7 @@ public class FindTheKSumOfAnArray {
             ArrayList<Long> sums = new ArrayList<>();
             sums.add(0L);
             minHeap.offer(0L);
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; ++i) {
                 int size = sums.size();
 
                 while (size-- > 0) {

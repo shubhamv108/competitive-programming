@@ -19,7 +19,7 @@ public class CampusBikesII {
                 this.minDist = Math.min(curDist, this.minDist);
                 return;
             }
-            for (int i = 0; i < bikes.length; i++) {
+            for (int i = 0; i < bikes.length; ++i) {
                 if (!assignedBikes.get(i)) {
                     assignedBikes.set(i);
                     recurse(workers, workerIdx + 1, bikes, assignedBikes,
@@ -47,7 +47,7 @@ public class CampusBikesII {
                 return dp[state] = curDist;
             if (dp[state] != -1) return dp[state];
             int minDist = Integer.MAX_VALUE;
-            for (int i = 0; i < bikes.length; i++) {
+            for (int i = 0; i < bikes.length; ++i) {
                 if ((state & (1 << i)) == 0) {
                     int dist = recurse(workers, workerIdx + 1, bikes,
                             state | (1 << i),

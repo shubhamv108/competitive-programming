@@ -5,9 +5,9 @@ public class MaxSumNonOverlappingSubArrays {
     static void calculatePresumArray(int presum[],
                                      int arr[],
                                      int n, int k) {
-        for (int i = 0; i < k; i++)
+        for (int i = 0; i < k; ++i)
             presum[0] += arr[i];
-        for (int i = 1; i <= n - k; i++)
+        for (int i = 1; i <= n - k; ++i)
             presum[i] += presum[i - 1] + arr[i + k - 1] -
                     arr[i - 1];
     }

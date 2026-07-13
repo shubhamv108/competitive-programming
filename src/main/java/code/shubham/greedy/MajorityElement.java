@@ -12,7 +12,7 @@ public class MajorityElement {
         int majorityCount = ((Double) Math.floor(A.size()/2)).intValue();
         if (A.size() == 0) return majorityElement;
         Map<Integer, Integer> elementsCount = new HashMap<>();
-        for (int i = 0; i < A.size(); i++) {
+        for (int i = 0; i < A.size(); ++i) {
             Integer c = elementsCount.get(A.get(i));
             if (c == null)
                 c = 0;

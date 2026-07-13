@@ -11,7 +11,7 @@ public class FourSum {
             HashSet<ArrayList<Integer>> s = new HashSet<>();
             A.sort(null);
             int sum;
-            for (int i = 0; i < A.size() ; i++) {
+            for (int i = 0; i < A.size() ; ++i) {
                for (int j = i + 1; j < A.size(); j++) {
                    int k = j + 1;
                    int l = A.size() - 1;

@@ -5,7 +5,7 @@ public class PrintNDigitBinaryStringsWithKBitsSet {
     static void printNBitNumbersWithKBitsSetHelper(int n, int k, char[] p, int pi, int c) {
         if(pi == n) {
             if(c == k) {
-                for (int i = 0; i < n; i++) System.out.printf("%c", p[i]);
+                for (int i = 0; i < n; ++i) System.out.printf("%c", p[i]);
                 System.out.printf("\n");
             }
             return;

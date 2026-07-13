@@ -20,7 +20,7 @@ public class ArrayList<T> {
     void increaseCapacity() {
         capacity *= 2;
         Object[] arrCopy = new Object[capacity];
-        for (int i = 0; i < capacity; i++)
+        for (int i = 0; i < capacity; ++i)
             arrCopy[i] = arr[i];
         arr = arrCopy;
     }

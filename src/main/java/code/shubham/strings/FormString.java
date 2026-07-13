@@ -17,7 +17,7 @@ public class FormString {
             if (strings.contains(s)) return dp[idx] = true;
             if (dp[idx] != null) return dp[idx];
             String pre = "";
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 pre += s.charAt(i);
                 if (strings.contains(pre)) {
                     strings.remove(pre);

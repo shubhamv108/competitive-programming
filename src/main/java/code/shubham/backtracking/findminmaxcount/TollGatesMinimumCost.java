@@ -7,7 +7,7 @@ public class TollGatesMinimumCost {
             return cost + a[r][c];
         int minPathCost = Integer.MAX_VALUE;
         int pathCost;
-        for (int i = -1; i <= 1; i++) {
+        for (int i = -1; i <= 1; ++i) {
             int ri = r + i;
             if(ri >= 0 && ri <= R) {
                 pathCost = minCostofTollTravelHelper(a, R, C, r + i, c + 1, cost + a[r][c]);

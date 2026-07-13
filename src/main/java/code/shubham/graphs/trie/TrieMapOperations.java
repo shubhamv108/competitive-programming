@@ -1,4 +1,4 @@
-package code.shubham.trie;
+package code.shubham.graphs.trie;
 
 import java.util.Scanner;
 
@@ -48,7 +48,7 @@ public class TrieMapOperations
             if(root.next[a] == null) return false;
             root = root.next[a];
         }
-        for(int i=0;i<26;i++) {
+        for(int i=0;i<26;++i) {
             if(root.next[i] != null) return true;
         }
         return false;
@@ -56,7 +56,7 @@ public class TrieMapOperations
 
     void REMOVE(TrieNode root, String key)
     {
-        for(int i =0;i<key.length();i++)
+        for(int i =0;i<key.length();++i)
         {
             int idx = Character.toLowerCase(key.charAt(i)) - 'a';
             if(root.next[idx]==null)
@@ -74,7 +74,7 @@ class Test
     public static void main(String[] args)
     {
         int tests = sc.nextInt();
-        for(int ti=1;ti<=tests;ti++)
+        for(int ti=1;ti<=tests; ++ti)
         {
             TrieNode root = new TrieNode();
             int opsCount = sc.nextInt();

@@ -28,7 +28,7 @@ public class NumberOfDistinctIslandsII {
             }
             Set<String> set = new HashSet<>();
             List<Point> list = new ArrayList<>();
-            for (int i = 0; i < grid.length; i++) {
+            for (int i = 0; i < grid.length; ++i) {
                 for (int j = 0; j < grid[0].length; j++) {
                     if (grid[i][j] == 1)
                         bfs(grid, i, j, list);
@@ -48,7 +48,7 @@ public class NumberOfDistinctIslandsII {
             grid[row][col] = 2;
             while (!queue.isEmpty()) {
                 Point p = queue.poll();
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 4; ++i) {
                     int r = p.x + dir[i], c = p.y + dir[i+1];
                     if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] != 1)
                         continue;
@@ -62,7 +62,7 @@ public class NumberOfDistinctIslandsII {
         private String norm(List<Point> list) {
             List<Point>[] combinations = new List[8];
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; ++i) {
                 combinations[i] = new ArrayList<>();
                 combinations[i+4] = new ArrayList<>();
                 for (Point p : list) {
@@ -76,7 +76,7 @@ public class NumberOfDistinctIslandsII {
 
 
             String[] s = new String[8];
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 8; ++i) {
                 StringBuilder sb = new StringBuilder();
                 int x0 = combinations[i].get(0).x, y0 = combinations[i].get(0).y;
                 for (Point p : combinations[i]) {

@@ -44,7 +44,7 @@ public class Anagrams {
 
         public int getHash(String s) {
             int count = 0;
-            for(int i = 0 ; i < s.length() ; i++){
+            for(int i = 0 ; i < s.length() ; ++i){
                 int chh = (s.charAt(i) - 'a' + 1);
                 count += (chh * (17+chh) * (23+chh) * (29+chh) * (41+chh));
             }

@@ -11,7 +11,7 @@ public class LongestLengthOfShortestSubArray {
                     break;
 
             int result = r;
-            for (i = 0; i < len - 1 && i < r; i++) {
+            for (i = 0; i < len - 1 && i < r; ++i) {
                 if (r == len || A[i] <= A[r])
                     result = Math.min(result, r - i - 1);
                 else

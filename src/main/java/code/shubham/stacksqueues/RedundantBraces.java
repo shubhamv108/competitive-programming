@@ -8,7 +8,7 @@ public class RedundantBraces {
             char c;
             int count;
             Stack<Character> s = new Stack();
-            for (int i = 0; i < A.length(); i++) {
+            for (int i = 0; i < A.length(); ++i) {
                 if (A.charAt(i) == ')') {
                     c = s.pop();
                     if (c == '(') return 1;

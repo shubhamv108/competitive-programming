@@ -24,7 +24,7 @@ public class PrettyPrint {
         ArrayList<ArrayList<Integer>> a = new ArrayList();
         int k = A;
         A = (2*A)-1;
-        for (int i=0;i<A;i++) {
+        for (int i=0;i<A;++i) {
             ArrayList<Integer> aa = new ArrayList<>();
             for (int j=0;j<A;j++) {
                 aa.add(0);
@@ -37,9 +37,9 @@ public class PrettyPrint {
         int c = 0;
 
         while (c <= C && r <= R) {
-            for (int i=c;i<=C;i++)     a.get(r).set(i, k);
+            for (int i=c;i<=C;++i)     a.get(r).set(i, k);
             r++;
-            for (int i=r;i<=R;i++)     a.get(i).set(C, k);
+            for (int i=r;i<=R;++i)     a.get(i).set(C, k);
             C--;
             if (r<=R) {
                 for (int i=C;i>=c;i--) a.get(R).set(i, k);

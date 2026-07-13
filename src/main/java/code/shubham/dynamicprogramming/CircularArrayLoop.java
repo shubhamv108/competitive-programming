@@ -8,7 +8,7 @@ public class CircularArrayLoop {
             int len = A.length, sign;
             Boolean[][] dp = new Boolean[2][len];
             HashSet<Integer> visited = new HashSet<>();
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; ++i) {
                 sign = sign(A[i]);
                 if (dp[sign][i] = visit(A, i, sign, dp, visited))
                     return true;

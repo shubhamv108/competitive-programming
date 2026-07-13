@@ -20,7 +20,7 @@ public class KClosestPointsToOrigin {
             PriorityQueue<Pair> q = new PriorityQueue<>((a, b) -> b.dist - a.dist > 0 ? 1 : -1);
 
             int i = 0;
-            for (; i < k; i++)
+            for (; i < k; ++i)
                 q.offer(new Pair(A[i], dist(A[i])));
 
             for (; i < A.length; ++i) {

@@ -18,7 +18,7 @@ public class  LargestSumContigousSubarray {
         long sum        = arr[0];
         long largestSum = arr[0];
         int curStart = 0, curEnd = 0, resultStart = 0, resultEnd = 0;
-        for (int i = 1; i < arr.length; i++) {
+        for (int i = 1; i < arr.length; ++i) {
             if (arr[i] > sum + arr[i]) {
                 sum = 0;
                 curStart = curEnd = i;
@@ -38,7 +38,7 @@ public class  LargestSumContigousSubarray {
                 resultStart++;
 
         long[] result = new long[resultEnd - resultStart + 1];
-        for (int i = 0, idx = resultStart; idx<= resultEnd; idx++, i++)
+        for (int i = 0, idx = resultStart; idx<= resultEnd; idx++, ++i)
             result[i] = arr[idx];
         return result;
     }

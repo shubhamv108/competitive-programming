@@ -13,7 +13,7 @@ public class BitTogether {
             char defaultChar = '1';
             int defaultCharCount = 0;
             int totalZeroes = 0;
-            for (int i = 0; i < l; i++) {
+            for (int i = 0; i < l; ++i) {
                 if (s.charAt(i) == '1')
                     defaultCharCount++;
                 if (s.charAt(i) == '0')
@@ -26,7 +26,7 @@ public class BitTogether {
             }
 
             int defaultCharStartingCount = 0;
-            for (int i = 0; i < defaultCharCount ; i++)
+            for (int i = 0; i < defaultCharCount ; ++i)
                 if (s.charAt(i) == defaultChar)
                     defaultCharStartingCount++;
 

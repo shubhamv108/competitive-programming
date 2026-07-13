@@ -4,7 +4,7 @@ public class JumpGameI {
     class Solution3 {
         public boolean canJump(int[] A) {
             int cur = 0;
-            for (int i = 0; i <= cur; i++) {
+            for (int i = 0; i <= cur; ++i) {
                 cur = Math.max(cur, i + A[i]);
                 if (cur >= A.length - 1)
                     return true;

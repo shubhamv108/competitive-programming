@@ -11,7 +11,7 @@ public class MaxProductSubarray {
             int maxVal     = A.get(0);
             int maxProduct = A.get(0);
             int temp;
-            for (int i = 1; i < A.size(); i++) {
+            for (int i = 1; i < A.size(); ++i) {
                 if (A.get(i) < 0) {
                     temp = maxVal;
                     maxVal = minVal;

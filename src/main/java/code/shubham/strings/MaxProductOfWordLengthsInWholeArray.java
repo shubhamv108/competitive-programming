@@ -5,7 +5,7 @@ public class MaxProductOfWordLengthsInWholeArray {
         if (words == null || words.length == 0) return 0;
 
         int[] wordCharacterSetBits = new int[words.length];
-        for (int i = 0; i < words.length; i++) {
+        for (int i = 0; i < words.length; ++i) {
             for (char c : words[i].toCharArray()) {
                 wordCharacterSetBits[i] |= 1 << (c - 'a');
             }
@@ -13,7 +13,7 @@ public class MaxProductOfWordLengthsInWholeArray {
         int l1 = 0, l2 = 0;
         int shareCommonLetters = 0;
         boolean flag;
-        for (int i = 0; i < words.length; i++) {
+        for (int i = 0; i < words.length; ++i) {
             if ((shareCommonLetters & (1 << (i))) == 1) {
                 continue;
             }

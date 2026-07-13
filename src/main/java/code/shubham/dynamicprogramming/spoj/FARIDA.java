@@ -11,7 +11,7 @@ public class FARIDA {
         while(t-- > 0) {
             int N = Integer.parseInt(br.readLine());
             a = new long[N];
-            for(int i=0; i<N; i++) {
+            for(int i=0; i<N; ++i) {
 
             }
         }

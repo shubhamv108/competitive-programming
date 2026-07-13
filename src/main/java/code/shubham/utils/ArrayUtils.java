@@ -26,7 +26,7 @@ class Array {
     public Object[] leftRotate (Object[] a) {
         Object temp;
         temp = a[0];
-        for (int i = 0; i < n - 2; i++) a[i] = a[i + 1];
+        for (int i = 0; i < n - 2; ++i) a[i] = a[i + 1];
         a[n-1] = temp;
         return a;
     }
@@ -116,7 +116,7 @@ public class ArrayUtils {
         int n = a.length;
         Object temp;
         temp = a[0];
-        for (int i = 0; i < n - 2; i++) a[i] = a[i + 1];
+        for (int i = 0; i < n - 2; ++i) a[i] = a[i + 1];
         a[n-1] = temp;
         return a;
     }
@@ -143,7 +143,7 @@ public class ArrayUtils {
             return cost + a[r][c];
         int minPathCost = Integer.MAX_VALUE;
         int pathCost;
-        for (int i = -1; i <= 1; i++) {
+        for (int i = -1; i <= 1; ++i) {
             int ri = r + i;
             if(ri >= 0 && ri <= R) {
                 pathCost = minCostofTollTravelHelper(a, R, C, r + i, c + 1, cost + a[r][c]);
@@ -175,7 +175,7 @@ public class ArrayUtils {
         }
         Map<Integer, List<Pair>> sums = new HashMap<>();
         int l = a.length;
-        for (int i=0;i<l;i++) {
+        for (int i=0;i<l;++i) {
             for (int j=i+1;j<l;j++) {
                 int sum = a[i]+a[j];
                 if (sums.containsKey(s-sum)) {
@@ -195,7 +195,7 @@ public class ArrayUtils {
     public static int maxSubArray(final List<Integer> A) {
         int sum = A.get(0);
         int largest = A.get(0);
-        for (int i = 1; i < A.size(); i++) {
+        for (int i = 1; i < A.size(); ++i) {
             sum = Math.max(A.get(i), A.get(i) + sum);
             largest = Math.max(sum, largest);
         }
@@ -224,7 +224,7 @@ public class ArrayUtils {
     }
 
     private static int getRepeated (final List<Integer> a, Set<Integer> s, int l, int r) {
-        for (int i=l; i<=r; i++) {
+        for (int i=l; i<=r; ++i) {
             if (s.contains(a.get(i))) {
                 return a.get(i);
             }
@@ -288,7 +288,7 @@ public class ArrayUtils {
 
     public static int segregateAllNegativeToLeftAnGetCountOfNegative (int arr[]) {
         int j = 0, i, temp;
-        for(i = 0; i < arr.length; i++) {
+        for(i = 0; i < arr.length; ++i) {
             if (arr[i] <= 0) {
                 temp = arr[i];
                 arr[i] = arr[j];
@@ -301,7 +301,7 @@ public class ArrayUtils {
 
     public static int pushNegativeToRight (ArrayList<Integer> A) {
         int j = A.size() - 1, t;
-        for (int i = 0; i < A.size() && i <= j; i++) {
+        for (int i = 0; i < A.size() && i <= j; ++i) {
             if (A.get(i) < 0) {
                 t = A.get(j);
                 A.set(j, A.get(i));
@@ -315,7 +315,7 @@ public class ArrayUtils {
 
     public static int firstMissingPositive(ArrayList<Integer> A) {
         int val, nextVal;
-        for (int i = 0; i < A.size(); i++) {
+        for (int i = 0; i < A.size(); ++i) {
             if (A.get(i) <= 0 || A.get(i) > A.size()) continue;
             val = A.get(i);
             while (A.get(val - 1) != val) {
@@ -325,7 +325,7 @@ public class ArrayUtils {
                 if (val <= 0 || val > A.size()) break;
             }
         }
-        for (int i = 0; i < A.size(); i++) if (A.get(i) != i+1) return i + 1;
+        for (int i = 0; i < A.size(); ++i) if (A.get(i) != i+1) return i + 1;
         return A.size() + 1;
     }
 
@@ -411,7 +411,7 @@ public class ArrayUtils {
 //    }
 
     private static void merge(int[] arr, int[] arri, int l, int m, int r) {
-        for (int i = l; i <= r; i++) arri[i] = arr[i];
+        for (int i = l; i <= r; ++i) arri[i] = arr[i];
         int li = l;
         int ri = m + 1;
         int cur = l;
@@ -422,7 +422,7 @@ public class ArrayUtils {
             cur++;
         }
         int rem = m - li;
-        for (int i = 0; i <= rem; i++) arr[cur + i] = arri[li + i];
+        for (int i = 0; i <= rem; ++i) arr[cur + i] = arri[li + i];
     }
 
     private static void mergeSort(int[] arr, int[] arri, int l, int r) {
@@ -465,7 +465,7 @@ public class ArrayUtils {
 
     public static ArrayList<ArrayList<Integer>> generateNSquareMatrixSpitrally(int N) {
         ArrayList<ArrayList<Integer>> l = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; ++i) {
             ArrayList<Integer> ll = new ArrayList<>();
             for (int j=0; j<N; j++) ll.add(0);
             l.add(ll);
@@ -478,7 +478,7 @@ public class ArrayUtils {
         while (r <= R && c <= C) {
             for (int i=c; i <= C; i++ )      l.get(r).set(i, k++);
             r++;
-            for (int i=r; i<=R; i++)         l.get(i).set(C, k++);
+            for (int i=r; i<=R; ++i)         l.get(i).set(C, k++);
             C--;
             if (r <= R) {
                 for (int i = C; i >= c; i--) l.get(R).set(i, k++);
@@ -495,7 +495,7 @@ public class ArrayUtils {
     public static ArrayList<Integer> repeatedNumber2 (final List<Integer> A) {
         int val, nextVal;
         ArrayList<Integer> result = new ArrayList<>();
-        for (int i=0; i<A.size();i++) {
+        for (int i=0; i<A.size();++i) {
             val = A.get(i);
             while(A.get(val - 1) != val) {
                 nextVal = A.get(val - 1);
@@ -507,7 +507,7 @@ public class ArrayUtils {
                 }
             }
         }
-        for (int i=0;i<A.size(); i++) {
+        for (int i=0;i<A.size(); ++i) {
             if (A.get(i) != i + 1) {
                 result.add(i+1);
             }
@@ -598,7 +598,7 @@ public class ArrayUtils {
 
     public static ArrayList<ArrayList<Integer>> getArrayListFrom2D(int[][] a) {
         ArrayList<ArrayList<Integer>> A = new ArrayList<>();
-        for (int i = 0; i < a.length; i++) {
+        for (int i = 0; i < a.length; ++i) {
             ArrayList<Integer> B = new ArrayList<>();
             for (int j = 0; j< a[i].length; j++) B.add(a[i][j]);
             A.add(B);
@@ -618,7 +618,7 @@ public class ArrayUtils {
 
     public ArrayList<Integer> nextGreater(ArrayList<Integer> A) {
         Stack<Integer> s = new Stack<>();
-        for (int i = 0; i < A.size(); i++) {
+        for (int i = 0; i < A.size(); ++i) {
             while (!s.isEmpty() && A.get(s.peek()) < A.get(i)) A.set(s.pop(), A.get(i));
             s.push(i);
         }
@@ -635,7 +635,7 @@ public class ArrayUtils {
 
     private static void permute (ArrayList<Integer> A, int idx) {
         if (idx == A.size() - 1) AA.add(deepCopy(A));
-        for (int i = idx; i < A.size(); i++) {
+        for (int i = idx; i < A.size(); ++i) {
             if (shouldSwap(A, i, idx)) {
                 swap(A, i, idx);
                 permute(A, idx + 1);
@@ -645,7 +645,7 @@ public class ArrayUtils {
     }
 
     private static boolean shouldSwap (ArrayList<Integer> A, int idx, int c) {
-        for (int i = idx + 1; i < A.size(); i++) if (A.get(i) == A.get(c)) return false;
+        for (int i = idx + 1; i < A.size(); ++i) if (A.get(i) == A.get(c)) return false;
         return true;
 
     }
@@ -673,7 +673,7 @@ public class ArrayUtils {
                 A.stream().collect(Collectors.toMap(e->e, e->-1, (u,v)->u));
         int count;
         int largestCount = 0;
-        for (int i = 0 ; i < A.size(); i++) {
+        for (int i = 0 ; i < A.size(); ++i) {
             count = getCount(m, A.get(i));
             if (count > largestCount) largestCount = count;
         }
@@ -719,7 +719,7 @@ public class ArrayUtils {
 
     public static Map<Integer, List<Long>> getSubarraySums (int[] arr) {
         Map<Integer, List<Long>> m = new HashMap<>();
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length; ++i) {
             m.put(i, new ArrayList<>());
             for (int j = i; j < arr.length; j++) {
                 if (i == j) m.get(i).add((long) arr[j]);
@@ -731,7 +731,7 @@ public class ArrayUtils {
 
     public int[] getIntegerArrayFrom (String[] line) {
         int[] arr = new int[line.length];
-        for (int i = 0; i < line.length; i++) arr[i] = Integer.valueOf(line[i]);
+        for (int i = 0; i < line.length; ++i) arr[i] = Integer.valueOf(line[i]);
         return arr;
     }
 

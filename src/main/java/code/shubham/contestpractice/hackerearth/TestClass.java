@@ -9,7 +9,7 @@ public class TestClass {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter wr = new PrintWriter(System.out);
         int T = Integer.parseInt(br.readLine().trim());
-        for(int t_i=0; t_i<T; t_i++)
+        for(int t_i=0; t_i<T; ++t_i)
         {
             String S = br.readLine();
             int Q = Integer.parseInt(br.readLine().trim());
@@ -67,7 +67,7 @@ public class TestClass {
         int curX = 0;
         int curY = 0;
         reachablePoints.add(new Point(curX, curY));
-        for (int i = 0; i < l; i++) {
+        for (int i = 0; i < l; ++i) {
             curX = 0;
             curY = 0;
             for (int j = i; j < l; j++) {
@@ -97,7 +97,7 @@ public class TestClass {
 
         int total = 0;
 
-        for (int i=0; i<Q; i++) {
+        for (int i=0; i<Q; ++i) {
             if (reachablePoints.contains(new Point(x[i], y[i]))) {
                 total++;
             }

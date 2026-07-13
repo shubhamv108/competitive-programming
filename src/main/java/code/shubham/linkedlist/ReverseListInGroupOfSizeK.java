@@ -60,7 +60,7 @@ public class ReverseListInGroupOfSizeK {
         if (n.length == 0) return null;
         ListNode h = new ListNode(n[0]);
         ListNode l = h;
-        for (int i = 1; i < n.length; i++) {
+        for (int i = 1; i < n.length; ++i) {
             l.next = new ListNode(n[i]);
             l = l.next;
         }

@@ -15,7 +15,7 @@ public class Anagrams {
             anagrams.add(new String(s));
             return;
         }
-        for (int i = index; i < s.length; i++) {
+        for (int i = index; i < s.length; ++i) {
             swap(s, i, index);
             populateAnagrams(s, index+1, anagrams);
             swap(s, i, index);

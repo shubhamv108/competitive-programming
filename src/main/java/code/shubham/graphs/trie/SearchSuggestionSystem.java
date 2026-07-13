@@ -1,4 +1,4 @@
-package code.shubham.trie;
+package code.shubham.graphs.trie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class SearchSuggestionSystem {
 
             ArrayList<String> cached = next[nextIndex].cached;
             boolean isInserted = false;
-            for (int i = 0; i < cached.size(); i++) {
+            for (int i = 0; i < cached.size(); ++i) {
                 if (W.compareTo(cached.get(i)) < 0) {
                     if (cached.size() == 3)
                         cached.remove(2);

@@ -13,7 +13,7 @@ public class TwoSum {
         public ArrayList<Integer> twoSum(final List<Integer> A, int B) {
             ArrayList<Integer> result = new ArrayList<>();
             Map<Integer, Integer> m = new HashMap<>();
-            for (int i = 0; i < A.size(); i++) {
+            for (int i = 0; i < A.size(); ++i) {
                 if (m.containsKey(B - A.get(i))) {
                     result.add(m.get(B - A.get(i)) + 1);
                     result.add(i + 1);
@@ -30,7 +30,7 @@ public class TwoSum {
     class Solution2 {
         public int[] twoSum(int[] num, int target) {
             ArrayList[] rem = new ArrayList[target];
-            for (int i = 0 ; i < num.length; i++) {
+            for (int i = 0 ; i < num.length; ++i) {
                 if (num[i] <= target) {
                     int r = target == 0 ? target : num[i] % target;
                     ArrayList<Integer> n = rem[r];

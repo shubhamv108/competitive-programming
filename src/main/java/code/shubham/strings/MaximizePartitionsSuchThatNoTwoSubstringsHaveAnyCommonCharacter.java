@@ -22,7 +22,7 @@ public class MaximizePartitionsSuchThatNoTwoSubstringsHaveAnyCommonCharacter {
             IntStream.range(0, 26).forEach(i -> characterIndexes.add(new int[] {-1, -1}));
 
             // Add first and last position for each character in the characterIndexes list
-            for (int i = 0; i < l; i++) {
+            for (int i = 0; i < l; ++i) {
                 int idx = c[i] - 'a';
                 int[] interval = characterIndexes.get(idx);
                 if (interval[0] == -1) {
@@ -37,7 +37,7 @@ public class MaximizePartitionsSuchThatNoTwoSubstringsHaveAnyCommonCharacter {
             Collections.sort(intervals, (a, b) -> a[0] - b[0]);
             // Merge Intervals
             int prevNonNullIdx = 0;
-            for (int i = 1; i < intervals.size(); i++) {
+            for (int i = 1; i < intervals.size(); ++i) {
                 int[] prevInterval = intervals.get(prevNonNullIdx);
                 int[] interval = intervals.get(i);
                 if (prevInterval[1] >= interval[0]) {
@@ -75,7 +75,7 @@ public class MaximizePartitionsSuchThatNoTwoSubstringsHaveAnyCommonCharacter {
                 lastIndex[s.charAt(i) - 'a'] = i;
             int curStart = 0, curEnd = 0;
             List<Integer> result = new ArrayList();
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 curEnd = Math.max(curEnd, lastIndex[s.charAt(i) - 'a']);
                 if (i == curEnd) {
                     result.add(i - curStart + 1);

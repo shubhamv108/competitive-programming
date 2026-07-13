@@ -22,7 +22,7 @@ class TreeNodeFunctions {
             int n = q.size();
             q.add(r.left);
             q.add(r.right);
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 TreeNode rr = q.poll();
                 q.add(rr.left);
                 q.add(rr.right);

@@ -15,12 +15,12 @@ public class LongestSubsequenceIncreasingThenDecreasing {
             int[] lis = new int[A.size()];
             int[] lid = new int[A.size()];
 
-            for (int i = 0; i < A.size(); i++) {
+            for (int i = 0; i < A.size(); ++i) {
                 lis[i] = 1;
                 lid[i] = 1;
             }
 
-            for (int i = 1; i < A.size(); i++)
+            for (int i = 1; i < A.size(); ++i)
                 for (int j = 0; j < i; j++)
                     if (A.get(i) > A.get(j) && lis[i] < lis[j] + 1)
                         lis[i] = lis[j] + 1;
@@ -31,7 +31,7 @@ public class LongestSubsequenceIncreasingThenDecreasing {
                         lid[i] = lid[j] + 1;
 
             int longestSubsequence = 1;
-            for (int i = 0; i < A.size(); i++)
+            for (int i = 0; i < A.size(); ++i)
                 longestSubsequence = Math.max (longestSubsequence, lis[i] + lid[i] - 1);
 
             return longestSubsequence;

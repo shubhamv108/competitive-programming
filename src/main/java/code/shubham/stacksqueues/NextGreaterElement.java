@@ -19,7 +19,7 @@ public class NextGreaterElement {
             s.push(nums2[i]);
         }
 
-        for (int i = 0; i < nums1.length; i++) {
+        for (int i = 0; i < nums1.length; ++i) {
             nums1[i] = m.getOrDefault(nums1[i], -1);
         }
         return nums1;

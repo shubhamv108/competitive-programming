@@ -14,7 +14,7 @@ public class CelebrityProblem {
 
             int candidate = c;
 
-            for (int i = 0; i < A.length - 1; i++) {
+            for (int i = 0; i < A.length - 1; ++i) {
                 if (i != candidate && (A[i][candidate] == 0 || A[candidate][i] == 1))
                     return -1;
             }

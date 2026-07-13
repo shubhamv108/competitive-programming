@@ -1,4 +1,4 @@
-package code.shubham.trie;
+package code.shubham.graphs.trie;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,10 +14,10 @@ public class PalindromePairs {
 
             int i = 0, len = words.length;
             Node trie = new Node();
-            for (; i < len; i++)
+            for (; i < len; ++i)
                 trie.addWord(wordCharArrays.get(i), i);
 
-            for (i = 0; i < len; i++) {
+            for (i = 0; i < len; ++i) {
                 ArrayList<Integer> indexes = (ArrayList<Integer>) trie.hasWordReverse(wordCharArrays.get(i));
                 if (indexes == null)
                     continue;

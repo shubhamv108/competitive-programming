@@ -11,7 +11,7 @@ public class MaxTrips {
         int n = Integer.valueOf(br.readLine());
         if (n <= 0) return;
         float[] arr = new float[100];
-        for (int i=0;i<n;i++) arr[i] = Float.valueOf(br.readLine());
+        for (int i=0;i<n;++i) arr[i] = Float.valueOf(br.readLine());
         System.out.println(efficientJanitor(arr));
     }
 

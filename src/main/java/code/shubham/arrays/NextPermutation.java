@@ -11,7 +11,7 @@ public class NextPermutation {
             int k = -1;
             int l = 0;
 
-            for(int i = 0; i < n-1; i++){
+            for(int i = 0; i < n-1; ++i){
                 if(A.get(i) < A.get(i+1))
                     k = i;
             }
@@ -21,7 +21,7 @@ public class NextPermutation {
                 return;
             }
 
-            for(int i = k+1; i < n; i++){
+            for(int i = k+1; i < n; ++i){
                 if(A.get(i) > A.get(k)){
                     l = i;
                 }
@@ -39,7 +39,7 @@ public class NextPermutation {
                 last--;
             }
 
-            for(int i = 0; i < A.size(); i++)
+            for(int i = 0; i < A.size(); ++i)
                 System.out.print(A.get(i) + " ");
         }
     }

@@ -7,7 +7,7 @@ public class MaximumPerformanceOfATeam {
     class Solution {
         public int maxPerformance(int n, int[] speed, int[] efficiency, int k) {
             int[][] A = new int[n][2];
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; ++i)
                 A[i] = new int[] { speed[i], efficiency[i] };
             Arrays.sort(A, (x, y) -> y[1] - x[1]);
 

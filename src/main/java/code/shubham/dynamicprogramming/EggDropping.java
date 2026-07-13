@@ -17,7 +17,7 @@ public class EggDropping {
             int F[][] = new int[n+1][k+1];
             int i, j, x;
 
-            for (i = 1; i <= n; i++) {
+            for (i = 1; i <= n; ++i) {
                 F[i][1] = 1;
                 F[i][0] = 0;
             }
@@ -25,7 +25,7 @@ public class EggDropping {
             for (j = 1; j <= k; j++)
                 F[1][j] = j;
 
-            for (i = 2; i <= n; i++) {
+            for (i = 2; i <= n; ++i) {
                 for (j = 2; j <= k; j++) {
                     F[i][j] = Integer.MAX_VALUE;
                     for (x = 1; x <= j; x++)

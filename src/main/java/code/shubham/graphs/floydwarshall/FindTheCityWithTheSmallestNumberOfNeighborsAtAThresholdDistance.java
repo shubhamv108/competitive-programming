@@ -7,7 +7,7 @@ public class FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance {
             for (int[] e: edges)
                 distance[e[0]][e[1]] = distance[e[1]][e[0]] = e[2];
 
-            for (int  i = 0; i < n; i++) {
+            for (int  i = 0; i < n; ++i) {
                 for (int j = 0; j < n; j++) {
                     if (i == j)
                         distance[i][i] = 0;
@@ -17,14 +17,14 @@ public class FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance {
             }
 
             for (int k = 0; k < n; k++)
-                for (int i = 0; i < n; i++)
+                for (int i = 0; i < n; ++i)
                     for (int j = 0; j < n; j++)
                         distance[i][j] = Math.min(
                                 distance[i][j],
                                 distance[i][k] + distance[k][j]);
 
             int min = n, result = 0;
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 int count = 0;
                 for (int j = 0; j < n; j++)
                     if (distance[i][j] <= distanceThreshold)

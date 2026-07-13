@@ -7,7 +7,7 @@ public class ThreadAwaitStop {
         public void run() {
             int i = 0;
             while (spin)
-                System.out.println("Spinning"+i++);
+                System.out.println("Spinning" + ++i);
         }
 
         public void stopSpin() {

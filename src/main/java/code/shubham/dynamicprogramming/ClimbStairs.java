@@ -25,7 +25,7 @@ public class ClimbStairs {
             int[] cache = new int[a];
             cache[0] = 1;
             cache[1] = 2;
-            for(int i = 2 ; i < a ; i++) cache[i] = cache[i - 1] + cache[i - 2];
+            for(int i = 2 ; i < a ; ++i) cache[i] = cache[i - 1] + cache[i - 2];
             Arrays.stream(cache).forEach(e -> System.out.print(e + " "));
             return cache[a-1];
         }
@@ -36,7 +36,7 @@ public class ClimbStairs {
             if (A < 0) return 0;
             if (A < 3) return A;
             int a = 1, b = 2;
-            for (int i = 2; i < A; i++) {
+            for (int i = 2; i < A; ++i) {
                 b = b + a;
                 a = b - a;
             }

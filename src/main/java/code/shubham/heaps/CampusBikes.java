@@ -13,7 +13,7 @@ public class CampusBikes {
             PriorityQueue<int[]> q = new PriorityQueue<>(cmp);
             int workerCount = workers.length;
             int bikeCount = bikes.length;
-            for (int i = 0; i < workerCount; i++)
+            for (int i = 0; i < workerCount; ++i)
                 for (int j = 0; j < bikeCount; j++) {
                     int dist = dist(workers[i], bikes[j]);
                     q.offer(new int[] { dist, i, j } );
@@ -52,15 +52,15 @@ public class CampusBikes {
             int n = workers.length;
             int m = bikes.length;
             ArrayList<int[]>[] dist = new ArrayList[20001];
-            for (int i = 0; i < 2001; i++) dist[i] = new ArrayList<int[]>();
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < 2001; ++i) dist[i] = new ArrayList<int[]>();
+            for (int i = 0; i < n; ++i)
                 for (int j = 0; j < m; j++)
                     dist[dist(workers[i], bikes[j])].add(new int[] { i, j });
 
             int[] result = new int[n];
             BitSet assignedWorkers = new BitSet();
             BitSet assignedBikes = new BitSet();
-            for (int i = 0; i < 2001; i++) {
+            for (int i = 0; i < 2001; ++i) {
                 for (int[] mapping : dist[i]) {
                     if (!assignedWorkers.get(mapping[0]) && !assignedBikes.get(mapping[1])) {
                         result[mapping[0]] = mapping[1];

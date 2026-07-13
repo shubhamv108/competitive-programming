@@ -20,13 +20,13 @@ public class WeightedRandomPicker {
 
             // Build prefix sum
             prefixSum[0] = weights[0];
-            for (int i = 1; i < weights.length; i++) {
+            for (int i = 1; i < weights.length; ++i) {
                 prefixSum[i] = prefixSum[i - 1] + weights[i];
             }
 
             // Normalize (optional, in case weights don't sum to 1)
             double total = prefixSum[prefixSum.length - 1];
-            for (int i = 0; i < prefixSum.length; i++) {
+            for (int i = 0; i < prefixSum.length; ++i) {
                 prefixSum[i] /= total;
             }
         }
@@ -131,7 +131,7 @@ public class WeightedRandomPicker {
         count.put("hello", 0);
         count.put("world", 0);
 
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 100000; ++i) {
             String result = solution.pick();
             count.put(result, count.get(result) + 1);
         }

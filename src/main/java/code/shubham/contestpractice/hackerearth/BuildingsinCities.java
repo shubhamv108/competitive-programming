@@ -11,7 +11,7 @@ public class BuildingsinCities {
             int N = sc.nextInt();
             long arr[] = new long[N];
             new Thread();
-            for(int i=0; i<N; i++)
+            for(int i=0; i<N; ++i)
                 arr[i] = sc.nextLong();
             long out = solve(arr, N);
             System.out.println(out);
@@ -19,7 +19,7 @@ public class BuildingsinCities {
         public static long solve(long[] arr, long N){
             long result = 0;
             Map<Long, Long> m = new HashMap<>();
-            for (int i = 0; i < N; i++) {
+            for (int i = 0; i < N; ++i) {
                 if (arr[i] == 1)
                     continue;
                 Long c = m.get(arr[i]);

@@ -18,10 +18,10 @@ public class FindingTheSubarrays {
             int n = Integer.valueOf(br.readLine());
             String[] line = br.readLine().split(" ");
             int[] arr = new int[n];
-            for (int i = 0; i < n; i++) arr[i] = Integer.valueOf(line[i]);
+            for (int i = 0; i < n; ++i) arr[i] = Integer.valueOf(line[i]);
             line = null;
             Map<Integer, List<Long>> m = new HashMap<>();
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 m.put(i, new ArrayList<>());
                 for (int j = i; j < n; j++) {
                     if (i == j) m.get(i).add((long) arr[j]);
@@ -32,7 +32,7 @@ public class FindingTheSubarrays {
             List<int[]> result = new ArrayList<>();
             int count  = 0;
             boolean isValid = false;
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 for (int j = i; j < n; j++) {
                     if (i == 0 && j < n - 1 && m.get(i).get(j-i)/(j+1-i) > m.get(j+1).get(n-1-(j+1))/(n-(j+1-i))) {
                         isValid = true;

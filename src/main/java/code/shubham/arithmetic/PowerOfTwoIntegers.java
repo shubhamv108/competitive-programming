@@ -16,7 +16,7 @@ public class PowerOfTwoIntegers {
     public class Solution1 {
         public int isPower(int A) {
             if (A == 1) return 1;
-            for (int i = 2; i <= Math.sqrt(A); i++) {
+            for (int i = 2; i <= Math.sqrt(A); ++i) {
                 int j = 2;
 
                 double p = Math.pow(i, j);
@@ -40,7 +40,7 @@ public class PowerOfTwoIntegers {
             if (a == 1)
                 return 1;
 
-            for (int i = 2; i * i <= a; i++) {
+            for (int i = 2; i * i <= a; ++i) {
                 double val = Math.log(a) / Math.log(i);
                 if ((val - (int)val) < 0.00000001)
                     return 1;

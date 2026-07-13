@@ -5,7 +5,7 @@ public class MinStrengthToKillNMonsters {
     class Solution {
         int solve(int[][] cells, int[][] confidences) {
             int n = cells.length, m = cells[0].length, curStrength = 0, startingStrength = 0;
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 int[] monsters = cells[i];
                 int[] confidence = confidences[i];
                 int minCost = Integer.MAX_VALUE;

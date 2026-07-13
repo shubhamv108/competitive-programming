@@ -14,7 +14,7 @@ public class AToZCount {
         Solution(String input) {
             this.largestDefault = input.length();
             char[] c = input.toCharArray();
-            for (int i = 0; i < c.length; i++) {
+            for (int i = 0; i < c.length; ++i) {
                 ArrayList<Integer> l = indexes[c[i] - 'a'];
                 if (l == null) l = indexes[c[i] - 'a'] = new ArrayList<>();
                 l.add(i);

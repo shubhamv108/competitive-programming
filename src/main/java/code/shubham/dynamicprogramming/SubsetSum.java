@@ -45,11 +45,11 @@ public class SubsetSum {
     }
 
     static boolean isSubsetSum5(int[] arr, int sum, int n) {
-        for (int i = 0; i <= n; i++)
+        for (int i = 0; i <= n; ++i)
             cache[0][i] = true;
-        for (int i = 1; i <= sum; i++)
+        for (int i = 1; i <= sum; ++i)
             cache[i][0] = false;
-        for (int i=1; i <= sum; i++) {
+        for (int i=1; i <= sum; ++i) {
             for (int j=1; j <= n; j++) {
                 cache[i][j] = cache[i][j-1];
                 timeComplexityCounter++;
@@ -79,7 +79,7 @@ public class SubsetSum {
 //        while(i++ < sum) Arrays.fill(cache2[i], -1);
 //        System.out.println(isSubsetSum2(arr, n, sum, 0) == 1 ? true : false);
 //        System.out.println(timeComplexityCounter);
-//        for(i = 0;i < sum+1; i++) {
+//        for(i = 0;i < sum+1; ++i) {
 //            for(int j = 0;j < n+1; j++) System.out.print(cache2[i][j] + " ");
 //            System.out.println();
 //        }

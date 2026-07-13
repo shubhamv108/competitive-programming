@@ -9,7 +9,7 @@ public class SingleThreadedCPU {
         public int[] getOrder(int[][] tasks) {
             int result[] = new int[tasks.length], r = 0;
             int A[][] = new int[tasks.length][3];
-            for (int i = 0; i < tasks.length; i++)
+            for (int i = 0; i < tasks.length; ++i)
                 A[i] = new int[] { tasks[i][0], tasks[i][1], i };
 
             Arrays.sort(A, (x, y) -> x[0] - y[0]);

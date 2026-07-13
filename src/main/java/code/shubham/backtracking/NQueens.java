@@ -31,7 +31,7 @@ public class NQueens {
 //                result.add(deepCopy(board));
 //                return;
 //            }
-//            for (int i = 0; i < board.size(); i++) {
+//            for (int i = 0; i < board.size(); ++i) {
 //                if (isSafe(board, i, col)) {
 //                    board.set(i, setQueen(col));
 //                    solveNQueensUtil(board, col + 1);
@@ -45,7 +45,7 @@ public class NQueens {
                 result.add(new ArrayList<>(board));
                 return;
             }
-            for (int i = 0; i < board.size(); i++) {
+            for (int i = 0; i < board.size(); ++i) {
                 if (isSafe(board, row, i)) {
                     board.set(row, setQueen(i));
                     solveNQueensUtil(board, row + 1);
@@ -86,7 +86,7 @@ public class NQueens {
         }
 
         private boolean isColumnSafe(ArrayList<String> board, int col) {
-            for (int i=0; i < board.size(); i++)
+            for (int i=0; i < board.size(); ++i)
                  if (board.get(i).charAt(col) == 'Q')
                      return false;
             return true;

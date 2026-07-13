@@ -6,7 +6,7 @@ class ReversePolishNotation {
     public int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack();
         boolean flag;
-        for (int i = 0; i < tokens.length; i++) {
+        for (int i = 0; i < tokens.length; ++i) {
             flag = false;
             int a = 0, b = 0;
             switch (tokens[i]) {

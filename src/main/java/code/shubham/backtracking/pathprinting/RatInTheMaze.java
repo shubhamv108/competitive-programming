@@ -168,7 +168,7 @@ class Solver1 {
 
     void generateSolution(int[][] m, int[][] s) {
         generateSolutionHelper(m, m.length-1, m[0].length - 1, 0, 0, s /*, new boolean[4][4]*/);
-        for(int i=0; i<s.length; i++) {
+        for(int i=0; i<s.length; ++i) {
             for(int j=0;j<s[0].length;j++) System.out.printf("%d ", s[i][j]);
             System.out.printf("\n");
         }
@@ -194,7 +194,7 @@ public class RatInTheMaze {
         Reader reader = new Reader();
         int n = reader.nextInt();
         int[][] a = new int[n][n];
-        for(int i=0;i<n;i++) {
+        for(int i=0;i<n;++i) {
             for(int j=0;j<n;j++) {
                 a[i][j] = reader.nextInt();
             }
@@ -209,7 +209,7 @@ public class RatInTheMaze {
         try {
             n = reader.nextInt();
             a = new int[n][n];
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 for (int j = 0; j < n; j++)
                     a[i][j] = reader.nextInt();
             }

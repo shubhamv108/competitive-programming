@@ -10,7 +10,7 @@ public class MaximumNumberWithAtMostKSwaps {
         }
         void recurse(char[] n, int index, int k) {
             if (k == 0) return;
-            for (int i = index; i < n.length - 1; i++) {
+            for (int i = index; i < n.length - 1; ++i) {
                 for (int j = i+1; j < n.length; j++) {
                     if (n[j] > n[i]) {
                         swap(n, i, j);

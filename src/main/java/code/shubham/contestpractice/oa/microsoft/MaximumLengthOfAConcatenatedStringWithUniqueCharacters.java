@@ -24,7 +24,7 @@ public class MaximumLengthOfAConcatenatedStringWithUniqueCharacters {
 
                 if (!hasDuplicate) {
                     int size = dp.size();
-                    for (int i = 0; i < size; i++) {
+                    for (int i = 0; i < size; ++i) {
                         if ((dp.get(i) & d) == 0) {
                             int t = dp.get(i) | d;
                             dp.add(t);

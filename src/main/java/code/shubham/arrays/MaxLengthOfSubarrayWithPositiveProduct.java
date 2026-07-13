@@ -4,7 +4,7 @@ public class MaxLengthOfSubarrayWithPositiveProduct {
     public int getMaxLen(int[] nums) {
         int negStart = -1, negCount = 0, zeroStart = -1, result = 0;
 
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; ++i) {
             if (nums[i] < 0) {
                 negCount++;
                 if (negStart == -1) negStart = i;

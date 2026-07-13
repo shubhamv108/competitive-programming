@@ -15,7 +15,7 @@ public class ErectTheFence {
                 }
             });
             Stack<int[]> hull = new Stack<>();
-            for (int i = 0; i < points.length; i++) {
+            for (int i = 0; i < points.length; ++i) {
                 while (hull.size() >= 2
                         && orientation(hull.get(hull.size() - 2), hull.get(hull.size() - 1), points[i]) > 0)
                     hull.pop();

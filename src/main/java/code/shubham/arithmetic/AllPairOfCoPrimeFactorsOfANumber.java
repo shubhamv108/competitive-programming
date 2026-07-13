@@ -8,7 +8,7 @@ public class AllPairOfCoPrimeFactorsOfANumber {
         ArrayList<int[]> get(int n) {
             ArrayList<int[]> result = new ArrayList<>();
             double sqrt = Math.sqrt(n);
-            for (int i = 2; i <= sqrt; i++) {
+            for (int i = 2; i <= sqrt; ++i) {
                 if (n % i == 0) {
                     while (n % i == 0)
                         n /= i;

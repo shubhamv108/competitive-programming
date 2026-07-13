@@ -31,7 +31,7 @@ public class IslandsIn2DMatrixBFS {
 
         private int get() {
             int result = 0;
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < arr.length; ++i) {
                 for (int j = 0; j < arr[i].length; j++) {
                     if (isSafe(i, j)) {
                         bfs(i, j);
@@ -49,7 +49,7 @@ public class IslandsIn2DMatrixBFS {
             Pos t;
             while(!q.isEmpty()) {
                 t = q.poll();
-                for (int i = t.i - 1; i <= t.i + 1; i++) {
+                for (int i = t.i - 1; i <= t.i + 1; ++i) {
                     for (int j = t.j - 1; j <= t.j + 1; j++) {
                         if (i == t.i && j == t.j)
                             continue;

@@ -24,7 +24,7 @@ public class WaysToSum {
             if (sum == 0) { System.out.println(l); return 1; }
             if (dp[start][sum] != null) return dp[start][sum];
             int result = 0;
-            for (int i = start; i <= N; i++) {
+            for (int i = start; i <= N; ++i) {
                 l.add(i);
                 result += recurse(i, sum - i, l);
                 l.remove(l.size() - 1);
@@ -36,7 +36,7 @@ public class WaysToSum {
             if (sum < 0) return 0;
             if (sum == 0) return 1;
             int result = 0;
-            for (int i = start; i <= N; i++) {
+            for (int i = start; i <= N; ++i) {
                 result += recurse(i, sum - i);
             }
             return result;

@@ -22,7 +22,7 @@ public class PartitionArrayWithNSubsetsWithEqualSum {
                 return true;
             if (sum == target && digitCount > 0)
                 return this.canPartition(A, 0, 0, 0, target, visited, kSubsets-1);
-            for (int i = idx; i < A.length; i++) {
+            for (int i = idx; i < A.length; ++i) {
                 if (!visited[i] && sum + A[i] <= target) {
                     visited[i] = true;
                     if (this.canPartition(A, idx+1, sum + A[i], digitCount+1, target, visited, kSubsets))
@@ -60,7 +60,7 @@ public class PartitionArrayWithNSubsetsWithEqualSum {
             if (index == -1)
                 return true;
 
-            for (int i = 0; i < k; i++) {
+            for (int i = 0; i < k; ++i) {
                 if((sum[i] + A[index] > target) || (i > 0 && sum[i] == sum[i-1]))
                     continue;
 

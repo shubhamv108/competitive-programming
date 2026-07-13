@@ -10,7 +10,7 @@ public class SudokuSolver {
         }
 
         int[] findUnassigned() {
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 9; ++i) {
                 for (int j = 0; j < 9; j++) {
                     if (board[i][j] == 0)
                         return new int[]{i, j};
@@ -20,14 +20,14 @@ public class SudokuSolver {
         }
 
         boolean isRowSafe(int r, int n) {
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 9; ++i)
                 if (board[r][i] == n)
                     return false;
             return true;
         }
 
         boolean isColumnSafe(int c, int n) {
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 9; ++i)
                 if (board[i][c] == n)
                     return false;
             return true;
@@ -36,7 +36,7 @@ public class SudokuSolver {
         boolean isBoxSafe(int r, int c, int n) {
             int sr = (r / 3) * 3;
             int sc = (c / 3) * 3;
-            for (int i = sr; i < sr + 3; i++)
+            for (int i = sr; i < sr + 3; ++i)
                 for (int j = sc; j < sc + 3; j++)
                     if (board[i][j] == n)
                         return false;
@@ -52,7 +52,7 @@ public class SudokuSolver {
             if (a == null)
                 return true;
             else {
-                for (int i = 1; i <= 9; i++) {
+                for (int i = 1; i <= 9; ++i) {
                     if (isSafe(a[0], a[1], i)) {
                         board[a[0]][a[1]] = i;
                         if (solveBoard())
@@ -92,7 +92,7 @@ public class SudokuSolver {
         }
 
         int[] findUnassigned(char[][] board) {
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 9; ++i) {
                 for (int j = 0; j < 9; j++) {
                     if (board[i][j] == '.') return new int[]{i, j};
                 }
@@ -105,13 +105,13 @@ public class SudokuSolver {
         }
 
         boolean isRowSafe(char[][] board, int r, int n) {
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 9; ++i)
                 if (board[r][i] == (char) (n + 48)) return false;
             return true;
         }
 
         boolean isColSafe(char[][] board, int c, int n) {
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 9; ++i)
                 if (board[i][c] == (char) (n + 48)) return false;
             return true;
         }
@@ -119,7 +119,7 @@ public class SudokuSolver {
         boolean isBoxSafe(char[][] board, int r, int c, int n) {
             r = (r / 3) * 3;
             c = (c / 3) * 3;
-            for (int i = r; i < r + 3; i++)
+            for (int i = r; i < r + 3; ++i)
                 for (int j = c; j < c + 3; j++)
                     if (board[i][j] == (char) (n + 48)) return false;
             return true;
@@ -129,7 +129,7 @@ public class SudokuSolver {
 
     public static void main(String[] args) {
 //        Scanner sc = new Scanner(System.in);
-//        for(int i=0;i<9;i++)
+//        for(int i=0;i<9;++i)
 //            for(int j=0;j<9;j++) board[i][j] = Integer.parseInt(sc.next());
         int[][] board={{3, 0, 6, 5, 0, 8, 4, 0, 0},
                 {5, 2, 0, 0, 0, 0, 0, 0, 0},
@@ -141,7 +141,7 @@ public class SudokuSolver {
                 {0, 0, 0, 0, 0, 0, 0, 7, 4},
                 {0, 0, 5, 2, 0, 6, 3, 0, 0}};
         new SudokuSolver().new Solution1(board).solve();
-        for(int i=0; i<9;i++) {
+        for(int i=0; i<9;++i) {
             for(int j=0;j<9;j++) System.out.print(board[i][j] + " ");
             System.out.println();
         }

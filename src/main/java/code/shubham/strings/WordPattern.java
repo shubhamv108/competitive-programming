@@ -13,7 +13,7 @@ public class WordPattern {
             if (pattern.length() != words.length)
                 return false;
 
-            for (int i = 0; i < words.length; i++) {
+            for (int i = 0; i < words.length; ++i) {
                 curAlpha = pattern.charAt(i) - 'a';
                 existingAlpha = m.get(words[i]);
                 if (alphabets[curAlpha] == null && existingAlpha == null) {

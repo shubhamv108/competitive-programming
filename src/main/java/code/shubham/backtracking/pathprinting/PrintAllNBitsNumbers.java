@@ -8,11 +8,11 @@ public class PrintAllNBitsNumbers {
     static void printAllNBitsNumbersWithGivenBase(int n, char[] p, int pi , int base) {
         if(pi == n) {
             ans.add(new String(p));
-            for(int i = 0; i < n; i++) System.out.printf("%c", p[i]);
+            for(int i = 0; i < n; ++i) System.out.printf("%c", p[i]);
             System.out.printf("\n");
             return;
         }
-        for(int i=0;i<base;i++) {
+        for(int i=0;i<base;++i) {
             if(i > 9)
                 p[pi] = (char) ((i%10) + 65);
             else

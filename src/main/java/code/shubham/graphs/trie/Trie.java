@@ -1,4 +1,4 @@
-package code.shubham.trie;
+package code.shubham.graphs.trie;
 
 public class Trie {
 
@@ -22,10 +22,10 @@ public class Trie {
     void printWordsInTrieHelper(TNode root, char[] path, int pi) {
         if(root == null) return;
         if(root.isEOW) {
-            for(int i=0;i<pi;i++) System.out.printf("%c", path[i]);
+            for(int i=0;i<pi;++i) System.out.printf("%c", path[i]);
             System.out.printf(" ");
         }
-        for(int i = 0; i < 26; i++) {
+        for(int i = 0; i < 26; ++i) {
             path[pi] = (char) (i + 'a');
             printWordsInTrieHelper(root.next[i], path, pi+1);
         }

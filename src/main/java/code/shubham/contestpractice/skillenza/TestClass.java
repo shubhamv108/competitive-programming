@@ -52,7 +52,7 @@ public class TestClass {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter wr = new PrintWriter(System.out);
         int T = Integer.parseInt(br.readLine().trim());
-        for(int t_i=0; t_i<T; t_i++)
+        for(int t_i=0; t_i<T; ++t_i)
         {
             int N = Integer.parseInt(br.readLine().trim());
             String[] arr_A = br.readLine().split(" ");
@@ -94,7 +94,7 @@ public class TestClass {
         long mod = 1000000007;
         long sumOfArray = Arrays.stream(A).sum() % mod;
         int length = A.length;
-        for (int i = 0; i < R.length; i++) {
+        for (int i = 0; i < R.length; ++i) {
 
             int startPos =  ((Long)(L[i] % length)).intValue();
             long endPos   =  R[i] % length;

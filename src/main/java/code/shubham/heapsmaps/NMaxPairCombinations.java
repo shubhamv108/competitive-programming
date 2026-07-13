@@ -17,7 +17,7 @@ public class NMaxPairCombinations {
             q.offer(new Pair(A[A.length - 1] + B[B.length - 1], A.length - 1, B.length - 1));
             s.add((A.length - 1) + ":" + (B.length -1));
             Pair p = null;
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 p = q.poll();
                 result[i] = p.sum;
                 if (p.x > 0 && !s.contains((p.x - 1) + ":" + p.y)) {

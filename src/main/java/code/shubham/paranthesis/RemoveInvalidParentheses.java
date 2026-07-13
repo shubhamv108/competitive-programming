@@ -12,7 +12,7 @@ public class RemoveInvalidParentheses {
         }
 
         public void remove(String s, List<String> result, int last_i, int last_j,  char openParan, char closeParan) {
-            for (int stack = 0, i = last_i; i < s.length(); i++) {
+            for (int stack = 0, i = last_i; i < s.length(); ++i) {
                 if (s.charAt(i) == openParan)
                     stack++;
                 if (s.charAt(i) == closeParan)

@@ -7,7 +7,7 @@ public class MaxLengthSubsequenceWithAdjacentDifference0Or1 {
             int len = A.length, dp[] = new int[len];
             int result = 0;
             dp[0] = 1;
-            for (int i = 1; i < len; i++) {
+            for (int i = 1; i < len; ++i) {
                 dp[i] = 1;
                 for (int j = 0; j < i; j++)
                     if (Math.abs(A[i] - A[j]) <= 1 && dp[i] < dp[j] + 1)

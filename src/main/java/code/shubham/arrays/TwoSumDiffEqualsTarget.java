@@ -13,7 +13,7 @@ public class TwoSumDiffEqualsTarget {
         public int[] twoSum7(int[] nums, int target) {
             int[] result = new int[] {};
             int l = nums.length;
-            for (int i = 0; i < l; i++) {
+            for (int i = 0; i < l; ++i) {
                 if (target > nums[i] && binarySearch(nums, i+1, l, target + nums[i], i)) {
                     result = new int[] { nums[i], target + nums[i] };
                     break;

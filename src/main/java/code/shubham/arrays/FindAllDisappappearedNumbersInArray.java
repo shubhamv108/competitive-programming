@@ -9,7 +9,7 @@ public class FindAllDisappappearedNumbersInArray {
             ArrayList<Integer> result = new ArrayList<>();
             int len = A.length, i, val, temp;
 
-            for (i = 0; i < len; i++) {
+            for (i = 0; i < len; ++i) {
                 val = A[i];
                 while (val != A[val - 1]) {
                     temp = A[val - 1];
@@ -20,7 +20,7 @@ public class FindAllDisappappearedNumbersInArray {
                 }
             }
 
-            for (i = 0; i < len; i++)
+            for (i = 0; i < len; ++i)
                 if (A[i] != i + 1)
                     result.add(i + 1);
 

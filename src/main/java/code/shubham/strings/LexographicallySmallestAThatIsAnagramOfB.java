@@ -6,14 +6,14 @@ public class LexographicallySmallestAThatIsAnagramOfB {
             int[] af = new int[26];
             int[] bf = new int[26];
 
-            for (int i = 0; i < a.length(); i++) {
+            for (int i = 0; i < a.length(); ++i) {
                 af[a.charAt(i) - 'a']++;
                 bf[b.charAt(i) - 'a']++;
             }
 
             int[] extra = new int[26];
             int[] less = new int[26];
-            for (int i = 0; i < 26; i++) {
+            for (int i = 0; i < 26; ++i) {
                 if (af[i] > bf[i])
                     extra[i] = af[i] - bf[i];
                 else if (af[i] < bf[i])
@@ -42,7 +42,7 @@ public class LexographicallySmallestAThatIsAnagramOfB {
         String solve(String a, String b) {
             int[] af = new int[26];
             int[] bf = new int[26];
-            for (int i = 0; i < a.length(); i++) {
+            for (int i = 0; i < a.length(); ++i) {
                 if (a.charAt(i) == b.charAt(i))
                     continue;
                 bf[b.charAt(i) - 'a']++;
@@ -50,7 +50,7 @@ public class LexographicallySmallestAThatIsAnagramOfB {
 
             char[] A = a.toCharArray();
             int bIndex = 0;
-            for (int i = 0; i < A.length -1; i++) {
+            for (int i = 0; i < A.length -1; ++i) {
                 if (A[i] == b.charAt(i))
                     continue;
                 while (bIndex < 26 && bf[bIndex] == 0)

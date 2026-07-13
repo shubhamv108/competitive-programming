@@ -13,7 +13,7 @@ public class CourseScheduleII {
             int[] result = new int[n];
             int[] indegree = new int[n];
             HashMap<Integer, ArrayList<Integer>> m = new HashMap<>();
-            for (int i = 0; i < pre.length; i++) {
+            for (int i = 0; i < pre.length; ++i) {
                 indegree[pre[i][0]]++;
                 ArrayList<Integer> l = m.get(pre[i][1]);
                 if (l == null) m.put(pre[i][1], l = new ArrayList<>());
@@ -21,7 +21,7 @@ public class CourseScheduleII {
             }
 
             Queue<Integer> q = new LinkedList<>();
-            for (int i = 0; i < indegree.length; i++) {
+            for (int i = 0; i < indegree.length; ++i) {
                 if (indegree[i] == 0) {
                     q.offer(i);
                 }

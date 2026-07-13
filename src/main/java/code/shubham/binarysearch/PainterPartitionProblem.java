@@ -38,7 +38,7 @@ public class PainterPartitionProblem {
     class Solution2 {
         int getMax(int arr[], int n) {
             int max = Integer.MIN_VALUE;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; ++i)
                 if (arr[i] > max)
                     max = arr[i];
             return max;
@@ -46,14 +46,14 @@ public class PainterPartitionProblem {
 
         int getSum(int arr[], int n) {
             int total = 0;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; ++i)
                 total += arr[i];
             return total;
         }
 
         int numberOfPainters(int arr[], int n, int maxLen) {
             int total = 0, numPainters = 1;
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 total += arr[i];
                 if (total > maxLen) {
                     total = arr[i];

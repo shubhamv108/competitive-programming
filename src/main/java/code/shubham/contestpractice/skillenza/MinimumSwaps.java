@@ -17,7 +17,7 @@ public class MinimumSwaps {
             int[][] arr = new int[m][n];
             int max = Integer.MIN_VALUE;
             int minDistFromMiddle = Integer.MAX_VALUE;
-            for (int i = 0; i < m ; i++) {
+            for (int i = 0; i < m ; ++i) {
                 line = InputUtils.splitNextLine();
                 for (int j = 0; j < n; j++) {
                     arr[i][j] = Integer.valueOf(line[j]);
@@ -65,7 +65,7 @@ public class MinimumSwaps {
                 columnStart = (columnSize / 2) + 1;
                 columnEnd = (columnSize / 2) + 1;
             }
-            for (int i = rowStart; i <= rowEnd; i++) {
+            for (int i = rowStart; i <= rowEnd; ++i) {
                 for (int j = columnStart; j<= columnEnd; j++) {
                     result.add(new Pos(i-1, j-1));
                 }

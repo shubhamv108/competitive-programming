@@ -8,7 +8,7 @@ public class MaximumEmployeesToBeInvitedToAMeeting {
         public int maximumInvitations(int[] favorite) {
             int n = favorite.length;
             int[] inDegree = new int[n];
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; ++i)
                 inDegree[favorite[i]]++;
 
             Queue<Integer> q = new LinkedList<>();
@@ -31,7 +31,7 @@ public class MaximumEmployeesToBeInvitedToAMeeting {
 
             int result = 0;
             int result2 = 0;
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 if (visited[i] == false) {
                     int length = 0;
                     for (int j = i; visited[j] == false; j = favorite[j]) {

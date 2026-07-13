@@ -19,7 +19,7 @@ public class MinCostPathInMatrixUDLR {
             minHeap.offer(posCost);
             while (!minHeap.isEmpty()) {
                 posCost = minHeap.poll();
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 4; ++i) {
                     int tempX = posCost.x + dx[i];
                     int tempY = posCost.y + dy[i];
                     if (isValidLocation(tempX, tempY)) {

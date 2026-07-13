@@ -11,7 +11,7 @@ public class LongestCommonSubsequenceII {
             Arrays.sort(strs, (a, b) -> b.length() - a.length());
 
             Set<String> duplicates = getDuplicates(strs);
-            for(int i = 0; i < strs.length; i++) {
+            for(int i = 0; i < strs.length; ++i) {
                 if(!duplicates.contains(strs[i])) {
                     if(i == 0) return strs[0].length();
                     for(int j = 0; j < i; j++) {
@@ -46,7 +46,7 @@ public class LongestCommonSubsequenceII {
     class Solution2 {
         public int findLUSlength(String[] strs) {
             int res = -1, n = strs.length;
-            for (int i=0; i<n; i++) {
+            for (int i=0; i<n; ++i) {
                 if (strs[i].length() < res) continue;
                 int j = -1;
                 while(++j < n)

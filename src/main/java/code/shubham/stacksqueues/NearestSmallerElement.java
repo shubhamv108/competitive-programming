@@ -11,7 +11,7 @@ public class NearestSmallerElement {
             Stack<Integer> s = new Stack<>();
             s.push(A.get(0));
             result.add(-1);
-            for (int i = 1; i < A.size(); i++) {
+            for (int i = 1; i < A.size(); ++i) {
                 while (!s.isEmpty() && A.get(i) <= s.peek()) s.pop();
                 if (s.isEmpty()) result.add(-1);
                 else result.add(s.peek());

@@ -19,7 +19,7 @@ public class MoviesOnFlight {
     private static int[] get2SumClosest(int[] movie_duration, int d) {
         d = d - 30;
         Map<Integer, ArrayList<Integer>> movies = new HashMap<>();
-        for (int i = 0; i < movie_duration.length; i++) {
+        for (int i = 0; i < movie_duration.length; ++i) {
             ArrayList<Integer> l = movies.get(movie_duration[i]);
             if (l == null)
                 movies.put(movie_duration[i], l = new ArrayList<>());
@@ -50,7 +50,7 @@ public class MoviesOnFlight {
 
     private static int[] get2SumClosest2(int[] movie_duration, int d) {
         Map<Integer, ArrayList<Integer>> movies = new HashMap<>();
-        for (int i = 0; i < movie_duration.length; i++) {
+        for (int i = 0; i < movie_duration.length; ++i) {
             ArrayList<Integer> l = movies.get(movie_duration[i]);
             if (l == null)
                 movies.put(movie_duration[i], l = new ArrayList<>());

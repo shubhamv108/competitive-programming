@@ -72,7 +72,7 @@ public class FindFreeTimeInCalendar {
         int length = Integer.parseInt(lengthOfFreeTime);
         Interval t = intervals.get(0);
         int i = 1;
-        for (; i < intervals.size(); i++) {
+        for (; i < intervals.size(); ++i) {
             if (diff(t.end, intervals.get(i).start) >= length) {
                 result.add(new Interval(t.end, intervals.get(i).start));
             }

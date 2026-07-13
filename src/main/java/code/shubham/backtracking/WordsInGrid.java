@@ -12,7 +12,7 @@ public class WordsInGrid {
             List<String> result = new ArrayList<>();
             Node trie = new Node();
             Arrays.stream(words).forEach(trie::add);
-            for (int i = 0; i < board.length; i++) {
+            for (int i = 0; i < board.length; ++i) {
                 for (int j = 0; j < board[0].length; j++) {
                     search(board, i, j, trie, result);
                 }

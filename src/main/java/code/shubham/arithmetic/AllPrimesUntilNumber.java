@@ -12,7 +12,7 @@ public class AllPrimesUntilNumber {
             boolean[] b = new boolean[A + 1];
             Arrays.fill(b, true);
 
-            for (int i = 2; i * i <= A; i++)
+            for (int i = 2; i * i <= A; ++i)
                 if (b[i])
                     for (int j = i * i; j <= A; j += i)
                         b[j] = false;

@@ -19,7 +19,7 @@ public class SquareMatrix {
         Match[] newM = new Match[N];
         if (k[0] == s[0][0]) oldM[0] = sm.new Match(1, 1, 1, 0);
         newM[0] = sm.new Match(0, 0, 0, 0);
-        for (int i = 1; i < N; i++) {
+        for (int i = 1; i < N; ++i) {
             oldM[i] = sm.new Match(0, 0, 0, 0);
             newM[i] = sm.new Match(0, 0, 0, 0);
             if (s[i][0] == k[oldM[i-1].h]) {

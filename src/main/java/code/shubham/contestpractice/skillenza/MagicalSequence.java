@@ -20,7 +20,7 @@ public class MagicalSequence {
             int result = 0;
             int sum = 0;
             int prev = (int) seq.charAt(0) - 48 - 1;
-            for (int i = 0; i < seq.length(); i++) {
+            for (int i = 0; i < seq.length(); ++i) {
                 int cur = Integer.valueOf(seq.charAt(i)) - 48;
                 sum = 0;
                 if ((i & 1) == 0) {

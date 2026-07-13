@@ -25,7 +25,7 @@ public class MinimumGeneticMutation {
                     P = p.toCharArray();
 
                     for (char c : new char[] { 'A', 'C', 'G', 'T' }) {
-                        for (i = 0; i < P.length; i++) {
+                        for (i = 0; i < P.length; ++i) {
                             original = P[i];
                             P[i] = c;
                             next = new String(P);

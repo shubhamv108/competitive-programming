@@ -10,14 +10,14 @@ public class DistinctNumbersInWindow {
         if (A.size() < B ) return a;
         int c;
         HashMap<Integer, Integer> w = new HashMap<>();
-        for (int i = 0; i < B; i++) {
+        for (int i = 0; i < B; ++i) {
             if  (w.containsKey(A.get(i))) c = w.get(A.get(i)) + 1;
             else c = 1;
             w.put(A.get(i), c);
         }
         a.add(w.size());
         int j = 0;
-        for (int i = B; i < A.size(); i++) {
+        for (int i = B; i < A.size(); ++i) {
             if  (w.get(A.get(j)) == 1) w.remove(A.get(j));
             else w.put(A.get(j), w.get(A.get(j)) - 1);
             j++;

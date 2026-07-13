@@ -115,13 +115,13 @@ public class PriorityQueue {
 
     public void addForcefully(int e) { insertForcefully(e); }
 
-    private void printHeap()         { for(int i = 0; i < heapSize; i++) System.out.printf("%d ", a[i]); }
+    private void printHeap()         { for(int i = 0; i < heapSize; ++i) System.out.printf("%d ", a[i]); }
 
     public void print()              { printHeap(); }
 
     private void printHeapLevelWiseUtil(int startIdx, int lastIdx) {
         if(startIdx >= heapSize) return;
-        for (int i = startIdx; i <= lastIdx; i++) {
+        for (int i = startIdx; i <= lastIdx; ++i) {
             if (i < heapSize) System.out.printf("%d ", a[i]);
             else break;
         }
@@ -192,7 +192,7 @@ public class PriorityQueue {
             n = sc.nextInt();
             a = new int[n];
             pq = new PriorityQueue(a,0,true);
-            for(int i = 0; i<n; i++) pq.add(sc.nextInt());
+            for(int i = 0; i<n; ++i) pq.add(sc.nextInt());
             pq.printLevelWise();
             System.out.printf("\n");
             int d = sc.nextInt();

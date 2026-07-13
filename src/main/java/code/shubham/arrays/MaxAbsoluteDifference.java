@@ -7,7 +7,7 @@ public class MaxAbsoluteDifference {
             int addedMin = Integer.MAX_VALUE;
             int subMax = Integer.MIN_VALUE;
             int subMin = Integer.MAX_VALUE;
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 addedMax = Math.max(addedMax, A[i] + i);
                 addedMin = Math.min(addedMin, A[i] + i);
                 subMax = Math.max(subMax, A[i] - i);

@@ -13,7 +13,7 @@ public class PointsOnAStraightLine {
             int duplicate, vertical, count;
             double slope;
             Map<Double, Integer> slopeCount = new HashMap<>();
-            for (int i = 0;  i < a.size(); i++) {
+            for (int i = 0;  i < a.size(); ++i) {
                 duplicate = 1; vertical = 0;
                 for (int j = i + 1; j < b.size(); j++) {
                     if (a.get(i) == a.get(j)) {

@@ -11,11 +11,11 @@ public class KthLargestInArray {
         public int findKthLargest(int[] nums, int k) {
             MinHeap heap = new MinHeap(k/*, (x, y) -> x - y*/);
             int i = 0;
-            for (; i < k; i++) {
+            for (; i < k; ++i) {
                 heap.offer(nums[i]);
             }
 
-            for (; i < nums.length; i++) {
+            for (; i < nums.length; ++i) {
                 if (heap.peek() < nums[i]) {
                     heap.replacePeek(nums[i]);
                 }
@@ -88,7 +88,7 @@ public class KthLargestInArray {
 
         int quickSelect(int[] nums, int l, int r, int k) {
             int pivot = l;
-            for (int i = l; i < r; i++) {
+            for (int i = l; i < r; ++i) {
                 if (nums[i] <= nums[r]) {
                     swap(nums, pivot, i);
                     pivot++;
@@ -117,7 +117,7 @@ public class KthLargestInArray {
 
             while (l <= r) {
                 int pivot = l;
-                for (int i = l + 1; i <= r; i++)
+                for (int i = l + 1; i <= r; ++i)
                     if (A[i] < A[l]) {
                         pivot++;
                         swap(A, i, pivot);
@@ -179,7 +179,7 @@ public class KthLargestInArray {
     class Solution5 {
         public int findKthLargest(int[] A, int k) {
             TreeMap<Integer, Integer> freq = new TreeMap<>(Collections.reverseOrder());
-            for (int i = 0; i < A.length; i++)
+            for (int i = 0; i < A.length; ++i)
                 freq.put(A[i], freq.getOrDefault(A[i], 0) + 1);
 
             int count = 0;
@@ -213,7 +213,7 @@ public class KthLargestInArray {
     class Solution6 {
         public int findKthLargest(int[] A, int k) {
             int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 if (max < A[i])
                     max = A[i];
                 if (min > A[i])

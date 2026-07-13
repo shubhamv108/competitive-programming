@@ -15,7 +15,7 @@ public class MaxLengthSubstringWithHighestFrequency {
 
             Map<String, Integer> freq = new HashMap<>();
 
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; ++i) {
                 String s = "";
                 for (int j = i; j < len; j++) {
                     s += A[j];

@@ -10,7 +10,7 @@ public class PalindromePartitioning {
             int[][] dp = new int[s.length()][s.length()];
             int j;
             for (int l = 0; l < s.length(); l++) {
-                for (int i = 0; i < s.length() - l; i++) {
+                for (int i = 0; i < s.length() - l; ++i) {
                     j = i + l;
                     if (i == j || isPalindrome(s, i, j)) dp[i][j] = 0;
                     else dp[i][j] = 1 + minCuts(s, i, j, dp);

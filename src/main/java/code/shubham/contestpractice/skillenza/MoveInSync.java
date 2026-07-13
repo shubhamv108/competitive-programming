@@ -46,14 +46,14 @@ class MoveInSync {
 
         private ResultStreak solve() {
             if (this.n < k && this.m < k) {
-                for (int i = 0; i < this.n; i++)
+                for (int i = 0; i < this.n; ++i)
                     InputUtils.nextLine();
                 return resultStreak;
             }
 
             String[] line;
             Streak[] prevStreak, currStreak = null;
-            for (int i = 0; i < this.n; i++) {
+            for (int i = 0; i < this.n; ++i) {
                 prevStreak = currStreak;
                 currStreak = new Streak[m];
                 line = InputUtils.splitNextLine();

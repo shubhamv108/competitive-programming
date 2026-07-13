@@ -33,10 +33,10 @@ public class AllPrimeFactorsOfANumber {
         }
         void populateSmallestPrimeFactors() {
             this.spf[1] = 1;
-            for (int i = 2; i < this.maxNumbers; i++)
+            for (int i = 2; i < this.maxNumbers; ++i)
                 if ((i & 1) == 0) this.spf[i] = 2;
                 else this.spf[i] = i;
-            for (int i = 3; i * i < this.maxNumbers; i++)
+            for (int i = 3; i * i < this.maxNumbers; ++i)
                 if (this.spf[i] == i)
                     for (int j = i*i; j < this.maxNumbers; j += i)
                         if (this.spf[j] == j)

@@ -10,7 +10,7 @@ public class JumpGameIV {
     class Solution {
         public int minJumps(int[] A) {
             HashMap<Integer, ArrayList<Integer>> pos = new HashMap<>();
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 ArrayList<Integer> l = pos.get(A[i]);
                 if (l == null)
                     pos.put(A[i], l = new ArrayList<>());

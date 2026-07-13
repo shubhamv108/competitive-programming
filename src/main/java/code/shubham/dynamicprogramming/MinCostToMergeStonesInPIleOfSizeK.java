@@ -9,13 +9,13 @@ public class MinCostToMergeStonesInPIleOfSizeK {
             if ((l - 1) % (K - 1) > 0) return -1;
 
             int[] prefix = new int[l + 1];
-            for (int i = 0; i < l; i++)
+            for (int i = 0; i < l; ++i)
                 prefix[i + 1] = prefix[i] + stones[i];
 
             int[][] dp = new int[l][l];
 
             for (int len = K; len <= l; len++) {
-                for (int i = 0; i + len <= l; i++) {
+                for (int i = 0; i + len <= l; ++i) {
                     int j = i + len - 1;
                     dp[i][j] = Integer.MAX_VALUE;
                     for (int k = i; k < j; k += K - 1)

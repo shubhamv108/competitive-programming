@@ -26,7 +26,7 @@ public class BitPermutations {
                 this.sum += Integer.parseInt(new String(s), 2);
                 return;
             }
-            for(int i = idx; i < s.length; i++) {
+            for(int i = idx; i < s.length; ++i) {
                 boolean check = shouldSwap(s, idx, i);
                 if (check) {
                     swap(s, idx, i);
@@ -37,7 +37,7 @@ public class BitPermutations {
         }
 
         boolean shouldSwap(char s[], int idx, int pos) {
-            for (int i = idx; i < pos; i++) {
+            for (int i = idx; i < pos; ++i) {
                 if (s[i] == s[pos]) {
                     return false;
                 }

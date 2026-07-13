@@ -9,7 +9,7 @@ public class IsomorphicStrings {
         public boolean isIsomorphic(String s, String t) {
             Map<Character, Character> ch = new HashMap<>();
             Map<Character, Character> mappedTo = new HashMap<>();
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 char a = s.charAt(i); // r
                 char b = t.charAt(i); // e
                 Character c = ch.get(a); // null
@@ -35,7 +35,7 @@ public class IsomorphicStrings {
             char[] a = s1.toCharArray();
             char[] b = s2.toCharArray();
             int[] m = new int[512];
-            for (int i = 0; i < s1.length(); i++) {
+            for (int i = 0; i < s1.length(); ++i) {
                 if (m[a[i]] != m[b[i]+256]) return false;
                 m[a[i]] = m[b[i]+256] = i+1;
             }

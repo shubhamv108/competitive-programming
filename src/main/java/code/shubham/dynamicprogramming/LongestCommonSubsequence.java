@@ -79,7 +79,7 @@ public class LongestCommonSubsequence {
             int cache[][] = new int[2][B.length() + 1];
             int bi = 0;
             int maxLength = 0;
-            for (int i = 0; i <= A.length(); i++) {
+            for (int i = 0; i <= A.length(); ++i) {
                 bi = i & 1;
                 for (int j = 0; j <= B.length(); j++) {
                     if (i == 0 || j == 0) cache[bi][j] = 0;

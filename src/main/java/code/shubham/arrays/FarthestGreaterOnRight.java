@@ -8,7 +8,7 @@ public class FarthestGreaterOnRight {
         for (int i = len - 2; i > -1; i--)
             A[i] = Math.max(A[i], A[i+1]);
 
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < len; ++i) {
             int l = i + 1, r = len - 1;
             while (l <= r) {
                 int m = l + (r - l) / 2;

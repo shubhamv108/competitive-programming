@@ -19,7 +19,7 @@ public class FindAllAnagramsInAString {
             }
 
             Map<Integer, Integer> y = new HashMap<>();
-            for (int i = 0; i < a.length; i++) {
+            for (int i = 0; i < a.length; ++i) {
                 if (i >= b.length) {
                     if (y.get(a[i-b.length]-'a') == 1) {
                         y.remove(a[i-b.length]-'a');
@@ -48,7 +48,7 @@ public class FindAllAnagramsInAString {
                 x.put(c-'a', x.getOrDefault(c-'a', 0) + 1);
             }
 
-            for (int i = 0; i < a.length; i++) {
+            for (int i = 0; i < a.length; ++i) {
                 if (i >= b.length) {
                     Integer count = x.get(a[i-b.length]-'a');
                     if (count != null && count == -1) {
@@ -97,18 +97,18 @@ public class FindAllAnagramsInAString {
             char[] s = sS.toCharArray();
             char[] p = pP.toCharArray();
             Map<Integer, Integer> pM = new HashMap<>();
-            for (int i = 0; i < p.length; i++)
+            for (int i = 0; i < p.length; ++i)
                 pM.put(p[i] - 'a', pM.getOrDefault(p[i] - 'a', 0) + 1);
 
             Map<Integer, Integer> cM = new HashMap<>(pM);
-            for (int i = 0; i < p.length; i++) {
+            for (int i = 0; i < p.length; ++i) {
                 this.remove(cM, s[i]);
                 if (cM.size() == 0)
                     result.add(0);
             }
 
 
-            for (int i = p.length; i < s.length; i++) {
+            for (int i = p.length; i < s.length; ++i) {
                 if (pM.containsKey(s[i - p.length]-'a'))
                     cM.put(s[i - p.length] - 'a', cM.getOrDefault(s[i - p.length] - 'a', 0) + 1);
                 if (pM.containsKey(s[i]-'a'))

@@ -9,7 +9,7 @@ public class HouseRobberyII {
         if (nums.length == 1) {
             return nums[0];
         }
-        for (int i = 0; i < nums.length - 1; i++) {
+        for (int i = 0; i < nums.length - 1; ++i) {
             if (i == 0) {
                 dp[i + 1] = Math.max(dp[i], nums[i]);
             } else {
@@ -17,7 +17,7 @@ public class HouseRobberyII {
             }
         }
 
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 1; i < nums.length; ++i) {
             if (i == 1) {
                 dp1[i + 1] = Math.max(dp1[i], nums[i]);
             } else {

@@ -17,7 +17,7 @@ public class SameBST {
         ArrayList<Integer> aLRight1 = new ArrayList<>();
         ArrayList<Integer> aLLeft2 = new ArrayList<>();
         ArrayList<Integer> aLRight2 = new ArrayList<>();
-        for (int i = 1; i < aL1.size(); i++) {
+        for (int i = 1; i < aL1.size(); ++i) {
             if (aL1.get(i) < aL1.get(0))
                 aLLeft1.add(aL1.get(i));
             else

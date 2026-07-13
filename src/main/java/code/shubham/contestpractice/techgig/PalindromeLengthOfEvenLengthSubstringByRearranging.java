@@ -14,7 +14,7 @@ public class PalindromeLengthOfEvenLengthSubstringByRearranging {
         int maxSize = 0;
         char c;
         Map<Character, Integer> charMap = null;
-        for (int i = 0; i < s.length() - 1; i++) {
+        for (int i = 0; i < s.length() - 1; ++i) {
             charMap = new HashMap<>();
             for (int j = i ; j < s.length(); j++) {
                 c = s.charAt(j);

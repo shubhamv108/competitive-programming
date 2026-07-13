@@ -31,10 +31,10 @@ public class ConstructTreeFromInorderPreorder {
         int n = s.charAt(0) - '0';
         String[] line = br.readLine().split(" ");
         int[] in = new int[n];
-        for(int i=0;i<n;i++)  in[i] = Integer.parseInt(line[i]);
+        for(int i=0;i<n;++i)  in[i] = Integer.parseInt(line[i]);
         line = br.readLine().split(" ");
         int[] level = new int[n];
-        for(int i=0;i<n;i++) level[i] = Integer.parseInt(line[i]);
+        for(int i=0;i<n;++i) level[i] = Integer.parseInt(line[i]);
         BTree tree = new BTree();
         BTNode root = tree.buildTreeFromInorderAndLevelOrder(in, level);
 

@@ -127,7 +127,7 @@ class AIRLINE {
             Arrays.fill(isPrime, true);
             isPrime[0] = isPrime[1] = false;
             double sqrt = Math.sqrt(n);
-            for (int i = 2; i < sqrt; i++)
+            for (int i = 2; i < sqrt; ++i)
                 if (isPrime[i])
                     for (int j = i*i; j < n; j+=i)
                         isPrime[j] = false;
@@ -136,7 +136,7 @@ class AIRLINE {
         public static long factorial(int n) {
             boolean[] isPrime = SOE(n);
             long factorial = 1;
-            for (int i = 2; i <= n; i++) {
+            for (int i = 2; i <= n; ++i) {
                 if (isPrime[i]) {
                     int k = n, power = 0;
                     while(k > 1) {

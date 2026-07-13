@@ -22,7 +22,7 @@ public class MergeIntervals {
         public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
             intervals.sort(Comparator.comparingInt(i -> i.start));
 
-            for (int i = 0; i < intervals.size() - 1; i++) {
+            for (int i = 0; i < intervals.size() - 1; ++i) {
                 Interval first = intervals.get(i);
                 Interval second = intervals.get(i + 1);
 

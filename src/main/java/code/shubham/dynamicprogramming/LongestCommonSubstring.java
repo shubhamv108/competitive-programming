@@ -15,7 +15,7 @@ public class LongestCommonSubstring {
             int result = 0;
             int[][] L = new int[2][B.length() + 1];
             int curRow = 0;
-            for (int i = 0; i <= A.length(); i++) {
+            for (int i = 0; i <= A.length(); ++i) {
                 for (int j = 0; j <= B.length(); j++) {
                     if (i == 0 || j == 0) L[curRow][j] = 0;
                     else if (A.charAt(i - 1) == B.charAt(j - 1)) {

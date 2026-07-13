@@ -8,7 +8,7 @@ public class CuttingRodToMaximizeProfit {
         int[] dp = new int[rodLength+1];
         int i, j = 0;
 
-        for (i = 1; i < a.length; i++) {
+        for (i = 1; i < a.length; ++i) {
             for (j = i; j < rodLength+1; j++) {
                dp[j] = Math.max(dp[j], a[i-1] + dp[j-i]);
             }
@@ -20,7 +20,7 @@ public class CuttingRodToMaximizeProfit {
         ArrayList<Integer> result = new ArrayList<>();
         int[][] dp = new int[prices.length+1][rodLength+1];
         int i = 0, j = 0;
-        for (i = 1; i < prices.length + 1; i++) {
+        for (i = 1; i < prices.length + 1; ++i) {
             for (j = 1; j < rodLength + 1; j++) {
                 dp[i][j] = Math.max(dp[i - 1][j], j >= i ? prices[i - 1] + dp[i][j - i] : 0);
             }

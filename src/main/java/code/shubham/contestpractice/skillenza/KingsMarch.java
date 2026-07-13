@@ -26,7 +26,7 @@ public class KingsMarch {
             String[] line = null;
             int n = InputUtils.nextInt();
             Pair[] pointsPaths = new Pair[n];
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 line = InputUtils.splitNextLine();
                 for (int j = 0; j < n; j++) {
                    assignPointsPathsPair(line[j], i, j, pointsPaths);

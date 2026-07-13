@@ -18,7 +18,7 @@ public class ChallengingTrack {
             int oddCounter  = 0;
             int evenCounter = 0;
             int i = 0;
-            for (i=0;i<n;i++) {
+            for (i=0;i<n;++i) {
                 h = Integer.parseInt(line[i]);
                 if ((h & 1) == 0) h = h - evenCounter;
                 if ((h & 1) == 1) h = h - oddCounter;

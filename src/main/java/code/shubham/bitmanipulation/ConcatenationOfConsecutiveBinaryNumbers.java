@@ -7,7 +7,7 @@ public class ConcatenationOfConsecutiveBinaryNumbers {
             long sum = 0;
             int bitCount = 0;
 
-            for (int i = 1; i <= n; i++) {
+            for (int i = 1; i <= n; ++i) {
                 if ( (i & (i - 1)) == 0)
                     bitCount++;
                 sum = ((sum << bitCount) | i) % MOD;

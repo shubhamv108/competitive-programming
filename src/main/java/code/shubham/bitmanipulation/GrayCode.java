@@ -7,7 +7,7 @@ class GrayCode {
     public List<Integer> grayCode(int n) {
         List<Integer> result = new ArrayList<>();
         int sequenceLength = 1 << n;
-        for (int i = 0; i < sequenceLength; i++) {
+        for (int i = 0; i < sequenceLength; ++i) {
             result.add(i ^ (i >> 1));
         }
         return result;

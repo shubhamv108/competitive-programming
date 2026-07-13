@@ -6,7 +6,7 @@ public class MoveAllZeroesToEndOfArray {
 
     void move1(int[] A) {
         int c = 0;
-        for (int i = 0; i < A.length; i++) {
+        for (int i = 0; i < A.length; ++i) {
             if (0 != A[i]) {
                 if (c != i) {
                     A[c] = A[i];

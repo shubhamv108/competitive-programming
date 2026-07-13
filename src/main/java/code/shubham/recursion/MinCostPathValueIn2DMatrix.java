@@ -33,7 +33,7 @@ public class MinCostPathValueIn2DMatrix {
             int R = Integer.parseInt(sc.next());
             int C = Integer.parseInt(sc.next());
             int[][] a = new int[R][C];
-            for(int i=0;i<R;i++) {
+            for(int i=0;i<R;++i) {
                 for(int j=0;j<C;j++) {
                     a[i][j] = Integer.parseInt(sc.next());
                 }

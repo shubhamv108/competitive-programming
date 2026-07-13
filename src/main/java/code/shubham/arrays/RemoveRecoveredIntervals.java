@@ -12,7 +12,7 @@ public class RemoveRecoveredIntervals {
             System.out.println(Arrays.stream(intervals).map(i -> new Interval(i[0], i[1])).collect(Collectors.toList()));
             int count = intervals.length;
             int row = 0;
-            for (int i = 1; i < intervals.length; i++) {
+            for (int i = 1; i < intervals.length; ++i) {
                 if (intervals[row][0] <= intervals[i][0] && intervals[row][1] >= intervals[i][1]) {
                     count--;
                 } else if (intervals[i][0] <= intervals[row][0] && intervals[i][1] >= intervals[row][1]) {

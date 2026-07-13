@@ -12,7 +12,7 @@ public class NumberOfMatchingSubsequences {
                     .mapToObj(i -> new int[] {i, 0})
                     .collect(LinkedList::new, LinkedList::add, LinkedList::addAll);
 
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 if (q.isEmpty())
                     return words.length;
                 int size = q.size();

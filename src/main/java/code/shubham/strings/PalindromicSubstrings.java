@@ -18,7 +18,7 @@ public class PalindromicSubstrings {
         public int countSubstrings(String input) {
             if (input == null || input.length() == 0) return 0;
             char[] s = input.toCharArray();
-            for (int i = 0; i < s.length; i++) { // i is the mid point
+            for (int i = 0; i < s.length; ++i) { // i is the mid point
                 countPalindromeSubstrings(s, i, i); // odd length;
                 countPalindromeSubstrings(s, i, i + 1); // even length
             }

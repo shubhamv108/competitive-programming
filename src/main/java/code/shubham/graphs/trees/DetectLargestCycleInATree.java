@@ -50,7 +50,7 @@ public class DetectLargestCycleInATree {
         }
         int max = Integer.MIN_VALUE;
         int maxNode = root;
-        for(int i=1;i<=tree.size();i++) if(dist[i] > max) { max = dist[i]; maxNode = i; }
+        for(int i=1;i<=tree.size();++i) if(dist[i] > max) { max = dist[i]; maxNode = i; }
         return maxNode;
     }
     private static HashMap<Integer, List<Integer>> tree = new HashMap<>();

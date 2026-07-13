@@ -33,7 +33,7 @@ public class CompleteAllCourses {
             IntStream.range(0, B.size()).forEach(i -> insertEdge(m, B.get(i), C.get(i), false));
             HashSet<Integer> v = new HashSet<>();
             HashSet<Integer> c = new HashSet<>();
-            for (int i=0;i<A;i++) if (complete (i, m, v, c) == 0) return 0;
+            for (int i=0;i<A;++i) if (complete (i, m, v, c) == 0) return 0;
             return 1;
         }
 

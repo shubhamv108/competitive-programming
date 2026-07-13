@@ -2,6 +2,7 @@ package code.shubham.graphs.trees.bsttree.bst;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinarySearchTree {
 
@@ -69,12 +70,93 @@ public class BinarySearchTree {
             }
         }
 
+        void printAscending() {
+            LinkedList<Node> stack = new LinkedList();
+            Node cur = this;
+            while (!stack.isEmpty() || cur != null) {
+                while (cur != null) {
+                    stack.push(cur);
+                    cur = cur.left;
+                }
+
+                cur = stack.pop();
+                System.out.print(cur.val + " -> ");
+                cur = cur.right;
+            }
+        }
+
+        void printDescending() {
+            LinkedList<Node> stack = new LinkedList();
+            Node cur = this;
+            while (!stack.isEmpty() || cur != null) {
+                while (cur != null) {
+                    stack.push(cur);
+                    cur = cur.right;
+                }
+
+                cur = stack.pop();
+                System.out.print(cur.val + " -> ");
+                cur = cur.left;
+            }
+        }
+
+        void printPreorder() {
+            LinkedList<Node> stack = new LinkedList();
+            Node cur = this;
+            while (!stack.isEmpty() || cur != null) {
+                while (cur != null) {
+                    System.out.print(cur.val + " -> ");
+                    stack.push(cur);
+                    cur = cur.left;
+                }
+
+                cur = stack.pop();
+                cur = cur.right;
+            }
+        }
+
+        void printPostorder() {
+            LinkedList<Node> stack = new LinkedList();
+            Node cur = this;
+            while (!stack.isEmpty() || cur != null) {
+                while (cur != null) {
+                    stack.push(cur);
+                    cur = cur.left;
+                }
+
+                cur = stack.peek();
+                if (cur.right != null)
+                    cur = cur.right;
+                else {
+                    System.out.println(cur.val + "-.");
+
+                }
+            }
+        }
+
         int inorderSuccessor() {
             Node n = this;
             while (n != null)
                 n = n.left;
             return n.val;
         }
+    }
+
+    void main() {
+        Node n = new Node(24);
+        n.right = new Node(35);
+        n.right.left = new Node(31);
+        n.right.right = new Node(42);
+        n.left = new Node(12);
+        n.left.left = new Node(10);
+        n.left.right = new Node(15);
+        n.printAscending();
+        System.out.println();
+        n.printDescending();
+        System.out.println();
+        n.printPreorder();
+        System.out.println();
+        n.printPostorder();
     }
 
 }

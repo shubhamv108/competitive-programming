@@ -11,7 +11,7 @@ public class ANARC05H {
     static int solve(int prevSum, int idx) {
         int ret = 0, curSum = 0;
         if(idx == N) return 1;
-        for(int i=idx; i<N; i++) {
+        for(int i=idx; i<N; ++i) {
             curSum += a[idx] - '0';
             if(curSum >= prevSum) ret += solve(curSum, i + 1);
         } return ret;

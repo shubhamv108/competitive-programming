@@ -31,10 +31,10 @@ public class DCEPC501 {
             while(t-- > 0) {
                 int n = reader.nextInt();
                 int[] arr = new int[n];
-                for(int i=0;i<n;i++) {
+                for(int i=0;i<n;++i) {
                     arr[i] = reader.nextInt();
                 }
-//                for(int i=0;i < 200;i++) {
+//                for(int i=0;i < 200;++i) {
 //                    cache[i] = -1;
 //                }
 //                System.out.println(new Solver1(arr, n, cahce).solve();

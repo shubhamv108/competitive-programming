@@ -16,7 +16,7 @@ public class SortItemsByGroupsRespectingDependencies {
                     .forEach(i -> gr.computeIfAbsent(group[i], e -> new LinkedList<>()).add(i));
 
             int ri = 0;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; ++i)
                 add(i, result, gr, group, bI);
 
             return result;

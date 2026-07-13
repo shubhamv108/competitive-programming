@@ -5,7 +5,7 @@ public class SymetricDoubleTriangle {
     // print alternate x o beginning with x
     static void printx(int n)
     {
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; ++i) {
             if (i % 2 != 0)
                 System.out.print("x ");
             else
@@ -16,7 +16,7 @@ public class SymetricDoubleTriangle {
 
     // print alternate x o beginning with o
     static void printo(int n) {
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; ++i) {
             if (i % 2 != 0)
                 System.out.print("o ");
             else
@@ -41,7 +41,7 @@ public class SymetricDoubleTriangle {
         int s = 1;
 
         // prints double lines in each iteration
-        for (int i = 1; i <= (x - 1) / 2; i++) {
+        for (int i = 1; i <= (x - 1) / 2; ++i) {
             for (int j = 1; j <= p; j++) {
                 System.out.print(" ");
             }
@@ -70,7 +70,7 @@ public class SymetricDoubleTriangle {
 
         // extra upper middle for even
         if (n % 2 == 0) {
-            for (int i = 1; i <= p; i++)
+            for (int i = 1; i <= p; ++i)
                 System.out.print(" ");
 
             if (n % 4 != 0)
@@ -116,7 +116,7 @@ public class SymetricDoubleTriangle {
         int q = x / 2;
 
         // one line for each iteration
-        for (int i = 1; i <= x; i++) {
+        for (int i = 1; i <= x; ++i) {
             for (int j = 1; j <= p; j++)
                 System.out.print(" ");
 

@@ -50,7 +50,7 @@ class One {
             cost[e.getKey()] = IntStream.range(0, collect.size() - K).map(i -> collect.get(i)).sum();
         }
 
-        for (int i = 1; i < N+1; i++) {
+        for (int i = 1; i < N+1; ++i) {
             System.out.print(cost[i] + " ");
         }
         // Arrays.stream(cost).forEach(c -> System.out.print(c + " "));

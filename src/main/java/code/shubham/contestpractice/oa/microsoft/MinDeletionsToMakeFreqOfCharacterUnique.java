@@ -13,7 +13,7 @@ public class MinDeletionsToMakeFreqOfCharacterUnique {
 
             int result = 0;
             HashSet<Integer> set = new HashSet<>();
-            for (int i = 0; i < freq.length; i++) {
+            for (int i = 0; i < freq.length; ++i) {
                 while (freq[i] > 0 && set.contains(freq[i])) {
                     freq[i]--;
                     result++;

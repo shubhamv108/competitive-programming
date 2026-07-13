@@ -18,7 +18,7 @@ public class NeuronStrength {
         for (int i = 0; i < n; ++i)
             g[i] = new ArrayList<>();
 
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n - 1; ++i) {
             int u = F[i] - 1;
             int v = T[i] - 1;
             g[u].add(v);
@@ -36,7 +36,7 @@ public class NeuronStrength {
         dfsDown(0, -1);
         dfsUp(0, -1);
 
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; ++i)
             result[i] = down[i] + up[i];
 
         return result;

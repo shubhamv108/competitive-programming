@@ -11,7 +11,7 @@ public class MaxSideLengthOfASquareWithSumLessThanOrEqualToThreshold {
             int res = 0;
             int len = 1; // square side length
 
-            for (int i = 1; i <= m; i++) {
+            for (int i = 1; i <= m; ++i) {
                 for (int j = 1; j <= n; j++) {
                     sum[i][j] = sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1] + mat[i-1][j-1];
 

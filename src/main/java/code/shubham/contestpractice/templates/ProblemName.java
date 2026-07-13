@@ -134,7 +134,7 @@ import java.util.stream.IntStream;
 //            for (int i = 3; i <= n; i += 2)
 //                isPrime[i] = true;
 //            isPrime[0] = isPrime[1] = false;
-//            for (int i = 3; i * i <= n; i++)
+//            for (int i = 3; i * i <= n; ++i)
 //                if (isPrime[i])
 //                    for (int j = i * i; j <= n; j+=i)
 //                        isPrime[j] = false;
@@ -143,7 +143,7 @@ import java.util.stream.IntStream;
 //        public static long factorial(int n) {
 //            boolean[] isPrime = SOE(n);
 //            long factorial = 1;
-//            for (int i = 2; i <= n; i++) {
+//            for (int i = 2; i <= n; ++i) {
 //                if (isPrime[i]) {
 //                    int k = n, power = 0;
 //                    while(k > 1) {
@@ -411,7 +411,7 @@ import java.util.stream.IntStream;
 //            Arrays.stream(A).forEach(e -> System.out.println(e + " "));
 //        }
 //        public int MEX(int[] A) {
-//            for (int i = 0; i < A.length; i++) {
+//            for (int i = 0; i < A.length; ++i) {
 //                if (A[i] <= 0 || A[i] >= A.length) continue;
 //                int cur = A[i], point;
 //                while (cur > 0 && cur <= A.length && A[cur - 1] != cur) {
@@ -421,7 +421,7 @@ import java.util.stream.IntStream;
 //                    if (cur < 0 || cur >= A.length) break;
 //                }
 //            }
-//            for (int i = 0; i < A.length; i++)
+//            for (int i = 0; i < A.length; ++i)
 //                if (A[i] != i+1)
 //                    return i + 1;
 //            return A.length + 1;

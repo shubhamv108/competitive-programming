@@ -17,7 +17,7 @@ public class ZeroSumSubarrayCount {
             int count = 0, sum = 0;
             HashMap<Integer, Integer> sums = new HashMap();
             sums.put(0, 1);
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 sum += A[i];
                 Integer c = sums.get(sum);
                 if (c != null) count += c;

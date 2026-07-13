@@ -6,7 +6,7 @@ public class MinimumRemoveToMakeValidParenthesis {
         char[] chars = s.toCharArray();
 
         int open = 0;
-        for (int i = 0; i < chars.length; i++) {
+        for (int i = 0; i < chars.length; ++i) {
             if (chars[i] == '(') {
                 open++;
             } else if (chars[i] == ')') {
@@ -27,7 +27,7 @@ public class MinimumRemoveToMakeValidParenthesis {
 
         int p = 0;
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < chars.length; i++)
+        for (int i = 0; i < chars.length; ++i)
             if (chars[i] != '\n')
                 builder.append(chars[i]);
 

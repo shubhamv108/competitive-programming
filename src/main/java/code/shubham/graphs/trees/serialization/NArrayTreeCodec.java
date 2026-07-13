@@ -66,7 +66,7 @@ public class NArrayTreeCodec {
             while (!q.isEmpty()) {
                 Node p = q.poll();
                 while (i < n) {
-                    char c = data.charAt(i++);
+                    char c = data.charAt(++i);
                     if (c == '-') {
                         if (p.children == null)
                             p.children = new ArrayList<>();

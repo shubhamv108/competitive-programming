@@ -12,7 +12,7 @@ public class PowerOfPrimeFactorsOfNFactorial {
             Arrays.fill(isPrime, true);
             isPrime[0] = isPrime[1] = false;
             double sqrt = Math.sqrt(n);
-            for (int i = 2; i <= sqrt; i++)
+            for (int i = 2; i <= sqrt; ++i)
                 if (isPrime[i])
                     for (int j = i * i; j <= n; j+=i)
                         isPrime[j] = false;
@@ -23,7 +23,7 @@ public class PowerOfPrimeFactorsOfNFactorial {
             ArrayList<int[]> result = new ArrayList<>();
             boolean[] isPrime = SOE(n);
             long factorial = 1;
-            for (int i = 2; i <= n; i++) {
+            for (int i = 2; i <= n; ++i) {
                 if (isPrime[i]) {
                     int k = n, power = 0;
                     while(k > 1) {
@@ -42,7 +42,7 @@ public class PowerOfPrimeFactorsOfNFactorial {
             ArrayList<int[]> result = new ArrayList<>();
             boolean[] isPrime = SOE(n);
             long factorial = 1;
-            for (int i = 2; i <= n; i++) {
+            for (int i = 2; i <= n; ++i) {
                 if (isPrime[i]) {
                     int power = 0;
                     result.add(new int[] { i, power = powerOfPrimeForFactorial(n, i) });
@@ -62,7 +62,7 @@ public class PowerOfPrimeFactorsOfNFactorial {
         long factorial(int n) {
             boolean[] isPrime = SOE(n);
             long factorial = 1;
-            for (int i = 2; i <= n; i++) {
+            for (int i = 2; i <= n; ++i) {
                 if (isPrime[i]) {
                     int k = n, power = 0;
                     while(k > 1) {
@@ -78,7 +78,7 @@ public class PowerOfPrimeFactorsOfNFactorial {
         long NFactorial(int n) {
             boolean[] isPrime = SOE(n);
             long factorial = 1;
-            for (int i = 2; i <= n; i++) {
+            for (int i = 2; i <= n; ++i) {
                 if (isPrime[i]) {
                     factorial *= Math.pow(i, powerOfPrimeForFactorial(n, i));
                 }

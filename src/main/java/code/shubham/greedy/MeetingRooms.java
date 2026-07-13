@@ -34,7 +34,7 @@ public class MeetingRooms {
 
             List<Interval> rooms = new ArrayList<>();
             int result = Integer.MIN_VALUE;
-            for (int i = 0; i < intervals.size(); i++) {
+            for (int i = 0; i < intervals.size(); ++i) {
                 Interval b = intervals.get(i);
                 boolean isRoomAssigned = false;
                 for (int j = 0; j < rooms.size(); j++) {

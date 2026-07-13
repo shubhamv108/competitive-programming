@@ -8,7 +8,7 @@ public class DistributeCandy {
         int[] candies = new int[A.size()];
 
         candies[0] = 1;
-        for (int i = 1; i < A.size(); i++)
+        for (int i = 1; i < A.size(); ++i)
             candies[i] = A.get(i) > A.get(i-1) ? candies[i-1] + 1 : 1;
 
         int result = candies[candies.length - 1];

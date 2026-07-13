@@ -31,7 +31,7 @@ public class PartitionTreeIntoTwoAlmostEqualWeightedSubtrees {
             HashMap<Integer, ArrayList<Integer>> kids = new HashMap<>();
             int[] bUp = new int[p.size()];
 
-            for (int i = 0; i < fs.size(); i++) {
+            for (int i = 0; i < fs.size(); ++i) {
                 kids.computeIfAbsent(p.get(i), e -> new ArrayList<>()).add(i);
                 bUp[i] += fs.get(i);
                 int j = i;

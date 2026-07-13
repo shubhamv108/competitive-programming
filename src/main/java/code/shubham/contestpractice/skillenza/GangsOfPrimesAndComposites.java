@@ -43,7 +43,7 @@ public class GangsOfPrimesAndComposites {
 
         private int[] get() {
             int result = 0;
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < arr.length; ++i) {
                 for (int j = 0; j < arr[i].length; j++) {
                     if (arr[i][j] == prime && isSafe(i, j, prime)) {
                         bfs(i, j, prime);
@@ -65,7 +65,7 @@ public class GangsOfPrimesAndComposites {
             Pos t;
             while (!q.isEmpty()) {
                 t = q.poll();
-                for (int i = t.i - 1; i <= t.i + 1; i++) {
+                for (int i = t.i - 1; i <= t.i + 1; ++i) {
                     for (int j = t.j - 1; j <= t.j + 1; j++) {
 
                         if ((i == t.i && j == t.j)
@@ -160,7 +160,7 @@ public class GangsOfPrimesAndComposites {
             int m = Integer.valueOf(line[0]);
             int n = Integer.valueOf(line[1]);
             int[][] arr = new int[m][n];
-            for (int i = 0; i < m; i++) {
+            for (int i = 0; i < m; ++i) {
                 line = InputUtils.splitNextLine();
                 for (int j = 0; j < n; j++)
                     arr[i][j] = new BigInteger(line[j]).isProbablePrime(100) ? 1 : 0;

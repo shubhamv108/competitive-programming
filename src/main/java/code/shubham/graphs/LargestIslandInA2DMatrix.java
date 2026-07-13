@@ -18,7 +18,7 @@ public class    LargestIslandInA2DMatrix {
 
         int solve() {
             int maxSize = Integer.MIN_VALUE;
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 for (int j = 0; j < A[i].length; j++) {
                     if (isSafeToVisit(i, j)) {
                         maxSize = Math.max(maxSize, bfsVisitAndGetSize(i, j));
@@ -43,7 +43,7 @@ public class    LargestIslandInA2DMatrix {
             while (!queue.isEmpty()) {
                 Position temp = queue.poll();
                 visit(temp.x, temp.y);
-                for (int i = temp.x -1; i <= temp.x + 1; i++) {
+                for (int i = temp.x -1; i <= temp.x + 1; ++i) {
                     for (int j = temp.y -1; j <= temp.y + 1; j++) {
                         if (isSafeToVisit(i, j)) {
                             queue.offer(new Position(i, j));

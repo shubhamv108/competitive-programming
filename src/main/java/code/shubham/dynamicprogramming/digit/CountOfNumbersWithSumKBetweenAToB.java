@@ -24,7 +24,7 @@ public class CountOfNumbersWithSumKBetweenAToB {
                 return dp[idx][k][tight ? 1 : 0];
             int count = 0;
             int maxDigit = tight ? originalDigits.get(idx) : 9;
-            for (int i = 0; i <= maxDigit; i++) {
+            for (int i = 0; i <= maxDigit; ++i) {
                 count += count(originalDigits, idx - 1, k - i, i == maxDigit);
             }
             if (!tight) dp[idx][k][tight ? 1 : 0] = count;

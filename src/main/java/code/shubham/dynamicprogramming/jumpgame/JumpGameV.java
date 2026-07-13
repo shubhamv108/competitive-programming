@@ -5,7 +5,7 @@ public class JumpGameV {
         public int maxJumps(int[] A, int d) {
             Integer[] dp = new Integer[A.length];
             int result = 0;
-            for (int i = 0; i < A.length; i++)
+            for (int i = 0; i < A.length; ++i)
                 result = Math.max(result, maxIndices(A, d, i, dp));
             return result;
         }

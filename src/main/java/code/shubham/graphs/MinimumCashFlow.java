@@ -32,7 +32,7 @@ public class MinimumCashFlow {
     void minCashFlow(int graph[][]) {
         int[] netAmount = new int[N];
         for (int n = 0; n < N; n++)
-            for (int i = 0; i < N; i++) {
+            for (int i = 0; i < N; ++i) {
                 netAmount[n] -= graph[n][i];
                 netAmount[n] += graph[i][n];
             }
@@ -41,7 +41,7 @@ public class MinimumCashFlow {
 
     int getMinimumIndex(int[] arr) {
         int minIndex = 0;
-        for (int i = 1; i < N; i++)
+        for (int i = 1; i < N; ++i)
             if (arr[i] < arr[minIndex])
                 minIndex = i;
         return minIndex;
@@ -49,7 +49,7 @@ public class MinimumCashFlow {
 
     int getMaximumIndex(int[] arr) {
         int maxIndex = 0;
-        for (int i = 1; i < N; i++)
+        for (int i = 1; i < N; ++i)
             if (arr[i] > arr[maxIndex])
                 maxIndex = i;
         return maxIndex;

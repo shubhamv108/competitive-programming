@@ -20,7 +20,7 @@ public class FindKClosestElement {
             }
         }
 
-        for (int i = l; i < l+k; i++) {
+        for (int i = l; i < l+k; ++i) {
             result.add(arr[i]);
         }
         return result;

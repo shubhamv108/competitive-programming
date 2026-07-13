@@ -52,7 +52,7 @@ public class Three {
             line = InputUtils.splitNextLine();
             Integer[] n = Arrays.stream(line).map(Integer::parseInt).toArray(Integer[]::new);
             count = 0;
-            for (int i=0;i<N;i++) {
+            for (int i=0;i<N;++i) {
                 for (int j=0;j<N;j++) {
                     if (i == j) continue;
                     if (isValidPair(a, b, c, d, m, n, i, j)) count = (count + 1) % mod;

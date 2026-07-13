@@ -11,7 +11,7 @@ public class MinStepsToMakePilesEqualHeight {
                     boxed().
                     sorted((a, b) -> b-a).
                     toArray(Integer[]::new);
-            for (int i = 1; i < sorted.length; i++)
+            for (int i = 1; i < sorted.length; ++i)
                 if (sorted[i - 1] != sorted[i])
                     result += i;
             return result;

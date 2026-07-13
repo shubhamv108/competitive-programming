@@ -86,7 +86,7 @@ public class PersistentSegmentTree {
         queue.offer(node);
         while (!queue.isEmpty()) {
             int size = queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size; ++i) {
                 Node temp = queue.poll();
                 System.out.print(temp.value + " ");
                 if (temp.left != null) queue.offer(temp.left);

@@ -103,14 +103,14 @@ public class KDTree {
 
     private class PointUtils {
         static boolean areEqual(int[] A, int[] B, int k) {
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < k; ++i)
                 if (A[i] != B[i])
                     return false;
             return true;
         }
 
         static void copyAToB(int[] A, int[] B, int k) {
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < k; ++i)
                 A[i] = B[i];
         }
     }

@@ -16,7 +16,7 @@ public class NearestExitInAMaze {
 
             while (!q.isEmpty()) {
                 size = q.size();
-                for (int i = 0; i < size; i++) {
+                for (int i = 0; i < size; ++i) {
                     p = q.poll();
                     for (int[] dir : dirs) {
                         x = p[0] + dir[0];

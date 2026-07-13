@@ -3,7 +3,7 @@ package code.shubham.arrays;
 public class FindMissingPositive {
     class Solution {
         public int firstMissingPositive(int[] A) {
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 if (A[i] < 1 || A[i] > A.length)
                     continue;
                 int val = A[i];
@@ -15,7 +15,7 @@ public class FindMissingPositive {
                         break;
                 }
             }
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 if (A[i] != i+1) return i+1;
             }
             return A.length + 1;
@@ -25,11 +25,11 @@ public class FindMissingPositive {
     class Solution2 {
         public int firstMissingPositive(int[] A) {
             int len = A.length, i, index;
-            for (i = 0; i < len; i++)
+            for (i = 0; i < len; ++i)
                 if (A[i] < 0 || A[i] > len)
                     A[i] = 0;
 
-            for (i = 0; i < len; i++) {
+            for (i = 0; i < len; ++i) {
                 if (A[i] != 0) {
                     index = (A[i] % len) - 1;
                     if (index == -1)
@@ -38,7 +38,7 @@ public class FindMissingPositive {
                 }
             }
 
-            for (i = 0; i < len; i++) {
+            for (i = 0; i < len; ++i) {
                 if (A[i] % len == 0)
                     return i+1;
             }

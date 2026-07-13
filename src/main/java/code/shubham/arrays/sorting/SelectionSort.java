@@ -8,7 +8,7 @@ public class SelectionSort {
         void sort(int[] A) {
             int i, j, len = A.length, min;
 
-            for (i = 0; i < len - 1; i++) {
+            for (i = 0; i < len - 1; ++i) {
                 min = i;
                 for (j = i + 1; j < len; j++) {
                     if (A[j] < A[min]) {

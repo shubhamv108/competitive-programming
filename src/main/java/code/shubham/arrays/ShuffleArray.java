@@ -20,7 +20,7 @@ public class ShuffleArray {
     }
 
     public int[] shuffle() {
-        for (int i = 0; i < this.nums.length; i++) {
+        for (int i = 0; i < this.nums.length; ++i) {
             this.swap(i, this.randomInRange(i, this.nums.length));
         }
         return this.nums;

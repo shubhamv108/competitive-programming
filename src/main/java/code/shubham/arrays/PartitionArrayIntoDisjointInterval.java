@@ -9,7 +9,7 @@ public class PartitionArrayIntoDisjointInterval {
 
     public int partitionDisjoint(int[] nums) {
         int leftMax = nums[0], partitionIdx = 0, max = leftMax;
-        for (int i = 1; i < nums.length; i++)
+        for (int i = 1; i < nums.length; ++i)
             if (leftMax > nums[i]) {
                 leftMax = max;
                 partitionIdx = i;

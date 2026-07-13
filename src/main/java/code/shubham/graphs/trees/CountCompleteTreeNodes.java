@@ -25,7 +25,7 @@ public class CountCompleteTreeNodes {
             while (!q.isEmpty() && !flag) {
                 int levelNodesCount = q.size();
                 level++;
-                for (int i = 0; i < levelNodesCount; i++) {
+                for (int i = 0; i < levelNodesCount; ++i) {
                     TreeNode p = q.poll();
                     if (level == height - 1) {
                         if (p.right == null) {

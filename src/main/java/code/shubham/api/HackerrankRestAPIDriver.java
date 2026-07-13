@@ -1,5 +1,6 @@
 package code.shubham.api;
 
+import code.shubham.api.Result2.CityData;
 import com.google.gson.Gson;
 
 import java.net.URI;
@@ -10,11 +11,14 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static code.shubham.api.HttpClientDirector.invoke;
+
 public class HackerrankRestAPIDriver {
     public static void main(String[] args) {
 //        System.out.println(Result.getWinnerTotalGoals("UEFA Champions League", 2011));
 //        System.out.println(Result2.getCapitalCity("Afghanistan"));
-        System.out.println(Result4.invoke("Seattle"));
+//        System.out.println(Result4.invoke("Seattle"));
+        System.out.println(Result5.getDiscountedPrice(74002314));
     }
 }
 
@@ -139,6 +143,38 @@ class Result4 {
     }
 }
 
+class Result5 {
+    static class Response<D> {
+        int total_pages;
+        List<D> data;
+    }
+
+    static class Data {
+        String barcode;
+        String item;
+        String category;
+        double price;
+        double discount;
+        int available;
+
+        public String toString() {
+            return barcode + " " +price + " " + discount;
+        }
+    }
+
+    class ResponseData extends Response<Data> {}
+
+    public static int getDiscountedPrice(int barcode) {
+        String url = "https://jsonmock.hackerrank.com/api/inventory?barcode=%s";
+        ResponseData response = new Invoker().invoke(String.format(url, barcode), ResponseData.class);
+        if (response.data.isEmpty())
+            return -1;
+        System.out.print(response.data);
+        Data data = response.data.get(0);
+        return (int) (data.price - ((data.discount/100d) * data.price));
+    }
+}
+
 
 class Response<D> {
     int total_pages;
@@ -147,7 +183,7 @@ class Response<D> {
 
 class Invoker {
     static Gson GSON = new Gson();
-    String baseUrl = "https://jsonmock.hackerrank.com/api";
+    String baseUrl = "https://jsonmock.hackerrrank.com/api";
 
     public <D> Stream<D> get(
             String url,
@@ -162,10 +198,11 @@ class Invoker {
     }
 
     public <R> R invoke(String url, Class<R> clazz) {
+        System.out.println(url);
         try {
             return GSON.fromJson(
                     HttpClient.newHttpClient().send(
-                        HttpRequest.newBuilder(new URI(url.replace(" ", "%20"))).GET().build(),
+                        HttpRequest.newBuilder(new URI(url)).GET().build(),
                         BodyHandlers.ofString()).body(),
                     clazz);
         } catch (Exception e) {

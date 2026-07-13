@@ -18,7 +18,7 @@ class BinaryMadness {
             int prevZeroCount, prevOneCount;
 
 
-            for (int i = 0; i < binary.length(); i++) {
+            for (int i = 0; i < binary.length(); ++i) {
                 prevOneCount = 0;
                 prevZeroCount = 0;
                 for (int j = i; j < binary.length(); j++) {

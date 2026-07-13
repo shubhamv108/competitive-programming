@@ -29,7 +29,7 @@ public class TopologicalSort {
         int countOfVisited = 0;
         updateInDegree();
         Queue<Integer> q = new LinkedList<>();
-        for (int i=0;i<graph.size();i++) { if (inDegree[i] == 0)  q.offer(i); }
+        for (int i=0;i<graph.size();++i) { if (inDegree[i] == 0)  q.offer(i); }
         while(!q.isEmpty()) {
             int a = q.poll();
             visited[a] = true;

@@ -41,7 +41,7 @@ public class BORW {
     static int[][][] cache = new int[200][200][200];
 
     static void initializeCache() {
-        for(int i=0;i <= N-1;i++) {
+        for(int i=0;i <= N-1;++i) {
             for (int j = 0; j <= N; j++)
                 for (int k = 0; k <= N+1; k++) cache[i][j][k] = -1;
         }
@@ -56,7 +56,7 @@ public class BORW {
                 initializeCache();
                 int[] arr = new int[N+2];
                 String[] line = br.readLine().split(" ");
-                for (int i = 0; i < N; i++) arr[i] = Integer.parseInt(line[i]);
+                for (int i = 0; i < N; ++i) arr[i] = Integer.parseInt(line[i]);
                 a[N] = Integer.MAX_VALUE;
                 a[N+1] = Integer.MIN_VALUE;
                 System.out.println(new Solver22(arr, N, cache).solve(0, N, N+1));

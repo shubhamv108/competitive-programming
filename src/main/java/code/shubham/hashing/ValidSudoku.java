@@ -17,7 +17,7 @@ public class ValidSudoku {
                     A.stream().map(String::length).filter(l -> l != A.size()).count() > 0)
                 return 0;
             Set<Character> s = new HashSet<>();
-            for (int i = 0; i < A.size(); i++) {
+            for (int i = 0; i < A.size(); ++i) {
                 s.clear();
                 for (int j = 0; j < A.get(i).length(); j++) {
                     char c = A.get(i).charAt(j);

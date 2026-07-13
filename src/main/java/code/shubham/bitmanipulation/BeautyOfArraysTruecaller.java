@@ -13,7 +13,7 @@ public class BeautyOfArraysTruecaller {
             int result = Integer.MIN_VALUE;
             ArrayList<int[]> subArrayANDs = this.getSubArrayANDs(A, k);
             Map<Integer, ArrayList<int[]>> dp = new HashMap<>();
-            for (int i = 1; i <= k; i++)
+            for (int i = 1; i <= k; ++i)
                 dp.put(i, new ArrayList<>());
 
             for (int[] a: subArrayANDs) {
@@ -43,7 +43,7 @@ public class BeautyOfArraysTruecaller {
             ArrayList<int[]> subArrayANDs = new ArrayList<>();
             Queue<int[]> q = new LinkedList<>();
             int[] bits = new int[32];
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 if (q.size() == k) {
                     subArrayANDs.add(ANDBits(bits));
                     int[] p = q.poll();
@@ -58,7 +58,7 @@ public class BeautyOfArraysTruecaller {
 
         int[] ANDBits(int[] A) {
             int[] result = new int[32];
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i < 32; ++i)
                 if (A[i] > 1)
                     result[i] = 1;
             return result;
@@ -67,18 +67,18 @@ public class BeautyOfArraysTruecaller {
 
         int[] BitwiseAND(int[] A, int[] B) {
             int[] result = new int[32];
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i < 32; ++i)
                 if (A[i] == 1 && B[i] == 1)
                     result[i] = 1;
             return result;
         }
         void addToA(int[] A, int[] B) {
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i < 32; ++i)
                 A[i] += B[i];
         }
 
         void removeFromA(int[] A, int[] B) {
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i < 32; ++i)
                 A[i] -= B[i];
         }
 
@@ -93,7 +93,7 @@ public class BeautyOfArraysTruecaller {
 
         Integer getDecimal(int[] a) {
             char[] chrs = new char[32];
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i < 32; ++i)
                 chrs[i] = a[i] > 0 ? '0' : '1';
             return Integer.parseInt(new String(chrs), 2);
         }

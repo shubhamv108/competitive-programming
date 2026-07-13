@@ -18,7 +18,7 @@ public class KthSmallestInArraySortedRowAndColumnWise {
             PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>((x, y) -> y -x);
             boolean kInserted = false;
             int i = 0, j = 0;
-            for (; i < A.length; i++) {
+            for (; i < A.length; ++i) {
                for (j = 0; j < A.length; j++) {
                    maxHeap.offer(A[i][j]);
                    if (maxHeap.size() == K) {
@@ -32,7 +32,7 @@ public class KthSmallestInArraySortedRowAndColumnWise {
             int endRow = A.length;
             int endColumn = A.length;
             j++;
-            for (; i < endRow; i++) {
+            for (; i < endRow; ++i) {
                 for (; j < endColumn; j++) {
                     if (A[i][j] < maxHeap.peek()) {
                         maxHeap.poll();
@@ -63,7 +63,7 @@ public class KthSmallestInArraySortedRowAndColumnWise {
             int result = matrix[0][0];
             PriorityQueue<Pair> minHeap = new PriorityQueue<>((n, m) -> matrix[n.r][n.c] - matrix[m.r][m.c]);
 
-            for (int i = 0; i < Math.min(k, matrix.length); i++) {
+            for (int i = 0; i < Math.min(k, matrix.length); ++i) {
                 minHeap.offer(new Pair(i, 0));
             }
 

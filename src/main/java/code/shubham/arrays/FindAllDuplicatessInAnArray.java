@@ -8,7 +8,7 @@ public class FindAllDuplicatessInAnArray {
         public List<Integer> findDuplicates(int[] A) {
             ArrayList<Integer> result = new ArrayList<>();
             int i, index, len = A.length;
-            for (i = 0; i < len; i++) {
+            for (i = 0; i < len; ++i) {
                 index = Math.abs(A[i]) - 1;
                 if (A[index] < 0) {
                     result.add(index + 1);

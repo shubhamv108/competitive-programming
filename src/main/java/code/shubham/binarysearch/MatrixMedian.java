@@ -10,7 +10,7 @@ public class MatrixMedian {
         public int findMedian(int[][] A) {
             int min = Integer.MAX_VALUE;
             int max = Integer.MIN_VALUE;
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 min = Math.min(min, A[i][0]);
                 max = Math.max(max, A[i][A[i].length - 1]);
             }
@@ -19,7 +19,7 @@ public class MatrixMedian {
             int count = 0;
             while (max > min) {
                 int mid = min + (max - min) / 2;
-                for (int i = 0; i < A.length; i++) {
+                for (int i = 0; i < A.length; ++i) {
                     index = Arrays.binarySearch(A[i], mid);
                     if (index < 0) index = Math.abs(index) - 1;
                     else while (index < A[i].length && A[i][index] == mid) index++;

@@ -54,7 +54,7 @@ public class WorLadderII {
                 while (size-- > 0) {
                     p = q.poll();
                     char[] chrs = p.lastWord;
-                    for (int i = 0; i < chrs.length; i++) {
+                    for (int i = 0; i < chrs.length; ++i) {
                         char originalChar = chrs[i];
                         for (char c = 'a'; c <= 'z'; c++) {
                             chrs[i] = c;

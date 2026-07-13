@@ -9,7 +9,7 @@ public class MissingCharacter {
     private class Solution {
         private char solve(final String s, final int length) {
             int sum = 0;
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < length; ++i) {
                 int val = value(s.charAt(i));
                 if (((length & 1) == 1 && (i & 1) == 0)
                     || ((length & 1) == 0 && (i & 1) == 1)) {

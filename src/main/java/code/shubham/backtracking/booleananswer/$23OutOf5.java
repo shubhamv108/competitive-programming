@@ -126,7 +126,7 @@ class $23OutOf5Solver {
     }
 
     boolean allVisited() {
-        for (int i = 0; i < 5; i++) if (!visited[i]) return false;
+        for (int i = 0; i < 5; ++i) if (!visited[i]) return false;
         return true;
     }
 
@@ -137,7 +137,7 @@ class $23OutOf5Solver {
             return false;
         }
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; ++i) {
             if (!visited[i]) {
                 visited[i] = true;
                 if (solveHelper(ans + a[i])
@@ -151,7 +151,7 @@ class $23OutOf5Solver {
     }
 
     boolean solve() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; ++i) {
             int ans = a[i];
             visited[i] = true;
             if (solveHelper(ans)) return true;
@@ -168,7 +168,7 @@ public class $23OutOf5 {
 //            int[] a = new int[5];
 //            int t = reader.nextInt();
 //            while (t-- > 0) {
-//                for (int i=0;i<5;i++)
+//                for (int i=0;i<5;++i)
 //                    a[i] = reader.nextInt();
 //                if(new $23OutOf5Solver(a).solve()) System.out.printf("%s", "YES");
 //                else System.out.printf("%s", "NO");
@@ -183,7 +183,7 @@ public class $23OutOf5 {
             int[] a = new int[5];
             while(sc.hasNext()) {
                 boolean shouldBeProcessed = false;
-                for (int i=0;i<5;i++) {
+                for (int i=0;i<5;++i) {
                     a[i] = Integer.parseInt(sc.next());
                     if(!shouldBeProcessed && a[i] != 0) shouldBeProcessed = true;
                 }

@@ -8,7 +8,7 @@ public class RussianDollEnvelopes {
             Arrays.sort(envelopes, (x, y) -> x[0] == y[0] ? x[1] - y[1] : x[0] - y[0]);
             int len = envelopes.length, dp[] = new int[len], i, j, result = 1;
             dp[0] = 1;
-            for (i = 1; i < len; i++) {
+            for (i = 1; i < len; ++i) {
                 dp[i] = 1;
                 for (j = 0; j < i; j++)
                     if (envelopes[i][0] > envelopes[j][0] && envelopes[i][1] > envelopes[j][1])

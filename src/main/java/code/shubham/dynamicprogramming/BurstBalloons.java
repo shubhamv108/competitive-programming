@@ -13,7 +13,7 @@ public class BurstBalloons {
             int[][] dp = new int[l][l];
 
             for (int len = 0; len < l; len++) {
-                for (int i = 0; i + len < l; i++) {
+                for (int i = 0; i + len < l; ++i) {
                     int j = i + len ;
                     int leftNum  = i == 0 ? 1 : nums[i - 1];
                     int rightNum = j == l - 1 ? 1 : nums[j + 1];

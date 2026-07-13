@@ -26,7 +26,7 @@ public class MaxSizeColorIslandInMatrix {
     public static void main(String[] args) {
         Largest largest = new Largest();
         visited = new boolean[3][4];
-        for (int i=0;i<3;i++) {
+        for (int i=0;i<3;++i) {
             for (int j=0;j<4; j++) {
                 if (!visited[i][j]) {
                     int size = iterative (i, j);// recurse(a[i][j], i, j);

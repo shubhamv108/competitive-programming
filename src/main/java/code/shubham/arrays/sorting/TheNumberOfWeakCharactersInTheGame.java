@@ -9,7 +9,7 @@ public class TheNumberOfWeakCharactersInTheGame {
             Arrays.sort(properties, (x, y) -> x[0] == y[0] ? x[1] - y[1] : y[0] - x[0]);
 
             int max = properties[0][1];
-            for (int i = 1; i < properties.length; i++) {
+            for (int i = 1; i < properties.length; ++i) {
                 if (properties[i][1] < max)
                     result++;
                 max = Math.max(max, properties[i][1]);

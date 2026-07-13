@@ -9,7 +9,7 @@ public class DivideArrayIntoKPartitionsWithMinimumSumInContiguosSubaary {
 //
         int result = Integer.MAX_VALUE;
 //        int sum1 = 0;
-//        for (int i = 0; i < arr.length; i++) {
+//        for (int i = 0; i < arr.length; ++i) {
 //            int sum2 = 0;
 //            int sum3 = IntStream.range(i, arr.length).mapToObj(j -> arr[j]).mapToInt(j -> j).sum();
 //            for (int j = i; j < arr.length; j++) {

@@ -25,7 +25,7 @@ public class SmallestMultipleWith0And1 {
 
         private int rem (String s, int A) {
             int r  = 0;
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 r = (r * 10) + (s.charAt(i) - '0');
                 r = r % A;
             }

@@ -8,7 +8,7 @@ public class Atoi {
         boolean isZero = false;
         int firstDigit = 0;
         int result = 0;
-        for (int i = 0; i < A.length(); i++) {
+        for (int i = 0; i < A.length(); ++i) {
             if (result == 0 && A.charAt(i) == '0') {
                 isZero = true;
                 continue;

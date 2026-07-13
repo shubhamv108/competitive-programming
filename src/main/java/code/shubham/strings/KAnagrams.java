@@ -10,7 +10,7 @@ public class KAnagrams {
         Map<Character, Integer> map = new HashMap<>();
         char ch;
         int n;
-        for(int i=0;i<first.length();i++) {
+        for(int i=0;i<first.length();++i) {
             ch = first.charAt(i);
             if(map.containsKey(ch)) {
                 n = map.get(ch);
@@ -20,7 +20,7 @@ public class KAnagrams {
             }
         }
         int c = 0;
-        for(int i=0;i<second.length();i++) {
+        for(int i=0;i<second.length();++i) {
             ch = second.charAt(i);
             if(map.containsKey(ch)) {
                 n = map.get(ch);

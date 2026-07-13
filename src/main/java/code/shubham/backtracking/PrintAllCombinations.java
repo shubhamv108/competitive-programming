@@ -17,7 +17,7 @@ public class PrintAllCombinations {
             result.add(new ArrayList<>(l));
             return true;
         }
-        for (int i = min; i <= max; i++) {
+        for (int i = min; i <= max; ++i) {
             l.add(i);
             boolean a = getCombination(min, max, total - i, l);
             l.remove(l.size() - 1);

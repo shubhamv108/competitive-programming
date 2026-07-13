@@ -43,7 +43,7 @@ public class SortByOrg {
         }
 
         long result = 0;
-        for (int i = 1; i < collegeCount; i++) {
+        for (int i = 1; i < collegeCount; ++i) {
             int a = map.get(i).size();
             for (int j = i+1; j <= collegeCount; j++) {
                 int b = map.get(j).size();

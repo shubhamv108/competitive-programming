@@ -22,7 +22,7 @@ public class MaxSumSubsequenceWithThreshold {
             if (dp[pos][threshold] != null) return dp[pos][threshold];
             int sum = 0;
             int max = Integer.MIN_VALUE;
-            for (int i = pos + 1; i < A.length; i++) {
+            for (int i = pos + 1; i < A.length; ++i) {
                 sum = sum(i, threshold - A[pos]);
                 max = Math.max(max, sum);
             }
@@ -32,7 +32,7 @@ public class MaxSumSubsequenceWithThreshold {
         int solve() {
             Arrays.sort(A);
             int max = Integer.MIN_VALUE;
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 if (A[i] == threshold) return A[i];
                 dp[i][threshold] = sum(i, threshold);
                 max = Math.max(max, dp[i][threshold]);

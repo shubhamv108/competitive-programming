@@ -19,7 +19,7 @@ public class GetLargestBox {
             int prevX = 0, prevY = 0, result = 0, xLength = 0;
 
             if (x.length != 0) {
-                for (int i = 0; i < x.length; i++) {
+                for (int i = 0; i < x.length; ++i) {
                     xLength = x[i] - prevX;
                     prevY = 0;
                     for (int j = 0; j < y.length; j++) {

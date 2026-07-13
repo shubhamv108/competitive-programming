@@ -9,7 +9,7 @@ public class MinimumTimeToMakeRopeColorful {
             int result = 0, len = colors.length;
             Stack<Integer> stack = new Stack<>();
             stack.push(0);
-            for (int i = 1; i < len; i++) {
+            for (int i = 1; i < len; ++i) {
                 if (colors[i] == colors[stack.peek()]) {
                     if (neededTime[stack.peek()] < neededTime[i]) {
                         result += neededTime[stack.peek()];
@@ -30,7 +30,7 @@ public class MinimumTimeToMakeRopeColorful {
         public int minCost(String COLORS, int[] neededTime) {
             char[] colors = COLORS.toCharArray();
             int result = 0, len = colors.length, minTime;
-            for (int i = 1; i < len; i++) {
+            for (int i = 1; i < len; ++i) {
                 if (colors[i] == colors[i-1]) {
                     minTime = Math.min(neededTime[i], neededTime[i-1]);
                     result += minTime;
@@ -45,7 +45,7 @@ public class MinimumTimeToMakeRopeColorful {
         public int minCost(String COLORS, int[] neededTime) {
             char[] colors = COLORS.toCharArray();
             int result = 0, len = colors.length, prevIdx = 0;
-            for (int i = 1; i < len; i++) {
+            for (int i = 1; i < len; ++i) {
                 if (colors[i] == colors[prevIdx]) {
                     if (neededTime[i] < neededTime[prevIdx]) {
                         result += neededTime[i];

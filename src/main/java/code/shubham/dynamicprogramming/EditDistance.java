@@ -18,7 +18,7 @@ public class EditDistance {
         public int minDistance(String A, String B) {
             //return editDistance (A, B, A.length(), B.length());
             int[][] dist = new int[A.length()+1][B.length()+1];
-            for (int i=0; i <= A.length(); i++) {
+            for (int i=0; i <= A.length(); ++i) {
                 for (int j=0; j <= B.length(); j++) {
                     if (i == 0) dist[i][j] = j;
                     else if (j == 0) dist[i][j] = i;

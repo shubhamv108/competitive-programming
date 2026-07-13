@@ -17,11 +17,11 @@ public class MakeAnArray {
 
             int maxDiff[][] = new int [N][2];
 
-            for (int i = 0; i < N; i++) {
+            for (int i = 0; i < N; ++i) {
                 maxDiff[i][0] = maxDiff[i][1] = 0;
             }
 
-            for (int i = 0; i < N - 1; i++) {
+            for (int i = 0; i < N - 1; ++i) {
                 maxDiff[i + 1][0] = Math.max(maxDiff[i][0], maxDiff[i][1] + Math.abs(1 - B[i]));
                 maxDiff[i + 1][1] = Math.max(maxDiff[i][0] + Math.abs(B[i + 1] - 1),
                                              maxDiff[i][1] + Math.abs(B[i + 1] - B[i]));

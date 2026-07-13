@@ -11,7 +11,7 @@ public class MinimumNumberOfArrowsToBurstBalloons {
             Arrays.sort(A, (a, b) -> Integer.compare(a[1], b[1]));
             int arrowPos = A[0][1];
             int result = 1;
-            for (int i = 1; i < A.length; i++) {
+            for (int i = 1; i < A.length; ++i) {
                 if (arrowPos >= A[i][0])
                     continue;
 

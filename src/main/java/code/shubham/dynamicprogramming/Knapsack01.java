@@ -27,7 +27,7 @@ public class Knapsack01 {
             if (startPos == A.length) return w;
             if (dp[startPos][w] != null) return dp[startPos][w];
             int result = w;
-            for (int i = startPos; i < A.length; i++) {
+            for (int i = startPos; i < A.length; ++i) {
                 int r = recurse(i + 1, w + A[i]);
                 result = Math.max(r, result);
             }
@@ -40,7 +40,7 @@ public class Knapsack01 {
             int l  = weights.length, result = 0;
             HashMap<Integer, Integer> prev = new HashMap();
             HashMap<Integer, Integer> cur = new HashMap<>();
-            for (int i = 0; i < l; i++) {
+            for (int i = 0; i < l; ++i) {
                 if (weights[i] > maxWeight) continue;
                 cur.put(weights[i], 1);
                 for (Map.Entry<Integer, Integer> entry : prev.entrySet()) {
@@ -65,7 +65,7 @@ public class Knapsack01 {
             int l = weights.length, result = 0;
             Set<Integer> s = new HashSet<>();
             Set<Integer> t = new HashSet<>();
-            for (int i = 0; i < l; i++) {
+            for (int i = 0; i < l; ++i) {
                 if (weights[i] > maxCapacity) continue;
                 t.add(weights[i]);
                 result = Math.max(result, weights[i]);
@@ -85,7 +85,7 @@ public class Knapsack01 {
             int l = weights.size(), result = 0;
             Set<Integer> s = new HashSet<>();
             Set<Integer> t = new HashSet<>();
-            for (int i = 0; i < l; i++) {
+            for (int i = 0; i < l; ++i) {
                 Integer weight = weights.get(i);
                 if (weight > maxCapacity) continue;
                 t.add(weight);
@@ -114,7 +114,7 @@ public class Knapsack01 {
             dp[0] = true;
             int result = 0;
 
-            for (int i = 0; i < weights.length; i++) {
+            for (int i = 0; i < weights.length; ++i) {
                 int weight = weights[i];
                 for (int j = maxCapacity; j >= weight; j--) {
                     if (dp[j - weight]) {

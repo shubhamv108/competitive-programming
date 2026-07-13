@@ -8,7 +8,7 @@ public class BestTimeToBuyAndSellAndStocksIV {
 
         // For day 0, you can't earn money
         // irrespective of how many times you trade
-        for (int i = 0; i <= k; i++)
+        for (int i = 0; i <= k; ++i)
             profit[i][0] = 0;
 
         // profit is 0 if we don't do any
@@ -17,7 +17,7 @@ public class BestTimeToBuyAndSellAndStocksIV {
             profit[0][j] = 0;
 
         // fill the table in bottom-up fashion
-        for (int i = 1; i <= k; i++) {
+        for (int i = 1; i <= k; ++i) {
             int prevDiff = Integer.MIN_VALUE;
             for (int j = 1; j < n; j++) {
                 prevDiff = Math.max(prevDiff,

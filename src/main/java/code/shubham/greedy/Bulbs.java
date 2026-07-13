@@ -15,7 +15,7 @@ public class Bulbs {
 
         int count = 0;
         int res = 0;
-        for (int i = 0; i < A.size(); i++) {
+        for (int i = 0; i < A.size(); ++i) {
             if (A.get(i) == 1 && (count & 1) == 0)
                 continue;
             else if(A.get(i) == 0 && (count & 1) == 1)

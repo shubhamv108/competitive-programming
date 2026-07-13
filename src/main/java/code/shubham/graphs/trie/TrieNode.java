@@ -1,4 +1,4 @@
-package code.shubham.trie;
+package code.shubham.graphs.trie;
 
 public class TrieNode {
     static final int ALPHABET_SIZE = 26;

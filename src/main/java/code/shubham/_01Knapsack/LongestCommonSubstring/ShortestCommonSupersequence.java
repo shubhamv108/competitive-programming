@@ -9,9 +9,9 @@ public class ShortestCommonSupersequence {
             for (int i = 0; i < lcs.length(); ++i, ++ai, ++bi) {
                 char c = lcs.charAt(i);
                 while (a.charAt(ai) != c)
-                    result.append(a.charAt(ai++));
+                    result.append(a.charAt(++ai));
                 while (b.charAt(bi) != c)
-                    result.append(b.charAt(bi++));
+                    result.append(b.charAt(++bi));
                 result.append(c);
             }
             return result.append(a.substring(ai)).append(b.substring(bi)).toString();

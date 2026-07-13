@@ -34,7 +34,7 @@ public class HasSumPath {
             R = Integer.parseInt(sc.next());
             C = Integer.parseInt(sc.next());
             int[][] arr = new int[R][C];
-            for(int i=0;i<R;i++) {
+            for(int i=0;i<R;++i) {
                 for(int j=0;j<C;j++) {
                     arr[i][j] = Integer.parseInt(sc.next());
                 }

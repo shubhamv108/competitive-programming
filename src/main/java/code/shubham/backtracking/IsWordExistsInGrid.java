@@ -7,7 +7,7 @@ public class IsWordExistsInGrid {
         public boolean exist(char[][] board, String w) {
             int n = board.length, m = board[0].length;
             char[] word = w.toCharArray();
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 for (int j = 0; j < m; j++) {
                     if (exist(board, i, j, word, 0)) {
                         return true;

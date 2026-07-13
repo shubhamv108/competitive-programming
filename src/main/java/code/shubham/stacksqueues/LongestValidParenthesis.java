@@ -8,7 +8,7 @@ public class LongestValidParenthesis {
         int max = 0;
         Stack<Integer> z = new Stack<>();
         z.push(-1);
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); ++i) {
             if (s.charAt(i) == '(')
                 z.push(i);
             else {
@@ -28,7 +28,7 @@ public class LongestValidParenthesis {
         int max = 0;
         int[] l = new int[s.length()];
 
-        for (int i = 1; i < s.length(); i++) {
+        for (int i = 1; i < s.length(); ++i) {
             if (s.charAt(i) == ')' && i - l[i - 1] - 1 >= 0
                     && s.charAt(i - l[i - 1] - 1) == '(') {
                 l[i] = l[i - 1] + 2 + ((i - l[i - 1] - 2 >= 0)
@@ -43,7 +43,7 @@ public class LongestValidParenthesis {
         public int longestValidParentheses(String s) {
             int result = 0, left = -1;
             Stack<Integer> stack = new Stack<>();
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 if (s.charAt(i) == '(')
                     stack.push(i);
                 else {

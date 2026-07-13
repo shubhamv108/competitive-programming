@@ -57,7 +57,7 @@ public class Stringify {
             return o.toString();
         if (o instanceof boolean[]) {
             boolean[] a = (boolean[]) o;
-            for (int i=0;i<a.length;i++)
+            for (int i=0;i<a.length;++i)
                 sb.append(i+1).
                         append(")").
                         append(" ").
@@ -71,7 +71,7 @@ public class Stringify {
         }
         if (o instanceof char[]) {
             char[] a = (char[]) o;
-            for (int i=0; i<a.length;i++)
+            for (int i=0; i<a.length;++i)
                 sb.append(i+1).
                         append(")").
                         append(" ").
@@ -82,7 +82,7 @@ public class Stringify {
         }
         if (o instanceof int[]) {
             int[] a = (int[]) o;
-            for (int i=0;i<a.length;i++)
+            for (int i=0;i<a.length;++i)
                 sb.append(i+1).
                         append(")").
                         append(" ").
@@ -93,7 +93,7 @@ public class Stringify {
         }
         if (o instanceof long[]) {
             long[] a = (long[]) o;
-            for (int i=0;i<a.length;i++)
+            for (int i=0;i<a.length;++i)
                 sb.append(i+1).
                         append(")").
                         append(" ").
@@ -104,7 +104,7 @@ public class Stringify {
         }
         if (o instanceof float[]) {
             float[] a = (float[]) o;
-            for (int i=0;i<a.length;i++)
+            for (int i=0;i<a.length;++i)
                 sb.append(i+1).
                         append(")").
                         append(" ").
@@ -115,7 +115,7 @@ public class Stringify {
         }
         if (o instanceof double[]) {
             double[] a = (double[]) o;
-            for (int i=0;i<a.length;i++)
+            for (int i=0;i<a.length;++i)
                 sb.append(i+1).
                         append(")").
                         append(" ").

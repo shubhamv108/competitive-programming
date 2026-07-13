@@ -59,7 +59,7 @@ public class AllocateMinimumNumberOfPages {
             if (B > len) return -1;
             int prefixSum[] = new int[len];
             prefixSum[0] = A[0];
-            for (int i = 1; i < len; i++)
+            for (int i = 1; i < len; ++i)
                 prefixSum[i] = A[i] + prefixSum[1];
 
             int l = A[len - 1], r = prefixSum[len - 1], result = r;
@@ -91,7 +91,7 @@ public class AllocateMinimumNumberOfPages {
 //                }
 //            }
 //
-//            for (int i = 0; i < prefixSum.length; i++) {
+//            for (int i = 0; i < prefixSum.length; ++i) {
 //                if (prefixSum[i] > m) return false;
 //                if (a + curSum > m) {
 //                    count++;

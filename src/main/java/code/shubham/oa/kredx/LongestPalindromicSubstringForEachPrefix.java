@@ -10,14 +10,14 @@ public class LongestPalindromicSubstringForEachPrefix {
 
             lps(s, dp);
 
-            for (int i = 1; i < s.length(); i++)
+            for (int i = 1; i < s.length(); ++i)
                 dp[i] = Math.max(dp[i], dp[i-1]);
 
             return dp;
         }
 
         void lps(String s, int[] dp) {
-            for (int  i = 0; i < s.length(); i++) {
+            for (int  i = 0; i < s.length(); ++i) {
                 expand(s, i, i, dp);
                 expand(s, i, i + 1, dp);
             }

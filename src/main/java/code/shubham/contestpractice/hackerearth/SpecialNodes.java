@@ -43,7 +43,7 @@ public class SpecialNodes {
         tree.put(1, new ArrayList<>());
         if (isPrime(val[0])) ALL_XOR = val[0];
         Integer xor = null;
-        for (int i = 0; i < parent.length; i++) {
+        for (int i = 0; i < parent.length; ++i) {
             List<Integer> children = tree.get(parent[i]);
             if (children == null) tree.put(parent[i], children = new ArrayList<>());
             children.add(i+2);

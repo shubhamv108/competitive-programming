@@ -38,7 +38,7 @@ public class MinCostToConvertNToMByAddingEvenDivisor {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine().trim());
-        for (int i = 0; i < T; i++) {
+        for (int i = 0; i < T; ++i) {
             String[] line = br.readLine().split(" ");
             int N = Integer.parseInt(line[0]);
             int M = Integer.parseInt(line[1]);

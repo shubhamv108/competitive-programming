@@ -20,7 +20,7 @@ public class HighestProduct {
             int maxA = Integer.MIN_VALUE, maxB = Integer.MIN_VALUE, maxC = Integer.MIN_VALUE;
             int minA = Integer.MAX_VALUE, minB = Integer.MAX_VALUE;
 
-            for (int i = 0; i < A.size(); i++) {
+            for (int i = 0; i < A.size(); ++i) {
                 if (A.get(i) > maxA) {
                     maxC = maxB;
                     maxB = maxA;

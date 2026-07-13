@@ -9,7 +9,7 @@ public class BestMeetingPoint {
         public int minTotalDistance(int[][] grid) {
             ArrayList<Integer> rows = new ArrayList<>();
             ArrayList<Integer> cols = new ArrayList<>();
-            for (int i = 0; i < grid.length; i++) {
+            for (int i = 0; i < grid.length; ++i) {
                 for (int j = 0; j < grid[0].length; j++) {
                     if (grid[i][j] == 1) {
                         rows.add(i);

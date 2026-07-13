@@ -58,11 +58,11 @@ class SortIntegerByBitCount {
 
     class Solution3 {
         public int[] sortByBits(int[] A) {
-            for(int i = 0; i < A.length; i++)
+            for(int i = 0; i < A.length; ++i)
                 A[i] += 10001 * Integer.bitCount(A[i]);
 
             Arrays.sort(A);
-            for (int i=0; i < A.length; i++)
+            for (int i=0; i < A.length; ++i)
                 A[i] %= 10001;
             return A;
         }

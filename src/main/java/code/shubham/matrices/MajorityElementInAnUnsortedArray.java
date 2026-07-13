@@ -6,7 +6,7 @@ class MajorityElementInAnUnsortedArray {
 
     static int findCandidate(int[] a) {
         int c = 0, m = 0;
-        for(int i=0; i<=a.length; i++) {
+        for(int i=0; i<=a.length; ++i) {
             if(a[m] == a[i]) {
                 c++;
             } else {
@@ -25,7 +25,7 @@ class MajorityElementInAnUnsortedArray {
         while(t-- > 0) {
             int n = Integer.parseInt(sc.next());
             int[] a = new int[n];
-            for(int i=0; i < n; i++) {
+            for(int i=0; i < n; ++i) {
                 a[i] = Integer.parseInt(sc.next());
             }
 

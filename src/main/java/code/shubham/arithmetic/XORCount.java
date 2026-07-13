@@ -12,7 +12,7 @@ public class XORCount {
 
     Map<Integer, Integer> xorCount = new HashMap<>();
     List<Integer> solve(int N, int[] A, int K) {
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; ++i) {
             for (int j = i+1; j< N; j++) {
                 int xor = A[i] ^ A[j];
                 if (xor <= K) {

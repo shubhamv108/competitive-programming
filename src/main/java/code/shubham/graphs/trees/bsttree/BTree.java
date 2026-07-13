@@ -222,7 +222,7 @@ public class BTree {
         while (!q.isEmpty()) {
             BTNode node = q.poll();
             int n = q.size();
-            for (int i=1; i<=n; i++) {
+            for (int i=1; i<=n; ++i) {
                 if (i == n) System.out.println(node.data);
                 node = q.poll();
                 if (Objects.nonNull(node.left))  q.offer(node.left);
@@ -373,7 +373,7 @@ public class BTree {
 
     public BTNode buildTreeWrap(int[] in, int[] pre) {
         Map<Integer, Integer> inOrderMap = new HashMap<>();
-        for(int i=0;i<in.length;i++) inOrderMap.put(in[i], i);
+        for(int i=0;i<in.length;++i) inOrderMap.put(in[i], i);
         return buildTree(pre, 0, in.length - 1, inOrderMap);
     }
 
@@ -390,7 +390,7 @@ public class BTree {
 
     public Map<Integer, Integer> buildPositionMapFromArray(int[] arr) {
         Map<Integer, Integer> map = new HashMap<>();
-        for(int i=0; i < arr.length; i++) map.put(arr[i], i);
+        for(int i=0; i < arr.length; ++i) map.put(arr[i], i);
         return map;
     }
 
@@ -429,7 +429,7 @@ public class BTree {
     }
 
     private int searchInArray(int[] arr, int left, int right, int x) {
-        for (int i=left;i<=right;i++)
+        for (int i=left;i<=right;++i)
             if(arr[i] == x) return i;
         return 0;
     }
@@ -524,7 +524,7 @@ public class BTree {
             if (p.node.left  != null) q.add(new Pair(p.hd - 1, p.node.left ));
             if (p.node.right != null) q.add(new Pair(p.hd + 1, p.node.right));
         }
-        for (int i = l; i <= h; i++) a.add(m.get(i));
+        for (int i = l; i <= h; ++i) a.add(m.get(i));
         return a;
     }
 
@@ -796,7 +796,7 @@ public class BTree {
     }
 
     public TreeNode buildTreePreOrderAndInOrder (ArrayList<Integer> A, ArrayList<Integer> B) {
-        for (int i=0; i<B.size();i++) m.put(B.get(i), i);
+        for (int i=0; i<B.size();++i) m.put(B.get(i), i);
         return buildTree2(A, 0, B.size() - 1);
     }
 
@@ -820,7 +820,7 @@ public class BTree {
             int n = q.size();
             if (a.left  != null) q.add(a.left);
             if (a.right != null) q.add(a.right);
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 a.next = q.poll();
                 a = a.next;
                 if (a.left  != null) q.add(a.left);
@@ -836,7 +836,7 @@ public class BTree {
             list.add(null);
             return list;
         }
-        for (int i = start; i <= end; i++) {
+        for (int i = start; i <= end; ++i) {
             ArrayList<TreeNode> l = constructTrees(start, i-1);
             ArrayList<TreeNode> r = constructTrees(i+1,   end);
             for (int j = 0; j < l.size(); j++) {
@@ -872,7 +872,7 @@ public class BTree {
         while (!q.isEmpty()) {
             int n = q.size();
             ArrayList<Integer> aa = new ArrayList<>();
-            for (int i=0;i<n;i++) {
+            for (int i=0;i<n;++i) {
                 t = q.poll();
                 aa.add(t.val);
                 if (t.left  != null) q.offer(t.left);

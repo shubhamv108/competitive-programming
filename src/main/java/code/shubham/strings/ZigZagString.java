@@ -7,7 +7,7 @@ public class ZigZagString {
             if(B == 1) return A;
             StringBuilder result = new StringBuilder();
             int n = B + B - 2;
-            for(int i = 0; i < B; i++) {
+            for(int i = 0; i < B; ++i) {
                 int cur = i;
                 while(cur < A.length()) {
                     result.append(A.charAt(cur));

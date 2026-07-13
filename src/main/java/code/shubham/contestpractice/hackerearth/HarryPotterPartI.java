@@ -20,7 +20,7 @@ public class HarryPotterPartI {
     }
     static int maxStones() {
         int ret = 0;
-        for(int i=0;i<w;i++) {
+        for(int i=0;i<w;++i) {
             ret = max(ret, tripHelper(0, i, 0));
         } return ret;
     }
@@ -33,7 +33,7 @@ public class HarryPotterPartI {
             line = br.readLine().split(" ");
             h = Integer.parseInt(line[0]);
             w = Integer.parseInt(line[1]);
-            for(int i=0;i<h;i++) {
+            for(int i=0;i<h;++i) {
                 line = br.readLine().split(" ");
                 for(int j=0;j<w;j++) {
                     a[i][j] = Integer.parseInt(line[j]);
@@ -42,7 +42,7 @@ public class HarryPotterPartI {
             }
 
             System.out.println(maxStones());
-            for(int i=0;i<h;i++) {
+            for(int i=0;i<h;++i) {
                 for (int j = 0; j < w; j++) {
                     System.out.print(cache[i][j] + " ");
                 }

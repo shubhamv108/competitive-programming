@@ -14,7 +14,7 @@ public class FirstUniqueCharacterInAString {
             LinkedHashMap<Integer, Integer> a = new LinkedHashMap<>();
             BitSet set = new BitSet(26);
             char[] chrs = s.toCharArray();
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 int c = chrs[i]-'a';
                 if (a.containsKey(c)) a.remove(c);
                 else if (!set.get(c)) {
@@ -31,7 +31,7 @@ public class FirstUniqueCharacterInAString {
             LinkedHashMap<Integer, Integer> a = new LinkedHashMap<>();
             int set = 0;
             char[] chrs = s.toCharArray();
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 int c = chrs[i]-'a';
                 if (a.containsKey(c)) a.remove(c);
                 else if ((set & (1 << c)) == 0) {
@@ -49,7 +49,7 @@ public class FirstUniqueCharacterInAString {
             int len = chrs.length;
             s.lastIndexOf(0);
             Integer[] a = new Integer[26];
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; ++i) {
                 int c = chrs[i] - 'a';
                 if (a[c] == null) a[c] = i;
                 else a[c] = -1;

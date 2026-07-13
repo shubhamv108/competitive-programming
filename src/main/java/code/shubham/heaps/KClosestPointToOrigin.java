@@ -18,9 +18,9 @@ public class KClosestPointToOrigin {
         public int[][] kClosest(int[][] points, int k) {
             PriorityQueue<Pair> closest = new PriorityQueue<>((a, b) -> b.dist - a.dist > 0 ? 1 : -1);
             int i = 0;
-            for (; i < k; i++)
+            for (; i < k; ++i)
                 closest.offer(new Pair(points[i], dist(points[i])));
-            for (; i < points.length; i++) {
+            for (; i < points.length; ++i) {
                 double dist = dist(points[i]);
                 if (closest.peek().dist > dist) {
                     closest.poll();
@@ -28,7 +28,7 @@ public class KClosestPointToOrigin {
                 }
             }
             int[][] result = new int[k][2];
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; ++i)
                 result[i] = closest.poll().point;
             return result;
         }
@@ -58,7 +58,7 @@ public class KClosestPointToOrigin {
             System.out.print(points.length);
             quickSelect(points, 0, points.length - 1, k - 1);
             int[][] result = new int[k][2];
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < k; ++i)
                 result[i] = points[i];
             return result;
         }

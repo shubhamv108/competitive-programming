@@ -12,7 +12,7 @@ public class NumberOfWaysToDivideNSumInKSizeGroupsIncrementally {
             }
             if (sum == 0) return 0;
             int result = 0;
-            for (int i = prev; i <= sum; i++) {
+            for (int i = prev; i <= sum; ++i) {
                 result += recurse(i, sum - i, pos + 1, len);
             }
             return result;
@@ -43,7 +43,7 @@ public class NumberOfWaysToDivideNSumInKSizeGroupsIncrementally {
                 return dp[pos][prevValue - 1][remainingSum - 1];
             }
             int result = 0;
-            for (int i = prevValue; i <= remainingSum; i++) {
+            for (int i = prevValue; i <= remainingSum; ++i) {
                 result += recurse(i, remainingSum - i, pos + 1);
             }
             return dp[pos][prevValue - 1][remainingSum - 1] = result;

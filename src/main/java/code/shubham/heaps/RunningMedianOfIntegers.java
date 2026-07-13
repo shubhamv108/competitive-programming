@@ -18,7 +18,7 @@ public class  RunningMedianOfIntegers {
             maxHeapArr[0] = Integer.MIN_VALUE;
             PriorityQueue maxHeap = new PriorityQueue(maxHeapArr, 0, false);
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 int a = sc.nextInt();
                 if (maxHeap.peek() == Integer.MIN_VALUE && minHeap.peek() == Integer.MAX_VALUE) maxHeap.add(a);
                 else {
@@ -52,7 +52,7 @@ class JavaQueue {
             maxHeap.add(Integer.MIN_VALUE);
 
 
-            for(int i = 0; i < n; i++) {
+            for(int i = 0; i < n; ++i) {
                 int a = sc.nextInt();
                 if(maxHeap.peek() == Integer.MIN_VALUE && minHeap.peek() == Integer.MAX_VALUE) maxHeap.add(a);
                 else {

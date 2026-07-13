@@ -10,7 +10,7 @@ public class MaxSumSubsequenceNoAdjacentElements {
         int excl = 0;
         int temp;
 
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < n; ++i) {
             temp = incl;
             incl = Math.max(incl, excl + arr[i]);
             excl = temp;
@@ -55,7 +55,7 @@ public class MaxSumSubsequenceNoAdjacentElements {
                 incl = a[0];
                 inclList.add(a[0]);
             }
-            for (int i = 2; i < a.length; i++) {
+            for (int i = 2; i < a.length; ++i) {
                 temp = incl;
                 tempList = inclList;
                 if (a[i] >= a[i] + excl && a[i] >= incl) {

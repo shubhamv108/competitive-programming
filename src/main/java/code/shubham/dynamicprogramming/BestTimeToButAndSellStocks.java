@@ -13,7 +13,7 @@ public class BestTimeToButAndSellStocks {
         // DO NOT MODIFY THE LIST. IT IS READ ONLY
         public int maxProfit (final List<Integer> A) {
             int maxProfit = 0;
-            for (int i = 0; i < A.size(); i++)
+            for (int i = 0; i < A.size(); ++i)
                 for (int j = i + 1; j < A.size(); j++)
                     maxProfit = Math.max(maxProfit, A.get(j) - A.get(i));
             return maxProfit;
@@ -25,7 +25,7 @@ public class BestTimeToButAndSellStocks {
                 if (A.size() <= 1) return 0;
                 int maxProfit = 0;
                 int min = A.get(0);
-                for (int i = 1; i < A.size(); i++) {
+                for (int i = 1; i < A.size(); ++i) {
                     if (A.get(i) < min) min = A.get(i);
                     else maxProfit = Math.max(maxProfit, A.get(i) - min);
                 }

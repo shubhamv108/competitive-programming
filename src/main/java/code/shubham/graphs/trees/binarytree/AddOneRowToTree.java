@@ -35,7 +35,7 @@ public class AddOneRowToTree {
             while (!q.isEmpty()) {
                 size = q.size();
                 curDepth++;
-                for (int i = 0; i < size; i++) {
+                for (int i = 0; i < size; ++i) {
                     p = q.poll();
                     left = p.left;
                     right = p.right;

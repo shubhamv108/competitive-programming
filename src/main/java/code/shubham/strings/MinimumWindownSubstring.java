@@ -12,7 +12,7 @@ public class MinimumWindownSubstring {
             char[] cs = s.toCharArray();
             char[] ts = t.toCharArray();
             Map<Character, Integer> m = new HashMap<>();
-            for (int i = 0; i < tl; i++) {
+            for (int i = 0; i < tl; ++i) {
                 m.put(ts[i], m.getOrDefault(ts[i], 0) + 1);
             }
 
@@ -20,7 +20,7 @@ public class MinimumWindownSubstring {
             Map<Character, Integer> sm = new HashMap<>(m);
             Map<Character, Integer> temp = new HashMap<>();
             boolean isFound = false;
-            for (int i = 0; i < sl; i++) {
+            for (int i = 0; i < sl; ++i) {
                 if (m.containsKey(cs[i])) {
                     Integer c = sm.get(cs[i]);
                     if (c == null) temp.put(cs[i], temp.getOrDefault(cs[i], 0) + 1);
@@ -58,7 +58,7 @@ public class MinimumWindownSubstring {
                 minLeft = 0,
                 minLength = Integer.MAX_VALUE,
                 count = tArray.length;
-            for(int i = 0; i < tArray.length; i++) map[tArray[i]] ++;
+            for(int i = 0; i < tArray.length; ++i) map[tArray[i]] ++;
             while (right < sArray.length) {
                 if (map[sArray[right]] > 0) count--;
                 map[sArray[right]]--;

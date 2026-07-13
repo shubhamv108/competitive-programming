@@ -17,7 +17,7 @@ public class LongestSubsequenceRepeatedKTimes {
                 int size = q.size();
                 while (size-- > 0) {
                     String p = q.poll();
-                    for (int i = 0; i < 26; i++) {
+                    for (int i = 0; i < 26; ++i) {
                         String next = p + (char) ('a' + i);
                         if (isKSub(s, next, k)) {
                             result = next;
@@ -31,7 +31,7 @@ public class LongestSubsequenceRepeatedKTimes {
 
         boolean isKSub(char[] s, String sub, int k) {
             int j = 0, repeat = 0;
-            for (int i = 0; i < s.length; i++) {
+            for (int i = 0; i < s.length; ++i) {
                 if (s[i] == sub.charAt(j)) {
                     j++;
                     if (j == sub.length()) {

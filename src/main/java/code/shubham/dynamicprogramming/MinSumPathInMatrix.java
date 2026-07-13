@@ -14,17 +14,17 @@ public class MinSumPathInMatrix {
             cache.put(0, new HashMap<>());
             cache.get(0).put(0, A.get(0).get(0));
             int sum = A.get(0).get(0);
-            for (int i = 1; i < A.get(0).size(); i++) {
+            for (int i = 1; i < A.get(0).size(); ++i) {
                 sum += A.get(0).get(i);
                 cache.get(0).put(i, sum);
             }
             sum = A.get(0).get(0);
-            for (int i = 1; i < A.size(); i++) {
+            for (int i = 1; i < A.size(); ++i) {
                 cache.put(i, new HashMap<>());
                 sum += A.get(i).get(0);
                 cache.get(i).put(0, sum);
             }
-            for (int i = 1; i < A.size(); i++)
+            for (int i = 1; i < A.size(); ++i)
                 for (int j = 1; j < A.get(0).size(); j++)
                     cache.get(i).put(j,
                             A.get(i).get(j) +
@@ -39,9 +39,9 @@ public class MinSumPathInMatrix {
         public int minPathSum(ArrayList<ArrayList<Integer>> A) {
             ArrayList<Integer> a = new ArrayList<>();
             a.add(A.get(0).get(0));
-            for (int i = 1; i < A.get(0).size(); i++)
+            for (int i = 1; i < A.get(0).size(); ++i)
                 a.add(A.get(0).get(i) + a.get(i-1));
-            for (int i = 1; i < A.size(); i++) {
+            for (int i = 1; i < A.size(); ++i) {
                 for (int j = 0; j < A.get(0).size(); j++) {
                     if (j == 0) a.set(0, a.get(0) + A.get(i).get(0));
                     else a.set(j, A.get(i).get(j) + Math.min(a.get(j), a.get(j - 1)));
@@ -57,9 +57,9 @@ public class MinSumPathInMatrix {
      */
     class Solution3 {
         public int minPathSum(ArrayList<ArrayList<Integer>> A) {
-            for (int i = 1; i < A.get(0).size(); i++)
+            for (int i = 1; i < A.get(0).size(); ++i)
                 A.get(0).set(i, A.get(0).get(i) + A.get(0).get(i-1));
-            for (int i = 1; i < A.size(); i++) {
+            for (int i = 1; i < A.size(); ++i) {
                 for (int j = 0; j < A.get(0).size(); j++) {
                     if (j == 0) A.get(i).set(j, A.get(i-1).get(j) + A.get(i).get(j));
                     else A.get(i).set(j, A.get(i).get(j) +
@@ -72,9 +72,9 @@ public class MinSumPathInMatrix {
 
     class Solution4 {
         public int minPathSum(ArrayList<ArrayList<Integer>> A) {
-            for (int i = 1; i < A.get(0).size(); i++)
+            for (int i = 1; i < A.get(0).size(); ++i)
                 A.get(0).set(i, A.get(0).get(i) + A.get(0).get(i-1));
-            for (int i = 1; i < A.size(); i++) {
+            for (int i = 1; i < A.size(); ++i) {
                 for (int j = 0; j < A.get(i).size(); j++) {
                     if (j == 0) A.get(i).set(j, A.get(i-1).get(j) + A.get(i).get(j));
                     else A.get(i).set(j, A.get(i).get(j) +

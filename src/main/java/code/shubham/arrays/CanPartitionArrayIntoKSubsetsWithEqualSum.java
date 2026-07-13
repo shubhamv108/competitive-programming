@@ -18,7 +18,7 @@ public class CanPartitionArrayIntoKSubsetsWithEqualSum {
                 return false;
             if (sum == target && digitCount > 0)
                 return this.canPartition(A, 0, 0, 0, target, visited, kSubsets-1);
-            for (int i = idx; i < A.length; i++) {
+            for (int i = idx; i < A.length; ++i) {
                 if (!visited[i]) {
                     visited[i] = true;
                     if (this.canPartition(A, idx+1, sum + A[i], digitCount+1, target, visited, kSubsets))

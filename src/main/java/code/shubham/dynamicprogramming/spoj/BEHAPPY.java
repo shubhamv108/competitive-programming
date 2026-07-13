@@ -23,7 +23,7 @@ class Solver12 {
 public class BEHAPPY {
     public static void main(String[] args) {
         int[] cache = new int[200];
-        for(int i=0;i < 200;i++) {
+        for(int i=0;i < 200;++i) {
             cache[i] = -1;
         }
         Reader reader = new Reader();
@@ -35,7 +35,7 @@ public class BEHAPPY {
                 if (m == 0 && n == 0) {
                     return;
                 }
-                for(int i=0;i<=m;i++) {
+                for(int i=0;i<=m;++i) {
                     arr[i][0] = reader.nextInt();
                     arr[i][1] = reader.nextInt();
                 }

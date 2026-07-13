@@ -7,7 +7,7 @@ public class MinSubArrayContainingSubsequence {
 
     private int size(int[] A, int[] B) {
         int result = Integer.MAX_VALUE;
-        for (int i = 0; i < A.length - B.length + 1; i++) {
+        for (int i = 0; i < A.length - B.length + 1; ++i) {
             if (A[i] == B[0]) {
                 int k = 1;
                 int subsequenceLength = 1;

@@ -15,7 +15,7 @@ public class SubArrayContainingAllElementsInArray {
 
             Map<Integer, Integer> m = new HashMap<>();
             int start = 0, i = 0;
-            for (; i < len && m.size() < uniqueCount; i++) {
+            for (; i < len && m.size() < uniqueCount; ++i) {
                 m.put(A[i], m.getOrDefault(A[i], 0) + 1);
                 while (m.get(A[start]) > 1) {
                     m.put(A[start], m.get(A[start]) - 1);
@@ -23,7 +23,7 @@ public class SubArrayContainingAllElementsInArray {
                 }
             }
             int result = i - start + 1;
-            for (; i < len; i++) {
+            for (; i < len; ++i) {
                 m.put(A[i], m.getOrDefault(A[i], 0) + 1);
                 while (m.get(A[start]) > 1) {
                     m.put(A[start], m.get(A[start]) - 1);

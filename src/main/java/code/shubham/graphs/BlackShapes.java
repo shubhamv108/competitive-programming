@@ -18,7 +18,7 @@ public class BlackShapes {
             M = A.stream().findFirst().get().length();
             visited = new boolean[N][M];
             int count = 0;
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < N; ++i)
                 for (int j = 0; j < M; j++)
                     if (A.get(i).charAt(j) == 'X' && !visited[i][j])
                         count += visit (i, j);

@@ -15,7 +15,7 @@ public class ReverseSentence {
             if (A == null || A.length < 2) return;
             reverseIndexRange(0, A.length - 1);
             int startIdx = 0;
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 if (A[i] == ' ') {
                     reverseIndexRange(startIdx, i - 1);
                     startIdx = i + 1;

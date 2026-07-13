@@ -14,7 +14,7 @@ public class FindHeightOfTreeGivenParentArray {
         int t = Integer.parseInt(sc.next());
         int n = Integer.parseInt(sc.next());
         int[] a = new int[n];
-        for(int i=0;i<n;i++) {
+        for(int i=0;i<n;++i) {
             a[i] = Integer.parseInt(sc.next());
         }
         heighOfTreeFromParentArray(a);

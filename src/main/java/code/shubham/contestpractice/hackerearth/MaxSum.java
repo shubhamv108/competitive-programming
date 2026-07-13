@@ -10,7 +10,7 @@ public class MaxSum {
     static void printMaxSumOfUniqueElementsInSubArray()
     {
         int max = Integer.MIN_VALUE, curMax= 0, start = 0, end = 0, s = 0;
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length; ++i) {
             curMax += arr[i];
             if (max < curMax) {
                 max = curMax;
@@ -23,7 +23,7 @@ public class MaxSum {
             }
         }
         int UNIQUE = 0, sum = 0;
-        for(int i=start; i<=end; i++) {
+        for(int i=start; i<=end; ++i) {
             if((UNIQUE & (1 << i)) == 0) {
                 sum += arr[i];
                 UNIQUE = (UNIQUE | (1 << i));
@@ -38,7 +38,7 @@ public class MaxSum {
         int n = Integer.parseInt(br.readLine());
         String[] line = br.readLine().split(" ");
         arr = new int[n];
-        for(int i=0;i<n;i++) arr[i] = Integer.parseInt(line[i]);
+        for(int i=0;i<n;++i) arr[i] = Integer.parseInt(line[i]);
         printMaxSumOfUniqueElementsInSubArray();
     }
 }

@@ -12,7 +12,7 @@ public class MinimumDeletionsToMakeCharacterFrequenciesUnique {
             count[c-'a']++;
         }
         Set<Integer> usedFrequency = new HashSet<>();
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 26; ++i) {
             while (count[i] > 0 && !usedFrequency.add(count[i])) {
                 count[i]--;
                 result++;

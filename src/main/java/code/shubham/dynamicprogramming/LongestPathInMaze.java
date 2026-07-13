@@ -21,7 +21,7 @@ public class LongestPathInMaze {
     int getLongestPath(String[] maze) {
         int[][] dp = new int[maze.length][maze[0].length()];
         isLeftInfluenced = new boolean[maze.length][maze[0].length()];
-        for (int i = 0; i < maze.length; i++) {
+        for (int i = 0; i < maze.length; ++i) {
             if (i > 0) {
                 for (int j = 0; j < dp[0].length; j++) {
                     if (maze[i].charAt(j) == '.') {
@@ -57,7 +57,7 @@ public class LongestPathInMaze {
                 }
             }
         }
-//        for (int i = 0; i < dp.length; i++) {
+//        for (int i = 0; i < dp.length; ++i) {
 //            for (int j = 0; j < dp[0].length; j++) {
 //                System.out.print(dp[i][j] + " ");
 //            }

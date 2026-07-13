@@ -5,7 +5,7 @@ public class DecodedStringAtIndex {
         public String decodeAtIndex(String s, int k) {
             int i;
             long len = 0;
-            for (i = 0; len < k; i++)
+            for (i = 0; len < k; ++i)
                 len = Character.isDigit(s.charAt(i)) ? len * (s.charAt(i) - '0') : len + 1;
 
             for (i--; i > 0; i--) {

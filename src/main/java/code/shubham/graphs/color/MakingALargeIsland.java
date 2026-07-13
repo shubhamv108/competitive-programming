@@ -10,7 +10,7 @@ public class MakingALargeIsland {
         public int largestIsland(int[][] grid) {
             HashMap<Integer, Integer> color = new HashMap<>();
             int curColor = 2;
-            for (int i = 0; i < grid.length; i++) {
+            for (int i = 0; i < grid.length; ++i) {
                 for (int j = 0; j < grid[0].length; j++) {
                     if (grid[i][j] == 1) {
                         color.put(curColor, paint(grid, i, j, curColor));
@@ -22,7 +22,7 @@ public class MakingALargeIsland {
             if (curColor == 2) return 1;
 
             int size = color.get(2);
-            for (int i = 0; i < grid.length; i++) {
+            for (int i = 0; i < grid.length; ++i) {
                 for (int j = 0; j < grid[0].length; j++) {
                     if (grid[i][j] == 0) {
                         int curSize = 1;

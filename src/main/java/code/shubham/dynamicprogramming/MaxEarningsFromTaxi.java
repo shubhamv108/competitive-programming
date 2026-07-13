@@ -12,7 +12,7 @@ public class MaxEarningsFromTaxi {
             long[] dp = new long[rides.length];
             dp[0] = rides[0][1] -  rides[0][0] +  rides[0][2];
 
-            for (int i = 1; i < rides.length; i++) {
+            for (int i = 1; i < rides.length; ++i) {
                 long curEarn = rides[i][1] -  rides[i][0] +  rides[i][2];
                 int index = -1;
                 for (int j = i-1; j > -1; j--) {
@@ -37,7 +37,7 @@ public class MaxEarningsFromTaxi {
             cache.put(rides[0][1], (long) rides[0][1] -  rides[0][0] +  rides[0][2]);
             long prev = rides[0][1] -  rides[0][0] +  rides[0][2];
 
-            for (int i = 1; i < rides.length; i++) {
+            for (int i = 1; i < rides.length; ++i) {
                 long curEarn = rides[i][1] -  rides[i][0] +  rides[i][2];
                 Map.Entry<Integer, Long> lower = cache.floorEntry(rides[i][0]);
                 if (lower != null)

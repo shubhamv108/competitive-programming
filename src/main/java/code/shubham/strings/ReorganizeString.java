@@ -10,7 +10,7 @@ public class ReorganizeString {
             char[] c = s.toCharArray();
             int l = s.length();
             int[] count = new int[26];
-            for (int i = 0; i < l; i++) {
+            for (int i = 0; i < l; ++i) {
                 int chr = c[i] - 'a';
                 count[chr]++;
                 if (count[chr] > (l+1)/2) return "";

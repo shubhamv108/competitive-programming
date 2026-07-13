@@ -36,7 +36,7 @@ public class UniqueBinarySearchTreesII {
                 return nodes;
             }
 
-            for (int i = start; i <= end; i++) {
+            for (int i = start; i <= end; ++i) {
                 List<TreeNode> leftNodes = this.generateTrees(start, i-1);
                 List<TreeNode> rightNodes = this.generateTrees(i+1, end);
                 for (TreeNode leftNode : leftNodes) {

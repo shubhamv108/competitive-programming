@@ -84,7 +84,7 @@ public class Pratillipi {
             int[] arr = new int[N];
             IntStream.range(0, N).forEach(i -> arr[i] = sc.nextInt());
             Solution solution = new One().new Solution(N, K, arr);
-            for (int i = 0; i < N - 1; i++) {
+            for (int i = 0; i < N - 1; ++i) {
                 int u = sc.nextInt();
                 int v = sc.nextInt();
                 solution.insertEdge(u, v);

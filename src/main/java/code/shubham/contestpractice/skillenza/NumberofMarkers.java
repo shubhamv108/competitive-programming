@@ -91,7 +91,7 @@ public class NumberofMarkers {
             }
             Arrays.sort(intervals, Comparator.comparingInt(a -> a.s));
             int index = 0;
-            for (i = 1; i < n; i++) {
+            for (i = 1; i < n; ++i) {
                 if (intervals[index].e >= intervals[i].s) {
                     intervals[index].s = Math.min(intervals[index].s, intervals[i].s);
                     intervals[index].e = Math.max(intervals[index].e, intervals[i].e);

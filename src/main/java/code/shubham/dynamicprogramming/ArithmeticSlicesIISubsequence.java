@@ -9,7 +9,7 @@ public class ArithmeticSlicesIISubsequence {
             int result = 0;
             int l = nums.length;
             HashMap<Integer, Integer>[] dp = new HashMap[l];
-            for (int i = 0; i < l; i++) {
+            for (int i = 0; i < l; ++i) {
                 dp[i] = new HashMap<>();
                 for (int j = i - 1; j > -1; j--) {
                     int d = nums[i] - nums[j];

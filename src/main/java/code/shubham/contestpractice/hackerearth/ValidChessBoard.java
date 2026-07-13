@@ -51,7 +51,7 @@ public class ValidChessBoard {
     }
 
     private static void processMatrix() {
-        for (int i=1;i<N+1;i++) {
+        for (int i=1;i<N+1;++i) {
             for (int j = 1; j < M+1; j++) {
                 m[i][j] = 1 + cellUsability(i, j);
                 if (8 <= m[i][j]) {

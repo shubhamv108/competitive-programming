@@ -11,12 +11,12 @@ public class RemoveDuplicates {
         LinkedList<Character> l = new LinkedList<>();
 
         HashMap<Character, Integer> counters = new HashMap<>();
-        for (int i = 0; i < s.length(); i++){
+        for (int i = 0; i < s.length(); ++i){
             char c = s.charAt(i);
             counters.put(c, counters.getOrDefault(c, 0) + 1);
         }
 
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); ++i) {
             char c = s.charAt(i);
             counters.put(c, counters.get(c) - 1);
             if (!visited.contains(c)) {

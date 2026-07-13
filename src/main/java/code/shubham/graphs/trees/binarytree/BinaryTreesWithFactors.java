@@ -11,7 +11,7 @@ public class BinaryTreesWithFactors {
             long result = 0L, mod = (long) 1e9 + 7;
             Arrays.sort(A);
             HashMap<Integer, Long> dp = new HashMap<>();
-            for (int i = 0; i < A.length; i++) {
+            for (int i = 0; i < A.length; ++i) {
                 dp.put(A[i], 1L);
                 for (int j = 0; j < i; j++)
                     if (A[i] % A[j] == 0)

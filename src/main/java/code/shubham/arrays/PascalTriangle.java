@@ -10,7 +10,7 @@ public class PascalTriangle {
             for(int line = 1; line <= A; line++) {
                 c = 1;
                 a.add(new ArrayList<>());
-                for(int i = 1; i <= line; i++) {
+                for(int i = 1; i <= line; ++i) {
                     a.get(i - 1).add(c);
                     c = c * ( line - i ) / i;
                 }

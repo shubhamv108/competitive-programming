@@ -103,7 +103,7 @@ public class CanAssignToSchedule {
     boolean[] schedule(String[][] scheduled, String[][] incomings) {
         boolean[] result = new boolean[incomings.length];
         Node scheduledQueue = getScheduledQueue(scheduled);
-        for (int i = 0;i < incomings.length; i++) {
+        for (int i = 0;i < incomings.length; ++i) {
             result[i] = insertIntoScheduledQueue(scheduledQueue, incomings[i]);
         }
         return result;

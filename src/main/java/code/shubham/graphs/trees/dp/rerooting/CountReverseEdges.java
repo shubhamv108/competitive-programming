@@ -11,7 +11,7 @@ public class CountReverseEdges {
         int[] result = new int[n];
         ArrayList<int[]>[] g = new ArrayList[n];
 
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; ++i)
             g[i] = new ArrayList<>();
 
         int en = F.size();

@@ -6,7 +6,7 @@ public class HouseRobbery {
         int curMax = nums[0];
         int prevMax = 0;
         int temp = 0;
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 1; i < nums.length; ++i) {
             temp = curMax;
             curMax = Math.max(curMax, nums[i] + prevMax);
             prevMax = temp;

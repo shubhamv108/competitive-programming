@@ -9,7 +9,7 @@ public class LongestArithmeticProgression {
         if (A.size() <= 2) return A.size();
         int L[][] = new int[A.size()][A.size()];
         int llap = 2;
-        for (int i = 0; i < A.size(); i++) L[i][A.size() - 1] = 2;
+        for (int i = 0; i < A.size(); ++i) L[i][A.size() - 1] = 2;
         for (int j = A.size() - 2; j >= 1; j--) {
             int i = j - 1, k = j + 1;
             while (i >= 0 && k <= A.size() - 1) {

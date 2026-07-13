@@ -15,13 +15,13 @@ public class PrintMatrixSpirally {
 
         while (r <= R && c <= C) {
 //            if (r <= R) {
-            for (i = c; i <= C; i++) {
+            for (i = c; i <= C; ++i) {
                 System.out.print(a[r][i] + " ");
             }
             r++;
 //            }
 //            if (c <= C) {
-            for (i = r; i <= R; i++) {
+            for (i = r; i <= R; ++i) {
                 System.out.print(a[i][C] + " ");
             }
             C--;
@@ -77,7 +77,7 @@ public class PrintMatrixSpirally {
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
 //        int r = 3, c = r, a[][] = new int[r][c];
-//        for(int i=0;i<r;i++) {
+//        for(int i=0;i<r;++i) {
 //            for(int j=0;j<c;j++) {
 //                a[i][j] = Integer.parseInt(sc.next());
 //            }
@@ -93,7 +93,7 @@ public class PrintMatrixSpirally {
 
     public static ArrayList<ArrayList<Integer>> generateMatrix(int A) {
         ArrayList<ArrayList<Integer>> l = new ArrayList<>();
-        for (int i = 0; i < A; i++) {
+        for (int i = 0; i < A; ++i) {
             ArrayList<Integer> ll = new ArrayList<>();
             for (int j=0; j<A; j++) ll.add(0);
             l.add(ll);
@@ -106,7 +106,7 @@ public class PrintMatrixSpirally {
         while (r <= R && c <= C) {
             for (int i=c; i <= C; i++ )      l.get(r).set(i, k++);
             r++;
-            for (int i=r; i<=R; i++)         l.get(i).set(C, k++);
+            for (int i=r; i<=R; ++i)         l.get(i).set(C, k++);
             C--;
             if (r <= R) {
                 for (int i = C; i >= c; i--) l.get(R).set(i, k++);

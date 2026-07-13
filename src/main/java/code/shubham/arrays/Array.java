@@ -29,11 +29,11 @@ class RightRotate {
         while(t-- > 0) {
             int n = sc.nextInt();
             Array arr =  new Array(n);
-            for(int i=0;i<n;i++) { arr.set(i, sc.nextInt()); System.out.printf("%d ", arr.get(i)); }
+            for(int i=0;i<n;++i) { arr.set(i, sc.nextInt()); System.out.printf("%d ", arr.get(i)); }
             int k = sc.nextInt();
             while(k-- > 0) { arr.rightRotate(); }
             System.out.printf("\n");
-            for(int i=0;i<n;i++) { System.out.printf("%d ", arr.get(i)); }
+            for(int i=0;i<n;++i) { System.out.printf("%d ", arr.get(i)); }
             System.out.printf("\n\n");
         }
     }

@@ -9,7 +9,7 @@ public class IteratorConfusion {
     private static class ListFor {
         public static void main (String[] args) {
             LinkedList<Integer> a = new LinkedList<>(Arrays.asList(1, 2, 3, 4));
-            for (int i= 0; i<a.size(); i++) {
+            for (int i= 0; i<a.size(); ++i) {
                 if (a.get(i) == 2) {
                     // a.addFirst(5); // never ends
                     a.addLast(5);

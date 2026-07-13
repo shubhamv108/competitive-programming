@@ -6,7 +6,7 @@ public class NumberOfDiceRollsWithTargetSum {
             if (d == 0 || target < 0)
                 return target == 0 ? 1 : 0;
             int ways = 0;
-            for (int i = 1; i <= f; i++)
+            for (int i = 1; i <= f; ++i)
                 ways = (ways + numRollsToTarget(d - 1, f, target - i)) % 1000000007;
             return ways;
         }
@@ -22,7 +22,7 @@ public class NumberOfDiceRollsWithTargetSum {
             if (dp[d][target] != null)
                 return dp[d][target];
             int ways = 0;
-            for (int i = 1; i <= f; i++)
+            for (int i = 1; i <= f; ++i)
                 ways = (ways + f(d - 1, f, target - i, dp)) % 1000000007;
             return dp[d][target] = ways;
         }
@@ -32,7 +32,7 @@ public class NumberOfDiceRollsWithTargetSum {
         public int numRollsToTarget(int d, int f, int target) {
             int[][] dp = new int[d + 1][target + 1];
             dp[0][0] = 1;
-            for(int i = 1; i <= d; i++)
+            for(int i = 1; i <= d; ++i)
                 for(int j = 1;j <= target; j++)
                     for(int k = 1; k <= f; k++)
                         dp[i][j] = (dp[i][j] + (k <= j ? dp[i-1][j-k] : 0)) % 1000000007;

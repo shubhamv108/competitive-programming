@@ -19,14 +19,14 @@ public class NearestServersByCapacity {
 
             // Sort servers by capacity to find closest neighbors
             Integer[] order = new Integer[n];
-            for (int i = 0; i < n; i++) order[i] = i;
+            for (int i = 0; i < n; ++i) order[i] = i;
             Arrays.sort(order, (x, y) -> C.get(x) - C.get(y));
 
             int[] pos = new int[n];
-            for (int i = 0; i < n; i++) pos[order[i]] = i;
+            for (int i = 0; i < n; ++i) pos[order[i]] = i;
 
             int[] closest = new int[n];
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 int p = pos[i];
                 if (p == 0) {
                     closest[i] = order[1];
@@ -44,16 +44,16 @@ public class NearestServersByCapacity {
             // 1) Between consecutive sorted neighbors: cost = |cap[u] - cap[v]|
             // 2) Each node to its closest: cost = 1 (bidirectional)
             List<long[]>[] g = new ArrayList[n];
-            for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+            for (int i = 0; i < n; ++i) g[i] = new ArrayList<>();
 
-            for (int i = 0; i < n - 1; i++) {
+            for (int i = 0; i < n - 1; ++i) {
                 int u = order[i], v = order[i + 1];
                 long w = C.get(v) - C.get(u); // always positive (sorted)
                 g[u].add(new long[]{v, w});
                 g[v].add(new long[]{u, w});
             }
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 int cl = closest[i];
                 g[i].add(new long[]{cl, 1});
                 g[cl].add(new long[]{i, 1});
@@ -61,7 +61,7 @@ public class NearestServersByCapacity {
 
             // Group queries by source to reuse Dijkstra results
             HashMap<Integer, List<Integer>> queryBySource = new HashMap<>();
-            for (int i = 0; i < m; i++) {
+            for (int i = 0; i < m; ++i) {
                 queryBySource.computeIfAbsent(F.get(i), k -> new ArrayList<>()).add(i);
             }
 
@@ -130,7 +130,7 @@ public class NearestServersByCapacity {
 
             // Step 3: closest pointer
             int[] next = new int[n];
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 int p = pos[i];
 
                 int left = (p > 0) ? order[p - 1] : -1;
@@ -151,7 +151,7 @@ public class NearestServersByCapacity {
 
             boolean[] visited = new boolean[n];
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 if (visited[i]) continue;
 
                 // detect cycle
@@ -197,7 +197,7 @@ public class NearestServersByCapacity {
             // Step 5: answer queries in O(1)
             List<Integer> ans = new ArrayList<>();
 
-            for (int i = 0; i < F.size(); i++) {
+            for (int i = 0; i < F.size(); ++i) {
                 int u = F.get(i);
                 int v = T.get(i);
 

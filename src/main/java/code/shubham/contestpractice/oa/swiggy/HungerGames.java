@@ -15,7 +15,7 @@ public class HungerGames {
             PriorityQueue<Integer> both = new PriorityQueue<>();
             PriorityQueue<Integer> ram = new PriorityQueue<>();
             PriorityQueue<Integer> shyam = new PriorityQueue<>();
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 int[] A = InputUtils.nextLineIntArray();
                 System.out.println(A[0] + " " + A[1] + " " + A[2]);
                 if (A[1] - 1 == 0 && A[2] - 1 == 0)

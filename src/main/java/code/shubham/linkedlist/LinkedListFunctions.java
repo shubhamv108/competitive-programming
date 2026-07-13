@@ -363,7 +363,7 @@ class   LinkedListFunctions {
         if (n.length == 0) return null;
         LLNode h = new LLNode(n[0]);
         LLNode l = h;
-        for (int i = 1; i < n.length; i++) {
+        for (int i = 1; i < n.length; ++i) {
             l.next = new LLNode(n[i]);
             l = l.next;
         }
@@ -374,7 +374,7 @@ class   LinkedListFunctions {
         if (n.length == 0) return null;
         Node h = new Node(n[0]);
         Node l = h;
-        for (int i = 1; i < n.length; i++) {
+        for (int i = 1; i < n.length; ++i) {
             l.n = new Node(n[i]);
             l = l.n;
         }
@@ -385,7 +385,7 @@ class   LinkedListFunctions {
         if (n.length == 0) return null;
         ListNode h = new ListNode(n[0]);
         ListNode l = h;
-        for (int i = 1; i < n.length; i++) {
+        for (int i = 1; i < n.length; ++i) {
             l.next = new ListNode(n[i]);
             l = l.next;
         }

@@ -8,7 +8,7 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
             char[] s = S.toCharArray();
             int result = 0, freq[] = new int[26];
 
-            for (int i = 0; i < s.length; i++) {
+            for (int i = 0; i < s.length; ++i) {
                 fill(freq, 0);
                 for (int j = i; j < s.length; j++) {
                     freq[s[j] - 'a']++;
@@ -21,7 +21,7 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
         }
 
         void fill(int[] A, int v) {
-            for (int i = 0; i < A.length; i++)
+            for (int i = 0; i < A.length; ++i)
                 A[i] = v;
         }
 
@@ -68,7 +68,7 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
         }
 
         void fill(int[] A, int v) {
-            for (int i = 0; i < A.length; i++)
+            for (int i = 0; i < A.length; ++i)
                 A[i] = v;
         }
 
@@ -83,7 +83,7 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
         int getMaxUniqueLetters(char[] s) {
             boolean map[] = new boolean[26];
             int maxUnique = 0;
-            for (int i = 0; i < s.length; i++) {
+            for (int i = 0; i < s.length; ++i) {
                 if (!map[s[i] - 'a']) {
                     maxUnique++;
                     map[s[i] - 'a'] = true;

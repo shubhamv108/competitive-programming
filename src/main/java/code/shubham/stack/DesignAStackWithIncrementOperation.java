@@ -22,7 +22,7 @@ public class DesignAStackWithIncrementOperation {
         }
 
         public void increment(int k, int val) {
-            for (int i = 0; i <= curIdx && i < k; i++)
+            for (int i = 0; i <= curIdx && i < k; ++i)
                 stack[i] += val;
         }
     }

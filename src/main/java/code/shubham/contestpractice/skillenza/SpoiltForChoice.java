@@ -18,7 +18,7 @@ public class SpoiltForChoice {
         private void addShow(String s, String e) {
             int startSeconds = toSecond(s);
             int endSeconds   = toSecond(e);
-            for (int i = startSeconds + 1; i <= endSeconds; i++) {
+            for (int i = startSeconds + 1; i <= endSeconds; ++i) {
                 if (i == 0) continue;
                 if (secondsCounter[i] == 0) {
                     durationSeconds++;
@@ -115,7 +115,7 @@ public class SpoiltForChoice {
         while (t-- > 0) {
             int n = InputUtils.nextInt();
             Solution solution = new SpoiltForChoice().new Solution();
-            for (int i = 0 ; i < n; i++) {
+            for (int i = 0 ; i < n; ++i) {
                 String[] line = InputUtils.splitNextLine();
                 String s = line[0];
                 String e = line[1];

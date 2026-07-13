@@ -7,7 +7,7 @@ public class DecodeWaysII {
         public int numDecodings(String s) {
             char[] c = s.toCharArray();
             long dp1 = 1, dp2 = c[0] == '*' ? 9 : c[0] == '0' ? 0 : 1;
-            for (int i = 1; i < s.length(); i++) {
+            for (int i = 1; i < s.length(); ++i) {
                 long temp = dp2;
                 if (c[i] == '*') {
                     dp2 = (9 * dp2) % M;

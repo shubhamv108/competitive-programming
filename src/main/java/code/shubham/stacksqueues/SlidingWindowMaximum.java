@@ -19,11 +19,11 @@ public class SlidingWindowMaximum {
             Deque<Integer> q = new LinkedList<>();
             int i = 0;
             int b = Math.min(B, A.size());
-            for (;i<b;i++) {
+            for (;i<b;++i) {
                 while (!q.isEmpty() && A.get(i) >= A.get(q.peekLast())) q.removeLast();
                 q.offer(i);
             }
-            for (; i < A.size(); i++) {
+            for (; i < A.size(); ++i) {
                 result.add(A.get(q.peekFirst()));
                 while (!q.isEmpty() && q.peekFirst() <= i - B) q.poll();
                 while (!q.isEmpty() && A.get(i) >= A.get(q.peekLast())) q.removeLast();
@@ -81,7 +81,7 @@ public class SlidingWindowMaximum {
             Queue<Pair> maxHeap = new PriorityQueue<>((a, b) -> b.val - a.val);
             IntStream.range(0, k).forEach(i -> maxHeap.offer(new Pair(i, nums[i])));
             int i = k;
-            for(; i < nums.length; i++) {
+            for(; i < nums.length; ++i) {
                 result[i - k] = maxHeap.peek().val;
                 maxHeap.offer(new Pair(i, nums[i]));
                 while (maxHeap.peek().pos <= i - k)
@@ -105,7 +105,7 @@ public class SlidingWindowMaximum {
             while(index<len){
                 if(maxIndex<index){
                     max = nums[index];
-                    for(int i=index+1;i<index+k;i++){
+                    for(int i=index+1;i<index+k;++i){
                         if(max<nums[i]) {
                             max = nums[i];
                             maxIndex = i;
@@ -130,11 +130,11 @@ public class SlidingWindowMaximum {
             int[] result = new int[A.length - k + 1];
             code.shubham.datastructures.Deque<Integer> q = new code.shubham.datastructures.Deque<>();
             int i = 0;
-            for (; i < k; i++) {
+            for (; i < k; ++i) {
                 while (!q.isEmpty() && A[i] >= A[q.peekLast()]) q.removeLast();
                 q.addLast(i);
             }
-            for (; i < A.length; i++) {
+            for (; i < A.length; ++i) {
                 result[i-k] = A[q.peekFirst()];
                 while (!q.isEmpty() && q.peekFirst() <= i - k) q.removeFirst();
                 while (!q.isEmpty() && A[i] >= A[q.peekLast()]) q.removeLast();
