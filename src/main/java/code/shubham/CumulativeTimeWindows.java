@@ -10,30 +10,23 @@ public class CumulativeTimeWindows {
 
     public void accumulate() {
         long time = System.currentTimeMillis();
-        double accumulated = 1d + Optional.ofNullable(cumulativeFrequency.get(time))
-                .orElse(Optional.ofNullable(cumulativeFrequency.lastEntry())
-                            .map(Map.Entry::getValue)
-                            .orElse(0.0));
-
+        double accumulated = 1d + cumulativeFrequency.getOrDefault(
+                time,
+                Optional.ofNullable(cumulativeFrequency.lastEntry())
+                        .map(Map.Entry::getValue)
+                        .orElse(0.0));
         cumulativeFrequency.put(time, accumulated);
-        System.out.println("Added Entry-> " + time + " " + accumulated);
     }
 
-    public double getCount(long start, long end) {
-        var s = cumulativeFrequency.lowerEntry(start);
-        var e = cumulativeFrequency.floorEntry(end);
-        if (s != null && s == e) {
-            System.out.println("Accumulated For" + start + " " + end + " ->");
-            return s.getValue();
-        }
+    public double getCount(long from, long to) {
+        var leftEntry = cumulativeFrequency.lowerEntry(from);
+        var rightEntry = cumulativeFrequency.floorEntry(to);
+        if (leftEntry != null && leftEntry == rightEntry)
+            return leftEntry.getValue();
 
-        Double startFreq = Optional.ofNullable(s).map(Map.Entry::getValue).orElse(0.0);
-        Double endFreq = Optional.ofNullable(e).map(Map.Entry::getValue).orElse(0.0);
-
-        if (e != null)
-            System.out.println("Taken end Entry = " + e.getKey());
-        System.out.println("Accumulated For" + start + " " + end + " ->");
-        return endFreq - startFreq;
+        Double leftFreq = Optional.ofNullable(leftEntry).map(Map.Entry::getValue).orElse(0.0);
+        Double rightFreq   = Optional.ofNullable(rightEntry).map(Map.Entry::getValue).orElse(0.0);
+        return rightFreq - leftFreq;
     }
 
     void main() throws InterruptedException {
