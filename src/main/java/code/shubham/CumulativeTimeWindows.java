@@ -19,13 +19,13 @@ public class CumulativeTimeWindows {
     }
 
     public double getCount(long from, long to) {
-        var leftEntry = cumulativeFrequency.lowerEntry(from);
+        var leftEntry  = cumulativeFrequency.lowerEntry(from);
         var rightEntry = cumulativeFrequency.floorEntry(to);
-        if (leftEntry != null && leftEntry == rightEntry)
-            return leftEntry.getValue();
+        if (leftEntry == rightEntry)
+            return leftEntry == null ? 0.0 : leftEntry.getValue();
 
-        Double leftFreq = Optional.ofNullable(leftEntry).map(Map.Entry::getValue).orElse(0.0);
-        Double rightFreq   = Optional.ofNullable(rightEntry).map(Map.Entry::getValue).orElse(0.0);
+        Double leftFreq  = Optional.ofNullable(leftEntry).map(Map.Entry::getValue).orElse(0.0);
+        Double rightFreq = Optional.ofNullable(rightEntry).map(Map.Entry::getValue).orElse(0.0);
         return rightFreq - leftFreq;
     }
 
