@@ -78,24 +78,25 @@ public class ReverseListInGroupOfSizeK {
             ListNode cur = head, prev = null;
 
             int K = k;
-            while (K-- > 0 && cur != null) {
-                ListNode temp = cur.next;
+            while (cur != null && k-- > 0) {
+                ListNode next = cur.next;
                 cur.next = prev;
                 prev = cur;
-                cur = temp;
+                cur = next;
             }
-            if (K > 0) {
+            if (k > 0) {
                 cur = prev;
                 prev = null;
-                while (cur != null) {
-                    ListNode temp = cur.next;
+                k = K - k;
+                while (cur != null && k-- > 0) {
+                    ListNode next = cur.next;
                     cur.next = prev;
                     prev = cur;
-                    cur = temp;
+                    cur = next;
                 }
                 return prev;
             }
-            head.next = reverseKGroup(cur, k);
+            head.next = reverseKGroup(cur, K);
             return prev;
         }
 
@@ -104,7 +105,7 @@ public class ReverseListInGroupOfSizeK {
     public static void main(String[] args) {
         ListNode head = createAndGetNewLN(1, 2, 3, 4, 5);
         int K = 2;
-        head = new ReverseListInGroupOfSizeK().new RecursiveSolution().reverseK(head, K);
+        head = new ReverseListInGroupOfSizeK().new Solution3().reverseKGroup(head, 3);
         print(head);
     }
 

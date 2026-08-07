@@ -1,10 +1,10 @@
 package code.shubham.stacksqueues;
 
-import code.shubham.datastructures.Stack;
+import code.shubham.datastructures.LinkedList;
 
 class ReversePolishNotation {
     public int evalRPN(String[] tokens) {
-        Stack<Integer> stack = new Stack();
+        LinkedList<Integer> stack = new LinkedList();
         boolean flag;
         for (int i = 0; i < tokens.length; ++i) {
             flag = false;
