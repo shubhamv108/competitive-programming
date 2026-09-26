@@ -18,7 +18,7 @@ public class CumulativeTimeWindows {
         cumulativeFrequency.put(time, accumulated);
     }
 
-    public double getCount(long from, long to) {
+    public double getCount(long from, long to) { 
         var leftEntry  = cumulativeFrequency.lowerEntry(from);
         var rightEntry = cumulativeFrequency.floorEntry(to);
         if (leftEntry == rightEntry)
