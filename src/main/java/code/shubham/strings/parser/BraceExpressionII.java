@@ -1,4 +1,4 @@
-package code.shubham.recursion;
+package code.shubham.strings.parser;
 
 import java.util.ArrayList;
 import java.util.List;
