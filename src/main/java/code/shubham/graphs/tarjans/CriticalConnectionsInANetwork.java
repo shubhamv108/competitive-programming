@@ -42,4 +42,8 @@ public class CriticalConnectionsInANetwork {
             }
         }
     }
+
+    void main() {
+        System.out.println(new Solution().criticalConnections(4, new ArrayList<>(Arrays.asList(Arrays.asList(0, 1), Arrays.asList(1, 2), Arrays.asList(2, 0), Arrays.asList(1, 3)))));
+    }
 }
